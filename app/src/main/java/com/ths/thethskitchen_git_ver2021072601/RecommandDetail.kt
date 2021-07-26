@@ -37,7 +37,7 @@ class RecommandDetail : AppCompatActivity() {
             var stat = tracker.state
             Log.d("YOUTUBE_STAT","${stat} : ${second}")
             mYoutubePlayer?.seekTo(second+10f)
-
+//
         }
     }
 }

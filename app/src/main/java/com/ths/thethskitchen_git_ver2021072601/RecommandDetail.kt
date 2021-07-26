@@ -11,7 +11,7 @@ import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityRecommandDeta
 
 var tracker = YouTubePlayerTracker()
 var mYoutubePlayer: YouTubePlayer? = null
-//askdjflkjlkjlkjalskdjlfkjlkajsdf
+//askdjflkjlkjlkjalskdjlfkjlkajsdfdfdd
 class RecommandDetail : AppCompatActivity() {
     val binding by lazy { ActivityRecommandDetailBinding.inflate(layoutInflater) }
     val helper = SqliteHelper(this,"dlist",1)

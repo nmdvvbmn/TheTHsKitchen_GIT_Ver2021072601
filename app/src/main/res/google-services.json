@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "162819902037",
+    "firebase_url": "https://thethskitchen-default-rtdb.firebaseio.com",
+    "project_id": "thethskitchen",
+    "storage_bucket": "thethskitchen.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:162819902037:android:5496994fb20e06bc2162dc",
+        "android_client_info": {
+          "package_name": "com.ths.thethskitchen_git_ver2021072601"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "162819902037-joeuban5k0b5sbdcrevnd0m7bci59t6q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuMjt_o1c04obHPBadXL7cfknWCGQv6_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "162819902037-joeuban5k0b5sbdcrevnd0m7bci59t6q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

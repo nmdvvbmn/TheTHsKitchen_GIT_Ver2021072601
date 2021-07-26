@@ -56,4 +56,3 @@ class AbYoutubePlayerListener(videoId: String, second: Float): AbstractYouTubePl
     }
 }
 
-//slkdjfalksjdlfkjalskdjflkajsdfljas;ldfjla;skjdflkjsldkjfl

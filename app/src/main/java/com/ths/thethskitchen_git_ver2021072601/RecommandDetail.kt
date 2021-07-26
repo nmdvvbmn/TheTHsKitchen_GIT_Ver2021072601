@@ -11,7 +11,7 @@ import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityRecommandDeta
 
 var tracker = YouTubePlayerTracker()
 var mYoutubePlayer: YouTubePlayer? = null
-//askdjflkjlkjlkjalskdjlfkjlkajsdfdfdd
+
 class RecommandDetail : AppCompatActivity() {
     val binding by lazy { ActivityRecommandDetailBinding.inflate(layoutInflater) }
     val helper = SqliteHelper(this,"dlist",1)
@@ -55,3 +55,5 @@ class AbYoutubePlayerListener(videoId: String, second: Float): AbstractYouTubePl
         super.onCurrentSecond(youTubePlayer, second)
     }
 }
+
+//slkdjfalksjdlfkjalskdjflkajsdfljas;ldfjla;skjdflkjsldkjfl

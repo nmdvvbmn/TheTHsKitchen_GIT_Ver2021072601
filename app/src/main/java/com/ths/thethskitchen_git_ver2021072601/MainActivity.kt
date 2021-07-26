@@ -18,9 +18,8 @@ suspend fun downloadList(inputStream: InputStream?, range: String, )
 
     val ( dlist, ilist ) = GoogleDriveService()
         .getDlist("1sLZ37OjOlzRHzPnzp-r7eO8xcffmajwRFfbbIQTVsKU", inputStream, range )
-    return  Pair(dlist, ilist)
+    return  Pair(dlist, ilist) //sdkf
 }
-// git Test1zxsdfsdf
 
 class MainActivity : AppCompatActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater)}

@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.os.StrictMode
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+//import com.google.firebase.FirebaseApp
+//import com.google.firebase.appcheck.FirebaseAppCheck
+//import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory
 import com.ths.a20210713_sqllitehelper.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -28,6 +31,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+//        FirebaseApp.initializeApp(/*context=*/ this)
+//        val firebaseAppCheck = FirebaseAppCheck.getInstance()
+//        firebaseAppCheck.installAppCheckProviderFactory(
+//            DebugAppCheckProviderFactory.getInstance())
 
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)

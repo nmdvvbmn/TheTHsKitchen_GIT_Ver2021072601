@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'  // Google Services plugin
 }
 
 android {
@@ -67,4 +68,8 @@ dependencies {
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:10.0.5'
 //    implementation 'kr.co.prnd:youtube-player-view:1.4.0'
     //implementation("org.apache.poi:poi:5.0.0")
+    implementation platform('com.google.firebase:firebase-bom:28.2.1')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+
+
 }

@@ -14,23 +14,24 @@ var mYoutubePlayer: YouTubePlayer? = null
 
 class RecommandDetail : AppCompatActivity() {
     val binding by lazy { ActivityRecommandDetailBinding.inflate(layoutInflater) }
-    val helper = SqliteHelper(this,"dlist",1)
+//    val helper = SqliteHelper(this,"dlist",1)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val dlist = intent.getSerializableExtra("data") as DList
+        val link = "https://youtu.be/${dlist.video}"
         getLifecycle().addObserver(binding.youtubeView)
 
         //var youtubeListener = AbYoutubePlayerListener(dlist.link, 30f)
-        binding.youtubeView.addYouTubePlayerListener(AbYoutubePlayerListener(dlist.link, 0f))
+        binding.youtubeView.addYouTubePlayerListener(AbYoutubePlayerListener(link, 0f))
 
         val adapter = IListAdapter()
-        adapter.helper = helper
+//        adapter.helper = helper
         binding.recycleIList.adapter = adapter
         binding.recycleIList.layoutManager = LinearLayoutManager(this)
 
-        adapter.listData.addAll(helper.selectIlist(dlist.no))
+//        adapter.listData.addAll(helper.selectIlist(dlist.id))
 
         binding.btnMove.setOnClickListener {
             var second = tracker.currentSecond

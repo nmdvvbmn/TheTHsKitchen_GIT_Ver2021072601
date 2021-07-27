@@ -12,7 +12,7 @@ import com.ths.thethskitchen_git_ver2021072601.databinding.ItemIlistBinding
 
 class IListAdapter: RecyclerView.Adapter<IListAdapter.Holder>() {
     var listData = mutableListOf<IList>()
-    var helper : SqliteHelper? = null
+//    var helper : SqliteHelper? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemIlistBinding.inflate(LayoutInflater.from(parent.context),parent,false)

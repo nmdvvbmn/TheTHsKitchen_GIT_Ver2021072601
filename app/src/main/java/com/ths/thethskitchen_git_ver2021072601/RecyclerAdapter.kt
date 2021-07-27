@@ -31,7 +31,7 @@ suspend fun loadImage(imageUrl: String): Bitmap? {
 
 class RecyclerAdapter:RecyclerView.Adapter<RecyclerAdapter.Holder>() {
     var listData = mutableListOf<DList>()
-    var helper : SqliteHelper? = null
+//    var helper : SqliteHelper? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemRecyclerBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -68,9 +68,9 @@ class RecyclerAdapter:RecyclerView.Adapter<RecyclerAdapter.Holder>() {
         @RequiresApi(Build.VERSION_CODES.N)
         fun setDList(dlist: DList) {
             this.mdlist = dlist
-            binding.txtName.text = "${dlist.name}"
+            binding.txtName.text = "${dlist.id}"
             CoroutineScope(Dispatchers.Main).launch {
-                val url = "${dlist.thumb}"
+                val url = "https://i.ytimg.com/vi/${dlist.video}/0.jpg"
                 val bitmap = withContext(Dispatchers.IO) {
                     loadImage(url)
                 }

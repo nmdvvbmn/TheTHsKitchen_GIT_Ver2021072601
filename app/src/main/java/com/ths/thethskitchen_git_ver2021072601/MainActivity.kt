@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.ths.a20210713_sqllitehelper.*
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityMainBinding
 import java.io.IOException
 

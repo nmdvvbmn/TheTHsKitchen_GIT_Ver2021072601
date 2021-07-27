@@ -24,7 +24,7 @@ class RecommandDetail : AppCompatActivity() {
         getLifecycle().addObserver(binding.youtubeView)
 
         //var youtubeListener = AbYoutubePlayerListener(dlist.link, 30f)
-        binding.youtubeView.addYouTubePlayerListener(AbYoutubePlayerListener(link, 0f))
+        binding.youtubeView.addYouTubePlayerListener(AbYoutubePlayerListener("${dlist.video}", 0f))
 
         val adapter = IListAdapter()
 //        adapter.helper = helper

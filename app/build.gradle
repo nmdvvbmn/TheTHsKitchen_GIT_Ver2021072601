@@ -72,5 +72,5 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:28.2.1')
     implementation 'com.google.firebase:firebase-database-ktx:20.0.1'
 //    implementation 'com.google.firebase:firebase-appcheck-debug:16.0.0-beta02'
-
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0' // DrawerLayout
 }

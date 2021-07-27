@@ -1,33 +1,29 @@
 package com.ths.thethskitchen_git_ver2021072601
 
+import android.R
 import android.os.Bundle
 import android.os.StrictMode
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityMainBinding
 import java.io.IOException
 
 
-//suspend fun downloadList(inputStream: InputStream?, range: String, )
-//        : Pair<List<List<DList>>?, List<List<IList>>?> {
-//
-//    val ( dlist, ilist ) = GoogleDriveService()
-//        .getDlist("1sLZ37OjOlzRHzPnzp-r7eO8xcffmajwRFfbbIQTVsKU", inputStream, range )
-//    return  Pair(dlist, ilist) //sdkf
-//}
-
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){//}, NavigationView.OnNavigationItemSelectedListener {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater)}
-//    val helper = SqliteHelper(this,"dlist",1)
     val db = FirebaseFirestore.getInstance()
     val dlist = arrayListOf<DList>()
     val adapter = RecyclerAdapter(dlist)
-
-
-    private lateinit var database : DatabaseReference
+    var drawMenu : Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,10 +32,18 @@ class MainActivity : AppCompatActivity() {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
 
-//        adapter.helper = helper
         binding.recyclerDList.adapter = adapter
         binding.recyclerDList.layoutManager = LinearLayoutManager(baseContext)
 
+        binding.navi.setNavigationItemSelectedListener {
+            when(it.itemId){
+                binding.navi.menu.getItem(0).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
+                binding.navi.menu.getItem(1).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
+                binding.navi.menu.getItem(2).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
+                else -> Toast.makeText(this,"text",Toast.LENGTH_LONG).show()
+            }
+            return@setNavigationItemSelectedListener true
+        }
         db.collection("DList").get().addOnSuccessListener { result ->
             dlist.clear()
             for (document in result) {
@@ -61,6 +65,8 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+
     fun isOnline(): Boolean {
         val runtime = Runtime.getRuntime()
         try {
@@ -74,7 +80,6 @@ class MainActivity : AppCompatActivity() {
         }
         return false
     }
-
 
 }
 

@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 //    val helper = SqliteHelper(this,"dlist",1)
     val db = FirebaseFirestore.getInstance()
     val dlist = arrayListOf<DList>()
+    val adapter = RecyclerAdapter(dlist)
 
 
     private lateinit var database : DatabaseReference
@@ -36,33 +37,30 @@ class MainActivity : AppCompatActivity() {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
 
-        val adapter = RecyclerAdapter()
 //        adapter.helper = helper
         binding.recyclerDList.adapter = adapter
         binding.recyclerDList.layoutManager = LinearLayoutManager(baseContext)
-        Log.d("test","${isOnline()}")
-        db.collection("Dlist").get().addOnSuccessListener { result ->
+
+        db.collection("DList").get().addOnSuccessListener { result ->
             dlist.clear()
-            Log.d("test","test")
             for (document in result) {
-                Log.d("test","getdocument")
-                Log.d("test","${document.data}")
+                var item = DList(document.id as String,
+                    document["date"] as Long,
+                    document["pretime"] as Long,
+                    document["pretimeunit"] as String,
+                    document["time"] as Long,
+                    document["timeunit"] as String,
+                    document["qunt"] as Long,
+                    document["quntunit"] as String,
+                    document["video"] as String
+                )
+                dlist.add(item)
             }
+            adapter.notifyDataSetChanged()
         }.addOnFailureListener { exception ->
             Log.d("test","fail", exception)
         }
-        var data = db.collection("Dlist").document("00001").get()
-        Log.d("test","test")
 
-//        CoroutineScope(Dispatchers.Main).launch {
-//            val inputStream = assets?.open("thethskitchen-46bad73155c3.json")
-//            val dRange = (helper.selectIRangeMin().toLong() + 4).toString()
-//            val ( dlist, ilist ) = downloadList(inputStream, dRange)
-//            helper.transDList(dlist)
-//            helper.transIList(ilist)
-
-//            adapter.listData.addAll(helper.selectDlist())
-//        }
     }
     fun isOnline(): Boolean {
         val runtime = Runtime.getRuntime()

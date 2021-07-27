@@ -1,4 +1,4 @@
-package com.ths.a20210713_sqllitehelper
+package com.ths.thethskitchen_git_ver2021072601
 
 import android.content.Context
 import android.content.Intent
@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import com.ths.thethskitchen_git_ver2021072601.R
 import com.ths.thethskitchen_git_ver2021072601.databinding.ItemRecyclerBinding
 import kotlinx.coroutines.*
 import java.io.FileNotFoundException
@@ -29,8 +28,8 @@ suspend fun loadImage(imageUrl: String): Bitmap? {
 
 }
 
-class RecyclerAdapter:RecyclerView.Adapter<RecyclerAdapter.Holder>() {
-    var listData = mutableListOf<DList>()
+class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<RecyclerAdapter.Holder>() {
+//    var listData = mutableListOf<DList>()
 //    var helper : SqliteHelper? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {

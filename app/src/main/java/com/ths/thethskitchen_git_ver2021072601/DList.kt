@@ -1,4 +1,4 @@
-package com.ths.a20210713_sqllitehelper
+package com.ths.thethskitchen_git_ver2021072601
 
 import java.io.Serializable
 
@@ -12,6 +12,5 @@ data class DList(
     var timeunit: String,
     var qunt: Long,
     var quntunit: String,
-    var tag: String,
     var video: String ): Serializable
 

@@ -16,6 +16,12 @@ import androidx.viewpager2.widget.ViewPager2
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityMainBinding
 import com.ths.thethskitchen_git_ver2021072601.databinding.FragmentSearchBinding
 import java.io.Serializable
+import java.text.SimpleDateFormat
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.concurrent.timer
 
 class MainActivity : AppCompatActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater)}
@@ -40,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         }
         binding.btnMenu.setOnClickListener{
             binding.drawer.openDrawer(GravityCompat.START)
+
         }
     }
 

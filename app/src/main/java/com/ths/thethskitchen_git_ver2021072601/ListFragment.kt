@@ -68,6 +68,16 @@ class ListFragment : Fragment() {
         }.addOnFailureListener { exception ->
             Log.d("test","fail", exception)
         }
+        db.collection("DList").whereGreaterThan("date",2021071820000).get()
+            .addOnSuccessListener { result->
+                Log.d("DB111","success")
+                for (document in result) {
+                    Log.d("DB111",document["pretime"].toString())
+                }
+            }.addOnFailureListener {
+                Log.d("DB111","Fail")
+
+            }
         return binding.root
     }
 

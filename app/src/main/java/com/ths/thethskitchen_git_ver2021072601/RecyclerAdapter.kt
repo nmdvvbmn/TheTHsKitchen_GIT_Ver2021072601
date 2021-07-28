@@ -29,9 +29,6 @@ suspend fun loadImage(imageUrl: String): Bitmap? {
 }
 
 class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<RecyclerAdapter.Holder>() {
-//    var listData = mutableListOf<DList>()
-//    var helper : SqliteHelper? = null
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemRecyclerBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return Holder(binding, parent.context )
@@ -58,11 +55,11 @@ class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<Recy
                 }.run { context.startActivity(this) }
 
             }
-            binding.btnDel.setOnClickListener {
-                Log.d("SQL","DEL_Click")
-                listData.remove(mdlist)
-                notifyDataSetChanged()
-            }
+//            binding.btnDel.setOnClickListener {
+//                Log.d("SQL","DEL_Click")
+//                listData.remove(mdlist)
+//                notifyDataSetChanged()
+//            }
         }
         @RequiresApi(Build.VERSION_CODES.N)
         fun setDList(dlist: DList) {

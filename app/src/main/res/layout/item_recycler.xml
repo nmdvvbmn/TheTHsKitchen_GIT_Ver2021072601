@@ -5,24 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="100dp">
 
-    <Button
-        android:id="@+id/btnDel"
-        android:layout_width="wrap_content"
-        android:layout_height="49dp"
-        android:layout_marginEnd="8dp"
-        android:text="삭제"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/txtName"
-        android:layout_width="198dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="156dp"
+        android:layout_width="285dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="16dp"
         android:text="요리명"
-        app:layout_constraintEnd_toStartOf="@+id/btnDel"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toEndOf="@+id/imgThumb"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,4 +26,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/txtDesc"
+        android:layout_width="283dp"
+        android:layout_height="44dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgThumb"
+        app:layout_constraintTop_toBottomOf="@+id/txtName" />
 </androidx.constraintlayout.widget.ConstraintLayout>

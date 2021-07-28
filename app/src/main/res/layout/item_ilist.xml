@@ -8,14 +8,14 @@
 
     <TextView
         android:id="@+id/txtName"
-        android:layout_width="72dp"
-        android:layout_height="42dp"
+        android:layout_width="359dp"
+        android:layout_height="37dp"
         android:text="요리명"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnAdd"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/checkBox"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.507" />
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -27,16 +27,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.537" />
-
-    <ImageButton
-        android:id="@+id/btnAdd"
-        android:layout_width="51dp"
-        android:layout_height="41dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/txtName"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

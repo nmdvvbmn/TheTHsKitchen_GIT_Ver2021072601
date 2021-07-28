@@ -32,9 +32,9 @@ class IListAdapter: RecyclerView.Adapter<IListAdapter.Holder>() {
         var mIList: IList? = null
 
         init {
-            binding.btnAdd.setOnClickListener(){
-                Toast.makeText(context, "Add to Cart",Toast.LENGTH_LONG).show()
-            }
+//            binding.btnAdd.setOnClickListener(){
+//                Toast.makeText(context, "Add to Cart",Toast.LENGTH_LONG).show()
+//            }
         }
         @RequiresApi(Build.VERSION_CODES.N)
         fun setIList(ilist: IList) {

@@ -73,4 +73,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx:20.0.1'
 //    implementation 'com.google.firebase:firebase-appcheck-debug:16.0.0-beta02'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0' // DrawerLayout
+    implementation 'androidx.viewpager2:viewpager2:1.1.0-alpha01'
 }

@@ -29,6 +29,7 @@ class ListFragment : Fragment() {
     private var mBinding : FragmentListBinding? = null
     private val binding get() = mBinding!!
     val db = FirebaseFirestore.getInstance()
+    val db2 = FirebaseFirestore.getInstance()
     val dlist = arrayListOf<DList>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,37 +48,55 @@ class ListFragment : Fragment() {
         val adapter = RecyclerAdapter(dlist)
         binding.recyclerDList.adapter = adapter
         binding.recyclerDList.layoutManager = LinearLayoutManager(requireContext())
-
+        val idList = mutableListOf<String>()
 
         db.collection("DList").get().addOnSuccessListener { result ->
             dlist.clear()
             for (document in result) {
-                var item = DList(document.id as String,
+                var item = DList(document.id ,
+                    "",
                     document["date"] as Long,
-                    document["pretime"] as Long,
-                    document["pretimeunit"] as String,
-                    document["time"] as Long,
-                    document["timeunit"] as String,
-                    document["qunt"] as Long,
-                    document["quntunit"] as String,
-                    document["video"] as String
+                    document["ptime"] as Long,
+                    document["punit"] as String,
+                    document["ctime"] as Long,
+                    document["cunit"] as String,
+                    document["serv"] as Long,
+                    document["sunit"] as String,
+                    document["start"] as Long,
+                    document["stove"] as Long,
+                    document["oven"] as Long,
+                    document["micro"] as Long,
+                    document["blender"] as Long,
+                    document["air fryer"] as Long,
+                    document["multi cooker"] as Long,
+                    document["steamer"] as Long,
+                    document["sous vide"] as Long,
+                    document["grill"] as Long,
+                    document["vdeioID"] as String
                 )
+
+                db.collection("DName").whereEqualTo("id", document.id).whereEqualTo("code","ko").get()
+                    .addOnSuccessListener { result->
+                        Log.d("DB222","success")
+                        for (document in result) {
+                            var index = dlist.indexOfFirst { it.id == document["id"] as String }
+                            dlist[index].name = document["name"] as String
+                        }
+                        adapter.notifyDataSetChanged()
+                    }.addOnFailureListener {
+                        Log.d("DB222","Fail")
+
+                    }
+
                 dlist.add(item)
             }
-            adapter.notifyDataSetChanged()
+
+//            adapter.notifyDataSetChanged()
+
         }.addOnFailureListener { exception ->
             Log.d("test","fail", exception)
         }
-        db.collection("DList").whereGreaterThan("date",2021071820000).get()
-            .addOnSuccessListener { result->
-                Log.d("DB111","success")
-                for (document in result) {
-                    Log.d("DB111",document["pretime"].toString())
-                }
-            }.addOnFailureListener {
-                Log.d("DB111","Fail")
 
-            }
         return binding.root
     }
 

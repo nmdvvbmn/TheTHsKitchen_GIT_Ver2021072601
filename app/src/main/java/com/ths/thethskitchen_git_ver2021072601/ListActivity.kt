@@ -33,6 +33,7 @@ class ListActivity : AppCompatActivity() {
             dlist.clear()
             for (document in result) {
                 var item = DList(document.id as String,
+                    "",
                     document["date"] as Long,
                     document["pretime"] as Long,
                     document["pretimeunit"] as String,
@@ -40,6 +41,16 @@ class ListActivity : AppCompatActivity() {
                     document["timeunit"] as String,
                     document["qunt"] as Long,
                     document["quntunit"] as String,
+                    document["start"] as Long,
+                    document["stove"] as Long,
+                    document["oven"] as Long,
+                    document["micro"] as Long,
+                    document["blender"] as Long,
+                    document["air fryer"] as Long,
+                    document["multi cooker"] as Long,
+                    document["steamer"] as Long,
+                    document["sous vide"] as Long,
+                    document["grill"] as Long,
                     document["video"] as String
                 )
                 dlist.add(item)

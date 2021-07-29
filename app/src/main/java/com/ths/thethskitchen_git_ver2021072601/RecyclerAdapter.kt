@@ -64,7 +64,7 @@ class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<Recy
         @RequiresApi(Build.VERSION_CODES.N)
         fun setDList(dlist: DList) {
             this.mdlist = dlist
-            binding.txtName.text = "${dlist.id}"
+            binding.txtName.text = "${dlist.name}"
             CoroutineScope(Dispatchers.Main).launch {
                 val url = "https://i.ytimg.com/vi/${dlist.video}/0.jpg"
                 val bitmap = withContext(Dispatchers.IO) {

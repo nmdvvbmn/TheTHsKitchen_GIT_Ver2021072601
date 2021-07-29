@@ -11,4 +11,22 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="grill">그릴</string>
+    <string name="micro">전자레인지</string>
+    <string name="multi">전기밥솥/멀티쿠커</string>
+    <string name="oven">오븐</string>
+    <string name="sous">수비드</string>
+    <string name="steam">찜기</string>
+    <string name="stove">레인지/인덕션</string>
+    <string name="blender">블랜더</string>
+    <string name="airfryer">에어프라이어</string>
+
+    <string name="min">분</string>
+    <string name="hour">시간</string>
+    <string name="day">일</string>
+    <string name="week">주</string>
+    <string name="pc">개</string>
+    <string name="bottle">병</string>
+    <string name="serve">인분</string>
+    <string name="glass">잔</string>
 </resources>

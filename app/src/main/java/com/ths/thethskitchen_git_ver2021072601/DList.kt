@@ -5,6 +5,7 @@ import java.io.Serializable
 data class DList(
     var id: String,
 //    var name:String,
+    var name: String?,
     var date: Long,
     var pretime: Long,
     var preunit: String,
@@ -12,5 +13,15 @@ data class DList(
     var timeunit: String,
     var qunt: Long,
     var quntunit: String,
+    var start: Long,
+    var stove: Long,
+    var oven: Long,
+    var micro: Long,
+    var belnder: Long,
+    var airfryer: Long,
+    var multi: Long,
+    var steamer: Long,
+    var sousvide: Long,
+    var grill: Long,
     var video: String ): Serializable
 

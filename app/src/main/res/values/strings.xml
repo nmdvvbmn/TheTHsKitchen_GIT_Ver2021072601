@@ -6,6 +6,8 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="save">저장</string>
+    <string name="canc">취소</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
@@ -42,4 +44,13 @@
     <string name="menu_cart">장바구니</string>
     <string name="menu_favorites">즐겨찾기</string>
     <string name="menu_help">도움말</string>
+
+    <string name="refrigerator_add_name"> 재료명을 입력하세요 </string>
+    <string name="refrigerator_add_desc"> 메모를 남기세요 </string>
+    <string name="refrigerator_add_title">재료 추가 </string>
+    <string name="refrigerator_update_title">재료</string>
+
+<!--    Message-->
+    <string name="msg_add_NoName"> 재료명을 입력하세요</string>
+    <string name="msg_save_data">저장하였습니다</string>
 </resources>

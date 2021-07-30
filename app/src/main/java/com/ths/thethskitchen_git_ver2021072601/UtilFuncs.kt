@@ -15,7 +15,7 @@ open class UtilFuncs {
                 "th","tr","ps","pa","fa","pt","pt-br","pt-pt","pl","hu","fr","fr-fr","fi","tl","he",
                 "hi","GL","st","rw","mg","ml","yo","ig","yi","zu","kn","xh","ku","tg","tt","te",
                 "tk","ha")
-            if (codeList.all { it == language } ) {
+            if (codeList.any { it == language } ) {
                 return language
             }else{
                 return "en"

@@ -37,7 +37,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.navi.setNavigationItemSelectedListener {
             when(it.itemId){
-                binding.navi.menu.getItem(0).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
+                binding.navi.menu.getItem(0).itemId -> {    //우리집냉장고
+                    val intent = Intent(this, RefrigeratorActivity::class.java)
+                    startActivity(intent)
+                }
                 binding.navi.menu.getItem(1).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
                 binding.navi.menu.getItem(2).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
                 binding.navi.menu.getItem(2).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
@@ -51,9 +54,11 @@ class MainActivity : AppCompatActivity() {
             binding.drawer.openDrawer(GravityCompat.START)
 
         }
+
     }
 
     override fun onBackPressed() {
+        //드로워 메뉴 백버튼
         if (binding.drawer.isDrawerOpen(GravityCompat.START)){
             binding.drawer.closeDrawers()
         }else{

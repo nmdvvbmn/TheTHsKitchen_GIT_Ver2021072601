@@ -1,6 +1,8 @@
 package com.ths.thethskitchen_git_ver2021072601
 
 import android.content.Context
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 open class StringFuncs {
 
@@ -59,5 +61,8 @@ open class StringFuncs {
         }
 
        return  output
+    }
+    open fun makeDateString( date: LocalDateTime ): String {
+        return date.format(DateTimeFormatter.ISO_DATE_TIME)
     }
 }

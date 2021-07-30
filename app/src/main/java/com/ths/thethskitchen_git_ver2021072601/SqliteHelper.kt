@@ -1,14 +1,16 @@
-//package com.ths.thethskitchen_git_ver2021072601
-//
-//import android.content.ContentValues
-//import android.content.Context
-//import android.database.sqlite.SQLiteDatabase
-//import android.database.sqlite.SQLiteOpenHelper
+package com.ths.thethskitchen_git_ver2021072601
+
+import android.content.ContentValues
+import android.content.Context
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
+import androidx.core.os.persistableBundleOf
+import java.time.LocalDate
+import java.time.LocalDateTime
+
 //import android.util.Log
-//import androidx.core.os.persistableBundleOf
-//
-////import android.util.Log
-//
+
 //class SqliteHelper(
 //    context: Context,
 //    name: String,
@@ -16,46 +18,30 @@
 //) : SQLiteOpenHelper(context, name, null, version) {
 //    //val context by lazy { context }
 //    override fun onCreate(db: SQLiteDatabase?) {
-//        createTableDlist(db)
-//        createTableIlist(db)
+//        createTableRefrigeratorList(db: SQLiteDatabase?)
 //
 //    }
 //
-//    private fun createTableIlist(db: SQLiteDatabase?) {
-//        val iCreate = "CREATE TABLE ilist (" +
-//                "id text primary key, " +
-//                "no text, "+
-//                "name text, "+
-//                "qunt integer, "+
-//                "quntunit text, "+
-//                "need boolean "+
-//                ")"
-//        db?.execSQL(iCreate)
-//    }
+//    private fun createTable(db: SQLiteDatabase?) {
+//        val create = "CREATE TABLE if not exisits refrigerator (" +
+//                "id integer primary key autoincrement," +
+//                "name text," +
+//                "desc text," +
+//                "date text )"
+//        db?.execSQL(create)
 //
-//    private fun createTableDlist(db: SQLiteDatabase?) {
-//        val dCreate = "CREATE TABLE dlist (" +
-//                "no text primary key, " +
-//                "name text, "+
-//                "pretime integer, "+
-//                "preunit text, "+
-//                "time integer, "+
-//                "timeunit text, "+
-//                "serve integer, "+
-//                "serveunit text, "+
-//                "tag text, "+
-//                "link text, "+
-//                "thumb text, "+
-//                "startin integer, "+
-//                "endin integer "+
-//                ")"
-//        db?.execSQL(dCreate)
+////        var test: LocalDateTime = LocalDateTime.now()
+////        var string = test.toString()
+////        test = LocalDateTime.parse(string)
 //    }
 //
 //    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-//
 //    }
 //
+//    fun selectRefigeratorList(db)
+//}
+
+
 //     fun insertDList(dlist: DList){
 //        val values = ContentValues()
 //        Log.d("SQL1","INSERT")

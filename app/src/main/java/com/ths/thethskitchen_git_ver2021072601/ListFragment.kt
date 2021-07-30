@@ -30,9 +30,7 @@ class ListFragment : Fragment() {
     private var mBinding : FragmentListBinding? = null
     private val binding get() = mBinding!!
     val db = FirebaseFirestore.getInstance()
-    val db2 = FirebaseFirestore.getInstance()
     val dlist = arrayListOf<DList>()
-    var langCode : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,11 +46,12 @@ class ListFragment : Fragment() {
     ): View? {
         mBinding = FragmentListBinding.inflate(inflater,container,false)
         val adapter = RecyclerAdapter(dlist)
+        val langCode = UtilFuncs().getLanguage()    // 언어코드
+        
         binding.recyclerDList.adapter = adapter
         binding.recyclerDList.layoutManager = LinearLayoutManager(requireContext())
-        val idList = mutableListOf<String>()
-        val langCode = UtilFuncs().getLanguage()
 
+        // firestore 요리 리스트 Query
         db.collection("DList").get().addOnSuccessListener { result ->
             dlist.clear()
             for (document in result) {
@@ -78,12 +77,13 @@ class ListFragment : Fragment() {
                     document["vdeioID"] as String
                 )
 
+                // 요리명
                 db.collection("DName").whereEqualTo("id", document.id).whereEqualTo("code",langCode).get()
                     .addOnSuccessListener { result->
-                        Log.d("DB222","success")
                         for (document in result) {
                             var index = dlist.indexOfFirst { it.id == document["id"] as String }
                             dlist[index].name = document["name"] as String
+                            Log.d("DB222", "index ${index}, name ${document["name"]}")
                         }
                         adapter.notifyDataSetChanged()
                     }.addOnFailureListener {
@@ -94,10 +94,8 @@ class ListFragment : Fragment() {
                 dlist.add(item)
             }
 
-//            adapter.notifyDataSetChanged()
-
         }.addOnFailureListener { exception ->
-            Log.d("test","fail", exception)
+//            Log.d("test","fail", exception)
         }
 
         return binding.root

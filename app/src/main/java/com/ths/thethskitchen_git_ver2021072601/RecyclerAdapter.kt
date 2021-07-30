@@ -38,6 +38,9 @@ class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<Recy
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val dlist = listData.get(position)
         holder.setDList(dlist)
+        val layoutParams = holder.itemView.layoutParams
+        layoutParams.height = 400
+        holder.itemView.requestLayout()
     }
 
     override fun getItemCount(): Int {
@@ -46,6 +49,7 @@ class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<Recy
 
     inner class Holder(val binding: ItemRecyclerBinding, context: Context) : RecyclerView.ViewHolder(binding.root) {
         var mdlist: DList? = null
+        var mcontext = context
 
         init {
             binding.root.setOnClickListener {
@@ -76,6 +80,8 @@ class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<Recy
                     binding.imgThumb.setImageResource(R.drawable.ic_launcher_background)
                 }
             }
+
+            binding.txtDesc.text = StringFuncs().makeDesc(dlist, mcontext)
 
         }
     }

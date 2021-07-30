@@ -11,6 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityListBinding
 import com.ths.thethskitchen_git_ver2021072601.databinding.FragmentListBinding
 import java.io.IOException
+import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,6 +32,7 @@ class ListFragment : Fragment() {
     val db = FirebaseFirestore.getInstance()
     val db2 = FirebaseFirestore.getInstance()
     val dlist = arrayListOf<DList>()
+    var langCode : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +51,7 @@ class ListFragment : Fragment() {
         binding.recyclerDList.adapter = adapter
         binding.recyclerDList.layoutManager = LinearLayoutManager(requireContext())
         val idList = mutableListOf<String>()
+        val langCode = UtilFuncs().getLanguage()
 
         db.collection("DList").get().addOnSuccessListener { result ->
             dlist.clear()
@@ -75,7 +78,7 @@ class ListFragment : Fragment() {
                     document["vdeioID"] as String
                 )
 
-                db.collection("DName").whereEqualTo("id", document.id).whereEqualTo("code","ko").get()
+                db.collection("DName").whereEqualTo("id", document.id).whereEqualTo("code",langCode).get()
                     .addOnSuccessListener { result->
                         Log.d("DB222","success")
                         for (document in result) {

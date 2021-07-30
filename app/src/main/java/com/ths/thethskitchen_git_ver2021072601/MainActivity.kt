@@ -40,6 +40,9 @@ class MainActivity : AppCompatActivity() {
                 binding.navi.menu.getItem(0).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
                 binding.navi.menu.getItem(1).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
                 binding.navi.menu.getItem(2).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
+                binding.navi.menu.getItem(2).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
+                binding.navi.menu.getItem(2).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
+                binding.navi.menu.getItem(2).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
                 else -> Toast.makeText(this,"text",Toast.LENGTH_LONG).show()
             }
             return@setNavigationItemSelectedListener true

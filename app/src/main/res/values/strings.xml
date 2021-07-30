@@ -11,6 +11,8 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="tool">조리도구</string>
     <string name="grill">그릴</string>
     <string name="micro">전자레인지</string>
     <string name="multi">전기밥솥/멀티쿠커</string>
@@ -21,6 +23,8 @@
     <string name="blender">블랜더</string>
     <string name="airfryer">에어프라이어</string>
 
+    <string name="ctime">조리시간</string>
+    <string name="ptime">준비시간</string>
     <string name="min">분</string>
     <string name="hour">시간</string>
     <string name="day">일</string>
@@ -29,4 +33,13 @@
     <string name="bottle">병</string>
     <string name="serve">인분</string>
     <string name="glass">잔</string>
+
+    <string name="youtubeLink">https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA</string>
+
+    <string name="menu_link">Youtube바로가기</string>
+    <string name="menu_refrigerator">우리집 냉장고</string>
+    <string name="menu_kitchen">우리집 부엌</string>
+    <string name="menu_cart">장바구니</string>
+    <string name="menu_favorites">즐겨찾기</string>
+    <string name="menu_help">도움말</string>
 </resources>

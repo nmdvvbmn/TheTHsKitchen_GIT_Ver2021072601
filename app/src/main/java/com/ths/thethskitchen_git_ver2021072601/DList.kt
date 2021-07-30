@@ -4,7 +4,6 @@ import java.io.Serializable
 
 data class DList(
     var id: String,
-//    var name:String,
     var name: String?,
     var date: Long,
     var pretime: Long,

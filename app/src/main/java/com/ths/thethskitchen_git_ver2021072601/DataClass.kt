@@ -1,6 +1,8 @@
 package com.ths.thethskitchen_git_ver2021072601
 
 import java.io.Serializable
+import java.time.LocalDateTime
+
 //요리 List
 data class DList(
     var id: String, //문서서번호
@@ -34,3 +36,19 @@ data class IList(
     var other: String,  //대채
     var desc: String,   //비고
     var need: Boolean ): Serializable //필수여부
+
+//냉장고
+data class RefrigeratorList(
+    var id: Long,
+    var name: String,
+    var desc: String,
+    var date: LocalDateTime
+)
+
+//장바구니
+data class CartList(
+    var id: Long,
+    var name: String,
+    var desc: String,
+    var date: LocalDateTime
+)

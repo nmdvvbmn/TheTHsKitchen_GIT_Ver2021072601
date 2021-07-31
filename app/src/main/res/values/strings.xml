@@ -50,8 +50,14 @@
     <string name="refrigerator_add_title">재료 추가 </string>
     <string name="refrigerator_update_title">재료</string>
 
+    <string name="cart_add_name"> 재료명을 입력하세요 </string>
+    <string name="cart_add_desc"> 메모를 남기세요 </string>
+    <string name="cart_add_title">재료 추가 </string>
+    <string name="cart_update_title">재료</string>
+
     <!--    Message-->
     <string name="msg_add_NoName"> 재료명을 입력하세요</string>
     <string name="msg_save_data">저장하였습니다</string>
     <string name="title_activity_kitchen">KitchenActivity</string>
+    <string name="msg_move_data">재료가 냉장고로 이동했어요</string>
 </resources>

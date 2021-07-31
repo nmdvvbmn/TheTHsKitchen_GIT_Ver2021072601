@@ -34,4 +34,5 @@
         android:text="검색"
         tools:layout_editor_absoluteX="67dp"
         tools:layout_editor_absoluteY="298dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

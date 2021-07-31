@@ -2,6 +2,7 @@ package com.ths.thethskitchen_git_ver2021072601
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenResumed
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityKitchenBinding
@@ -14,16 +15,18 @@ class KitchenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        App.prefs.getBoolean("stove",binding.chkStove.isChecked)
-        App.prefs.getBoolean("oven",binding.chkOven.isChecked)
-        App.prefs.getBoolean("micro",binding.chkMicro.isChecked)
-        App.prefs.getBoolean("blender",binding.chkBlender.isChecked)
-        App.prefs.getBoolean("multi",binding.chkMulti.isChecked)
-        App.prefs.getBoolean("airfryer",binding.chkAirfryer.isChecked)
-        App.prefs.getBoolean("steam",binding.chkSteam.isChecked)
-        App.prefs.getBoolean("sous",binding.chkSous.isChecked)
-        App.prefs.getBoolean("grill",binding.chkGrill.isChecked)
+        //체크버튼 세팅
+        binding.chkStove.isChecked = App.prefs.getBoolean("stove",false)
+        binding.chkOven.isChecked = App.prefs.getBoolean("oven",false)
+        binding.chkMicro.isChecked = App.prefs.getBoolean("micro",false)
+        binding.chkBlender.isChecked = App.prefs.getBoolean("blender",false)
+        binding.chkMulti.isChecked = App.prefs.getBoolean("multi",false)
+        binding.chkAirfryer.isChecked = App.prefs.getBoolean("airfryer",false)
+        binding.chkSteam.isChecked = App.prefs.getBoolean("steam",false)
+        binding.chkSous.isChecked = App.prefs.getBoolean("sous",false)
+        binding.chkGrill.isChecked = App.prefs.getBoolean("grill",false)
 
+        //상단뷰
         val viewPager = ViewPagerAdapter(this)
         viewPager.addFragment(P1Fragment())
         viewPager.addFragment(P2Fragment())
@@ -54,10 +57,10 @@ class KitchenActivity : AppCompatActivity() {
             App.prefs.setBoolena("steam",isChecked)
         }
         binding.chkSous.setOnCheckedChangeListener { buttonView, isChecked ->
-            App.prefs.setBoolena("grill",isChecked)
+            App.prefs.setBoolena("sous",isChecked)
         }
         binding.chkGrill.setOnCheckedChangeListener { buttonView, isChecked ->
-            App.prefs.setBoolena("oven",isChecked)
+            App.prefs.setBoolena("grill",isChecked)
         }
 
 

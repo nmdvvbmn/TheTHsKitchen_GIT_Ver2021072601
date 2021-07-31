@@ -8,6 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Lifecycle
+import androidx.viewpager2.widget.ViewPager2
 import com.ths.thethskitchen_git_ver2021072601.databinding.FragmentSearchBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -35,6 +39,7 @@ class SearchFragment : Fragment() {
         }
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,7 +55,6 @@ class SearchFragment : Fragment() {
                 Toast.makeText(context,"검색어를 입력하세요", Toast.LENGTH_SHORT).show()
             }
         }
-        // Inflate the layout for this fragment
         return binding.root
     }
 

@@ -25,4 +25,5 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter
         fragments.removeLast()
         notifyItemRemoved(fragments.size)
     }
+
 }

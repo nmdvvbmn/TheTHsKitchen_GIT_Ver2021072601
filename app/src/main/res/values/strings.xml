@@ -50,7 +50,8 @@
     <string name="refrigerator_add_title">재료 추가 </string>
     <string name="refrigerator_update_title">재료</string>
 
-<!--    Message-->
+    <!--    Message-->
     <string name="msg_add_NoName"> 재료명을 입력하세요</string>
     <string name="msg_save_data">저장하였습니다</string>
+    <string name="title_activity_kitchen">KitchenActivity</string>
 </resources>

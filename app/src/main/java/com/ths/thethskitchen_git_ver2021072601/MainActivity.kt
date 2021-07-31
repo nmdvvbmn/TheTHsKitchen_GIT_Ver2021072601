@@ -41,7 +41,11 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(this, RefrigeratorActivity::class.java)
                     startActivity(intent)
                 }
-                binding.navi.menu.getItem(1).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
+                binding.navi.menu.getItem(1).itemId ->
+                {
+                    val intent = Intent(this,KitchenActivity::class.java)
+                    startActivity(intent)
+                }
                 binding.navi.menu.getItem(2).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
                 binding.navi.menu.getItem(2).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
                 binding.navi.menu.getItem(2).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()

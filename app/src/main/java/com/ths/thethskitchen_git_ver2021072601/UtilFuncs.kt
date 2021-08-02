@@ -1,5 +1,7 @@
 package com.ths.thethskitchen_git_ver2021072601
 
+import android.util.Log
+import java.text.SimpleDateFormat
 import java.util.*
 
 open class UtilFuncs {
@@ -18,6 +20,17 @@ open class UtilFuncs {
         }else{
             return  "en"
         }
+    }
+
+    open fun getKorDate(): Int {
+        val tz = TimeZone.getTimeZone("Asia/Seoul")
+        val df = SimpleDateFormat("yyyyMMddHH")
+        df.timeZone = tz
+        val date = df.format(Date())
+
+        Log.d("dateTest", date)
+        return date.toInt()
+
     }
 
 }

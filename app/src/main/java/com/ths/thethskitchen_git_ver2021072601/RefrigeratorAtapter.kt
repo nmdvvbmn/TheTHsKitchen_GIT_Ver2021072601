@@ -10,7 +10,7 @@ import com.ths.thethskitchen_git_ver2021072601.databinding.ItemRefrigeratorBindi
 
 //냉장고 리스트 어뎁터
 class RefrigeratorAtapter: RecyclerView.Adapter<RefrigeratorAtapter.Holder>() {
-    var helper: RefrigeratorHelper? = null
+    var helper: SQLiteDBHelper? = null
     var refrigeratorList = mutableListOf<RefrigeratorList>()
     lateinit var dialogAdd : DailogRefrigeratorAddBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -44,7 +44,7 @@ class RefrigeratorAtapter: RecyclerView.Adapter<RefrigeratorAtapter.Holder>() {
                 if (dialogAdd.txtRefrigeratorAddName.text.toString() != ""  ) {
                     setList.name = dialogAdd.txtRefrigeratorAddName.text.toString()
                     setList.desc = dialogAdd.txtRefrigeratorAddDesc.text.toString()
-                    helper?.update(setList)
+                    helper?.update_refiregierator(setList)
                     Toast.makeText(it.context, it.context.getString(R.string.msg_save_data),
                         Toast.LENGTH_SHORT).show()
                     alertDailog.dismiss()
@@ -72,7 +72,7 @@ class RefrigeratorAtapter: RecyclerView.Adapter<RefrigeratorAtapter.Holder>() {
 
         init {
             bindng.btnRefrigeratorDel.setOnClickListener{
-                helper?.delete(mRefrigeratorList!!)
+                helper?.delete_refiregierator(mRefrigeratorList!!)
                 refrigeratorList.remove(mRefrigeratorList)
                 notifyDataSetChanged()
             }

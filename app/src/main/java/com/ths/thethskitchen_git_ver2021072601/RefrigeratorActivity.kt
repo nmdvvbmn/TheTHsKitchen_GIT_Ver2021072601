@@ -13,14 +13,14 @@ import java.time.LocalDateTime
 class RefrigeratorActivity : AppCompatActivity() {
     val binding by lazy { ActivityRefrigeratorBinding.inflate(layoutInflater) }
     var adapter = RefrigeratorAtapter()
-    var dbHelper = RefrigeratorHelper(this,"THsKitchen.db", 1)
+    var dbHelper = SQLiteDBHelper(this,"THsKitchen.db", 1)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         adapter.helper = dbHelper
-        adapter.refrigeratorList.addAll(dbHelper.select())
+        adapter.refrigeratorList.addAll(dbHelper.select_refrigerator())
         binding.viewRefrigeratorList.adapter = adapter
         binding.viewRefrigeratorList.layoutManager = LinearLayoutManager(this)
 
@@ -41,12 +41,12 @@ class RefrigeratorActivity : AppCompatActivity() {
                         dialogAdd.txtRefrigeratorAddName.text.toString(),
                         dialogAdd.txtRefrigeratorAddDesc.text.toString(),
                         LocalDateTime.now())
-                    dbHelper.insert(refrigeratorList)
+                    dbHelper.insert_refiregierator(refrigeratorList)
                     Toast.makeText(this,getString(R.string.msg_save_data),
                         Toast.LENGTH_SHORT).show()
                     //리스트뷰 새로고침
                     adapter.refrigeratorList.clear()
-                    adapter.refrigeratorList.addAll(dbHelper.select())
+                    adapter.refrigeratorList.addAll(dbHelper.select_refrigerator())
                     adapter.notifyDataSetChanged()
                     alertDailog.dismiss()   //입력화면 종료
                 }else{

@@ -13,14 +13,14 @@ import java.time.LocalDateTime
 class CartActivity : AppCompatActivity() {
     val binding by lazy { ActivityCartBinding.inflate(layoutInflater) }
     var adapter = CartAdapter()
-    var dbHelper = CartHelper(this,"THsKitchen.db",2)
+    var dbHelper = SQLiteDBHelper(this,"THsKitchen.db",1)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         adapter.helper = dbHelper
-        adapter.cartList.addAll(dbHelper.select())
+        adapter.cartList.addAll(dbHelper.select_cart())
         binding.viewCartList.adapter = adapter
         binding.viewCartList.layoutManager = LinearLayoutManager(this)
 
@@ -42,12 +42,12 @@ class CartActivity : AppCompatActivity() {
                         dialogAdd.txtCartAddName.text.toString(),
                         dialogAdd.txtCartAddDesc.text.toString(),
                         LocalDateTime.now())
-                    dbHelper.insert(cartList)
+                    dbHelper.insert_cart(cartList)
                     Toast.makeText(this,getString(R.string.msg_save_data),
                         Toast.LENGTH_SHORT).show()
                     //리스트뷰 새로고침
                     adapter.cartList.clear()
-                    adapter.cartList.addAll(dbHelper.select())
+                    adapter.cartList.addAll(dbHelper.select_cart())
                     adapter.notifyDataSetChanged()
                     alertDailog.dismiss()   //입력화면 종료
                 }else{

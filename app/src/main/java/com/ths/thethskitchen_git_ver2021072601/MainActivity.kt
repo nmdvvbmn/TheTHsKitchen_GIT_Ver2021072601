@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         viewPager.addFragment(ListFragment())
         binding.viewPager.adapter = viewPager
 
+
+
         binding.navi.setNavigationItemSelectedListener {
             when(it.itemId){
                 binding.navi.menu.getItem(0).itemId -> {    //우리집냉장고
@@ -51,9 +53,13 @@ class MainActivity : AppCompatActivity() {
                     val intent = Intent(this,CartActivity::class.java)
                     startActivity(intent)
                 }
-                binding.navi.menu.getItem(2).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
-                binding.navi.menu.getItem(2).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
-                binding.navi.menu.getItem(2).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
+                binding.navi.menu.getItem(3).itemId ->
+                {
+                    val intent = Intent(this,FavoritesActivity::class.java)
+                    startActivity(intent)
+                }
+                binding.navi.menu.getItem(4).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
+                binding.navi.menu.getItem(5).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show()
                 else -> Toast.makeText(this,"text",Toast.LENGTH_LONG).show()
             }
             return@setNavigationItemSelectedListener true

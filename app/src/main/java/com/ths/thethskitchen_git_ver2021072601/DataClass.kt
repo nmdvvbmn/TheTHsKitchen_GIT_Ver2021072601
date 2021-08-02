@@ -18,7 +18,7 @@ data class DList(
     var stove: Long,        //레인지/인덕션
     var oven: Long,         //오븐
     var micro: Long,        //전자레인지
-    var belnder: Long,      //블랜더
+    var blender: Long,      //블랜더
     var airfryer: Long,     //에어프라이어
     var multi: Long,        //인스턴트팟
     var steamer: Long,      //찜기

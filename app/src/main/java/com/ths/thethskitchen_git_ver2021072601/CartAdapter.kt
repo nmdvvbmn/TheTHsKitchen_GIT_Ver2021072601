@@ -9,7 +9,7 @@ import com.ths.thethskitchen_git_ver2021072601.databinding.DailogCartAddBinding
 import com.ths.thethskitchen_git_ver2021072601.databinding.ItemCartBinding
 
 class CartAdapter: RecyclerView.Adapter<CartAdapter.Holder>() {
-    var helper: CartHelper? = null
+    var helper: SQLiteDBHelper? = null
     var cartList = mutableListOf<CartList>()
     lateinit var dialogAdd : DailogCartAddBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -43,7 +43,7 @@ class CartAdapter: RecyclerView.Adapter<CartAdapter.Holder>() {
                 if (dialogAdd.txtCartAddName.text.toString() != ""  ) {
                     setList.name = dialogAdd.txtCartAddName.text.toString()
                     setList.desc = dialogAdd.txtCartAddDesc.text.toString()
-                    helper?.update(setList)
+                    helper?.update_cart(setList)
                     Toast.makeText(it.context, it.context.getString(R.string.msg_save_data),
                         Toast.LENGTH_SHORT).show()
                     alertDailog.dismiss()
@@ -70,13 +70,14 @@ class CartAdapter: RecyclerView.Adapter<CartAdapter.Holder>() {
         var mCartList: CartList? = null
 
         init {
-            bindng.btnCartDel.setOnClickListener{
-                helper?.delete(mCartList!!)
+            bindng.btnFavoritesDel.setOnClickListener{
+                helper?.delete_cart(mCartList!!)
                 cartList.remove(mCartList)
                 notifyDataSetChanged()
             }
             bindng.btnMoveRefrigerator.setOnClickListener {
-                helper?.move(mCartList!!)
+                helper?.move_cart(mCartList!!)
+                cartList.remove(mCartList)
                 notifyDataSetChanged()
                 Toast.makeText(it.context, it.context.getString(R.string.msg_move_data),
                 Toast.LENGTH_SHORT).show()

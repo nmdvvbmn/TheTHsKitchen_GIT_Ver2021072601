@@ -1,5 +1,6 @@
 package com.ths.thethskitchen_git_ver2021072601
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +15,7 @@ var mYoutubePlayer: YouTubePlayer? = null
 
 class RecommandDetail : AppCompatActivity() {
     val binding by lazy { ActivityRecommandDetailBinding.inflate(layoutInflater) }
-//    val helper = SqliteHelper(this,"dlist",1)
+    val helper =  SQLiteDBHelper(this,"THsKitchen.db", 1)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,12 +34,35 @@ class RecommandDetail : AppCompatActivity() {
 
 //        adapter.listData.addAll(helper.selectIlist(dlist.id))
 
+        var savedFavorites = helper.exists_favorites(dlist.id)
+        if (savedFavorites) {
+            binding.btnFavorites.setCompoundDrawablesWithIntrinsicBounds(
+                R.drawable.ic_baseline_star_24,0,0,0)
+        } else {
+            binding.btnFavorites.setCompoundDrawablesWithIntrinsicBounds(
+                R.drawable.ic_baseline_star_border_24,0,0,0)
+        }
+
         binding.btnMove.setOnClickListener {
             var second = tracker.currentSecond
             var stat = tracker.state
             Log.d("YOUTUBE_STAT","${stat} : ${second}")
             mYoutubePlayer?.seekTo(second+10f)
-//
+        }
+
+        binding.btnFavorites.setOnClickListener {
+            if (savedFavorites) {
+                helper.delete_favorites(dlist)
+                binding.btnFavorites.setCompoundDrawablesWithIntrinsicBounds(
+                    R.drawable.ic_baseline_star_border_24,0,0,0)
+                savedFavorites = false
+            }else{
+                helper.insert_favorites(dlist)
+                binding.btnFavorites.setCompoundDrawablesWithIntrinsicBounds(
+                    R.drawable.ic_baseline_star_24,0,0,0)
+                savedFavorites = true
+            }
+
         }
     }
 }

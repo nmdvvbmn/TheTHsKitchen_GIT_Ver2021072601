@@ -14,25 +14,25 @@ android:layout_height="wrap_content">
     android:layout_marginEnd="8dp"
     android:text="재료명"
     android:textSize="25sp"
-    app:layout_constraintEnd_toStartOf="@+id/btnCartDel"
+    app:layout_constraintEnd_toStartOf="@+id/btnFavoritesDel"
     app:layout_constraintHorizontal_bias="0.5"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 
-<TextView
-    android:id="@+id/txtCartDate"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginBottom="12dp"
-    android:text="2021.07.30 12:46"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toStartOf="@+id/btnCartDel"
-    app:layout_constraintTop_toBottomOf="@+id/txtCartDesc" />
+    <TextView
+        android:id="@+id/txtCartDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="12dp"
+        android:text="2021.07.30 12:46"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnFavoritesDel"
+        app:layout_constraintTop_toBottomOf="@+id/txtCartDesc" />
 
     <ImageButton
-        android:id="@+id/btnCartDel"
+        android:id="@+id/btnFavoritesDel"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
@@ -51,7 +51,7 @@ android:layout_height="wrap_content">
     android:ellipsize="end"
     android:lines="2"
     android:text="메모1\n메모2"
-    app:layout_constraintEnd_toStartOf="@+id/btnCartDel"
+    app:layout_constraintEnd_toStartOf="@+id/btnFavoritesDel"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/txtCartName" />
 
@@ -62,6 +62,6 @@ android:layout_height="wrap_content">
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCartDel"
+        app:layout_constraintTop_toBottomOf="@+id/btnFavoritesDel"
         app:srcCompat="@drawable/ic_baseline_kitchen_48" />
 </androidx.constraintlayout.widget.ConstraintLayout>

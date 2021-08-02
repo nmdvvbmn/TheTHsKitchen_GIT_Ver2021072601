@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityListBinding
 import com.ths.thethskitchen_git_ver2021072601.databinding.FragmentListBinding
 import java.io.IOException
@@ -30,7 +31,8 @@ class ListFragment : Fragment() {
     private var mBinding : FragmentListBinding? = null
     private val binding get() = mBinding!!
     val db = FirebaseFirestore.getInstance()
-    val dlist = arrayListOf<DList>()
+    var dlist = arrayListOf<DList>()
+    var adapter = RecyclerAdapter(dlist)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,16 +47,21 @@ class ListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         mBinding = FragmentListBinding.inflate(inflater,container,false)
-        val adapter = RecyclerAdapter(dlist)
-        val langCode = UtilFuncs().getLanguage()    // 언어코드
-        
         binding.recyclerDList.adapter = adapter
         binding.recyclerDList.layoutManager = LinearLayoutManager(requireContext())
 
-        // firestore 요리 리스트 Query
-        db.collection("DList").get().addOnSuccessListener { result ->
+//         firestore 요리 리스트 Query
+        val date = UtilFuncs().getKorDate()
+        val langCode = UtilFuncs().getLanguage()
+
+        binding.pbLoading.visibility = View.VISIBLE
+
+        db.collection("DList")
+            .whereLessThanOrEqualTo("date", date )
+            .get().addOnSuccessListener { result ->
             dlist.clear()
-            for (document in result) {
+            for (document in result.reversed()) {
+                Log.d("DB222",document.id.toString())
                 var item = DList(document.id ,
                     "",
                     document["date"] as Long,
@@ -78,25 +85,29 @@ class ListFragment : Fragment() {
                 )
 
                 // 요리명
-                db.collection("DName").whereEqualTo("id", document.id).whereEqualTo("code",langCode).get()
+                db.collection("DName")
+                    .whereEqualTo("id", document.id).whereEqualTo("code",langCode).get()
                     .addOnSuccessListener { result->
                         for (document in result) {
                             var index = dlist.indexOfFirst { it.id == document["id"] as String }
                             dlist[index].name = document["name"] as String
                             Log.d("DB222", "index ${index}, name ${document["name"]}")
                         }
-                        adapter.notifyDataSetChanged()
+//                        adapter.notifyDataSetChanged()
                     }.addOnFailureListener {
                         Log.d("DB222","Fail")
-
+                    }.addOnCompleteListener {
+                        adapter.notifyDataSetChanged()
+                        binding.pbLoading.visibility = View.INVISIBLE
                     }
-
                 dlist.add(item)
             }
 
         }.addOnFailureListener { exception ->
-//            Log.d("test","fail", exception)
-        }
+            Log.d("test","fail", exception)
+        }.addOnCompleteListener {
+            adapter.notifyDataSetChanged()
+            }
 
         return binding.root
     }

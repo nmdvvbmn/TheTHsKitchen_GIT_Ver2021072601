@@ -26,7 +26,7 @@ open class StringFuncs {
             else -> output = output + "\n"
         }
 
-        if (data.stove > 0 || data.oven > 0 ||  data.micro > 0 ||  data.belnder > 0 ||
+        if (data.stove > 0 || data.oven > 0 ||  data.micro > 0 ||  data.blender > 0 ||
             data.airfryer > 0 || data.multi > 0 ||  data.steamer > 0 ||  data.sousvide > 0 ||
             data.grill > 0 )
 
@@ -41,7 +41,7 @@ open class StringFuncs {
         if(data.micro > 0) {
             output = output + context.getString(R.string.micro) + "  "
         }
-        if(data.belnder > 0) {
+        if(data.blender > 0) {
             output = output + context.getString(R.string.blender) + "  "
         }
         if(data.airfryer > 0) {

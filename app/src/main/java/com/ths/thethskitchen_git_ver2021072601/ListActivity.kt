@@ -17,30 +17,30 @@ class ListActivity : AppCompatActivity() {
     val db = FirebaseFirestore.getInstance()
     val dlist = arrayListOf<DList>()
     val adapter = RecyclerAdapter(dlist)
+    val langCode = UtilFuncs().getLanguage()    // 언어코드
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val search = intent.getStringExtra("search") as String
 
-        Log.d("search",search)
-
         binding.searchDList.adapter = adapter
         binding.searchDList.layoutManager = LinearLayoutManager(baseContext)
 
 
+        // firestore 요리 리스트 Query
         db.collection("DList").get().addOnSuccessListener { result ->
             dlist.clear()
             for (document in result) {
-                var item = DList(document.id as String,
+                var item = DList(document.id ,
                     "",
                     document["date"] as Long,
-                    document["pretime"] as Long,
-                    document["pretimeunit"] as String,
-                    document["time"] as Long,
-                    document["timeunit"] as String,
-                    document["qunt"] as Long,
-                    document["quntunit"] as String,
+                    document["ptime"] as Long,
+                    document["punit"] as String,
+                    document["ctime"] as Long,
+                    document["cunit"] as String,
+                    document["serv"] as Long,
+                    document["sunit"] as String,
                     document["start"] as Long,
                     document["stove"] as Long,
                     document["oven"] as Long,
@@ -51,13 +51,30 @@ class ListActivity : AppCompatActivity() {
                     document["steamer"] as Long,
                     document["sous vide"] as Long,
                     document["grill"] as Long,
-                    document["video"] as String
+                    document["vdeioID"] as String
                 )
+
+                // 요리명
+                db.collection("DName").limit(1)
+                    .whereEqualTo("id", document.id)
+                    .whereEqualTo("code",langCode).get()
+                    .addOnSuccessListener { result->
+                        for (document in result) {
+                            var index = dlist.indexOfFirst { it.id == document["id"] as String }
+                            dlist[index].name = document["name"] as String
+                            Log.d("DB222", "index ${index}, name ${document["name"]}")
+                        }
+                        adapter.notifyDataSetChanged()
+                    }.addOnFailureListener {
+                        Log.d("DB222","Fail")
+
+                    }
+
                 dlist.add(item)
             }
-            adapter.notifyDataSetChanged()
+
         }.addOnFailureListener { exception ->
-            Log.d("test","fail", exception)
+//            Log.d("test","fail", exception)
         }
 
     }

@@ -50,7 +50,15 @@ class ListFragment : Fragment() {
         binding.recyclerDList.adapter = adapter
         binding.recyclerDList.layoutManager = LinearLayoutManager(requireContext())
 
-//         firestore 요리 리스트 Query
+        selectList()
+
+
+
+        return binding.root
+    }
+
+    private fun selectList() {
+        //         firestore 요리 리스트 Query
         val date = UtilFuncs().getKorDate()
         val langCode = UtilFuncs().getLanguage()
 
@@ -59,57 +67,55 @@ class ListFragment : Fragment() {
         db.collection("DList")
             .whereLessThanOrEqualTo("date", date )
             .get().addOnSuccessListener { result ->
-            dlist.clear()
-            for (document in result.reversed()) {
-                Log.d("DB222",document.id.toString())
-                var item = DList(document.id ,
-                    "",
-                    document["date"] as Long,
-                    document["ptime"] as Long,
-                    document["punit"] as String,
-                    document["ctime"] as Long,
-                    document["cunit"] as String,
-                    document["serv"] as Long,
-                    document["sunit"] as String,
-                    document["start"] as Long,
-                    document["stove"] as Long,
-                    document["oven"] as Long,
-                    document["micro"] as Long,
-                    document["blender"] as Long,
-                    document["air fryer"] as Long,
-                    document["multi cooker"] as Long,
-                    document["steamer"] as Long,
-                    document["sous vide"] as Long,
-                    document["grill"] as Long,
-                    document["vdeioID"] as String
-                )
+                dlist.clear()
+                for (document in result.reversed()) {
+                    Log.d("DB222",document.id.toString())
+                    var item = DList(document.id ,
+                        "",
+                        document["date"] as Long,
+                        document["ptime"] as Long,
+                        document["punit"] as String,
+                        document["ctime"] as Long,
+                        document["cunit"] as String,
+                        document["serv"] as Long,
+                        document["sunit"] as String,
+                        document["start"] as Long,
+                        document["stove"] as Long,
+                        document["oven"] as Long,
+                        document["micro"] as Long,
+                        document["blender"] as Long,
+                        document["air fryer"] as Long,
+                        document["multi cooker"] as Long,
+                        document["steamer"] as Long,
+                        document["sous vide"] as Long,
+                        document["grill"] as Long,
+                        document["vdeioID"] as String
+                    )
 
-                // 요리명
-                db.collection("DName")
-                    .whereEqualTo("id", document.id).whereEqualTo("code",langCode).get()
-                    .addOnSuccessListener { result->
-                        for (document in result) {
-                            var index = dlist.indexOfFirst { it.id == document["id"] as String }
-                            dlist[index].name = document["name"] as String
-                            Log.d("DB222", "index ${index}, name ${document["name"]}")
-                        }
+                    // 요리명
+                    db.collection("DName")
+                        .whereEqualTo("id", document.id).whereEqualTo("code",langCode).get()
+                        .addOnSuccessListener { result->
+                            for (document in result) {
+                                var index = dlist.indexOfFirst { it.id == document["id"] as String }
+                                dlist[index].name = document["name"] as String
+                                Log.d("DB222", "index ${index}, name ${document["name"]}")
+                            }
 //                        adapter.notifyDataSetChanged()
-                    }.addOnFailureListener {
-                        Log.d("DB222","Fail")
-                    }.addOnCompleteListener {
-                        adapter.notifyDataSetChanged()
-                        binding.pbLoading.visibility = View.INVISIBLE
-                    }
-                dlist.add(item)
-            }
+                        }.addOnFailureListener {
+                            Log.d("DB222","Fail")
+                        }.addOnCompleteListener {
+                            adapter.notifyDataSetChanged()
+                            binding.pbLoading.visibility = View.INVISIBLE
+                        }
+                    dlist.add(item)
+                }
 
-        }.addOnFailureListener { exception ->
-            Log.d("test","fail", exception)
-        }.addOnCompleteListener {
-            adapter.notifyDataSetChanged()
+            }.addOnFailureListener { exception ->
+                Log.d("test","fail", exception)
+            }.addOnCompleteListener {
+                adapter.notifyDataSetChanged()
             }
-
-        return binding.root
     }
 
     override fun onDestroyView() {

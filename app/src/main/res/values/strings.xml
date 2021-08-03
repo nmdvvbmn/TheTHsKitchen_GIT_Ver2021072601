@@ -35,6 +35,9 @@
     <string name="bottle">병</string>
     <string name="serve">인분</string>
     <string name="glass">잔</string>
+    <string name="space"></string>
+    
+    <string name="option">(선택)</string>
 
     <string name="youtubeLink">https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA</string>
 
@@ -54,6 +57,9 @@
     <string name="cart_add_desc"> 메모를 남기세요 </string>
     <string name="cart_add_title">재료 추가 </string>
     <string name="cart_update_title">재료</string>
+
+    <string name="btn_share">공유</string>
+    <string name="btn_link">Youtube</string>
 
     <!--    Message-->
     <string name="msg_add_NoName"> 재료명을 입력하세요</string>

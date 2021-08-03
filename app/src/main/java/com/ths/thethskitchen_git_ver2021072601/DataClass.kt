@@ -30,11 +30,9 @@ data class DList(
 data class IList(
     var id: String, //요리ID
     var SEQ: String, //재료ID
-    var name:String, //재료명
-    var qunt: Long, //양  
+    var name:String?, //재료명
+    var qunt: Float, //양
     var quntunit: String,   //양단위
-    var other: String,  //대채
-    var desc: String,   //비고
     var need: Boolean ): Serializable //필수여부
 
 //냉장고

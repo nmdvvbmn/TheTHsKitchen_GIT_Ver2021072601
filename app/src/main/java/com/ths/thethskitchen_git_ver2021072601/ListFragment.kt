@@ -49,9 +49,11 @@ class ListFragment : Fragment() {
         mBinding = FragmentListBinding.inflate(inflater,container,false)
         binding.recyclerDList.adapter = adapter
         binding.recyclerDList.layoutManager = LinearLayoutManager(requireContext())
-
+        binding.swipeLayout.setOnRefreshListener {
+            selectList()
+            binding.swipeLayout.isRefreshing = false
+        }
         selectList()
-
 
 
         return binding.root
@@ -61,61 +63,121 @@ class ListFragment : Fragment() {
         //         firestore 요리 리스트 Query
         val date = UtilFuncs().getKorDate()
         val langCode = UtilFuncs().getLanguage()
+        val helper = SQLiteDBHelper(requireContext(),"THsKitchen.db",1)
+        var refrigerator = helper.select_refrigerator()
+        var nameList : ArrayList<String> = arrayListOf()
+        var idList : ArrayList<String> = arrayListOf()
 
+        val stove = getTooltoInt(App.prefs.getBoolean("stove",false))
+        val oven = getTooltoInt(App.prefs.getBoolean("oven",false))
+        val micro = getTooltoInt(App.prefs.getBoolean("micro",false))
+        val blender = getTooltoInt(App.prefs.getBoolean("blender",false))
+        val multi = getTooltoInt(App.prefs.getBoolean("multi",false))
+        val airfryer = getTooltoInt(App.prefs.getBoolean("airfryer",false))
+        val steam = getTooltoInt(App.prefs.getBoolean("steam",false))
+        val sous = getTooltoInt(App.prefs.getBoolean("sous",false))
+        val grill = getTooltoInt(App.prefs.getBoolean("grill",false))
+
+        for (i in 0..refrigerator.size - 1){
+            nameList.add(refrigerator[i].name)
+        }
+        dlist.clear()
+        val nameList_d = nameList.distinct()
         binding.pbLoading.visibility = View.VISIBLE
+        if (nameList_d.size <= 0) {
+            binding.pbLoading.visibility = View.INVISIBLE
+        }
+        for (i in 0..nameList_d.size -1) {
+            db.collection("IName")//.orderBy("id", Query.Direction.DESCENDING)
+                .whereEqualTo("name", nameList_d[i])
+                .get().addOnSuccessListener { result ->
+                    for (document in result) {
+                        idList.add(document["id"] as String)
+                    }
+                }.addOnFailureListener {
+                    Log.d("Refrigerator&Dname", "Fail")
+                }.addOnCompleteListener { task ->
+                    if (i == nameList_d.size - 1) {
+                        val idList_d = idList.distinct().sortedDescending()
+                        if (task.isSuccessful && idList_d.size > 0) {
+                            for (i in 0..idList_d.size - 1) {
+                                db.collection("DList").document(idList_d[i])
+                                    //                            .whereLessThanOrEqualTo("date", date )
+                                    .get().addOnSuccessListener { document ->
+                                        var item = DList(
+                                            document.id,
+                                            "",
+                                            document["date"] as Long,
+                                            document["ptime"] as Long,
+                                            document["punit"] as String,
+                                            document["ctime"] as Long,
+                                            document["cunit"] as String,
+                                            document["serv"] as Long,
+                                            document["sunit"] as String,
+                                            document["start"] as Long,
+                                            document["stove"] as Long,
+                                            document["oven"] as Long,
+                                            document["micro"] as Long,
+                                            document["blender"] as Long,
+                                            document["air fryer"] as Long,
+                                            document["multi cooker"] as Long,
+                                            document["steamer"] as Long,
+                                            document["sous vide"] as Long,
+                                            document["grill"] as Long,
+                                            document["vdeioID"] as String
+                                        )
 
-        db.collection("DList")
-            .whereLessThanOrEqualTo("date", date )
-            .get().addOnSuccessListener { result ->
-                dlist.clear()
-                for (document in result.reversed()) {
-                    Log.d("DB222",document.id.toString())
-                    var item = DList(document.id ,
-                        "",
-                        document["date"] as Long,
-                        document["ptime"] as Long,
-                        document["punit"] as String,
-                        document["ctime"] as Long,
-                        document["cunit"] as String,
-                        document["serv"] as Long,
-                        document["sunit"] as String,
-                        document["start"] as Long,
-                        document["stove"] as Long,
-                        document["oven"] as Long,
-                        document["micro"] as Long,
-                        document["blender"] as Long,
-                        document["air fryer"] as Long,
-                        document["multi cooker"] as Long,
-                        document["steamer"] as Long,
-                        document["sous vide"] as Long,
-                        document["grill"] as Long,
-                        document["vdeioID"] as String
-                    )
+                                        if (item.date <= date
+                                            && item.stove <= stove
+                                            && item.oven <= oven
+                                            && item.micro <= micro
+                                            && item.blender <= blender
+                                            && item.multi <= multi
+                                            && item.airfryer <= airfryer
+                                            && item.steamer <= steam
+                                            && item.sousvide <= sous
+                                            && item.grill <= grill) {
+                                            dlist.add(item)
 
-                    // 요리명
-                    db.collection("DName")
-                        .whereEqualTo("id", document.id).whereEqualTo("code",langCode).get()
-                        .addOnSuccessListener { result->
-                            for (document in result) {
-                                var index = dlist.indexOfFirst { it.id == document["id"] as String }
-                                dlist[index].name = document["name"] as String
-                                Log.d("DB222", "index ${index}, name ${document["name"]}")
+                                            // 요리명
+                                            db.collection("DName")
+                                                .whereEqualTo("id", idList_d[i]).whereEqualTo("code", langCode)
+                                                .limit(1)
+                                                .get()
+                                                .addOnSuccessListener { result ->
+                                                    for (document in result) {
+                                                        var index = dlist.indexOfFirst { it.id == document["id"] as String }
+                                                        dlist[index].name = document["name"] as String
+                                                    }
+                                                }.addOnFailureListener {
+                                                    Log.d("DB222", "Fail")
+                                                }.addOnCompleteListener {
+                                                    adapter.notifyDataSetChanged()
+                                                    binding.pbLoading.visibility = View.INVISIBLE
+                                                }
+                                        }
+                                }.addOnFailureListener { exception ->
+                                    Log.d("test", "fail", exception)
+                                }.addOnCompleteListener {
+                                    if (i == nameList_d.size - 1) binding.pbLoading.visibility = View.INVISIBLE
+                                }
                             }
-//                        adapter.notifyDataSetChanged()
-                        }.addOnFailureListener {
-                            Log.d("DB222","Fail")
-                        }.addOnCompleteListener {
-                            adapter.notifyDataSetChanged()
+                        }else{
                             binding.pbLoading.visibility = View.INVISIBLE
                         }
-                    dlist.add(item)
-                }
-
-            }.addOnFailureListener { exception ->
-                Log.d("test","fail", exception)
-            }.addOnCompleteListener {
-                adapter.notifyDataSetChanged()
+                    }
             }
+
+        }
+
+    }
+
+    private fun getTooltoInt(boolean: Boolean): Int {
+        if (boolean) {
+            return 2
+        } else {
+            return 1
+        }
     }
 
     override fun onDestroyView() {

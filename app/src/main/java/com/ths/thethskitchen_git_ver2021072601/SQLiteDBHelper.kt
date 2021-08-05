@@ -60,7 +60,7 @@ class SQLiteDBHelper (
 
     fun select_refrigerator() : MutableList<RefrigeratorList> {
         val refrigeratorList = mutableListOf<RefrigeratorList>()
-        val select = "select * from refrigerator"
+        val select = "select * from refrigerator ORDER BY date DESC"
         val rd = readableDatabase
         val cursor = rd.rawQuery(select,null)
         while (cursor.moveToNext()){
@@ -103,7 +103,7 @@ class SQLiteDBHelper (
 
     fun select_cart() : MutableList<CartList> {
         val cartList = mutableListOf<CartList>()
-        val select = "select * from cart"
+        val select = "select * from cart ORDER BY date DESC"
         val rd = readableDatabase
         val cursor = rd.rawQuery(select,null)
         while (cursor.moveToNext()){
@@ -159,7 +159,7 @@ class SQLiteDBHelper (
 
     fun select_favorites() : MutableList<DList> {
         val dList = mutableListOf<DList>()
-        val select = "select * from favorites"
+        val select = "select * from favorites ORDER BY date DESC"
         val rd = readableDatabase
         val cursor = rd.rawQuery(select,null)
         while (cursor.moveToNext()){
@@ -238,5 +238,6 @@ class SQLiteDBHelper (
             false
         }
     }
+
 
 }

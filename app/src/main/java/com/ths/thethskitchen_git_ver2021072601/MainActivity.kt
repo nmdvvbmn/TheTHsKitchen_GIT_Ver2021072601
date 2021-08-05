@@ -2,8 +2,10 @@ package com.ths.thethskitchen_git_ver2021072601
 
 import android.R
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -15,6 +17,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityMainBinding
 import com.ths.thethskitchen_git_ver2021072601.databinding.FragmentSearchBinding
+import com.ths.thethskitchen_git_ver2021072601.databinding.MainDrawerHeaderBinding
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.time.ZoneId
@@ -34,7 +37,16 @@ class MainActivity : AppCompatActivity() {
         viewPager.addFragment(SearchFragment())
         viewPager.addFragment(ListFragment())
         binding.viewPager.adapter = viewPager
+//        var header = binding.navi.getHeaderView(0)
+//
+//        val bindingHeader = MainDrawerHeaderBinding.inflate(layoutInflater)
+//        bindingHeader.btnLink.setOnClickListener {
+//            Toast.makeText(this,"kajshdkfjhaksd",Toast.LENGTH_LONG).show()
+//        }
 
+//            val intent = Intent(Intent.ACTION_VIEW,
+//                Uri.parse("https://https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA"))
+//            startActivity(intent)
 
 
         binding.navi.setNavigationItemSelectedListener {
@@ -68,6 +80,11 @@ class MainActivity : AppCompatActivity() {
             binding.drawer.openDrawer(GravityCompat.START)
 
         }
+
+        binding.viewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+            }
+        })
 
     }
 

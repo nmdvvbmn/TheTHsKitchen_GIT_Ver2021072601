@@ -35,6 +35,14 @@ data class IList(
     var quntunit: String,   //양단위
     var need: Boolean ): Serializable //필수여부
 
+//조리법 List
+data class RList(
+    var id: String, //요리ID
+    var SEQ: String, //재료ID
+    var name:String?, //조리법
+    var time: Float //양
+)
+
 //냉장고
 data class RefrigeratorList(
     var id: Long,

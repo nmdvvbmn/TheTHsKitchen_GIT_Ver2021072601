@@ -39,6 +39,8 @@
     
     <string name="option">(선택)</string>
 
+    <string name="qunt">사용량</string>
+
     <string name="youtubeLink">https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA</string>
 
     <string name="menu_link">Youtube바로가기</string>
@@ -61,9 +63,12 @@
     <string name="btn_share">공유</string>
     <string name="btn_link">Youtube</string>
 
+    <string name="title_share">친구에게 공유하기</string>
+
     <!--    Message-->
     <string name="msg_add_NoName"> 재료명을 입력하세요</string>
     <string name="msg_save_data">저장하였습니다</string>
     <string name="title_activity_kitchen">KitchenActivity</string>
     <string name="msg_move_data">재료가 냉장고로 이동했어요</string>
+
 </resources>

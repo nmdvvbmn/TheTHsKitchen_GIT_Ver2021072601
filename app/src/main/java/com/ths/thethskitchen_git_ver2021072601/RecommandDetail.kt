@@ -1,6 +1,8 @@
 package com.ths.thethskitchen_git_ver2021072601
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -17,11 +19,13 @@ import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityRecommandDeta
 var tracker = YouTubePlayerTracker()
 var mYoutubePlayer: YouTubePlayer? = null
 
-class RecommandDetail : AppCompatActivity() {
+class RecommandDetail : AppCompatActivity(), RListAdapter.OnRItem {
     val binding by lazy { ActivityRecommandDetailBinding.inflate(layoutInflater) }
     val helper =  SQLiteDBHelper(this,"THsKitchen.db", 1)
-    var iList = arrayListOf<IList>()
+    val iList = arrayListOf<IList>()
     var iAdapter = IListAdapter(iList)
+    val rList = arrayListOf<RList>()
+    val rAdapter = RListAdapter(rList,this)
     val db = FirebaseFirestore.getInstance()
     var oldQunt : Float = 0F
 
@@ -32,12 +36,16 @@ class RecommandDetail : AppCompatActivity() {
         val link = "https://youtu.be/${dlist.video}"
         getLifecycle().addObserver(binding.youtubeView)
 
-        //var youtubeListener = AbYoutubePlayerListener(dlist.link, 30f)
         binding.youtubeView.addYouTubePlayerListener(AbYoutubePlayerListener("${dlist.video}", dlist.start.toFloat()))
 
+        iAdapter.dlist = dlist
         binding.recycleIList.adapter = iAdapter
         binding.recycleIList.layoutManager = LinearLayoutManager(this)
         selectIList(dlist)
+
+        binding.recycleRList.adapter = rAdapter
+        binding.recycleRList.layoutManager = LinearLayoutManager(this)
+        selectRList(dlist)
 
         var savedFavorites = helper.exists_favorites(dlist.id)
         setFavoritesButton(savedFavorites)  // 즐겨찾기 버튼
@@ -48,10 +56,7 @@ class RecommandDetail : AppCompatActivity() {
 
         oldQunt = setItemQunt(oldQunt, binding.editQunt.text.toString().toFloat())
 
-        binding.btnEnter.setOnClickListener {
-            oldQunt = setItemQunt(oldQunt, binding.editQunt.text.toString().toFloat())
-        }
-
+        binding.txtRTitle.text = dlist.name
         binding.txtPtime.setText( dlist.pretime.toString() + " " +
                 getString(UtilFuncs().transUnit(dlist.preunit)))
         binding.txtCtime.setText( dlist.time.toString() + " " +
@@ -60,19 +65,7 @@ class RecommandDetail : AppCompatActivity() {
             binding.txtPtime.visibility = View.INVISIBLE
             binding.txtPTEXT.visibility = View.INVISIBLE
         }
-        var toolTxt : String = ""
-        if (dlist.stove > 0 || dlist.oven > 0 || dlist.micro > 0 || dlist.blender > 0 ||
-            dlist.airfryer > 0 || dlist.multi > 0 || dlist.steamer > 0 || dlist.sousvide > 0 ||
-            dlist.grill > 0 ) {
-            toolTxt = this.getString(R.string.tool) + " "
-            if (dlist.stove > 0) {
-                toolTxt = toolTxt + this.getString(R.string.stove) + " "
-            }
-
-            binding.txtTool.setText(toolTxt)
-        }else{
-            binding.txtTool.visibility = View.INVISIBLE
-        }
+        setTool(dlist)
 
 //        binding.btnMove.setOnClickListener {
 //            var second = tracker.currentSecond
@@ -80,6 +73,10 @@ class RecommandDetail : AppCompatActivity() {
 //            Log.d("YOUTUBE_STAT","${stat} : ${second}")
 //            mYoutubePlayer?.seekTo(second+10f)
 //        }
+
+        binding.btnEnter.setOnClickListener {
+            oldQunt = setItemQunt(oldQunt, binding.editQunt.text.toString().toFloat())
+        }
 
         binding.btnFavorites.setOnClickListener {
             if (savedFavorites) {
@@ -93,7 +90,79 @@ class RecommandDetail : AppCompatActivity() {
                     R.drawable.ic_baseline_star_24,0,0,0)
                 savedFavorites = true
             }
+        }
 
+        binding.btnShare.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.setType("text/plain")
+            val text = dlist.name + "\n" +
+                    "https://www.youtube.com/watch?v=" + dlist.video
+            intent.putExtra(Intent.EXTRA_TEXT,text)
+            val chooser = Intent.createChooser(intent, this.getString(R.string.title_share))
+            startActivity(chooser);
+        }
+
+        binding.btnRLink.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW,
+                Uri.parse("https://www.youtube.com/watch?v=" + dlist.video))
+            startActivity(intent)
+        }
+    }
+
+    private fun setTool(dlist: DList) {
+        var toolTxt : String = ""
+        if (dlist.stove > 0 || dlist.oven > 0 || dlist.micro > 0 || dlist.blender > 0 ||
+            dlist.airfryer > 0 || dlist.multi > 0 || dlist.steamer > 0 || dlist.sousvide > 0 ||
+            dlist.grill > 0 ) {
+            toolTxt = this.getString(R.string.tool) + "\n"
+            if (dlist.stove > 0) {
+                toolTxt = toolTxt + this.getString(R.string.stove)
+                if (dlist.stove < 2) toolTxt = toolTxt + this.getString(R.string.option) + "\n"
+                else toolTxt = toolTxt + "\n"
+            }
+            if (dlist.oven > 0) {
+                toolTxt = toolTxt + this.getString(R.string.oven)
+                if (dlist.oven < 2) toolTxt = toolTxt + this.getString(R.string.option) + "\n"
+                else toolTxt = toolTxt + "\n"
+            }
+            if (dlist.micro > 0) {
+                toolTxt = toolTxt + this.getString(R.string.micro)
+                if (dlist.micro < 2) toolTxt = toolTxt + this.getString(R.string.option) + "\n"
+                else toolTxt = toolTxt + "\n"
+            }
+            if (dlist.blender > 0) {
+                toolTxt = toolTxt + this.getString(R.string.blender)
+                if (dlist.blender < 2) toolTxt = toolTxt + this.getString(R.string.option) + "\n"
+                else toolTxt = toolTxt + "\n"
+            }
+            if (dlist.airfryer > 0) {
+                toolTxt = toolTxt + this.getString(R.string.airfryer)
+                if (dlist.airfryer < 2) toolTxt = toolTxt + this.getString(R.string.option) + "\n"
+                else toolTxt = toolTxt + "\n"
+            }
+            if (dlist.multi > 0) {
+                toolTxt = toolTxt + this.getString(R.string.multi)
+                if (dlist.multi < 2) toolTxt = toolTxt + this.getString(R.string.option) + "\n"
+                else toolTxt = toolTxt + "\n"
+            }
+            if (dlist.steamer > 0) {
+                toolTxt = toolTxt + this.getString(R.string.steam)
+                if (dlist.steamer < 2) toolTxt = toolTxt + this.getString(R.string.option) + "\n"
+                else toolTxt = toolTxt + "\n"
+            }
+            if (dlist.sousvide > 0) {
+                toolTxt = toolTxt + this.getString(R.string.sous)
+                if (dlist.sousvide < 2) toolTxt = toolTxt + this.getString(R.string.option) + "\n"
+                else toolTxt = toolTxt + "\n"
+            }
+            if (dlist.grill > 0) {
+                toolTxt = toolTxt + this.getString(R.string.grill)
+                if (dlist.grill < 2) toolTxt = toolTxt + this.getString(R.string.option) + "\n"
+                else toolTxt = toolTxt + "\n"
+            }
+            binding.txtTool.setText(toolTxt)
+        }else{
+            binding.txtTool.visibility = View.INVISIBLE
         }
     }
 
@@ -120,6 +189,7 @@ class RecommandDetail : AppCompatActivity() {
         //         firestore 요리 리스트 Query
         val langCode = UtilFuncs().getLanguage()
         iList.clear()
+        binding.pbIlist.visibility = View.VISIBLE
         db.collection("IList")
             .whereEqualTo("id", dList.id)
             .get().addOnSuccessListener {  result ->
@@ -145,6 +215,7 @@ class RecommandDetail : AppCompatActivity() {
 
                         }.addOnCompleteListener {
                             iAdapter.notifyDataSetChanged()
+                            binding.pbIlist.visibility = View.INVISIBLE
                         }
                     iList.add(item)
                 }
@@ -153,7 +224,45 @@ class RecommandDetail : AppCompatActivity() {
             }.addOnCompleteListener {
 
             }
+    }
 
+    private fun selectRList(dList: DList) {
+        //         firestore 요리 리스트 Query
+        val langCode = UtilFuncs().getLanguage()
+        rList.clear()
+        binding.pbRlist.visibility = View.VISIBLE
+        db.collection("RList")//.orderBy("seq")
+            .whereEqualTo("id", dList.id)
+            .get().addOnSuccessListener {  result ->
+                for (document in result) {
+                    var item = RList(
+                        document["id"] as String,
+                        document["seq"] as String,
+                        "",
+                        "${document["time"]}".toFloat()  )
+
+                    db.collection("RName")
+                        .whereEqualTo("SEQ", document["seq"] as String)
+                        .whereEqualTo("code", langCode)
+                        .get().addOnSuccessListener { result ->
+                            for (document in result) {
+                                var index = rList.indexOfFirst{
+                                    it.SEQ == document["SEQ"] as String }
+                                rList[index].name = document["name"] as String
+                            }
+                        }.addOnFailureListener {
+                            Log.d("RName","Fail")
+                        }.addOnCompleteListener {
+                            rAdapter.notifyDataSetChanged()
+                            binding.pbRlist.visibility = View.INVISIBLE
+                        }
+                    rList.add(item)
+                }
+            }.addOnFailureListener {
+                Log.d("RList","Fail")
+            }.addOnCompleteListener {
+
+            }
     }
 
     fun setFavoritesButton(savedFavorites: Boolean) {
@@ -164,6 +273,10 @@ class RecommandDetail : AppCompatActivity() {
             binding.btnFavorites.setCompoundDrawablesWithIntrinsicBounds(
                 R.drawable.ic_baseline_star_border_24,0,0,0)
         }
+    }
+
+    override fun onRItemSelected(time: Float) {
+        mYoutubePlayer?.seekTo(time)
     }
 }
 

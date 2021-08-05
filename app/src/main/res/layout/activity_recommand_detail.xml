@@ -7,14 +7,14 @@
 
     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
         android:id="@+id/youtubeView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toBottomOf="@+id/txtRTitle">
 
     </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
 
@@ -113,18 +113,18 @@
         android:id="@+id/btn_share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="4dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
+        app:layout_constraintEnd_toStartOf="@+id/btnRLink"
         app:layout_constraintTop_toBottomOf="@+id/youtubeView"
         app:srcCompat="@drawable/ic_baseline_share_24" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/btnRLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="68dp"
         app:layout_constraintEnd_toStartOf="@+id/txtPTEXT"
         app:layout_constraintTop_toBottomOf="@+id/youtubeView"
         app:srcCompat="@drawable/ic_baseline_link_24" />
@@ -149,7 +149,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toStartOf="@+id/recycleRList"
         app:layout_constraintTop_toBottomOf="@+id/btn_favorites"
         app:srcCompat="@drawable/ic_baseline_subdirectory_arrow_left_24" />
@@ -158,13 +158,48 @@
         android:id="@+id/txtTool"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/recycleIList"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+        app:layout_constraintStart_toStartOf="@+id/txtCTEXT"
+        app:layout_constraintTop_toBottomOf="@+id/txtCTEXT" />
+
+    <TextView
+        android:id="@+id/txtRTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxLines="1"
+        android:text="TextView"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/pbIlist"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/recycleIList"
+        app:layout_constraintEnd_toEndOf="@+id/recycleIList"
+        app:layout_constraintStart_toStartOf="@+id/recycleIList"
+        app:layout_constraintTop_toTopOf="@+id/recycleIList" />
+
+    <ProgressBar
+        android:id="@+id/pbRlist"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/recycleRList"
+        app:layout_constraintEnd_toEndOf="@+id/recycleRList"
+        app:layout_constraintStart_toStartOf="@+id/recycleRList"
+        app:layout_constraintTop_toTopOf="@+id/recycleRList" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

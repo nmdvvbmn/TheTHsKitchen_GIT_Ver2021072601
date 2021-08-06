@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityRecommandDetailBinding
 
 var tracker = YouTubePlayerTracker()
@@ -34,9 +36,18 @@ class RecommandDetail : AppCompatActivity(), RListAdapter.OnRItem {
         setContentView(binding.root)
         var dlist = intent.getSerializableExtra("data") as DList
         val link = "https://youtu.be/${dlist.video}"
-        getLifecycle().addObserver(binding.youtubeView)
 
-        binding.youtubeView.addYouTubePlayerListener(AbYoutubePlayerListener("${dlist.video}", dlist.start.toFloat()))
+        var caption = 1
+        if (App.prefs.getBoolean("caption",true) == false) {
+            caption = 0
+        }
+
+        var option = IFramePlayerOptions.Builder().ccLoadPolicy(caption).build()
+        var youtubePlayerListener = AbYoutubePlayerListener("${dlist.video}", dlist.start.toFloat())
+
+        getLifecycle().addObserver(binding.youtubeView)
+        binding.youtubeView.enableAutomaticInitialization = false
+        binding.youtubeView.initialize(youtubePlayerListener,true,option)
 
         iAdapter.dlist = dlist
         binding.recycleIList.adapter = iAdapter
@@ -67,13 +78,6 @@ class RecommandDetail : AppCompatActivity(), RListAdapter.OnRItem {
         }
         setTool(dlist)
 
-//        binding.btnMove.setOnClickListener {
-//            var second = tracker.currentSecond
-//            var stat = tracker.state
-//            Log.d("YOUTUBE_STAT","${stat} : ${second}")
-//            mYoutubePlayer?.seekTo(second+10f)
-//        }
-
         binding.btnEnter.setOnClickListener {
             oldQunt = setItemQunt(oldQunt, binding.editQunt.text.toString().toFloat())
         }
@@ -92,6 +96,7 @@ class RecommandDetail : AppCompatActivity(), RListAdapter.OnRItem {
             }
         }
 
+
         binding.btnShare.setOnClickListener {
             val intent = Intent(Intent.ACTION_SEND)
             intent.setType("text/plain")
@@ -106,6 +111,19 @@ class RecommandDetail : AppCompatActivity(), RListAdapter.OnRItem {
             val intent = Intent(Intent.ACTION_VIEW,
                 Uri.parse("https://www.youtube.com/watch?v=" + dlist.video))
             startActivity(intent)
+        }
+
+        binding.btnToCart.setOnClickListener {
+            val intent = Intent(this,CartActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+        }
+        binding.btnRecommandExit.setOnClickListener {
+            finish()
+        }
+
+        binding.youtubeView.setOnClickListener{
+            Log.d("ClickTest","1")
         }
     }
 
@@ -284,7 +302,13 @@ class AbYoutubePlayerListener(videoId: String, second: Float): AbstractYouTubePl
     val videoId = videoId
     var second = second
     override fun onReady(youTubePlayer: YouTubePlayer){
-        youTubePlayer.loadVideo(videoId, second)
+        if (App.prefs.getBoolean("play",true)){
+            youTubePlayer.loadVideo(videoId, second)
+        }else{
+            youTubePlayer.cueVideo(videoId, second)
+        }
+//        var customUI = YourCustomPlayerUiController(youTubePlayer,youTubePlayerView,customPlayerUi)
+
         youTubePlayer.addListener(tracker)
         mYoutubePlayer = youTubePlayer
     }

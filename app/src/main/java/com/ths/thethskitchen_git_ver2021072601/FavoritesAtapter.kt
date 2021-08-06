@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.Serializable
 
+//즐겨찾기 어뎁터
 class FavoritesAtapter: RecyclerView.Adapter<FavoritesAtapter.Holder>() {
     var helper: SQLiteDBHelper? = null
     var dList = mutableListOf<DList>()
@@ -59,6 +60,7 @@ class FavoritesAtapter: RecyclerView.Adapter<FavoritesAtapter.Holder>() {
         var setList = dList[position]
         holder.setDList(setList)
 
+        // 디테일 화면(슬기로운식샤생활)
         holder.itemView.setOnClickListener{
             Intent(mContext, RecommandDetail::class.java).apply {
                 putExtra("data", dList.get(position) as Serializable)

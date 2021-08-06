@@ -70,11 +70,13 @@ class CartAdapter: RecyclerView.Adapter<CartAdapter.Holder>() {
         var mCartList: CartList? = null
 
         init {
+            //리스트 재료 삭제
             bindng.btnFavoritesDel.setOnClickListener{
                 helper?.delete_cart(mCartList!!)
                 cartList.remove(mCartList)
                 notifyDataSetChanged()
             }
+            //리스트 냉장고로 이동
             bindng.btnMoveRefrigerator.setOnClickListener {
                 helper?.move_cart(mCartList!!)
                 cartList.remove(mCartList)

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:title="@string/set_youtube">
+        <SwitchPreferenceCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:defaultValue="false"
+            android:key="caption"
+            android:title="@string/set_caption" />
+        <SwitchPreferenceCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:defaultValue="false"
+            android:key="play"
+            android:title="@string/set_play" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:layout_width="wrap_content"
+        android:title="@string/set_language">
+        <ListPreference
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:defaultValue="en"
+            android:entries="@array/array_language"
+            android:entryValues="@array/array_langCode"
+            android:key="code"
+            android:title="@string/set_languagesetting" />
+    </PreferenceCategory>
+</PreferenceScreen>

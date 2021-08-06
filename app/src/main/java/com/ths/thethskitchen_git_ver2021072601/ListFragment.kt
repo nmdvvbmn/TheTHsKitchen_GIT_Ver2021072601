@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -33,6 +34,7 @@ class ListFragment : Fragment() {
     val db = FirebaseFirestore.getInstance()
     var dlist = arrayListOf<DList>()
     var adapter = RecyclerAdapter(dlist)
+    var proc = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,12 +52,15 @@ class ListFragment : Fragment() {
         binding.recyclerDList.adapter = adapter
         binding.recyclerDList.layoutManager = LinearLayoutManager(requireContext())
         binding.swipeLayout.setOnRefreshListener {
-            selectList()
-            binding.swipeLayout.isRefreshing = false
+            if (proc == false){
+                selectList()
+                binding.swipeLayout.isRefreshing = false
+            }else{
+                binding.swipeLayout.isRefreshing = false
+            }
         }
+        //데이터 조회
         selectList()
-
-
         return binding.root
     }
 
@@ -63,48 +68,59 @@ class ListFragment : Fragment() {
         //         firestore 요리 리스트 Query
         val date = UtilFuncs().getKorDate()
         val langCode = UtilFuncs().getLanguage()
-        val helper = SQLiteDBHelper(requireContext(),"THsKitchen.db",1)
+        val helper = SQLiteDBHelper(requireContext(), "THsKitchen.db", 1)
         var refrigerator = helper.select_refrigerator()
-        var nameList : ArrayList<String> = arrayListOf()
-        var idList : ArrayList<String> = arrayListOf()
+        var nameList: ArrayList<String> = arrayListOf()
+        var idList: ArrayList<String> = arrayListOf()
 
-        val stove = getTooltoInt(App.prefs.getBoolean("stove",false))
-        val oven = getTooltoInt(App.prefs.getBoolean("oven",false))
-        val micro = getTooltoInt(App.prefs.getBoolean("micro",false))
-        val blender = getTooltoInt(App.prefs.getBoolean("blender",false))
-        val multi = getTooltoInt(App.prefs.getBoolean("multi",false))
-        val airfryer = getTooltoInt(App.prefs.getBoolean("airfryer",false))
-        val steam = getTooltoInt(App.prefs.getBoolean("steam",false))
-        val sous = getTooltoInt(App.prefs.getBoolean("sous",false))
-        val grill = getTooltoInt(App.prefs.getBoolean("grill",false))
+        var dlistCnt = 0    //DList sync 위한 카운터
+        var dnameCnt = 0    //DName Sync 위한 카운터
 
-        for (i in 0..refrigerator.size - 1){
+        //나의 부엌 Preference 
+        val stove = getTooltoInt(App.prefs.getBoolean("stove", false))
+        val oven = getTooltoInt(App.prefs.getBoolean("oven", false))
+        val micro = getTooltoInt(App.prefs.getBoolean("micro", false))
+        val blender = getTooltoInt(App.prefs.getBoolean("blender", false))
+        val multi = getTooltoInt(App.prefs.getBoolean("multi", false))
+        val airfryer = getTooltoInt(App.prefs.getBoolean("airfryer", false))
+        val steam = getTooltoInt(App.prefs.getBoolean("steam", false))
+        val sous = getTooltoInt(App.prefs.getBoolean("sous", false))
+        val grill = getTooltoInt(App.prefs.getBoolean("grill", false))
+        
+        for (i in 0..refrigerator.size - 1) {   //냉장고 저장 리스트
             nameList.add(refrigerator[i].name)
         }
-        dlist.clear()
-        val nameList_d = nameList.distinct()
-        binding.pbLoading.visibility = View.VISIBLE
-        if (nameList_d.size <= 0) {
+
+        val nameList_d = nameList.distinct()        //재료 중복 제거
+
+        if (nameList_d.size <= 0) {     // 재료 없음 검색 X
             binding.pbLoading.visibility = View.INVISIBLE
+        }else{ // 초기화
+            dlist.clear()
+            proc = true
+            binding.pbLoading.visibility = View.VISIBLE
+            dlistCnt = 0
+            dnameCnt = 0
         }
-        for (i in 0..nameList_d.size -1) {
-            db.collection("IName")//.orderBy("id", Query.Direction.DESCENDING)
+
+        for (i in 0..nameList_d.size - 1) { //IName에서 DList ID 검색
+            db.collection("IName")
                 .whereEqualTo("name", nameList_d[i])
                 .get().addOnSuccessListener { result ->
                     for (document in result) {
-                        idList.add(document["id"] as String)
+                        idList.add(document["id"] as String)    //ID list
                     }
                 }.addOnFailureListener {
                     Log.d("Refrigerator&Dname", "Fail")
                 }.addOnCompleteListener { task ->
-                    if (i == nameList_d.size - 1) {
-                        val idList_d = idList.distinct().sortedDescending()
-                        if (task.isSuccessful && idList_d.size > 0) {
+                    dlistCnt ++
+                    if (dlistCnt  == nameList_d.size ) { //ID list 검색 완료
+                        val idList_d = idList.distinct().sortedDescending() //Id List 중복 제거 정렬
+                        if (task.isSuccessful && idList_d.size > 0) { //Id list가 있을 경우
                             for (i in 0..idList_d.size - 1) {
                                 db.collection("DList").document(idList_d[i])
-                                    //                            .whereLessThanOrEqualTo("date", date )
                                     .get().addOnSuccessListener { document ->
-                                        var item = DList(
+                                        var item = DList(   //DList Row
                                             document.id,
                                             "",
                                             document["date"] as Long,
@@ -127,7 +143,7 @@ class ListFragment : Fragment() {
                                             document["vdeioID"] as String
                                         )
 
-                                        if (item.date <= date
+                                        if (item.date <= date   // 날짜 및 나의 부엌 조회조건
                                             && item.stove <= stove
                                             && item.oven <= oven
                                             && item.micro <= micro
@@ -136,42 +152,71 @@ class ListFragment : Fragment() {
                                             && item.airfryer <= airfryer
                                             && item.steamer <= steam
                                             && item.sousvide <= sous
-                                            && item.grill <= grill) {
+                                            && item.grill <= grill ) {
                                             dlist.add(item)
 
                                             // 요리명
                                             db.collection("DName")
-                                                .whereEqualTo("id", idList_d[i]).whereEqualTo("code", langCode)
+                                                .whereEqualTo("id", idList_d[i])
+                                                .whereEqualTo("code", langCode)
                                                 .limit(1)
                                                 .get()
                                                 .addOnSuccessListener { result ->
                                                     for (document in result) {
-                                                        var index = dlist.indexOfFirst { it.id == document["id"] as String }
-                                                        dlist[index].name = document["name"] as String
+                                                        var index =
+                                                            dlist.indexOfFirst { it.id == document["id"] as String }
+                                                        dlist[index].name =
+                                                            document["name"] as String
                                                     }
+                                                    //Dname 실패(언어코드 확인, 데이터 없음)
                                                 }.addOnFailureListener {
                                                     Log.d("DB222", "Fail")
                                                 }.addOnCompleteListener {
+                                                    dnameCnt++
+                                                    if (dnameCnt == idList_d.size) {
+                                                        //마지막 리턴 후 프로그레스 종료
+                                                        binding.pbLoading.visibility =
+                                                            View.INVISIBLE
+                                                        //새로고침플레그 해제
+                                                        proc = false
+                                                    }
+                                                    //리스트뷰 업데이트 (중간중간 데이터 띄우기 위함)
                                                     adapter.notifyDataSetChanged()
-                                                    binding.pbLoading.visibility = View.INVISIBLE
                                                 }
-                                        }
-                                }.addOnFailureListener { exception ->
-                                    Log.d("test", "fail", exception)
-                                }.addOnCompleteListener {
-                                    if (i == nameList_d.size - 1) binding.pbLoading.visibility = View.INVISIBLE
+                                            }else{
+                                                dnameCnt++
+                                                if (dnameCnt == idList_d.size) {
+                                                    //실패시 마지막 프로그레스 종료
+                                                    binding.pbLoading.visibility =
+                                                        View.INVISIBLE
+                                                    //최종 완료 리스트 뷰 적용
+                                                    adapter.notifyDataSetChanged()
+                                                    // 새로고침 플레그 해제
+                                                    proc = false
+                                                }
+                                            }
+                                        }.addOnFailureListener { exception ->
+                                            dnameCnt++
+//                                            if (dnameCnt == idList_d.size) {
+                                            if (dlistCnt == idList_d.size) {
+                                                binding.pbLoading.visibility =
+                                                    View.INVISIBLE
+                                                proc = false
+                                            }
+                                        }.addOnCompleteListener {
+                                        adapter.notifyDataSetChanged()
+                                    }
                                 }
+                            } else {
+                                binding.pbLoading.visibility = View.INVISIBLE
+                                proc = false
                             }
-                        }else{
-                            binding.pbLoading.visibility = View.INVISIBLE
                         }
                     }
+
             }
-
-        }
-
     }
-
+    // 나의 부엌 체크박스를 변환
     private fun getTooltoInt(boolean: Boolean): Int {
         if (boolean) {
             return 2

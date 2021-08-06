@@ -1,5 +1,6 @@
 package com.ths.thethskitchen_git_ver2021072601
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -10,6 +11,7 @@ import com.ths.thethskitchen_git_ver2021072601.databinding.DailogCartAddBinding
 import com.ths.thethskitchen_git_ver2021072601.databinding.DailogRefrigeratorAddBinding
 import java.time.LocalDateTime
 
+//장바구니
 class CartActivity : AppCompatActivity() {
     val binding by lazy { ActivityCartBinding.inflate(layoutInflater) }
     var adapter = CartAdapter()
@@ -62,5 +64,16 @@ class CartActivity : AppCompatActivity() {
             alertDailog.show()
         }
 
+        //냉장고로 이동
+        binding.btnToRefrigerator.setOnClickListener {
+            val intent = Intent(this, RefrigeratorActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+        }
+
+        //종료
+        binding.btnCartExit.setOnClickListener {
+            finish()
+        }
     }
 }

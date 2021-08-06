@@ -13,7 +13,7 @@ import com.ths.thethskitchen_git_ver2021072601.databinding.ItemIlistBinding
 import kotlinx.coroutines.currentCoroutineContext
 import java.time.LocalDateTime
 
-
+// 디테일(슬기로운식샤생활)-재료 어뎁터
 class IListAdapter(val listData: ArrayList<IList>): RecyclerView.Adapter<IListAdapter.Holder>() {
     var mBinding: ItemIlistBinding? = null
     private val binding get() = mBinding!!
@@ -32,21 +32,22 @@ class IListAdapter(val listData: ArrayList<IList>): RecyclerView.Adapter<IListAd
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val ilist = listData.get(position)
-//        val binding = binding
         holder.setIList(ilist)
 
+        // 장바구니 추가
         binding.btnRAddCart.setOnClickListener {
-            var desc = "${dlist?.name}\n" +
+            var desc = "${dlist?.name}\n" + // 요리명 + 사용량
                     "${context.getString(R.string.qunt)} : ${UtilFuncs().floatFormat(ilist.qunt)} ${ilist.quntunit} "
-            if (ilist.need == false) {
+            if (ilist.need == false) {  //옵션재료
                 desc = desc + "${context.getString(R.string.option)}"
             }
+
             val cartItem = CartList(0,ilist.name!!, desc, LocalDateTime.now() )
             helper?.insert_cart(cartItem)
             Toast.makeText(context,context.getString(R.string.msg_save_data),
                 Toast.LENGTH_SHORT).show()
+            //프로그레스바
             holder.binding.btnRAddCart.visibility = View.INVISIBLE
-//            notifyDataSetChanged()
         }
 
     }
@@ -59,29 +60,28 @@ class IListAdapter(val listData: ArrayList<IList>): RecyclerView.Adapter<IListAd
         val context = context
 
         init {
-//            binding.btnAdd.setOnClickListener(){
-//                Toast.makeText(context, "Add to Cart",Toast.LENGTH_LONG).show()
-//            }
         }
         @RequiresApi(Build.VERSION_CODES.N)
         fun setIList(ilist: IList) {
             this.mIList = ilist
-            var txt: String = "${ilist.name} "
+            
+            var txt: String = "${ilist.name} "//재료명  
+            
+            // 사용량이 0보다 클때만 
             if (ilist.qunt > 0){
                 txt = txt + " " + UtilFuncs().floatFormat(ilist.qunt)
             }
+            //사용량 단위
             if (ilist.quntunit != "-" ){
                 txt = txt + " ${ilist.quntunit}"
             }
-
+            // 선택재료 추가 택스트
             if (ilist.need) {
                 binding.chkName.setTypeface(null, Typeface.BOLD)
             }else{
                 txt = txt + " " + context.getString(R.string.option)
             }
-
             binding.chkName.text = txt
-
         }
     }
 }

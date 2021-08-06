@@ -21,10 +21,10 @@ import java.lang.Exception
 
 class ListActivity : AppCompatActivity() {
     val binding by lazy { ActivityListBinding.inflate(layoutInflater)}
-    val db = FirebaseFirestore.getInstance()
+//    val db = FirebaseFirestore.getInstance()
     val dlist = arrayListOf<DList>()
     val adapter = RecyclerAdapter(dlist)
-    val langCode = UtilFuncs().getLanguage()    // 언어코드
+//    val langCode = UtilFuncs().getLanguage()    // 언어코드
     val api_key = "AIzaSyA_Q3BlyHXBGxApWzSPsHKmhLN89-FO_T8"
 
     override fun onCreate(savedInstanceState: Bundle?) {

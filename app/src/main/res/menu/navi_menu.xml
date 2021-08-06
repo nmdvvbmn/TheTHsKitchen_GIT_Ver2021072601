@@ -1,22 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <group android:checkableBehavior="single">
-        <item android:id="@+id/menu_refrigerator"
-            android:icon="@drawable/ic_baseline_kitchen_24"
-            android:title="@string/menu_refrigerator"/>
+    <group android:checkableBehavior="single"
+        android:id="@+id/group_page">
+        <item android:id="@+id/menu_search"
+            android:icon="@drawable/ic_baseline_search_24"
+            android:title="@string/menu_search"/>
+        <item android:id="@+id/menu_recommand"
+            android:icon="@drawable/ic_baseline_restaurant_24"
+            android:title="@string/menu_recommandList"/>
+    </group>
+    <group android:checkableBehavior="single"
+        android:id="@+id/group_myKitchen">
         <item android:id="@+id/menu_kitchen"
             android:icon="@drawable/ic_baseline_local_dining_24"
             android:title="@string/menu_kitchen"/>
+        <item android:id="@+id/menu_refrigerator"
+            android:icon="@drawable/ic_baseline_kitchen_24"
+            android:title="@string/menu_refrigerator"/>
         <item android:id="@+id/menu_cart"
             android:icon="@drawable/ic_baseline_shopping_cart_24"
             android:title="@string/menu_cart"/>
         <item android:id="@+id/menu_favorites"
             android:icon="@drawable/ic_baseline_star_24"
             android:title="@string/menu_favorites"/>
+    </group>
+    <group android:checkableBehavior="single"
+        android:id="@+id/group_setting">
+        <item android:id="@+id/menu_setting"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="@string/menu_setting"/>
+        <item android:id="@+id/menu_contact"
+            android:icon="@drawable/ic_baseline_email_24"
+            android:title="@string/menu_contact"/>
         <item android:id="@+id/menu_help"
             android:icon="@drawable/ic_baseline_help_24"
             android:title="@string/menu_help"/>
     </group>
-
 </menu>

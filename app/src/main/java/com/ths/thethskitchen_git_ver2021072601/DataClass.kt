@@ -45,16 +45,16 @@ data class RList(
 
 //냉장고
 data class RefrigeratorList(
-    var id: Long,
-    var name: String,
-    var desc: String,
-    var date: LocalDateTime
+    var id: Long,      //자동번호
+    var name: String,   //재료명
+    var desc: String,   //설명
+    var date: LocalDateTime //입력일시
 )
 
 //장바구니
 data class CartList(
-    var id: Long,
-    var name: String,
-    var desc: String,
-    var date: LocalDateTime
+    var id: Long,     //자동번호
+    var name: String,   //재료명
+    var desc: String,   //설명
+    var date: LocalDateTime //입력일시
 )

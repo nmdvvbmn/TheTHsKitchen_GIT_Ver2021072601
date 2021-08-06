@@ -1,5 +1,6 @@
 package com.ths.thethskitchen_git_ver2021072601
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -59,6 +60,16 @@ class RefrigeratorActivity : AppCompatActivity() {
                 alertDailog.dismiss()
             }
             alertDailog.show()
+        }
+
+        binding.btnToCart2.setOnClickListener {
+            val intent = Intent(this,CartActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
+        }
+
+        binding.btnRExit.setOnClickListener {
+            finish()
         }
 
     }

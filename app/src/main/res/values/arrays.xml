@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_langCode">
+        <item>ko</item>
+        <item>en</item>
+        <item>zh-CN</item>
+        <item>zh-TW</item>
+        <item>es</item>
+        <item>ar</item>
+        <item>hi</item>
+        <item>bn</item>
+        <item>pt</item>
+        <item>ru</item>
+        <item>ja</item>
+        <item>jw</item>
+        <item>tr</item>
+        <item>fr</item>
+        <item>de</item>
+        <item>te</item>
+        <item>mr</item>
+        <item>ur</item>
+        <item>vi</item>
+        <item>ta</item>
+        <item>it</item>
+        <item>fa</item>
+        <item>ms</item>
+        <item>gu</item>
+    </string-array>
+
+    <string-array name="array_language">
+        <item>한국어</item>
+        <item>English</item>
+        <item>简体中文）</item>
+        <item>繁體中文）</item>
+        <item>Español</item>
+        <item>العربية</item>
+        <item>हिन्दी, हिंदी</item>
+        <item>বাংলা</item>
+        <item>Português</item>
+        <item>русский</item>
+        <item>日本語 (にほんご)</item>
+        <item>ꦧꦱꦗꦮ, Basa Jawa</item>
+        <item>Türkçe</item>
+        <item>français, langue française</item>
+        <item>Deutsch</item>
+        <item>తెలుగు</item>
+        <item>मराठी</item>
+        <item>اردو</item>
+        <item>Tiếng Việt</item>
+        <item>தமிழ்</item>
+        <item>Italiano</item>
+        <item>فارسی</item>
+        <item>Bahasa Melayu, بهاس ملايو</item>
+        <item>ગુજરાતી</item>
+    </string-array>
+
+</resources>

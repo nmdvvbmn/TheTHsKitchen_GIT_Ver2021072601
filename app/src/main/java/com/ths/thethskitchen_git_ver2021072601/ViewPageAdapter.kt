@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
+// ViewPager 어뎁터
 class ViewPagerAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(fragmentActivity) {
 
     var fragments : ArrayList<Fragment> = ArrayList()
@@ -21,9 +22,9 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter
         notifyItemInserted(fragments.size-1)
     }
 
-    fun removeFragment() {
-        fragments.removeLast()
-        notifyItemRemoved(fragments.size)
-    }
+//    fun removeFragment() {
+//        fragments.removeLast()
+//        notifyItemRemoved(fragments.size)
+//    }
 
 }

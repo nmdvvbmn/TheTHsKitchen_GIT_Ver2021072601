@@ -11,8 +11,10 @@ import com.ths.thethskitchen_git_ver2021072601.databinding.ItemRlistBinding
 import kotlinx.coroutines.flow.callbackFlow
 
 
+// 상세패이지 레시피 리스트 어뎁터
 class RListAdapter(val listData: ArrayList<RList>, listener : OnRItem): RecyclerView.Adapter<RListAdapter.Holder>() {
-
+    
+    //SeekTo를 위한 인터페이스
     interface OnRItem {
         fun onRItemSelected( time: Float)
     }
@@ -31,7 +33,8 @@ class RListAdapter(val listData: ArrayList<RList>, listener : OnRItem): Recycler
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val rlist = listData.get(position)
         holder.setRList(rlist)
-
+        
+        //인터페이스 전달 리스너
         holder.itemView.setOnClickListener{
             mListener.onRItemSelected(rlist.time)
         }
@@ -48,8 +51,7 @@ class RListAdapter(val listData: ArrayList<RList>, listener : OnRItem): Recycler
         @RequiresApi(Build.VERSION_CODES.N)
         fun setRList(rlist: RList) {
             this.mRList = rlist
-            binding.txtRName.text = mRList?.name
-
+            binding.txtRName.text = mRList?.name    //재료명
         }
     }
 }

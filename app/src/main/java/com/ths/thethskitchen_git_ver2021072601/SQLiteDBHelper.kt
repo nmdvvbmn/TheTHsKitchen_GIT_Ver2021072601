@@ -4,10 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.util.Log
 import java.time.LocalDateTime
-import java.util.*
-import kotlin.Comparator
 
 class SQLiteDBHelper (
     context: Context,
@@ -238,6 +235,4 @@ class SQLiteDBHelper (
             false
         }
     }
-
-
 }

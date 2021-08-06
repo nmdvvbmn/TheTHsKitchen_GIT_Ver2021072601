@@ -16,17 +16,8 @@ import java.io.FileNotFoundException
 import java.io.Serializable
 import java.net.URL
 
-//이미지파일 로드 쓰레드
-suspend fun loadImage(imageUrl: String): Bitmap? {
-    val url = URL(imageUrl)
-    try {
-        val stream = url.openStream()
-        return  BitmapFactory.decodeStream(stream)
-    } catch (e: FileNotFoundException){
-        return  null
-    }
-}
 
+// 추천 요리 어뎁터
 class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<RecyclerAdapter.Holder>() {
     lateinit var mContext: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {

@@ -61,13 +61,13 @@ class RefrigeratorActivity : AppCompatActivity() {
             }
             alertDailog.show()
         }
-
+//      장바구니 이동
         binding.btnToCart2.setOnClickListener {
             val intent = Intent(this,CartActivity::class.java)
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
             startActivity(intent)
         }
-
+//      종료
         binding.btnRExit.setOnClickListener {
             finish()
         }

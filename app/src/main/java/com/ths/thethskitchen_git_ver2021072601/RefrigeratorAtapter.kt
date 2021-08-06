@@ -34,30 +34,30 @@ class RefrigeratorAtapter: RecyclerView.Adapter<RefrigeratorAtapter.Holder>() {
                 (dialogAdd.root.parent as ViewGroup).removeView(dialogAdd.root)
             }
 
-            builder.setView(dialogAdd.root)
-            dialogAdd.txtRefrigeratorAddName.setText(setList.name)
-            dialogAdd.txtRefrigeratorAddDesc.setText(setList.desc)
+            builder.setView(dialogAdd.root)     //다이얼로그View
+            dialogAdd.txtRefrigeratorAddName.setText(setList.name)  //재료명
+            dialogAdd.txtRefrigeratorAddDesc.setText(setList.desc)  //비고
 
             var alertDailog = builder.create()
 //          저장 버튼
             dialogAdd.btnRefrigeratorAdd.setOnClickListener {
                 if (dialogAdd.txtRefrigeratorAddName.text.toString() != ""  ) {
-                    setList.name = dialogAdd.txtRefrigeratorAddName.text.toString()
-                    setList.desc = dialogAdd.txtRefrigeratorAddDesc.text.toString()
-                    helper?.update_refiregierator(setList)
+                    setList.name = dialogAdd.txtRefrigeratorAddName.text.toString() //입력된 재료명
+                    setList.desc = dialogAdd.txtRefrigeratorAddDesc.text.toString() //입력된 비고
+                    helper?.update_refiregierator(setList)  //로컬 refrigerator update
                     Toast.makeText(it.context, it.context.getString(R.string.msg_save_data),
                         Toast.LENGTH_SHORT).show()
-                    alertDailog.dismiss()
-                    refrigeratorList.set(position,setList)
-                    notifyDataSetChanged()
-                }else{
+                    alertDailog.dismiss()   //다이얼로그 종료
+                    refrigeratorList.set(position,setList)  //리스트 데이터 변경
+                    notifyDataSetChanged()  //변경 적용
+                }else{  //재료 미입력
                     Toast.makeText(it.context,it.context.getString(R.string.msg_add_NoName),
                         Toast.LENGTH_SHORT).show()
                 }
             }
-//          취소번튼
+//          취소버튼
             dialogAdd.btnRefrigeratorCanc.setOnClickListener {
-                alertDailog.dismiss()
+                alertDailog.dismiss()   //다이얼로그 종료
             }
             alertDailog.show()
         }
@@ -71,6 +71,7 @@ class RefrigeratorAtapter: RecyclerView.Adapter<RefrigeratorAtapter.Holder>() {
         var mRefrigeratorList: RefrigeratorList? = null
 
         init {
+            // 리스트 삭제버튼
             bindng.btnRefrigeratorDel.setOnClickListener{
                 helper?.delete_refiregierator(mRefrigeratorList!!)
                 refrigeratorList.remove(mRefrigeratorList)

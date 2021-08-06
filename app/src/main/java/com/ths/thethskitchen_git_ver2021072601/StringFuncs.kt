@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter
 
 open class StringFuncs {
 
+    // 추천요리 아이템 비고 텍스트
     open fun makeDesc( data: DList, context: Context ): String {
        var output: String = ""
 
@@ -62,6 +63,8 @@ open class StringFuncs {
 
        return  output
     }
+
+    //LocalDateTime to String
     open fun makeDateString( date: LocalDateTime ): String {
         return date.format(DateTimeFormatter.ISO_DATE_TIME)
     }

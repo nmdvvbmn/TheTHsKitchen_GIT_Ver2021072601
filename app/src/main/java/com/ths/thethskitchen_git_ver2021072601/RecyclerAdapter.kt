@@ -21,6 +21,7 @@ import java.net.URL
 class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<RecyclerAdapter.Holder>() {
     lateinit var mContext: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
+        Log.d("ListAdapter","onCreateView")
         val binding = ItemRecyclerBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         mContext = parent.context
         return Holder(binding)
@@ -33,7 +34,7 @@ class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<Recy
         layoutParams.height = 400
         holder.itemView.requestLayout()
         holder.setDList(dlist)
-
+        Log.d("ListAdapter","onBindViewHolder")
         //아이템 클릭
         holder.itemView.setOnClickListener{
 //            --> 디테일로 이동
@@ -68,7 +69,13 @@ class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<Recy
                     binding.imgThumb.setImageResource(R.drawable.ic_launcher_background)    //기본 수정예졍
                 }
             }
-            binding.txtDesc.text = StringFuncs().makeDesc(dlist, mContext)
+            if (dlist.id != ""){
+                binding.txtDesc.text = StringFuncs().makeDesc(dlist, mContext)
+            } else {
+                binding.txtDesc.text = dlist.desc
+                binding.txtDesc.maxLines = 3
+            }
+
         }
     }
 }

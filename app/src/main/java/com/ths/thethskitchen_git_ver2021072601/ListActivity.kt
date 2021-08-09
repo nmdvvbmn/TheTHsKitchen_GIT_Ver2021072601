@@ -2,76 +2,144 @@ package com.ths.thethskitchen_git_ver2021072601
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.StrictMode
 import android.util.Log
-import android.view.Menu
-import android.widget.Toast
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.api.client.http.HttpRequest
-import com.google.api.client.http.HttpRequestInitializer
-import com.google.api.client.http.javanet.NetHttpTransport
-import com.google.api.client.json.jackson2.JacksonFactory
-import com.google.api.services.youtube.YouTube
-import com.google.api.services.youtube.model.SearchResult
-import com.google.firebase.firestore.FirebaseFirestore
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityListBinding
-import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityMainBinding
-import java.io.IOException
-import java.lang.Exception
+import kotlinx.coroutines.*
+import java.io.*
+import java.net.HttpURLConnection
+import java.net.MalformedURLException
+import java.net.URL
+import java.net.URLEncoder
 
 class ListActivity : AppCompatActivity() {
     val binding by lazy { ActivityListBinding.inflate(layoutInflater)}
-//    val db = FirebaseFirestore.getInstance()
-    val dlist = arrayListOf<DList>()
-    val adapter = RecyclerAdapter(dlist)
-//    val langCode = UtilFuncs().getLanguage()    // 언어코드
-    val api_key = "AIzaSyA_Q3BlyHXBGxApWzSPsHKmhLN89-FO_T8"
+    var dlist: ArrayList<DList>? = arrayListOf()
+    lateinit var adapter: RecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val search = intent.getStringExtra("search") as String
 
-        binding.searchDList.adapter = adapter
-        binding.searchDList.layoutManager = LinearLayoutManager(baseContext)
-
-        youtubeSearch()
+        binding.searchDList.layoutManager = LinearLayoutManager(this)
+        getData(search)
     }
 
+    private fun getData(search: String) {
 
-    private fun youtubeSearch() {
-        try {
-            val http_transport = NetHttpTransport()
-            val json_factory = JacksonFactory()
-            val number_of_videos_retured: Long = 5
-            val httpRequest = HttpRequestInitializer() {
-                fun initialize(request: HttpRequest) {
-                }
+        CoroutineScope(Dispatchers.Main).launch {
+            binding.pbList.visibility = View.VISIBLE
+
+            withContext(Dispatchers.IO) {
+                dlist = searchYoutube(search)
             }
-            val youtube = YouTube.Builder(http_transport, json_factory, httpRequest)
-                .setApplicationName("youtube_search").build()
-            var partList = listOf<String>("id", "snippet")
-            val search = youtube.search().list(partList)
-            search.setKey(api_key)
-            search.setChannelId("UCM_NeHV1e_QZ5dYr-C-TJqA")
-            search.setOrder("relevance")
-            val typeList = listOf("video")
-            search.setType(typeList)
-            search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url)")
-            search.setMaxResults(number_of_videos_retured)
-            var searchResponse = search.execute()
 
-            var searchResult = searchResponse.items
-
-            if (searchResult != null){
-                while (searchResult.iterator().hasNext()){
-                    var singleVideo = searchResult.iterator().next()
-                    Log.d("Title", "${singleVideo.getSnippet().title}")
-                }
+            if (dlist != null) {
+                adapter = RecyclerAdapter(dlist!!)
+                binding.searchDList.adapter = adapter
             }
-        }catch (e: Exception){
-
+            binding.pbList.visibility = View.INVISIBLE
+            adapter.notifyDataSetChanged()
         }
     }
 
+//    fun searchYoutube(searchString: String): ArrayList<DList> {
+//        //네이버
+//        var search: String? = null
+//        var dlist = arrayListOf<DList>()
+//        try {
+//            search = URLEncoder.encode(searchString + "youtube","UTF-8")
+//            Log.d("NaverAPI","search : ${search}")
+//        }catch (e: UnsupportedEncodingException){
+//            val item = DList("","None",0,0,"",0,"",0,
+//                "",0,0,0,0,0,0,0,0,
+//                0,0,"","")
+//            dlist.add(item)
+//            return dlist
+//        }
+////    val address = "https://dapi.kakao.com/v2/search/vclip?sort=accuracy&size=1=&query=" +
+////            searchString + "+youtube"
+////    val apiURL = "https://openapi.naver.com/v1/search/image?query=" + search
+//        val apiURL = "https://dapi.kakao.com/v2/search/vclip?sort=accuracy&size=1=&query=" + search
+//        Log.d("NaverAPI","apiURL : ${apiURL}")
+//        val requestHeader = HashMap<String, String>()
+////    requestHeader.put("X-Naver-Client-Id", "IIG3vZ0a4SjAoRcjA1Rk")
+////    requestHeader.put("X-Naver-Client-Secret", "eagRBo5Jta")
+//        requestHeader.put("Authorization", "KakaoAK c1cdf12b34171fae148670967c9a50e6")
+//        Log.d("NaverAPI","requestHeader : ${requestHeader}")
+//        val responseBody = get(apiURL,requestHeader);
+//        Log.d("NaverAPI","${responseBody}")
+//        val item = DList("","None",0,0,"",0,"",0,
+//            "",0,0,0,0,0,0,0,0,
+//            0,0,"",responseBody)
+//        dlist.add(item)
+//        Log.d("NaverAPI","${responseBody}")
+//        return dlist
+//    }
+//
+//    fun get(apiURL: String, requestHeader: HashMap<String, String>): String {
+//        val con = connect(apiURL)
+//        Log.d("NaverAPI","con : ${con}")
+//        try{
+//            if (con == null){
+//                Log.d("NaverAPI","No con")
+//                throw  IOException("No con")
+//            }
+//            con?.requestMethod = "GET"
+//            for (header: Map.Entry<String, String> in requestHeader.entries) {
+//                con?.setRequestProperty(header.key,header.value)
+//                Log.d("NaverAPI","setHeadre")
+//            }
+//            var responseCode: Int = con!!.responseCode
+//            Log.d("NaverAPI","responseCode : ${responseCode}")
+//            if (responseCode == HttpURLConnection.HTTP_OK) {
+//
+//                Log.d("NaverAPI","con  : ${con.contentEncoding}")
+//                return readBody(con.inputStream)
+//            }else{
+//                Log.d("NaverAPI","Fail")
+//                return readBody(con.inputStream)
+//            }
+//        } catch (e: IOException){
+//            Log.d("NaverAPI","Get_IO")
+//            return "Error"
+//        }finally {
+//            con?.disconnect()
+//        }
+//    }
+//
+//    fun readBody(body: InputStream?): String {
+//        val streamReader = InputStreamReader(body)
+//        Log.d("NaverAPI","body : ${body}")
+//        Log.d("NaverAPI","streaReader : ${streamReader}")
+//        try {
+//            var lineReader = BufferedReader(streamReader)
+//            var responseBody = StringBuilder()
+//            while ((lineReader.readLine()) != null) {
+//                responseBody.append(lineReader.readLine())
+//                Log.d("NaverAPI","readLine : ${lineReader.readLine()}")
+//            }
+//            return  responseBody.toString()
+//        }catch (e: IOException){
+//            Log.d("NaverAPI","Readbody IO")
+//            return "Error"
+//        }
+//    }
+//
+//    fun connect(apiURL: String): HttpURLConnection? {
+//        try {
+//            val url = URL(apiURL)
+//            return url.openConnection() as HttpURLConnection
+//        } catch (e: MalformedURLException) {
+//            Log.d("NaverAPI", "Connect_malformeURL")
+//            return null
+//        } catch (e: IOException) {
+//            Log.d("NaverAPI", "Connect_IO")
+//            return null
+//        }
+//    }
+
 }
+

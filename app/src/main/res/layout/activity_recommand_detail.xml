@@ -23,14 +23,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:contextClickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/recycleRList"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_enter" />
+        app:layout_constraintTop_toBottomOf="@+id/editQunt" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleRList"
@@ -65,10 +65,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
         android:gravity="left|center_vertical"
         android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/btn_enter"
+        app:layout_constraintEnd_toStartOf="@+id/recycleRList"
+        app:layout_constraintHorizontal_bias="0.862"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_favorites" />
 
     <TextView
@@ -144,16 +145,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_favorites" />
 
-    <ImageView
-        android:id="@+id/btn_enter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/recycleRList"
-        app:layout_constraintTop_toBottomOf="@+id/btn_favorites"
-        app:srcCompat="@drawable/ic_baseline_subdirectory_arrow_left_24" />
-
     <TextView
         android:id="@+id/txtTool"
         android:layout_width="0dp"
@@ -222,5 +213,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_clear_36" />
+
+    <TextView
+        android:id="@+id/txtRDesc"
+        android:layout_width="382dp"
+        android:layout_height="344dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:ellipsize="none"
+        android:fadeScrollbars="true"
+        android:scrollbarStyle="outsideInset"
+        android:singleLine="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnRLink" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

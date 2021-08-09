@@ -1,6 +1,5 @@
 package com.ths.thethskitchen_git_ver2021072601
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,10 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.Lifecycle
-import androidx.viewpager2.widget.ViewPager2
 import com.ths.thethskitchen_git_ver2021072601.databinding.FragmentSearchBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -47,7 +42,7 @@ class SearchFragment : Fragment() {
         mBinding = FragmentSearchBinding.inflate(inflater,container,false)
         binding.btnSearch.setOnClickListener{
             if (binding.editSearch.text.toString() != ""){
-                val intant = Intent(context, ListActivity::class.java).apply {
+                Intent(context, ListActivity::class.java).apply {
                     putExtra("search", binding.editSearch.text.toString())
                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 }.run {context?.startActivity(this) }

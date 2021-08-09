@@ -6,11 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
-import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityListBinding
 import com.ths.thethskitchen_git_ver2021072601.databinding.FragmentListBinding
 import java.io.IOException
 import java.util.*
@@ -140,7 +137,8 @@ class ListFragment : Fragment() {
                                             document["steamer"] as Long,
                                             document["sous vide"] as Long,
                                             document["grill"] as Long,
-                                            document["vdeioID"] as String
+                                            document["vdeioID"] as String,
+                                            ""
                                         )
 
                                         if (item.date <= date   // 날짜 및 나의 부엌 조회조건

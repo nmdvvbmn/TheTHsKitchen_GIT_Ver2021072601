@@ -20,7 +20,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTube
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityRecommandDetailBinding
 
-var tracker = YouTubePlayerTracker()
+//var tracker = YouTubePlayerTracker()
 var mYoutubePlayer: YouTubePlayer? = null
 
 class RecommandDetail : AppCompatActivity(), RListAdapter.OnRItem {
@@ -53,18 +53,7 @@ class RecommandDetail : AppCompatActivity(), RListAdapter.OnRItem {
         getLifecycle().addObserver(binding.youtubeView)
         binding.youtubeView.enableAutomaticInitialization = false   // 옵션 선택시 자동초기화 false
         binding.youtubeView.initialize(youtubePlayerListener,true,option)   //자막을 위한 수동 초기화
-        
-        //재료 RecyclerView
-        iAdapter.dlist = dlist
-        binding.recycleIList.adapter = iAdapter
-        binding.recycleIList.layoutManager = LinearLayoutManager(this)
-        selectIList(dlist)
 
-        //레시피 RecyclerView
-        binding.recycleRList.adapter = rAdapter
-        binding.recycleRList.layoutManager = LinearLayoutManager(this)
-        selectRList(dlist)
-        
         var savedFavorites = helper.exists_favorites(dlist.id) //즐겨찾기 저장 유무
         setFavoritesButton(savedFavorites)  // 즐겨찾기 버튼
 
@@ -72,7 +61,31 @@ class RecommandDetail : AppCompatActivity(), RListAdapter.OnRItem {
         binding.editQunt.setText(UtilFuncs().floatFormat(oldQunt))  //Float->Int(String)
         binding.txtUnit.setText(UtilFuncs().transUnit(dlist.quntunit))  //단위 언어에 맞게 세팅
 
-        oldQunt = setItemQunt(oldQunt, binding.editQunt.text.toString().toFloat())  // 사용량 계산
+        if (dlist.id == "") {
+            binding.txtTool.visibility = View.INVISIBLE
+            binding.editQunt.visibility = View.INVISIBLE
+            binding.txtUnit.visibility = View.INVISIBLE
+            binding.recycleIList.visibility = View.INVISIBLE
+            binding.recycleRList.visibility = View.INVISIBLE
+            binding.pbIlist.visibility = View.INVISIBLE
+            binding.pbRlist.visibility = View.INVISIBLE
+            binding.txtRDesc.text = dlist.desc
+
+        }else{
+            //재료 RecyclerView
+            iAdapter.dlist = dlist
+            binding.recycleIList.adapter = iAdapter
+            binding.recycleIList.layoutManager = LinearLayoutManager(this)
+            selectIList(dlist)
+
+            //레시피 RecyclerView
+            binding.recycleRList.adapter = rAdapter
+            binding.recycleRList.layoutManager = LinearLayoutManager(this)
+            selectRList(dlist)
+            binding.txtRDesc.visibility = View.INVISIBLE
+            setTool(dlist) //사용도구 텍스트
+            oldQunt = setItemQunt(oldQunt, binding.editQunt.text.toString().toFloat())  // 사용량 계산
+        }
 
         binding.txtRTitle.text = dlist.name //상단 요리명
         
@@ -83,18 +96,17 @@ class RecommandDetail : AppCompatActivity(), RListAdapter.OnRItem {
             binding.txtPtime.setText( dlist.pretime.toString() + " " +
                     getString(UtilFuncs().transUnit(dlist.preunit))) //준비시간 + 단위    
         }
-        
-        binding.txtCtime.setText( dlist.time.toString() + " " +
-                getString(UtilFuncs().transUnit(dlist.timeunit)))   //조리시간 + 단위
-        
-        setTool(dlist) //사용도구 텍스트
 
-//        // 양 입력 버튼
-//        binding.btnEnter.setOnClickListener {
-//            if (binding.editQunt.text.toString() != ""){    //빈값 입력 방지
-//                oldQunt = setItemQunt(oldQunt, binding.editQunt.text.toString().toFloat())
-//            }
-//        }
+        if (dlist.time <= 0) {
+            binding.txtCtime.visibility = View.INVISIBLE
+            binding.txtCTEXT.visibility = View.INVISIBLE
+        }else{
+            binding.txtCtime.setText( dlist.time.toString() + " " +
+                    getString(UtilFuncs().transUnit(dlist.timeunit)))   //조리시간 + 단위
+        }
+
+
+
 
         //즐겨찾기 버튼
         binding.btnFavorites.setOnClickListener {

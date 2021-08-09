@@ -72,7 +72,9 @@ class MainActivity : AppCompatActivity() {
                     startActivity(email)
                 }
 
-                binding.navi.menu.getItem(7).itemId -> Toast.makeText(this,"${it.itemId}",Toast.LENGTH_LONG).show() //도움말
+                binding.navi.menu.getItem(8).itemId -> { //도움말
+
+                }
                 else -> Toast.makeText(this,"text",Toast.LENGTH_LONG).show()
             }
             return@setNavigationItemSelectedListener true

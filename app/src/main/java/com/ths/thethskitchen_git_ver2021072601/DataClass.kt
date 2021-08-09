@@ -24,7 +24,8 @@ data class DList(
     var steamer: Long,      //찜기
     var sousvide: Long,     //수비드
     var grill: Long,        //그릴
-    var video: String ): Serializable   //비디오ID
+    var video: String,
+    var desc: String ): Serializable   //비디오ID
 
 // 재료List
 data class IList(

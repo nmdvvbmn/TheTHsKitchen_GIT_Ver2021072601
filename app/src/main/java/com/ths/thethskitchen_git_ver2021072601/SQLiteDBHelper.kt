@@ -49,7 +49,8 @@ class SQLiteDBHelper (
                 "steamer integer, " +
                 "sousvide integer, " +
                 "grill integer, " +
-                "video text )"
+                "video text, " +
+                "desc text )"
         db?.execSQL(create)
     }
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -180,9 +181,10 @@ class SQLiteDBHelper (
             val sousvide = cursor.getLong(cursor.getColumnIndex("sousvide"))
             val grill = cursor.getLong(cursor.getColumnIndex("grill"))
             val video = cursor.getString(cursor.getColumnIndex("video"))
+            val desc = cursor.getString(cursor.getColumnIndex("desc"))
 
             dList.add(DList(id,name,date, pretime, preunit, time, timeunit, qunt, quntunit, start,
-                stove, oven, micro, blender, airfryer, multi, steamer, sousvide, grill, video))
+                stove, oven, micro, blender, airfryer, multi, steamer, sousvide, grill, video, desc))
         }
         cursor.close()
         return dList

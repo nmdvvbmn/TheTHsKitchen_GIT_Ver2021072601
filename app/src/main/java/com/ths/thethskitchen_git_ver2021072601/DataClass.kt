@@ -25,7 +25,8 @@ data class DList(
     var sousvide: Long,     //수비드
     var grill: Long,        //그릴
     var video: String,
-    var desc: String ): Serializable   //비디오ID
+    var desc: String,
+    var flag: Int ): Serializable   //비디오ID
 
 // 재료List
 data class IList(

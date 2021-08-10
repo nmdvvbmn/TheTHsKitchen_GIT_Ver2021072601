@@ -184,7 +184,7 @@ class SQLiteDBHelper (
             val desc = cursor.getString(cursor.getColumnIndex("desc"))
 
             dList.add(DList(id,name,date, pretime, preunit, time, timeunit, qunt, quntunit, start,
-                stove, oven, micro, blender, airfryer, multi, steamer, sousvide, grill, video, desc))
+                stove, oven, micro, blender, airfryer, multi, steamer, sousvide, grill, video, desc, 0))
         }
         cursor.close()
         return dList

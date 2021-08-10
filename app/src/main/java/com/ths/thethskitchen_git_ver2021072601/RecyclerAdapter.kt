@@ -2,8 +2,6 @@ package com.ths.thethskitchen_git_ver2021072601
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,9 +10,7 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.ths.thethskitchen_git_ver2021072601.databinding.ItemRecyclerBinding
 import kotlinx.coroutines.*
-import java.io.FileNotFoundException
 import java.io.Serializable
-import java.net.URL
 
 
 // 추천 요리 어뎁터
@@ -69,7 +65,7 @@ class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<Recy
                     binding.imgThumb.setImageResource(R.drawable.ic_launcher_background)    //기본 수정예졍
                 }
             }
-            if (dlist.id != ""){
+            if (dlist.id != "" && dlist.desc == ""){
                 binding.txtDesc.text = StringFuncs().makeDesc(dlist, mContext)
             } else {
                 binding.txtDesc.text = dlist.desc

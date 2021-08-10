@@ -138,7 +138,8 @@ class ListFragment : Fragment() {
                                             document["sous vide"] as Long,
                                             document["grill"] as Long,
                                             document["vdeioID"] as String,
-                                            ""
+                                            "",
+                                            0
                                         )
 
                                         if (item.date <= date   // 날짜 및 나의 부엌 조회조건

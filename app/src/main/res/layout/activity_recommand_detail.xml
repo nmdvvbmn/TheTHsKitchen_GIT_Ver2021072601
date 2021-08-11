@@ -52,10 +52,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="4dp"
         android:text="@string/menu_favorites"
-        app:layout_constraintEnd_toStartOf="@+id/btn_share"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/youtubeView"
         tools:srcCompat="@tools:sample/avatars" />
@@ -76,47 +74,50 @@
         android:id="@+id/txtPTEXT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
         android:text="@string/ptime"
-        app:layout_constraintEnd_toStartOf="@+id/txtPtime"
+        app:layout_constraintStart_toEndOf="@+id/btnRLink"
         app:layout_constraintTop_toBottomOf="@+id/youtubeView" />
 
     <TextView
         android:id="@+id/txtPtime"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtPTEXT"
         app:layout_constraintTop_toBottomOf="@+id/youtubeView" />
 
     <TextView
         android:id="@+id/txtCTEXT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
         android:text="@string/ctime"
-        app:layout_constraintEnd_toStartOf="@+id/txtCtime"
+        app:layout_constraintStart_toStartOf="@+id/txtPTEXT"
         app:layout_constraintTop_toBottomOf="@+id/txtPTEXT" />
 
     <TextView
         android:id="@+id/txtCtime"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginEnd="16dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtCTEXT"
         app:layout_constraintTop_toBottomOf="@+id/txtPtime" />
 
     <ImageButton
         android:id="@+id/btn_share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="4dp"
-        app:layout_constraintEnd_toStartOf="@+id/btnRLink"
+        app:layout_constraintStart_toEndOf="@+id/btn_favorites"
         app:layout_constraintTop_toBottomOf="@+id/youtubeView"
         app:srcCompat="@drawable/ic_baseline_share_24" />
 
@@ -124,9 +125,10 @@
         android:id="@+id/btnRLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="68dp"
-        app:layout_constraintEnd_toStartOf="@+id/txtPTEXT"
+        app:layout_constraintEnd_toEndOf="@+id/recycleIList"
+        app:layout_constraintStart_toEndOf="@+id/btn_share"
         app:layout_constraintTop_toBottomOf="@+id/youtubeView"
         app:srcCompat="@drawable/ic_baseline_link_24" />
 
@@ -151,7 +153,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:maxLines="3"
         android:text="TextView"
+        android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/txtCTEXT"
         app:layout_constraintTop_toBottomOf="@+id/txtCTEXT" />
@@ -226,6 +230,7 @@
         android:fadeScrollbars="true"
         android:scrollbarStyle="outsideInset"
         android:singleLine="false"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -4,9 +4,11 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.View
 import android.view.ViewDebug
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
@@ -54,7 +56,7 @@ class RecommandDetail : AppCompatActivity(), RListAdapter.OnRItem {
         binding.youtubeView.enableAutomaticInitialization = false   // 옵션 선택시 자동초기화 false
         binding.youtubeView.initialize(youtubePlayerListener,true,option)   //자막을 위한 수동 초기화
 
-        var savedFavorites = helper.exists_favorites(dlist.id) //즐겨찾기 저장 유무
+        var savedFavorites = helper.exists_favorites(dlist.video) //즐겨찾기 저장 유무
         setFavoritesButton(savedFavorites)  // 즐겨찾기 버튼
 
         oldQunt = dlist.qunt.toFloat()  // 기본 양 
@@ -160,6 +162,9 @@ class RecommandDetail : AppCompatActivity(), RListAdapter.OnRItem {
                 oldQunt = setItemQunt(oldQunt, binding.editQunt.text.toString().toFloat())
             }
         }
+        binding.txtRDesc.movementMethod = ScrollingMovementMethod()
+
+
     }
 
     //조리도구 텍스트

@@ -191,7 +191,7 @@ class SQLiteDBHelper (
     }
 
     fun delete_favorites(dList: DList) {
-        val delete = "delete from favorites where id = '${dList.id}'"
+        val delete = "delete from favorites where video = '${dList.video}'"
         val db = writableDatabase
         db.execSQL(delete)
     }
@@ -219,13 +219,14 @@ class SQLiteDBHelper (
         values.put("sousvide", dList .sousvide)
         values.put("grill", dList .grill)
         values.put("video", dList .video)
+        values.put("desc",dList.desc)
 
         wd.insert("favorites",null, values)
     }
 
-    fun exists_favorites(id: String) : Boolean {
+    fun exists_favorites(video: String) : Boolean {
         val select = "select exists ( " +
-                "select id from favorites where id =  '${id}' LIMIT 1)"
+                "select id from favorites where video =  '${video}' LIMIT 1)"
         val rd = readableDatabase
         val cursor = rd.rawQuery(select, null)
         cursor.moveToFirst()

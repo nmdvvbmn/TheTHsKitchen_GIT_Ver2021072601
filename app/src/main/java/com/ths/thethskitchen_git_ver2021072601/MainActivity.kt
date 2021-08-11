@@ -3,16 +3,23 @@ package com.ths.thethskitchen_git_ver2021072601
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.ContextThemeWrapper
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.whenResumed
 import androidx.viewpager2.widget.ViewPager2
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityMainBinding
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater)}
-
+    var exit = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -31,7 +38,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_VIEW,
                 Uri.parse("https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA"))
             startActivity(intent)
-
         }
 
         // 메뉴 아이템 
@@ -88,9 +94,18 @@ class MainActivity : AppCompatActivity() {
         // 페이지 이동시 콜백
         binding.viewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
+                when(position){
+                    0 -> {
+                        binding.imgRecommand.visibility = View.INVISIBLE
+                        binding.txtTitle.visibility = View.INVISIBLE
+                    }
+                    1 -> {
+                        binding.imgRecommand.visibility = View.VISIBLE
+                        binding.txtTitle.visibility = View.VISIBLE
+                    }
+                }
             }
         })
-
     }
 
     // 초기 언어 설정
@@ -133,11 +148,29 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         //드로워 메뉴 백버튼
-        if (binding.drawer.isDrawerOpen(GravityCompat.START)){
+        if (binding.drawer.isDrawerOpen(GravityCompat.START)) {
             binding.drawer.closeDrawers()
+        }else if(binding.viewPager.currentItem == 1) {
+            binding.viewPager.currentItem = 0
+        }else if(binding.viewPager.currentItem == 0) {
+            if (exit){
+                super.onBackPressed()
+            }else{
+                Toast.makeText(this,getString(R.string.msg_exit),Toast.LENGTH_SHORT).show()
+                exit = true
+                lifecycleScope.launch {
+                    whenResumed {
+                        while (exit) {
+                            delay(2000)
+                            exit = false
+                        }
+                    }
+                }
+            }
         }else{  //드로워 아닌경우
             super.onBackPressed()
         }
     }
+
 }
 

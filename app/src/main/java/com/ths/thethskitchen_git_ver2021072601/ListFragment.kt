@@ -8,7 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.ths.thethskitchen_git_ver2021072601.databinding.FragmentListBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.IOException
 import java.util.*
 
@@ -28,10 +33,10 @@ class ListFragment : Fragment() {
     private var param2: String? = null
     private var mBinding : FragmentListBinding? = null
     private val binding get() = mBinding!!
-    val db = FirebaseFirestore.getInstance()
+    private val db = FirebaseFirestore.getInstance()
     var dlist = arrayListOf<DList>()
     var adapter = RecyclerAdapter(dlist)
-    var proc = false
+    private var proc = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,6 +95,10 @@ class ListFragment : Fragment() {
 
         val nameList_d = nameList.distinct()        //재료 중복 제거
 
+        for (i in nameList_d.size - 1 downTo 10){
+            nameList.removeAt(i)
+        }
+
         if (nameList_d.size <= 0) {     // 재료 없음 검색 X
             binding.pbLoading.visibility = View.INVISIBLE
         }else{ // 초기화
@@ -100,9 +109,52 @@ class ListFragment : Fragment() {
             dnameCnt = 0
         }
 
+        db.collection("DList")
+            .whereLessThanOrEqualTo("date", date)
+            .orderBy("date", Query.Direction.DESCENDING).limit(1).get()
+            .addOnSuccessListener{ result ->
+                for (document in result){
+                    var item = DList(   //DList Row
+                        document.id,
+                        "",
+                        document["date"] as Long,
+                        document["ptime"] as Long,
+                        document["punit"] as String,
+                        document["ctime"] as Long,
+                        document["cunit"] as String,
+                        document["serv"] as Long,
+                        document["sunit"] as String,
+                        document["start"] as Long,
+                        document["stove"] as Long,
+                        document["oven"] as Long,
+                        document["micro"] as Long,
+                        document["blender"] as Long,
+                        document["air fryer"] as Long,
+                        document["multi cooker"] as Long,
+                        document["steamer"] as Long,
+                        document["sous vide"] as Long,
+                        document["grill"] as Long,
+                        document["vdeioID"] as String,
+                        "",
+                        4
+                    )
+                    CoroutineScope(Dispatchers.IO).launch {
+                        item = searchData().getYoutube(item)
+                        dlist.add(0,item)
+//                        for (item in dlist){
+//                            item.desc = ""
+//                            Log.d("ListFragment","${item}")
+//                        }
+                        withContext(Dispatchers.Main){
+                            adapter.notifyDataSetChanged()
+                        }
+                    }
+                }
+            }
+
         for (i in 0..nameList_d.size - 1) { //IName에서 DList ID 검색
             db.collection("IName")
-                .whereEqualTo("name", nameList_d[i])
+                .whereEqualTo("name", nameList_d[i]).orderBy("id", Query.Direction.DESCENDING ).limit(5)
                 .get().addOnSuccessListener { result ->
                     for (document in result) {
                         idList.add(document["id"] as String)    //ID list
@@ -139,7 +191,7 @@ class ListFragment : Fragment() {
                                             document["grill"] as Long,
                                             document["vdeioID"] as String,
                                             "",
-                                            0
+                                            1
                                         )
 
                                         if (item.date <= date   // 날짜 및 나의 부엌 조회조건
@@ -173,7 +225,23 @@ class ListFragment : Fragment() {
                                                 }.addOnCompleteListener {
                                                     dnameCnt++
                                                     if (dnameCnt == idList_d.size) {
-                                                        //마지막 리턴 후 프로그레스 종료
+                                                        //마지막 리턴 후 프로그레스 종
+                                                        var sortedList = dlist.distinctBy { it.id }
+                                                            .sortedByDescending { it.date }
+                                                            .sortedByDescending { it.id }
+                                                            .sortedByDescending { it.flag }
+                                                        dlist.clear()
+                                                        dlist.addAll(sortedList)
+                                                        for (i in 1..dlist.size -1){
+                                                            if (i < 4){
+                                                                dlist[i].flag = 2
+                                                            }else{
+                                                                break
+                                                            }
+                                                        }
+                                                        for (item in dlist){
+                                                            Log.d("FireStore","${item.flag} : ${item.name}")
+                                                        }
                                                         binding.pbLoading.visibility =
                                                             View.INVISIBLE
                                                         //새로고침플레그 해제
@@ -186,6 +254,22 @@ class ListFragment : Fragment() {
                                                 dnameCnt++
                                                 if (dnameCnt == idList_d.size) {
                                                     //실패시 마지막 프로그레스 종료
+                                                    var sortedList = dlist.distinctBy { it.id }
+                                                        .sortedByDescending { it.date }
+                                                        .sortedByDescending { it.id }
+                                                        .sortedByDescending { it.flag }
+                                                    dlist.clear()
+                                                    dlist.addAll(sortedList)
+                                                    for (i in 1..dlist.size -1){
+                                                        if (i < 4){
+                                                            dlist[i].flag = 2
+                                                        }else{
+                                                            break
+                                                        }
+                                                    }
+                                                    for (item in dlist){
+                                                        Log.d("FireStore","${item.flag} : ${item.name}")
+                                                    }
                                                     binding.pbLoading.visibility =
                                                         View.INVISIBLE
                                                     //최종 완료 리스트 뷰 적용
@@ -194,10 +278,27 @@ class ListFragment : Fragment() {
                                                     proc = false
                                                 }
                                             }
+
                                         }.addOnFailureListener { exception ->
                                             dnameCnt++
 //                                            if (dnameCnt == idList_d.size) {
                                             if (dlistCnt == idList_d.size) {
+                                                var sortedList = dlist.distinctBy { it.id }
+                                                    .sortedByDescending { it.date }
+                                                    .sortedByDescending { it.id }
+                                                    .sortedByDescending { it.flag }
+                                                dlist.clear()
+                                                dlist.addAll(sortedList)
+                                                for (i in 1..dlist.size -1){
+                                                    if (i < 4){
+                                                        dlist[i].flag = 2
+                                                    }else{
+                                                        break
+                                                    }
+                                                }
+                                                for (item in dlist){
+                                                    Log.d("FireStore","${item.flag} : ${item.name}")
+                                                }
                                                 binding.pbLoading.visibility =
                                                     View.INVISIBLE
                                                 proc = false
@@ -207,6 +308,22 @@ class ListFragment : Fragment() {
                                     }
                                 }
                             } else {
+                            var sortedList = dlist.distinctBy { it.id }
+                                .sortedByDescending { it.date }
+                                .sortedByDescending { it.id }
+                                .sortedByDescending { it.flag }
+                                dlist.clear()
+                                dlist.addAll(sortedList)
+                                for (i in 1..dlist.size -1){
+                                    if (i < 4){
+                                        dlist[i].flag = 2
+                                    }else{
+                                        break
+                                    }
+                                }
+                            for (item in dlist){
+                                Log.d("FireStore","${item.flag} : ${item.name}")
+                            }
                                 binding.pbLoading.visibility = View.INVISIBLE
                                 proc = false
                             }

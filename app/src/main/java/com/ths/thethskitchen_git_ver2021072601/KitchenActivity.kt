@@ -5,16 +5,25 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenResumed
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
+import com.google.firebase.firestore.FirebaseFirestore
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityKitchenBinding
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import kotlinx.coroutines.selects.select
 
 //나의 부엌 설정
 class KitchenActivity : AppCompatActivity() {
     val binding by lazy { ActivityKitchenBinding.inflate(layoutInflater) }
+    var list = arrayListOf<String>()
+    var adapter = KitchenAdapter(list)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        binding.viewReview.adapter = adapter
+        binding.viewReview.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
 
         //체크버튼 세팅
         binding.chkStove.isChecked = App.prefs.getBoolean("stove",false)
@@ -27,14 +36,22 @@ class KitchenActivity : AppCompatActivity() {
         binding.chkSous.isChecked = App.prefs.getBoolean("sous",false)
         binding.chkGrill.isChecked = App.prefs.getBoolean("grill",false)
 
-        //상단뷰
-        val viewPager = ViewPagerAdapter(this)
-        viewPager.addFragment(P1Fragment()) //이미지1
-        viewPager.addFragment(P2Fragment()) //이미지2
-        viewPager.addFragment(P3Fragment()) //이미지3
-        viewPager.addFragment(P4Fragment()) //이미지4
-        viewPager.addFragment(P5Fragment()) //이미지5
-        binding.vpKitchen.adapter = viewPager   //상단뷰 페이져
+        CoroutineScope(Dispatchers.IO).launch {
+            val db = FirebaseFirestore.getInstance()
+            db.collection("URList").get().addOnSuccessListener { result ->
+                for (document in result) {
+                    val URL = document["URL"] as String
+                    list.add(URL)
+                }
+                Log.d("ListAdapter","Coroutine")
+//                withContext(Dispatchers.Main){
+//                    Log.d("ListAdapter","${list.size}")
+//                    Log.d("ListAdapter","Dispatchers")
+                    adapter.notifyDataSetChanged()
+//                }
+            }
+        }
+
         
         binding.chkStove.setOnCheckedChangeListener { buttonView, isChecked ->
             App.prefs.setBoolena("stove",isChecked)
@@ -68,15 +85,18 @@ class KitchenActivity : AppCompatActivity() {
         binding.btnKExit.setOnClickListener {
             finish()
         }
-        
-        //이미지 로딩을 위한 스레드
+
+
+//        //이미지 로딩을 위한 스레드
         var isRunning = true
         lifecycleScope.launch {
             whenResumed {
                 while (isRunning) {
                     delay(3000)
-                    binding.vpKitchen.currentItem?.let {
-                        binding.vpKitchen.setCurrentItem(it.plus(1) % 5 )
+                    if (list.size > 0){
+                        binding.viewReview.currentItem?.let {
+                            binding.viewReview.setCurrentItem(it.plus(1)  )
+                        }
                     }
                 }
             }

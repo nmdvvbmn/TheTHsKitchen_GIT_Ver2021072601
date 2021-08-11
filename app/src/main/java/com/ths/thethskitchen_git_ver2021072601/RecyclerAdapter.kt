@@ -29,6 +29,7 @@ class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<Recy
         val layoutParams = holder.itemView.layoutParams
         layoutParams.height = 400
         holder.itemView.requestLayout()
+        holder.setIsRecyclable(false)
         holder.setDList(dlist)
         Log.d("ListAdapter","onBindViewHolder")
         //아이템 클릭
@@ -70,6 +71,14 @@ class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<Recy
             } else {
                 binding.txtDesc.text = dlist.desc
                 binding.txtDesc.maxLines = 3
+            }
+
+            when (dlist.flag){
+                4 -> binding.itemList.background = mContext.getDrawable(R.drawable.edge)
+//                3 -> binding.itemList.background = mContext.getDrawable(R.drawable.edge)
+//                2 -> binding.itemList.background = mContext.getDrawable(R.drawable.edge)
+//                1 -> binding.itemList.background = mContext.getDrawable(R.drawable.edge)
+                0 -> binding.itemList.background = null
             }
 
         }

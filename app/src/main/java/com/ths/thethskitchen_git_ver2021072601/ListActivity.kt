@@ -27,15 +27,7 @@ class ListActivity : AppCompatActivity() {
         binding.pbList.visibility = View.VISIBLE
         CoroutineScope(Dispatchers.Main).launch {
             withContext(Dispatchers.IO) {
-                var dlist2 = arrayListOf<DList>()
-                dlist2 = searchYoutube(search)
-                Log.d("DList",dlist2?.size.toString())
-                for (i in 0..dlist2!!.size - 1)
-                {
-                    if (dlist2!![i].name != ""){
-                        dlist.add(dlist2[i])
-                    }
-                }
+                dlist.addAll(searchYoutube(search))
                 searchFireStore(search, adapter, dlist, binding)
             }
 

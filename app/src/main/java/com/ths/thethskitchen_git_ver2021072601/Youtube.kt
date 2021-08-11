@@ -18,189 +18,127 @@ import java.net.MalformedURLException
 import java.net.URL
 import java.net.URLEncoder
 
-suspend fun getYoutube(item: DList): DList {
-    val api_key = "AIzaSyA_Q3BlyHXBGxApWzSPsHKmhLN89-FO_T8"
-    val langCode = UtilFuncs().getLanguage()
-    val searchList = listOf("id", "snippet")
-    val id = item.video
-    val idList = listOf(id)
-
-    try {
-        val httpTransport = NetHttpTransport()
-//        val jsonFactory = JsonFactory()
-        val jsonFactory = JacksonFactory()
-        val youtube = YouTube.Builder(httpTransport, jsonFactory, HttpRequestInitializer {
-            fun initialize(request: HttpRequest) {
-            }
-        }).setApplicationName("thethskitchen_git_ver2021072601").build()
-
-        val video = youtube.videos().list(searchList)
-        video.setKey(api_key)
-        video.setHl(langCode)
-        video.setId(idList)
-        video.setFields("items(snippet/localized/title, snippet/localized/description)")
-        val videoResponse = video.execute()
-        val videoResultList = videoResponse.items
-        val resultVideoList = videoResultList.iterator()
-
-        while (resultVideoList.hasNext()) {
-            val list = resultVideoList.iterator().next()
-            item.name = list.snippet.localized.title
-            item.desc = list.snippet.localized.description
-        }
-        return  item
-    }catch (e: Exception){
-        return item
-    }
-}
 suspend fun searchFireStore(searchString: String, adapter: RecyclerAdapter, listData: ArrayList<DList>, binding: ActivityListBinding) {
-    var dlist = arrayListOf<DList>()
     val db = FirebaseFirestore.getInstance()
     val date = UtilFuncs().getKorDate()
-    db.collection("IName").whereGreaterThanOrEqualTo("name", searchString)
-        .whereLessThanOrEqualTo("name",searchString + "\uf8ff").limit(7).get()
+    // 재료에서 검색
+//    db.collection("IName").whereGreaterThanOrEqualTo("name", searchString)
+//        .whereLessThanOrEqualTo("name",searchString ).limit(7).get() //+ "\uf8ff"
+        db.collection("IName").orderBy("name")//.orderBy("id",Query.Direction.DESCENDING)
+        .startAt(searchString.uppercase()).endAt(searchString + "\uf8ff").limit(5).get()
         .addOnSuccessListener { result ->
             for (document in result) {
                 val item = DList(document["id"] as String,"",0,0,"",0,"",0,
                     "",0,0,0,0,0,0,0,0,
-                    0,0,"","",0)
-                dlist.add(item)
+                    0,0,"","",1)
+                listData.add(item)
             }
+        }.addOnFailureListener {
+            Log.d("FireStore", "Fail")
         }.addOnCompleteListener {
-            val distinctList = dlist.distinctBy { it.id}.sortedByDescending { it.id }
-            dlist.clear()
-            dlist.addAll(distinctList)
-            db.collection("DName").whereGreaterThanOrEqualTo("name", searchString)
-                .whereLessThanOrEqualTo("name",searchString + "\uf8ff").limit(7).get()
+            // 요리명에서 검색
+//            db.collection("DName").whereGreaterThanOrEqualTo("name", searchString)
+//                .whereLessThanOrEqualTo("name",searchString ).limit(7).get() //+ "\uf8ff"
+                db.collection("DName").orderBy("name")//.orderBy("id",Query.Direction.DESCENDING)
+                .startAt(searchString.uppercase()).endAt(searchString + "\uf8ff").limit(5).get()
                 .addOnSuccessListener { result ->
                     for (document in result){
                         val item = DList(document["id"] as String,"",0,0,"",0,"",0,
                             "",0,0,0,0,0,0,0,0,
-                            0,0,"","",0)
-                        dlist.add(item)
+                            0,0,"","",1)
+                        listData.add(item)
+                        Log.d("FireStore","재료명 검색 ${item.id}")
                     }
-                }
-                .addOnCompleteListener {
-                    val distinctList = dlist.distinctBy { it.id}.sortedByDescending { it.id }
-                    dlist.clear()
-                    dlist.addAll(distinctList)
-                    var cnt = 0
-                    for (index in 0..dlist.size - 1  ){
-                        val id = dlist[index].id
-                        Log.d("FireStore",id)
-                        db.collection("DList").document(id)
-                            .get().addOnSuccessListener { document ->
-                                dlist[index].date = document["date"] as Long
-                                dlist[index].pretime = document["ptime"] as Long
-                                dlist[index].preunit = document["punit"] as String
-                                dlist[index].time = document["ctime"] as Long
-                                dlist[index].timeunit = document["cunit"] as String
-                                dlist[index].qunt = document["serv"] as Long
-                                dlist[index].quntunit = document["sunit"] as String
-                                dlist[index].start = 0
-                                dlist[index].stove = document["stove"] as Long
-                                dlist[index].oven = document["oven"]    as Long
-                                dlist[index].micro = document["micro"]  as Long
-                                dlist[index].blender = document["blender"]  as Long
-                                dlist[index].airfryer = document["air fryer"]   as Long
-                                dlist[index].multi = document["multi cooker"]   as Long
-                                dlist[index].steamer = document["steamer"]  as Long
-                                dlist[index].sousvide = document["sous vide"]   as Long
-                                dlist[index].grill = document["grill"]  as Long
-                                dlist[index].video = document["vdeioID"] as String
-                                if (dlist[index].date <= date){
-                                    if ( cnt < 3) {
-                                        dlist[index].flag = 2
-                                    }else{
-                                        dlist[index].flag = 0
-                                    }
-                                    cnt = cnt + 1
-                                    listData.add(0,dlist[index])
+                    // New 아이템
+                    db.collection("DList")
+                        .whereLessThanOrEqualTo("date", date)
+                        .orderBy("date",Query.Direction.DESCENDING).limit(1).get()
+                        .addOnSuccessListener { result ->
+                            for (document in result){
+                                var item = DList(document.id, "",0,0,"",0,"",0,
+                                    "",0,0,0,0,0,0,0,0,
+                                    0,0,document["vdeioID"] as String,"",4)
+//                                val index = listData.indexOfFirst { it.id == item.id }
+//                                if (index >= 0) {
+//                                    listData[index].flag = 4
+//                                }else{
+                                    listData.removeIf { it.id == item.id }
+                                    listData.removeIf { it.video == item.video }
+                                    listData.add(0,item)
+                                    Log.d("FireStore","요리명 검색 ${item.id}")
+//                                    }
                                 }
-                            }.addOnFailureListener {
-                                Log.d("FireStore","Fail")
-                            }.addOnCompleteListener {
-                                if (index == dlist.size - 1){
-                                    CoroutineScope(Dispatchers.IO).launch {
-                                        var tempList = listData.distinctBy { it.video }
-                                        tempList = tempList.distinctBy { it.id }
-                                        listData.clear()
-                                        listData.addAll(tempList)
-                                        for (i in 0..listData.size - 1){
-                                            if (listData[i].name == ""){
-                                                listData[i] = getYoutube(listData[i])
-                                            }
+                        }.addOnFailureListener {
+                            Log.d("FireStore","New Fail")
+                        }.addOnCompleteListener {
+                            // Dlist에서 데이터 모두 검색
+                            var cnt = 0 // 마지막 데이터 확인을 위한 카운터
+                            for (i in 0..listData.size - 1) {
+                                db.collection("DList").document(if (listData[i].id == ""){"0000"}else{listData[i].id})
+                                    .get().addOnSuccessListener { document ->
+                                        if (listData[i].id != "") {
+                                            listData[i].date = document["date"] as Long
+                                            listData[i].pretime = document["ptime"] as Long
+                                            listData[i].preunit = document["punit"] as String
+                                            listData[i].time = document["ctime"] as Long
+                                            listData[i].timeunit = document["cunit"] as String
+                                            listData[i].qunt = document["serv"] as Long
+                                            listData[i].quntunit = document["sunit"] as String
+                                            listData[i].start = 0
+                                            listData[i].stove = document["stove"] as Long
+                                            listData[i].oven = document["oven"] as Long
+                                            listData[i].micro = document["micro"] as Long
+                                            listData[i].blender = document["blender"] as Long
+                                            listData[i].airfryer = document["air fryer"] as Long
+                                            listData[i].multi = document["multi cooker"] as Long
+                                            listData[i].steamer = document["steamer"] as Long
+                                            listData[i].sousvide = document["sous vide"] as Long
+                                            listData[i].grill = document["grill"] as Long
+                                            listData[i].video = document["vdeioID"] as String
                                         }
-                                        withContext(Dispatchers.Main){
+                                    }.addOnFailureListener {
+                                        Log.d("FireStore", "fail")
+                                    }.addOnCompleteListener {
+                                        cnt = cnt + 1
+                                        if (cnt == listData.size) {
+                                            listData.removeIf { it.video == "" }
+                                            //정렬
+                                            var tempList = listData.sortedByDescending { it.date }
+                                                .sortedByDescending { it.id }
+                                                .sortedByDescending { it.flag }
+                                            tempList = tempList.distinctBy { it.video }
+                                            listData.clear()
+                                            listData.addAll(tempList)
                                             adapter.notifyDataSetChanged()
-                                        }
-                                    }
-                                    db.collection("DList")
-                                        .whereLessThanOrEqualTo("date", date)
-                                        .orderBy("date",Query.Direction.DESCENDING).limit(1).get()
-                                        .addOnSuccessListener { result ->
                                             CoroutineScope(Dispatchers.IO).launch {
-                                                for (document in result){
-                                                    var item = DList(document.id, "",0,0,"",0,"",0,
-                                                        "",0,0,0,0,0,0,0,0,
-                                                        0,0,document["vdeioID"] as String,"",3)
-                                                    val index = listData.indexOfFirst { it.id == item.id }
-                                                    if (index >= 0 ) {
-                                                        listData[index].flag = 3
-                                                    }else{
-                                                            item = getYoutube(item)
-                                                            listData.add(0,item)
-                                                        }
+                                                var cntFlag= 0 // flag 위한 카운터
+                                                for (i in 0..listData.size - 1) {
+                                                    listData[i] = searchData().getYoutube(listData[i])// 유튜브 데이터
+                                                    if (cntFlag < 3 && listData[i].flag == 1) {
+                                                        listData[i].flag = 2
+                                                        cntFlag = cntFlag + 1
                                                     }
-                                                var tempList = listData.sortedByDescending { it.flag }
-                                                listData.clear()
-                                                listData.addAll(tempList)
-                                                withContext(Dispatchers.Main){
+                                                }
+                                                withContext(Dispatchers.Main) {
+                                                    for (item in listData){
+//                                                        item.desc = ""
+                                                        Log.d("FireStore",  "1 ${item.flag}")
+                                                    }
+                                                    listData.removeIf { it.name == "" }
                                                     adapter.notifyDataSetChanged()
                                                     binding.pbList.visibility = View.INVISIBLE
                                                 }
                                             }
-                                        }.addOnFailureListener {
-                                            Log.d("FireStore","New Fail")
-                                        }
-                                }
-                            }
-                    }
-                    if(dlist.size == 0){
-                        db.collection("DList")
-                            .whereLessThanOrEqualTo("date", date)
-                            .orderBy("date",Query.Direction.DESCENDING).limit(1).get()
-                            .addOnSuccessListener { result ->
-                                CoroutineScope(Dispatchers.IO).launch {
-                                    for (document in result){
-                                        var item = DList(document.id, "",0,0,"",0,"",0,
-                                            "",0,0,0,0,0,0,0,0,
-                                            0,0,document["vdeioID"] as String,"",3)
-                                        val index = listData.indexOfFirst { it.id == item.id }
-                                        if (index >= 0) {
-                                            listData[index].flag = 3
-                                        }else{
 
-                                                item = getYoutube(item)
-                                                listData.removeIf { it.video == item.video }
-                                                listData.add(0,item)
-
-                                            }
                                         }
-                                    val tempList = listData.sortedByDescending { it.flag }
-                                    listData.clear()
-                                    listData.addAll(tempList)
-                                    withContext(Dispatchers.Main){
-                                        adapter.notifyDataSetChanged()
-                                        binding.pbList.visibility = View.INVISIBLE
                                     }
-                                }
-                            }.addOnFailureListener {
-                                Log.d("FireStore","New Fail")
                             }
-                    }
 
-                }
+                        }
+
+                    }.addOnFailureListener {
+                        Log.d("FireStore","New Fail")
+                    }
             }
 }
 suspend  fun searchYoutube(searchString: String): ArrayList<DList> {
@@ -280,11 +218,11 @@ class searchData(){
                                 var item: DList = DList("","",0,0,"",0,"",0,
                                     "",0,0,0,0,0,0,0,0,
                                     0,0,url,"",0)
-                                item = getYoutube(item)
+//                                item = getYoutube(item)
                                 item = getFireStore(item)
-                                if (item.id != ""){
-                                    item.flag = 1
-                                }
+//                                if (item.id != ""){
+//                                    item.flag = 1
+//                                }
                                 dlist.add(item)
                             }
                         }
@@ -322,6 +260,9 @@ class searchData(){
                     item.sousvide = document["sous vide"]   as Long
                     item.grill = document["grill"]  as Long
                     item.video = document["vdeioID"] as String
+                    if (item.flag == 0 && item.id != ""){
+                        item.flag = 3
+                    }
                 }
             }
         return item

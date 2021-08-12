@@ -1,5 +1,6 @@
 package com.ths.thethskitchen_git_ver2021072601
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -17,7 +18,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater)}
     var exit = false
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +26,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setLanguge()    //최초 실행시 언어설정(한국은 자막X)
+
+        val langCode = UtilFuncs().getLanguage()
+//        UtilFuncs().setLocale(baseContext, langCode)
 
         //메인화면 뷰 페이져
         val viewPager = ViewPagerAdapter(this  )
@@ -71,6 +75,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 binding.navi.menu.getItem(6).itemId -> {    //설정
                     val intent = Intent(this, SettingActivity::class.java)
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                     startActivity(intent)
                 }
                 binding.navi.menu.getItem(7).itemId -> { //연락하기
@@ -144,6 +149,8 @@ class MainActivity : AppCompatActivity() {
             }
             App.prefs.setString("code",langCode)    //preferenc 언어세팅 저장
         }
+
+
     }
 
     override fun onBackPressed() {
@@ -171,6 +178,5 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
-
 }
 

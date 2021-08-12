@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">The TH\'s Kitchen</string>
+    <string name="save" translatable="false">Save</string>
+    <string name="canc" translatable="false">Cancel</string>
+    <string name="tool" translatable="false">Cookware</string>
+    <string name="grill" translatable="false">Grill</string>
+    <string name="micro" translatable="false">Microwave</string>
+    <string name="multi" translatable="false">Multi cooker(Instant pot)</string>
+    <string name="oven" translatable="false">Oven</string>
+    <string name="sous" translatable="false">Sous vide</string>
+    <string name="steam" translatable="false">Steamer</string>
+    <string name="stove" translatable="false">Stove / Induction</string>
+    <string name="blender" translatable="false">Blender</string>
+    <string name="airfryer" translatable="false">Air fryer</string>
+    <string name="ctime" translatable="false">Cooking time</string>
+    <string name="ptime" translatable="false">Preparation time</string>
+    <string name="min" translatable="false">min</string>
+    <string name="hour" translatable="false">hr</string>
+    <string name="day" translatable="false">day</string>
+    <string name="week" translatable="false">wk</string>
+    <string name="glass" translatable="false">cups</string>
+    <string name="pc" translatable="false">pc</string>
+    <string name="serve" translatable="false">servings</string>
+    <string name="bottle" translatable="false">bottle</string>
+    <string name="option" translatable="false">(Optional)</string>
+    <string name="qunt" translatable="false">Usage</string>
+    <string name="youtubeLink" translatable="false">https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA</string>
+    <string name="menu_link" translatable="false">Youtube Link</string>
+    <string name="menu_search" translatable="false">Search</string>
+    <string name="menu_recommandList" translatable="false">Recommend</string>
+    <string name="menu_refrigerator" translatable="false">My Refrigerator</string>
+    <string name="menu_kitchen" translatable="false">My Kitchen</string>
+    <string name="menu_cart" translatable="false">Shopping Cart</string>
+    <string name="menu_favorites" translatable="false">Favorites</string>
+    <string name="menu_setting" translatable="false">Setting</string>
+    <string name="menu_help" translatable="false">Help</string>
+    <string name="menu_contact" translatable="false">Contact</string>
+    <string name="refrigerator_add_name" translatable="false">Enter the name of the ingredient</string>
+    <string name="refrigerator_add_desc" translatable="false">Enter a note</string>
+    <string name="refrigerator_add_title" translatable="false">Add ingredient</string>
+    <string name="refrigerator_update_title" translatable="false">Ingredients</string>
+    <string name="cart_add_name" translatable="false">Enter the name of the ingredient</string>
+    <string name="cart_add_desc" translatable="false">Enter a note</string>
+    <string name="cart_add_title" translatable="false">Add ingredient</string>
+    <string name="cart_update_title" translatable="false">Ingredients</string>
+    <string name="btn_share" translatable="false">Share</string>
+    <string name="btn_link" translatable="false">Youtube</string>
+    <string name="title_share" translatable="false">Share to friends</string>
+    <string name="set_youtube" translatable="false">Youtube Setting</string>
+    <string name="set_caption" translatable="false">Caption</string>
+    <string name="set_play" translatable="false">Auto Start</string>
+    <string name="set_language" translatable="false">Language</string>
+    <string name="set_languagesetting" translatable="false">Language Setting</string>
+    <string name="msg_add_NoName" translatable="false">Enter the name of the ingredient</string>
+    <string name="msg_save_data" translatable="false">Saved</string>
+    <string name="msg_move_data" translatable="false">The ingredients have move to the refrigerator</string>
+    <string name="msg_exit" translatable="false">Click Back again to exit</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="hint_search" translatable="false">Please enter your search term</string>
+</resources>

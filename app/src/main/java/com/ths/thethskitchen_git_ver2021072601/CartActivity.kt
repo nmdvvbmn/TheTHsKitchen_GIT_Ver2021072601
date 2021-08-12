@@ -12,7 +12,7 @@ import com.ths.thethskitchen_git_ver2021072601.databinding.DailogRefrigeratorAdd
 import java.time.LocalDateTime
 
 //장바구니
-class CartActivity : AppCompatActivity() {
+class CartActivity : BaseActivity() {
     val binding by lazy { ActivityCartBinding.inflate(layoutInflater) }
     var adapter = CartAdapter()
     var dbHelper = SQLiteDBHelper(this,"THsKitchen.db",1)

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">The TH\'s Kitchen</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="save" translatable="false">Simpen</string>
+    <string name="canc" translatable="false">Batal</string>
+    <string name="tool" translatable="false">cookware</string>
+    <string name="grill" translatable="false">Grill</string>
+    <string name="micro" translatable="false">Microwave</string>
+    <string name="multi" translatable="false">Multi kompor (Instant pot)</string>
+    <string name="oven" translatable="false">oven</string>
+    <string name="sous" translatable="false">vide sous</string>
+    <string name="steam" translatable="false">kukusan</string>
+    <string name="stove" translatable="false">Kompor / Sandwich</string>
+    <string name="blender" translatable="false">Blender</string>
+    <string name="airfryer" translatable="false">wajan Air</string>
+    <string name="ctime" translatable="false">masak wektu</string>
+    <string name="ptime" translatable="false">wektu Preparation</string>
+    <string name="min" translatable="false">menit</string>
+    <string name="hour" translatable="false">jam</string>
+    <string name="day" translatable="false">dina</string>
+    <string name="week" translatable="false">minggu</string>
+    <string name="pc" translatable="false">Piece</string>
+    <string name="bottle" translatable="false">botol</string>
+    <string name="serve" translatable="false">servings</string>
+    <string name="glass" translatable="false">cangkir</string>
+    <string name="option" translatable="false">(Opsional)</string>
+    <string name="qunt" translatable="false">Dianggo</string>
+    <string name="youtubeLink" translatable="false">https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA</string>
+    <string name="menu_link" translatable="false">youtube Link</string>
+    <string name="menu_search" translatable="false">Search</string>
+    <string name="menu_recommandList" translatable="false">Rekomendasi</string>
+    <string name="menu_refrigerator" translatable="false">Wine Kula</string>
+    <string name="menu_kitchen" translatable="false">Kula Kitchen</string>
+    <string name="menu_cart" translatable="false">Cart Shopping</string>
+    <string name="menu_favorites" translatable="false">favorit</string>
+    <string name="menu_setting" translatable="false">setelan</string>
+    <string name="menu_help" translatable="false">Pitulung</string>
+    <string name="menu_contact" translatable="false">Contact</string>
+    <string name="refrigerator_add_name" translatable="false">Ketik jeneng, úa,</string>
+    <string name="refrigerator_add_desc" translatable="false">Ketik cathetan</string>
+    <string name="refrigerator_add_title" translatable="false">bakal nambah</string>
+    <string name="refrigerator_update_title" translatable="false">Úa</string>
+    <string name="cart_add_name" translatable="false">Ketik jeneng, úa,</string>
+    <string name="cart_add_desc" translatable="false">Ketik cathetan</string>
+    <string name="cart_add_title" translatable="false">bakal nambah</string>
+    <string name="cart_update_title" translatable="false">Úa</string>
+    <string name="btn_share" translatable="false">Share</string>
+    <string name="btn_link" translatable="false">youtube</string>
+    <string name="title_share" translatable="false">Share kanggo kanca-kanca</string>
+    <string name="set_youtube" translatable="false">Setting youtube</string>
+    <string name="set_caption" translatable="false">caption</string>
+    <string name="set_play" translatable="false">Auto Mulai</string>
+    <string name="set_language" translatable="false">Language</string>
+    <string name="set_languagesetting" translatable="false">Setting Language</string>
+    <string name="msg_add_NoName" translatable="false">Ketik jeneng, úa,</string>
+    <string name="msg_save_data" translatable="false">disimpen</string>
+    <string name="msg_move_data" translatable="false">Úa duwe pamindhahan kanggo kulkas</string>
+    <string name="msg_exit" translatable="false">Klik Mbalik maneh kanggo metu</string>
+    <string name="hint_search" translatable="false">Mangga ketik ukoro Panjenengan</string>
+</resources>

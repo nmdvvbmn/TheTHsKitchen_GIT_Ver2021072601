@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">The TH\'s Kitchen</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="save" translatable="false">সংরক্ষণ</string>
+    <string name="canc" translatable="false">বাতিল</string>
+    <string name="tool" translatable="false">পরীক্ষা</string>
+    <string name="grill" translatable="false">ভাজাভুজি</string>
+    <string name="micro" translatable="false">মাইক্রোওয়েভ</string>
+    <string name="multi" translatable="false">মাল্টি কুকার (তাত্ক্ষণিক পাত্র)</string>
+    <string name="oven" translatable="false">চুলা</string>
+    <string name="sous" translatable="false">sous-Vide</string>
+    <string name="steam" translatable="false">জাহাজ</string>
+    <string name="stove" translatable="false">স্টোভের / আবেশন</string>
+    <string name="blender" translatable="false">মিশ্রণকারী</string>
+    <string name="airfryer" translatable="false">এয়ার Fryer</string>
+    <string name="ctime" translatable="false">রান্নার সময়</string>
+    <string name="ptime" translatable="false">প্রস্তুতি সময়</string>
+    <string name="min" translatable="false">মিনিট</string>
+    <string name="hour" translatable="false">ঘন্টা</string>
+    <string name="day" translatable="false">দিন</string>
+    <string name="week" translatable="false">সপ্তাহ</string>
+    <string name="pc" translatable="false">টুকরা</string>
+    <string name="bottle" translatable="false">বোতল</string>
+    <string name="serve" translatable="false">servings</string>
+    <string name="glass" translatable="false">কাপ</string>
+    <string name="option" translatable="false">(ঐচ্ছিক)</string>
+    <string name="qunt" translatable="false">ব্যবহার</string>
+    <string name="youtubeLink" translatable="false">https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA</string>
+    <string name="menu_link" translatable="false">youTube লিঙ্ক</string>
+    <string name="menu_search" translatable="false">অনুসন্ধান করুন</string>
+    <string name="menu_recommandList" translatable="false">সুপারিশ করা</string>
+    <string name="menu_refrigerator" translatable="false">আমার রেফ্রিজারেটরের</string>
+    <string name="menu_kitchen" translatable="false">আমার রান্নাঘর</string>
+    <string name="menu_cart" translatable="false">বাজারের ব্যাগ</string>
+    <string name="menu_favorites" translatable="false">প্রিয়</string>
+    <string name="menu_setting" translatable="false">স্থাপন</string>
+    <string name="menu_help" translatable="false">সাহায্য</string>
+    <string name="menu_contact" translatable="false">যোগাযোগ</string>
+    <string name="refrigerator_add_name" translatable="false">উপাদান নাম লিখুন</string>
+    <string name="refrigerator_add_desc" translatable="false">একটি নোট লিখুন</string>
+    <string name="refrigerator_add_title" translatable="false">উপাদান যোগ করুন</string>
+    <string name="refrigerator_update_title" translatable="false">ওপকরণ</string>
+    <string name="cart_add_name" translatable="false">উপাদান নাম লিখুন</string>
+    <string name="cart_add_desc" translatable="false">একটি নোট লিখুন</string>
+    <string name="cart_add_title" translatable="false">উপাদান যোগ করুন</string>
+    <string name="cart_update_title" translatable="false">ওপকরণ</string>
+    <string name="btn_share" translatable="false">ভাগ</string>
+    <string name="btn_link" translatable="false">ইউটিউব</string>
+    <string name="title_share" translatable="false">বন্ধুদের কাছে শেয়ার</string>
+    <string name="set_youtube" translatable="false">ইউটিউব সেটিং</string>
+    <string name="set_caption" translatable="false">ক্যাপশন</string>
+    <string name="set_play" translatable="false">স্বয়ংক্রিয় শুরু</string>
+    <string name="set_language" translatable="false">ভাষা</string>
+    <string name="set_languagesetting" translatable="false">ভাষা সেটিংস</string>
+    <string name="msg_add_NoName" translatable="false">উপাদান নাম লিখুন</string>
+    <string name="msg_save_data" translatable="false">সংরক্ষিত</string>
+    <string name="msg_move_data" translatable="false">উপাদানগুলো ফ্রিজ প্রবর্তন আছে</string>
+    <string name="msg_exit" translatable="false">আবার ফিরে ক্লিক করুন প্রস্থান</string>
+    <string name="hint_search" translatable="false">আপনার অনুসন্ধান শব্দ লিখুন দয়া করে</string>
+</resources>

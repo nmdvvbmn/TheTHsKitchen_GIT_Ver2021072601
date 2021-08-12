@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityFavoritesBinding
 
 //즐겨찾기
-class FavoritesActivity : AppCompatActivity() {
+class FavoritesActivity : BaseActivity() {
     val binding by lazy { ActivityFavoritesBinding.inflate(layoutInflater) }
     var adapter = FavoritesAtapter()
     var dbHelper = SQLiteDBHelper(this,"THsKitchen.db", 1)

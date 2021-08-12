@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">TheTHsKitchen_GIT_Ver2021072601</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -8,6 +7,7 @@
     <string name="previous">Previous</string>
     <string name="save">저장</string>
     <string name="canc">취소</string>
+    <!--    <stirng name="title_activity_kitchen">TheTHsKitchen_GIT_Ver2021072601</stirng>-->
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
@@ -35,7 +35,7 @@
     <string name="bottle">병</string>
     <string name="serve">인분</string>
     <string name="glass">잔</string>
-    <string name="space"></string>
+    <string name="space" translatable="false"></string>
 
     <string name="option">(선택)</string>
 
@@ -77,8 +77,10 @@
     <!--    Message-->
     <string name="msg_add_NoName"> 재료명을 입력하세요</string>
     <string name="msg_save_data">저장하였습니다</string>
-    <string name="title_activity_kitchen">KitchenActivity</string>
     <string name="msg_move_data">재료가 냉장고로 이동했어요</string>
     <string name="msg_exit">뒤로가기를 한 번 더 누르면 종료됩니다</string>
+    <string name="app_name">슬기로운 식샤생활</string>
 
+    <!--    Hint-->
+    <string name="hint_search">검색어를 입력하세요</string>
 </resources>

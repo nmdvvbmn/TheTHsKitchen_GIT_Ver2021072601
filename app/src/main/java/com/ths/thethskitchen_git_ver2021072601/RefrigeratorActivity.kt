@@ -11,7 +11,7 @@ import com.ths.thethskitchen_git_ver2021072601.databinding.DailogRefrigeratorAdd
 import java.time.LocalDateTime
 
 //냉장고 리스트
-class RefrigeratorActivity : AppCompatActivity() {
+class RefrigeratorActivity : BaseActivity() {
     val binding by lazy { ActivityRefrigeratorBinding.inflate(layoutInflater) }
     var adapter = RefrigeratorAtapter()
     var dbHelper = SQLiteDBHelper(this,"THsKitchen.db", 1)

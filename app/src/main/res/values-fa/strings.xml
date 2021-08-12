@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">The TH\'s Kitchen</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="save" translatable="false">صرفه جویی</string>
+    <string name="canc" translatable="false">لغو کردن</string>
+    <string name="tool" translatable="false">وسایل آشپزی</string>
+    <string name="grill" translatable="false">گوشت کباب کن</string>
+    <string name="micro" translatable="false">مایکروویو</string>
+    <string name="multi" translatable="false">اجاق گاز چند (گلدان از طریق مسنجر)</string>
+    <string name="oven" translatable="false">فر</string>
+    <string name="sous" translatable="false">رجوع sous</string>
+    <string name="steam" translatable="false">بخار پز</string>
+    <string name="stove" translatable="false">اجاق گاز / القایی</string>
+    <string name="blender" translatable="false">ماشین مخصوص مخلوط کردن</string>
+    <string name="airfryer" translatable="false">سرخ کن هوا</string>
+    <string name="ctime" translatable="false">زمان پخت و پز</string>
+    <string name="ptime" translatable="false">زمان آماده سازی</string>
+    <string name="min" translatable="false">دقیقه</string>
+    <string name="hour" translatable="false">ساعت</string>
+    <string name="day" translatable="false">روز</string>
+    <string name="week" translatable="false">هفته</string>
+    <string name="pc" translatable="false">قطعه</string>
+    <string name="bottle" translatable="false">بطری</string>
+    <string name="serve" translatable="false">وعده</string>
+    <string name="glass" translatable="false">فنجان ها</string>
+    <string name="option" translatable="false">(اختیاری)</string>
+    <string name="qunt" translatable="false">استفاده</string>
+    <string name="youtubeLink" translatable="false">https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA</string>
+    <string name="menu_link" translatable="false">لینک یوتیوب</string>
+    <string name="menu_search" translatable="false">جستجو کردن</string>
+    <string name="menu_recommandList" translatable="false">توصیه</string>
+    <string name="menu_refrigerator" translatable="false">یخچال من</string>
+    <string name="menu_kitchen" translatable="false">آشپزخانه من</string>
+    <string name="menu_cart" translatable="false">سبد خرید</string>
+    <string name="menu_favorites" translatable="false">علاقه مندی ها</string>
+    <string name="menu_setting" translatable="false">تنظیمات</string>
+    <string name="menu_help" translatable="false">کمک</string>
+    <string name="menu_contact" translatable="false">مخاطب</string>
+    <string name="refrigerator_add_name" translatable="false">نام عنصر را وارد کنید</string>
+    <string name="refrigerator_add_desc" translatable="false">یک یادداشت را وارد کنید</string>
+    <string name="refrigerator_add_title" translatable="false">اضافه کردن مواد تشکیل دهنده</string>
+    <string name="refrigerator_update_title" translatable="false">عناصر</string>
+    <string name="cart_add_name" translatable="false">نام عنصر را وارد کنید</string>
+    <string name="cart_add_desc" translatable="false">یک یادداشت را وارد کنید</string>
+    <string name="cart_add_title" translatable="false">اضافه کردن مواد تشکیل دهنده</string>
+    <string name="cart_update_title" translatable="false">عناصر</string>
+    <string name="btn_share" translatable="false">اشتراک گذاری</string>
+    <string name="btn_link" translatable="false">یوتیوب</string>
+    <string name="title_share" translatable="false">اشتراک به دوستان</string>
+    <string name="set_youtube" translatable="false">یوتیوب تنظیم</string>
+    <string name="set_caption" translatable="false">عنوان</string>
+    <string name="set_play" translatable="false">شروع خودکار</string>
+    <string name="set_language" translatable="false">زبان</string>
+    <string name="set_languagesetting" translatable="false">تنظیم زبان</string>
+    <string name="msg_add_NoName" translatable="false">نام عنصر را وارد کنید</string>
+    <string name="msg_save_data" translatable="false">ذخیره</string>
+    <string name="msg_move_data" translatable="false">مواد تشکیل دهنده دارند حرکت به یخچال و فریزر</string>
+    <string name="msg_exit" translatable="false">کلیک کنید بازگشت دوباره به خروج</string>
+    <string name="hint_search" translatable="false">لطفا عبارت جستجوی خود را وارد کنید</string>
+</resources>

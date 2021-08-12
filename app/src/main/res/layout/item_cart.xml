@@ -31,15 +31,15 @@ android:layout_height="wrap_content">
         app:layout_constraintEnd_toStartOf="@+id/btnFavoritesDel"
         app:layout_constraintTop_toBottomOf="@+id/txtCartDesc" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btnFavoritesDel"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_remove_circle_outline_48" />
+        app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24" />
 
     <TextView
     android:id="@+id/txtCartDesc"
@@ -55,13 +55,13 @@ android:layout_height="wrap_content">
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/txtCartName" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btnMoveRefrigerator"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnFavoritesDel"
-        app:srcCompat="@drawable/ic_baseline_kitchen_48" />
+        app:srcCompat="@drawable/ic_baseline_kitchen_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>

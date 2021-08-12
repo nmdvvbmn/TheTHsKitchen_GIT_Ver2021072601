@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">The TH\'s Kitchen</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="save" translatable="false">节省</string>
+    <string name="canc" translatable="false">取消</string>
+    <string name="tool" translatable="false">炊具</string>
+    <string name="grill" translatable="false">炙烤</string>
+    <string name="micro" translatable="false">微波</string>
+    <string name="multi" translatable="false">多煲（锅瞬间）</string>
+    <string name="oven" translatable="false">烤箱</string>
+    <string name="sous" translatable="false">真空低温烹调法</string>
+    <string name="steam" translatable="false">汽船</string>
+    <string name="stove" translatable="false">炉/感应</string>
+    <string name="blender" translatable="false">搅拌机</string>
+    <string name="airfryer" translatable="false">空气炸锅</string>
+    <string name="ctime" translatable="false">烹饪时间</string>
+    <string name="ptime" translatable="false">准备时间</string>
+    <string name="min" translatable="false">分钟</string>
+    <string name="hour" translatable="false">小时</string>
+    <string name="day" translatable="false">天</string>
+    <string name="week" translatable="false">星期</string>
+    <string name="pc" translatable="false">片</string>
+    <string name="bottle" translatable="false">瓶子</string>
+    <string name="serve" translatable="false">份</string>
+    <string name="glass" translatable="false">杯</string>
+    <string name="option" translatable="false">（可选的）</string>
+    <string name="qunt" translatable="false">用法</string>
+    <string name="youtubeLink" translatable="false">https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA</string>
+    <string name="menu_link" translatable="false">YouTube链接</string>
+    <string name="menu_search" translatable="false">搜索</string>
+    <string name="menu_recommandList" translatable="false">推荐</string>
+    <string name="menu_refrigerator" translatable="false">我的冰箱</string>
+    <string name="menu_kitchen" translatable="false">我的厨房</string>
+    <string name="menu_cart" translatable="false">购物车</string>
+    <string name="menu_favorites" translatable="false">最爱</string>
+    <string name="menu_setting" translatable="false">环境</string>
+    <string name="menu_help" translatable="false">帮助</string>
+    <string name="menu_contact" translatable="false">接触</string>
+    <string name="refrigerator_add_name" translatable="false">输入成分的名称</string>
+    <string name="refrigerator_add_desc" translatable="false">输入注释</string>
+    <string name="refrigerator_add_title" translatable="false">加入成分</string>
+    <string name="refrigerator_update_title" translatable="false">原料</string>
+    <string name="cart_add_name" translatable="false">输入成分的名称</string>
+    <string name="cart_add_desc" translatable="false">输入注释</string>
+    <string name="cart_add_title" translatable="false">加入成分</string>
+    <string name="cart_update_title" translatable="false">原料</string>
+    <string name="btn_share" translatable="false">分享</string>
+    <string name="btn_link" translatable="false">YouTube</string>
+    <string name="title_share" translatable="false">分享给朋友</string>
+    <string name="set_youtube" translatable="false">YouTube的设置</string>
+    <string name="set_caption" translatable="false">标题</string>
+    <string name="set_play" translatable="false">自动启动</string>
+    <string name="set_language" translatable="false">语</string>
+    <string name="set_languagesetting" translatable="false">语言设置</string>
+    <string name="msg_add_NoName" translatable="false">输入成分的名称</string>
+    <string name="msg_save_data" translatable="false">保存</string>
+    <string name="msg_move_data" translatable="false">该成分具有移动冰箱</string>
+    <string name="msg_exit" translatable="false">再次点击返回退出</string>
+    <string name="hint_search" translatable="false">请输入您的搜索字词</string>
+</resources>

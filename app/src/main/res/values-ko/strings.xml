@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">슬기로운 식샤생활</string>
+    <string name="save" translatable="false">저장</string>
+    <string name="canc" translatable="false">취소</string>
+    <string name="tool" translatable="false">조리도구</string>
+    <string name="grill" translatable="false">그릴</string>
+    <string name="micro" translatable="false">전자레인지</string>
+    <string name="multi" translatable="false">전기밥솥/멀티쿠커</string>
+    <string name="oven" translatable="false">오븐</string>
+    <string name="sous" translatable="false">수비드</string>
+    <string name="steam" translatable="false">찜기</string>
+    <string name="stove" translatable="false">레인지/인덕션</string>
+    <string name="blender" translatable="false">블랜더</string>
+    <string name="airfryer" translatable="false">에어프라이어</string>
+    <string name="ctime" translatable="false">조리시간</string>
+    <string name="ptime">준비시간</string>
+    <string name="min">분</string>
+    <string name="hour">시간</string>
+    <string name="day">일</string>
+    <string name="week">주</string>
+    <string name="pc">개</string>
+    <string name="bottle">병</string>
+    <string name="serve">인분</string>
+    <string name="glass">잔</string>
+    <string name="option">(선택)</string>
+    <string name="qunt">사용량</string>
+    <string name="menu_link" translatable="false">Youtube바로가기</string>
+    <string name="menu_search" translatable="false">검색</string>
+    <string name="menu_recommandList" translatable="false">추천요리</string>
+    <string name="menu_refrigerator" translatable="false">우리집 냉장고</string>
+    <string name="menu_kitchen" translatable="false">우리집 부엌</string>
+    <string name="menu_cart" translatable="false">장바구니</string>
+    <string name="menu_favorites" translatable="false">즐겨찾기</string>
+    <string name="menu_setting" translatable="false">설정</string>
+    <string name="menu_help">도움말</string>
+    <string name="menu_contact">연락하기</string>
+    <string name="refrigerator_add_name">" 재료명을 입력하세요 "</string>
+    <string name="refrigerator_add_desc">" 메모를 남기세요 "</string>
+    <string name="refrigerator_add_title">"재료 추가 "</string>
+    <string name="cart_add_name">" 재료명을 입력하세요 "</string>
+    <string name="refrigerator_update_title">재료</string>
+    <string name="cart_add_desc" translatable="false">" 메모를 남기세요 "</string>
+    <string name="cart_add_title" translatable="false">"재료 추가 "</string>
+    <string name="cart_update_title" translatable="false">재료</string>
+    <string name="btn_share" translatable="false">공유</string>
+    <string name="btn_link" translatable="false">Youtube</string>
+    <string name="title_share" translatable="false">친구에게 공유하기</string>
+    <string name="set_youtube" translatable="false">유튜브 설정</string>
+    <string name="set_caption" translatable="false">자막</string>
+    <string name="set_play" translatable="false">자동시작</string>
+    <string name="set_language" translatable="false">언어</string>
+    <string name="set_languagesetting" translatable="false">언어설정</string>
+    <string name="msg_add_NoName" translatable="false">" 재료명을 입력하세요"</string>
+    <string name="msg_save_data" translatable="false">저장하였습니다</string>
+    <string name="msg_move_data" translatable="false">재료가 냉장고로 이동했어요</string>
+    <string name="msg_exit" translatable="false">뒤로가기를 한 번 더 누르면 종료됩니다</string>
+    <string name="youtubeLink" translatable="false">https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="hint_search" translatable="false">검색어를 입력하세요</string>
+</resources>

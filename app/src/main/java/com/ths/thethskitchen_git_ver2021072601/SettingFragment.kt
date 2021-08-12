@@ -1,8 +1,11 @@
 
 package com.ths.thethskitchen_git_ver2021072601
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.core.app.ActivityCompat.recreate
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -26,7 +29,10 @@ class SettingFragment: PreferenceFragmentCompat() {
             val entryValue = context?.resources?.getStringArray(R.array.array_language)
             val value = entryValue?.get(index!!)
             list.summary = value.toString()
-            Log.d("Preferenece", value.toString())
+//            UtilFuncs().setLocale(requireContext(),UtilFuncs().getLanguage())
+            val intent = Intent(context, SettingActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
             true
         }
     }

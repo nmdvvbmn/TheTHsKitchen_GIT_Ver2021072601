@@ -5,7 +5,7 @@ import android.os.Bundle
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivitySettingBinding
 
 //설정 화면
-class SettingActivity : AppCompatActivity() {
+class SettingActivity : BaseActivity() {
     val binding by lazy { ActivitySettingBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

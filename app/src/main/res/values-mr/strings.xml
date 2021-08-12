@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">The TH\'s Kitchen</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="save" translatable="false">जतन करा</string>
+    <string name="canc" translatable="false">रद्द करा</string>
+    <string name="tool" translatable="false">भांड्याचे</string>
+    <string name="grill" translatable="false">ग्रील</string>
+    <string name="micro" translatable="false">मायक्रोवेव्ह</string>
+    <string name="multi" translatable="false">मल्टी कुकर (झटपट भांडे)</string>
+    <string name="oven" translatable="false">ओव्हन</string>
+    <string name="sous" translatable="false">sous पाहा</string>
+    <string name="steam" translatable="false">बोट</string>
+    <string name="stove" translatable="false">स्टोव्ह / प्रतिष्ठापना</string>
+    <string name="blender" translatable="false">ब्लेंडर</string>
+    <string name="airfryer" translatable="false">एअर fryer</string>
+    <string name="ctime" translatable="false">पाकृसाठी</string>
+    <string name="ptime" translatable="false">तयारी वेळ</string>
+    <string name="min" translatable="false">मिनिट</string>
+    <string name="hour" translatable="false">तास</string>
+    <string name="day" translatable="false">दिवस</string>
+    <string name="week" translatable="false">आठवड्यात</string>
+    <string name="pc" translatable="false">तुकडा</string>
+    <string name="bottle" translatable="false">बाटली</string>
+    <string name="serve" translatable="false">वाढणी</string>
+    <string name="glass" translatable="false">कप</string>
+    <string name="option" translatable="false">(पर्यायी)</string>
+    <string name="qunt" translatable="false">वापर</string>
+    <string name="youtubeLink" translatable="false">https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA</string>
+    <string name="menu_link" translatable="false">YouTube दुवा</string>
+    <string name="menu_search" translatable="false">शोधा</string>
+    <string name="menu_recommandList" translatable="false">शिफारस</string>
+    <string name="menu_refrigerator" translatable="false">माझे रेफ्रिजरेटर</string>
+    <string name="menu_kitchen" translatable="false">माझ स्वयंपाकघर</string>
+    <string name="menu_cart" translatable="false">हे खरेदी सूचीत टाका</string>
+    <string name="menu_favorites" translatable="false">आवडते</string>
+    <string name="menu_setting" translatable="false">सेटिंग</string>
+    <string name="menu_help" translatable="false">मदत</string>
+    <string name="menu_contact" translatable="false">संपर्क</string>
+    <string name="refrigerator_add_name" translatable="false">घटक नाव प्रविष्ट करा</string>
+    <string name="refrigerator_add_desc" translatable="false">एक टीप प्रविष्ट करा</string>
+    <string name="refrigerator_add_title" translatable="false">घटक जोडा</string>
+    <string name="refrigerator_update_title" translatable="false">साहित्य</string>
+    <string name="cart_add_name" translatable="false">घटक नाव प्रविष्ट करा</string>
+    <string name="cart_add_desc" translatable="false">एक टीप प्रविष्ट करा</string>
+    <string name="cart_add_title" translatable="false">घटक जोडा</string>
+    <string name="cart_update_title" translatable="false">साहित्य</string>
+    <string name="btn_share" translatable="false">सामायिक करा</string>
+    <string name="btn_link" translatable="false">YouTube</string>
+    <string name="title_share" translatable="false">मित्र वर सामायिक करा</string>
+    <string name="set_youtube" translatable="false">यु ट्युब सेटिंग</string>
+    <string name="set_caption" translatable="false">मथळा</string>
+    <string name="set_play" translatable="false">स्वयं सुरु</string>
+    <string name="set_language" translatable="false">इंग्रजी</string>
+    <string name="set_languagesetting" translatable="false">भाषा सेट</string>
+    <string name="msg_add_NoName" translatable="false">घटक नाव प्रविष्ट करा</string>
+    <string name="msg_save_data" translatable="false">जतन केलेले</string>
+    <string name="msg_move_data" translatable="false">साहित्य रेफ्रिजरेटर हलवा आहे</string>
+    <string name="msg_exit" translatable="false">बाहेर पडा पुन्हा मागे क्लिक करा</string>
+    <string name="hint_search" translatable="false">आपल्या शोध संज्ञा प्रविष्ट करा</string>
+</resources>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">The TH\'s Kitchen</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="previous" translatable="false">Previous</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="save" translatable="false">Cứu</string>
+    <string name="canc" translatable="false">Hủy bỏ</string>
+    <string name="tool" translatable="false">dụng cụ nhà bếp</string>
+    <string name="grill" translatable="false">nướng</string>
+    <string name="micro" translatable="false">Lò vi sóng</string>
+    <string name="multi" translatable="false">Đa nồi (Instant nồi)</string>
+    <string name="oven" translatable="false">Lò vi sóng</string>
+    <string name="sous" translatable="false">vide sous</string>
+    <string name="steam" translatable="false">Steamer</string>
+    <string name="stove" translatable="false">Bếp / cảm ứng</string>
+    <string name="blender" translatable="false">Máy xay</string>
+    <string name="airfryer" translatable="false">Máy sấy</string>
+    <string name="ctime" translatable="false">Giờ nấu ăn</string>
+    <string name="ptime" translatable="false">Thời gian chuẩn bị</string>
+    <string name="min" translatable="false">phút</string>
+    <string name="hour" translatable="false">giờ</string>
+    <string name="day" translatable="false">ngày</string>
+    <string name="week" translatable="false">tuần</string>
+    <string name="pc" translatable="false">mảnh</string>
+    <string name="bottle" translatable="false">chai</string>
+    <string name="serve" translatable="false">phần</string>
+    <string name="glass" translatable="false">cốc</string>
+    <string name="option" translatable="false">(Không bắt buộc)</string>
+    <string name="qunt" translatable="false">Sử dụng</string>
+    <string name="youtubeLink" translatable="false">https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA</string>
+    <string name="menu_link" translatable="false">Youtube Liên kết</string>
+    <string name="menu_search" translatable="false">Tìm kiếm</string>
+    <string name="menu_recommandList" translatable="false">Gợi ý</string>
+    <string name="menu_refrigerator" translatable="false">My Tủ lạnh</string>
+    <string name="menu_kitchen" translatable="false">Nhà bếp của tôi</string>
+    <string name="menu_cart" translatable="false">Giỏ hàng</string>
+    <string name="menu_favorites" translatable="false">Favorites</string>
+    <string name="menu_setting" translatable="false">Cài đặt</string>
+    <string name="menu_help" translatable="false">Trợ giúp</string>
+    <string name="menu_contact" translatable="false">Liên hệ</string>
+    <string name="refrigerator_add_name" translatable="false">Nhập tên của thành phần</string>
+    <string name="refrigerator_add_desc" translatable="false">Nhập ghi chú</string>
+    <string name="refrigerator_add_title" translatable="false">Add thành phần</string>
+    <string name="refrigerator_update_title" translatable="false">Thành phần</string>
+    <string name="cart_add_name" translatable="false">Nhập tên của thành phần</string>
+    <string name="cart_add_desc" translatable="false">Nhập ghi chú</string>
+    <string name="cart_add_title" translatable="false">Add thành phần</string>
+    <string name="cart_update_title" translatable="false">Thành phần</string>
+    <string name="btn_share" translatable="false">Chia sẻ</string>
+    <string name="btn_link" translatable="false">Youtube</string>
+    <string name="title_share" translatable="false">Chia sẻ cho bạn bè</string>
+    <string name="set_youtube" translatable="false">Setting Youtube</string>
+    <string name="set_caption" translatable="false">Đầu đề</string>
+    <string name="set_play" translatable="false">Tự động bắt đầu</string>
+    <string name="set_language" translatable="false">Ngôn ngữ</string>
+    <string name="set_languagesetting" translatable="false">Cài đặt ngôn ngữ</string>
+    <string name="msg_add_NoName" translatable="false">Nhập tên của thành phần</string>
+    <string name="msg_save_data" translatable="false">Saved</string>
+    <string name="msg_move_data" translatable="false">Các thành phần có động thái để tủ lạnh</string>
+    <string name="msg_exit" translatable="false">Bấm Trở lại một lần nữa để thoát</string>
+    <string name="hint_search" translatable="false">Vui lòng nhập từ khóa tìm kiếm của bạn</string>
+</resources>

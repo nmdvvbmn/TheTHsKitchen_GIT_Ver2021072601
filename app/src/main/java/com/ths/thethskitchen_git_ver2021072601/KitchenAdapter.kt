@@ -20,7 +20,6 @@ import java.lang.ArithmeticException
 class KitchenAdapter(val list: ArrayList<String>):RecyclerView.Adapter<KitchenAdapter.Holder>() {
     lateinit var mContext: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        Log.d("ListAdapter","onCreateView")
         val binding = ItemKitchenBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         mContext = parent.context
         return Holder(binding)
@@ -44,8 +43,6 @@ class KitchenAdapter(val list: ArrayList<String>):RecyclerView.Adapter<KitchenAd
             URL = list.get(pos)
             holder.setList(URL)
         }
-
-        Log.d("ListAdapter","onBindViewHolder")
         //아이템 클릭
         holder.itemView.setOnClickListener{
 //            --> 디테일로 이동
@@ -56,7 +53,6 @@ class KitchenAdapter(val list: ArrayList<String>):RecyclerView.Adapter<KitchenAd
     }
 
     override fun getItemCount(): Int {
-        Log.d("ListAdapter","getItem")
         return Integer.MAX_VALUE
     }
 

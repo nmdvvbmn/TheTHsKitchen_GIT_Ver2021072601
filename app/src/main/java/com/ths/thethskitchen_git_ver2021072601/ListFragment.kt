@@ -221,7 +221,7 @@ class ListFragment : Fragment() {
                                                     }
                                                     //Dname 실패(언어코드 확인, 데이터 없음)
                                                 }.addOnFailureListener {
-                                                    Log.d("DB222", "Fail")
+                                                    Log.d("FireStore", "Fail")
                                                 }.addOnCompleteListener {
                                                     dnameCnt++
                                                     if (dnameCnt == idList_d.size) {

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityListBinding
 import kotlinx.coroutines.*
 
-class ListActivity : AppCompatActivity() {
+class ListActivity : BaseActivity() {
     val binding by lazy { ActivityListBinding.inflate(layoutInflater)}
     var dlist = arrayListOf<DList>()
     var adapter = RecyclerAdapter(dlist)

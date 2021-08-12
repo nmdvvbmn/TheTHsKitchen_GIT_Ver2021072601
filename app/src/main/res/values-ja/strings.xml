@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">The TH\'s Kitchen</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="save" translatable="false">保存する</string>
+    <string name="canc" translatable="false">キャンセル</string>
+    <string name="tool" translatable="false">料理道具</string>
+    <string name="grill" translatable="false">グリル</string>
+    <string name="micro" translatable="false">マイクロ波</string>
+    <string name="multi" translatable="false">マルチクッカー（インスタントポット）</string>
+    <string name="oven" translatable="false">オーブン</string>
+    <string name="sous" translatable="false">真空調理法</string>
+    <string name="steam" translatable="false">蒸し器</string>
+    <string name="stove" translatable="false">コンロ/誘導</string>
+    <string name="blender" translatable="false">ブレンダー</string>
+    <string name="airfryer" translatable="false">エアフライヤー</string>
+    <string name="ctime" translatable="false">調理時間</string>
+    <string name="ptime" translatable="false">準備時間</string>
+    <string name="min" translatable="false">分</string>
+    <string name="hour" translatable="false">時間</string>
+    <string name="day" translatable="false">日</string>
+    <string name="week" translatable="false">週</string>
+    <string name="pc" translatable="false">ピース</string>
+    <string name="bottle" translatable="false">ボトル</string>
+    <string name="serve" translatable="false">人前</string>
+    <string name="glass" translatable="false">カップ</string>
+    <string name="option" translatable="false">（オプション）</string>
+    <string name="qunt" translatable="false">使用法</string>
+    <string name="youtubeLink" translatable="false">https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA</string>
+    <string name="menu_link" translatable="false">ユーチューブリンク</string>
+    <string name="menu_search" translatable="false">探す</string>
+    <string name="menu_recommandList" translatable="false">お勧め</string>
+    <string name="menu_refrigerator" translatable="false">私の冷蔵庫</string>
+    <string name="menu_kitchen" translatable="false">私の台所</string>
+    <string name="menu_cart" translatable="false">ショッピングカート</string>
+    <string name="menu_favorites" translatable="false">お気に入り</string>
+    <string name="menu_setting" translatable="false">セッティング</string>
+    <string name="menu_help" translatable="false">ヘルプ</string>
+    <string name="menu_contact" translatable="false">コンタクト</string>
+    <string name="refrigerator_add_name" translatable="false">成分の名前を入力します。</string>
+    <string name="refrigerator_add_desc" translatable="false">ノートを入力します。</string>
+    <string name="refrigerator_add_title" translatable="false">成分を追加</string>
+    <string name="refrigerator_update_title" translatable="false">材料</string>
+    <string name="cart_add_name" translatable="false">成分の名前を入力します。</string>
+    <string name="cart_add_desc" translatable="false">ノートを入力します。</string>
+    <string name="cart_add_title" translatable="false">成分を追加</string>
+    <string name="cart_update_title" translatable="false">材料</string>
+    <string name="btn_share" translatable="false">共有</string>
+    <string name="btn_link" translatable="false">ユーチューブ</string>
+    <string name="title_share" translatable="false">友人にシェアします</string>
+    <string name="set_youtube" translatable="false">ユーチューブの設定</string>
+    <string name="set_caption" translatable="false">キャプション</string>
+    <string name="set_play" translatable="false">自動スタート</string>
+    <string name="set_language" translatable="false">言語</string>
+    <string name="set_languagesetting" translatable="false">言語設定</string>
+    <string name="msg_add_NoName" translatable="false">成分の名前を入力します。</string>
+    <string name="msg_save_data" translatable="false">保存されました</string>
+    <string name="msg_move_data" translatable="false">食材は、冷蔵庫への移行を持っています</string>
+    <string name="msg_exit" translatable="false">終了するには再び[戻る]をクリックします</string>
+    <string name="hint_search" translatable="false">検索語を入力してください</string>
+</resources>

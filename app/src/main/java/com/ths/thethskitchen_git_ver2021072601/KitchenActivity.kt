@@ -13,7 +13,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.selects.select
 
 //나의 부엌 설정
-class KitchenActivity : AppCompatActivity() {
+class KitchenActivity : BaseActivity() {
     val binding by lazy { ActivityKitchenBinding.inflate(layoutInflater) }
     var list = arrayListOf<String>()
     var adapter = KitchenAdapter(list)
@@ -43,7 +43,6 @@ class KitchenActivity : AppCompatActivity() {
                     val URL = document["URL"] as String
                     list.add(URL)
                 }
-                Log.d("ListAdapter","Coroutine")
 //                withContext(Dispatchers.Main){
 //                    Log.d("ListAdapter","${list.size}")
 //                    Log.d("ListAdapter","Dispatchers")

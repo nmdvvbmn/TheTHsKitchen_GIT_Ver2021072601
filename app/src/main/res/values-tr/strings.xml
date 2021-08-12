@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">The TH\'s Kitchen</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="save" translatable="false">Kayıt etmek</string>
+    <string name="canc" translatable="false">İptal</string>
+    <string name="tool" translatable="false">Tencere</string>
+    <string name="grill" translatable="false">ızgara</string>
+    <string name="micro" translatable="false">Mikrodalga</string>
+    <string name="multi" translatable="false">Çok pişirici (Anında kap)</string>
+    <string name="oven" translatable="false">Fırın</string>
+    <string name="sous" translatable="false">sous vide</string>
+    <string name="steam" translatable="false">vapur</string>
+    <string name="stove" translatable="false">Ocak / İndüksiyon</string>
+    <string name="blender" translatable="false">karıştırıcı</string>
+    <string name="airfryer" translatable="false">Hava fritöz</string>
+    <string name="ctime" translatable="false">Pişirme süresi</string>
+    <string name="ptime" translatable="false">Hazırlanma zamanı</string>
+    <string name="min" translatable="false">dakika</string>
+    <string name="hour" translatable="false">saat</string>
+    <string name="day" translatable="false">gün</string>
+    <string name="week" translatable="false">hafta</string>
+    <string name="pc" translatable="false">adet</string>
+    <string name="bottle" translatable="false">şişe</string>
+    <string name="serve" translatable="false">porsiyon</string>
+    <string name="glass" translatable="false">bardaklar</string>
+    <string name="option" translatable="false">(İsteğe bağlı)</string>
+    <string name="qunt" translatable="false">kullanım</string>
+    <string name="youtubeLink" translatable="false">https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA</string>
+    <string name="menu_link" translatable="false">Youtube Bağlantı</string>
+    <string name="menu_search" translatable="false">Arama</string>
+    <string name="menu_recommandList" translatable="false">Tavsiye etmek</string>
+    <string name="menu_refrigerator" translatable="false">Benim Buzdolabı</string>
+    <string name="menu_kitchen" translatable="false">Mutfağım</string>
+    <string name="menu_cart" translatable="false">Alışveriş kartı</string>
+    <string name="menu_favorites" translatable="false">Favoriler</string>
+    <string name="menu_setting" translatable="false">Ayar</string>
+    <string name="menu_help" translatable="false">Yardım</string>
+    <string name="menu_contact" translatable="false">Temas etmek</string>
+    <string name="refrigerator_add_name" translatable="false">malzemenin adı girin</string>
+    <string name="refrigerator_add_desc" translatable="false">Bir not girin</string>
+    <string name="refrigerator_add_title" translatable="false">Ekleme madde</string>
+    <string name="refrigerator_update_title" translatable="false">İçindekiler</string>
+    <string name="cart_add_name" translatable="false">malzemenin adı girin</string>
+    <string name="cart_add_desc" translatable="false">Bir not girin</string>
+    <string name="cart_add_title" translatable="false">Ekleme madde</string>
+    <string name="cart_update_title" translatable="false">İçindekiler</string>
+    <string name="btn_share" translatable="false">Paylaşmak</string>
+    <string name="btn_link" translatable="false">Youtube</string>
+    <string name="title_share" translatable="false">arkadaşlara paylaş</string>
+    <string name="set_youtube" translatable="false">Youtube Ayarı</string>
+    <string name="set_caption" translatable="false">Altyazı</string>
+    <string name="set_play" translatable="false">Otomatik başlatma</string>
+    <string name="set_language" translatable="false">Dilim</string>
+    <string name="set_languagesetting" translatable="false">Dil ayarı</string>
+    <string name="msg_add_NoName" translatable="false">malzemenin adı girin</string>
+    <string name="msg_save_data" translatable="false">Kayıtlı</string>
+    <string name="msg_move_data" translatable="false">maddeleri buzdolabına hareket var</string>
+    <string name="msg_exit" translatable="false">çıkmak için tekrar geri tıklayın</string>
+    <string name="hint_search" translatable="false">Arama terimi girin</string>
+</resources>

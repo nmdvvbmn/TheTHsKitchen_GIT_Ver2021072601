@@ -25,7 +25,7 @@ import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityRecommandDeta
 //var tracker = YouTubePlayerTracker()
 var mYoutubePlayer: YouTubePlayer? = null
 
-class RecommandDetail : AppCompatActivity(), RListAdapter.OnRItem {
+class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
     val binding by lazy { ActivityRecommandDetailBinding.inflate(layoutInflater) }
     val helper =  SQLiteDBHelper(this,"THsKitchen.db", 1)   // 장바구니, 즐겨찾기 로컬 DB
     val iList = arrayListOf<IList>()    //재료 리스트

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">The TH\'s Kitchen</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="save" translatable="false">సేవ్</string>
+    <string name="canc" translatable="false">రద్దు చేయండి</string>
+    <string name="tool" translatable="false">వంటసామాను</string>
+    <string name="grill" translatable="false">గ్రిల్</string>
+    <string name="micro" translatable="false">మైక్రోవేవ్</string>
+    <string name="multi" translatable="false">మల్టీ కుక్కర్ (ఇన్స్టాంట్ పాట్)</string>
+    <string name="oven" translatable="false">పొయ్యి</string>
+    <string name="sous" translatable="false">sous vide</string>
+    <string name="steam" translatable="false">స్టీమర్</string>
+    <string name="stove" translatable="false">స్టవ్ / ఇండక్షన్</string>
+    <string name="blender" translatable="false">బ్లెండర్</string>
+    <string name="airfryer" translatable="false">ఎయిర్ ఫ్రయ్యర్</string>
+    <string name="ctime" translatable="false">వంట సమయం</string>
+    <string name="ptime" translatable="false">తయారీ సమయం</string>
+    <string name="min" translatable="false">నిమిషం</string>
+    <string name="hour" translatable="false">గంట</string>
+    <string name="day" translatable="false">రోజు</string>
+    <string name="week" translatable="false">వారం</string>
+    <string name="pc" translatable="false">ముక్క</string>
+    <string name="bottle" translatable="false">సీసా</string>
+    <string name="serve" translatable="false">సేర్విన్గ్స్</string>
+    <string name="glass" translatable="false">కప్పులు</string>
+    <string name="option" translatable="false">(ఆప్షనల్)</string>
+    <string name="qunt" translatable="false">వాడుక</string>
+    <string name="youtubeLink" translatable="false">https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA</string>
+    <string name="menu_link" translatable="false">YouTube లింక్</string>
+    <string name="menu_search" translatable="false">వెతకండి</string>
+    <string name="menu_recommandList" translatable="false">సిఫార్సు</string>
+    <string name="menu_refrigerator" translatable="false">నా రిఫ్రిజిరేటర్</string>
+    <string name="menu_kitchen" translatable="false">నా కిచెన్</string>
+    <string name="menu_cart" translatable="false">షాపింగ్ కార్ట్</string>
+    <string name="menu_favorites" translatable="false">ఇష్టమైన</string>
+    <string name="menu_setting" translatable="false">అమరిక</string>
+    <string name="menu_help" translatable="false">సహాయం</string>
+    <string name="menu_contact" translatable="false">సంప్రదించండి</string>
+    <string name="refrigerator_add_name" translatable="false">పదార్ధం పేరు నమోదు</string>
+    <string name="refrigerator_add_desc" translatable="false">గ</string>
+    <string name="refrigerator_add_title" translatable="false">యాడ్ పదార్ధం</string>
+    <string name="refrigerator_update_title" translatable="false">కావలసినవి</string>
+    <string name="cart_add_name" translatable="false">పదార్ధం పేరు నమోదు</string>
+    <string name="cart_add_desc" translatable="false">గ</string>
+    <string name="cart_add_title" translatable="false">యాడ్ పదార్ధం</string>
+    <string name="cart_update_title" translatable="false">కావలసినవి</string>
+    <string name="btn_share" translatable="false">Share</string>
+    <string name="btn_link" translatable="false">Youtube</string>
+    <string name="title_share" translatable="false">స్నేహితులు కు భాగస్వామ్యం</string>
+    <string name="set_youtube" translatable="false">Youtube సెట్టింగు</string>
+    <string name="set_caption" translatable="false">శీర్షిక</string>
+    <string name="set_play" translatable="false">స్వీయ ప్రారంభం</string>
+    <string name="set_language" translatable="false">భాషా</string>
+    <string name="set_languagesetting" translatable="false">భాషను సెట్ చేస్తోంది</string>
+    <string name="msg_add_NoName" translatable="false">పదార్ధం పేరు నమోదు</string>
+    <string name="msg_save_data" translatable="false">సేవ్డ్</string>
+    <string name="msg_move_data" translatable="false">పదార్థాలు రిఫ్రిజిరేటర్ చర్యను కలిగి</string>
+    <string name="msg_exit" translatable="false">నిష్క్రమణ మళ్ళీ వెనుకకు క్లిక్</string>
+    <string name="hint_search" translatable="false">మీ శోధన పదాన్ని నమోదు చేయండి</string>
+</resources>

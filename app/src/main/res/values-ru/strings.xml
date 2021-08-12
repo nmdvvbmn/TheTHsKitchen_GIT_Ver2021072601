@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">The TH\'s Kitchen</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="save" translatable="false">Сохранить</string>
+    <string name="canc" translatable="false">Отмена</string>
+    <string name="tool" translatable="false">кухонная посуда</string>
+    <string name="grill" translatable="false">гриль</string>
+    <string name="micro" translatable="false">СВЧ</string>
+    <string name="multi" translatable="false">Мульти плита (Instant горшок)</string>
+    <string name="oven" translatable="false">Духовой шкаф</string>
+    <string name="sous" translatable="false">Sous смотри</string>
+    <string name="steam" translatable="false">пароварка</string>
+    <string name="stove" translatable="false">Плита / Индукционная</string>
+    <string name="blender" translatable="false">смеситель</string>
+    <string name="airfryer" translatable="false">Air фритюрницу</string>
+    <string name="ctime" translatable="false">Время готовить</string>
+    <string name="ptime" translatable="false">Время подготовки</string>
+    <string name="min" translatable="false">минут</string>
+    <string name="hour" translatable="false">час</string>
+    <string name="day" translatable="false">день</string>
+    <string name="week" translatable="false">неделя</string>
+    <string name="pc" translatable="false">кусок</string>
+    <string name="bottle" translatable="false">бутылка</string>
+    <string name="serve" translatable="false">сервировки</string>
+    <string name="glass" translatable="false">чашки</string>
+    <string name="option" translatable="false">(По желанию)</string>
+    <string name="qunt" translatable="false">использование</string>
+    <string name="youtubeLink" translatable="false">https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA</string>
+    <string name="menu_link" translatable="false">Youtube Link</string>
+    <string name="menu_search" translatable="false">Поиск</string>
+    <string name="menu_recommandList" translatable="false">Рекомендую</string>
+    <string name="menu_refrigerator" translatable="false">Мой Холодильник</string>
+    <string name="menu_kitchen" translatable="false">Моя кухня</string>
+    <string name="menu_cart" translatable="false">Корзина покупателя</string>
+    <string name="menu_favorites" translatable="false">Избранные</string>
+    <string name="menu_setting" translatable="false">Параметр</string>
+    <string name="menu_help" translatable="false">Помощь</string>
+    <string name="menu_contact" translatable="false">Контакт</string>
+    <string name="refrigerator_add_name" translatable="false">Введите название ингредиента</string>
+    <string name="refrigerator_add_desc" translatable="false">Введите примечание</string>
+    <string name="refrigerator_add_title" translatable="false">Добавить компонент</string>
+    <string name="refrigerator_update_title" translatable="false">Ингредиенты</string>
+    <string name="cart_add_name" translatable="false">Введите название ингредиента</string>
+    <string name="cart_add_desc" translatable="false">Введите примечание</string>
+    <string name="cart_add_title" translatable="false">Добавить компонент</string>
+    <string name="cart_update_title" translatable="false">Ингредиенты</string>
+    <string name="btn_share" translatable="false">Делиться</string>
+    <string name="btn_link" translatable="false">YouTube</string>
+    <string name="title_share" translatable="false">Поделиться с друзьями</string>
+    <string name="set_youtube" translatable="false">Youtube Настройка</string>
+    <string name="set_caption" translatable="false">Подпись</string>
+    <string name="set_play" translatable="false">Автоматический старт</string>
+    <string name="set_language" translatable="false">Язык</string>
+    <string name="set_languagesetting" translatable="false">Настройка языка</string>
+    <string name="msg_add_NoName" translatable="false">Введите название ингредиента</string>
+    <string name="msg_save_data" translatable="false">Сохраненный</string>
+    <string name="msg_move_data" translatable="false">Ингредиенты должны перейти на холодильник</string>
+    <string name="msg_exit" translatable="false">Нажмите кнопку Назад еще раз для выхода</string>
+    <string name="hint_search" translatable="false">Введите слово для поиска</string>
+</resources>

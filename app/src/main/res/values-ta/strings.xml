@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">The TH\'s Kitchen</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="save" translatable="false">சேமி</string>
+    <string name="canc" translatable="false">ரத்து</string>
+    <string name="tool" translatable="false">சமையல் பொருட்கள்</string>
+    <string name="grill" translatable="false">கிரில்</string>
+    <string name="micro" translatable="false">நுண்ணலை</string>
+    <string name="multi" translatable="false">மல்டி குக்கர் (உடனடி பானை)</string>
+    <string name="oven" translatable="false">சூளை</string>
+    <string name="sous" translatable="false">sous சாப்பாடு</string>
+    <string name="steam" translatable="false">ஸ்டீமர்</string>
+    <string name="stove" translatable="false">அடுப்பு / தூண்டல்</string>
+    <string name="blender" translatable="false">பிளெண்டர்</string>
+    <string name="airfryer" translatable="false">ஏர் பிரையர்</string>
+    <string name="ctime" translatable="false">சமைக்கும் நேரம்</string>
+    <string name="ptime" translatable="false">தயாரிப்பு நேரம்</string>
+    <string name="min" translatable="false">நிமிடம்</string>
+    <string name="hour" translatable="false">மணி</string>
+    <string name="day" translatable="false">நாள்</string>
+    <string name="week" translatable="false">வாரம்</string>
+    <string name="pc" translatable="false">துண்டு</string>
+    <string name="bottle" translatable="false">பாட்டில்</string>
+    <string name="serve" translatable="false">பரிமாறுவது</string>
+    <string name="glass" translatable="false">கப்</string>
+    <string name="option" translatable="false">(விரும்பினால்)</string>
+    <string name="qunt" translatable="false">பயன்பாடு</string>
+    <string name="youtubeLink" translatable="false">https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA</string>
+    <string name="menu_link" translatable="false">YouTube இணைப்புடன்</string>
+    <string name="menu_search" translatable="false">தேடல்</string>
+    <string name="menu_recommandList" translatable="false">பரிந்துரை</string>
+    <string name="menu_refrigerator" translatable="false">என் குளிர்சாதன</string>
+    <string name="menu_kitchen" translatable="false">என் சமையலறை</string>
+    <string name="menu_cart" translatable="false">வணிக கூடை</string>
+    <string name="menu_favorites" translatable="false">பிடித்த</string>
+    <string name="menu_setting" translatable="false">அமைப்பை</string>
+    <string name="menu_help" translatable="false">உதவி</string>
+    <string name="menu_contact" translatable="false">தொடர்பு</string>
+    <string name="refrigerator_add_name" translatable="false">மூலப்பொருள் பெயரை உள்ளிடவும்</string>
+    <string name="refrigerator_add_desc" translatable="false">ஒரு குறிப்பை உள்ளிடவும்</string>
+    <string name="refrigerator_add_title" translatable="false">மூலப்பொருள் சேர்</string>
+    <string name="refrigerator_update_title" translatable="false">தேவையான பொருட்கள்</string>
+    <string name="cart_add_name" translatable="false">மூலப்பொருள் பெயரை உள்ளிடவும்</string>
+    <string name="cart_add_desc" translatable="false">ஒரு குறிப்பை உள்ளிடவும்</string>
+    <string name="cart_add_title" translatable="false">மூலப்பொருள் சேர்</string>
+    <string name="cart_update_title" translatable="false">தேவையான பொருட்கள்</string>
+    <string name="btn_share" translatable="false">பகிர்</string>
+    <string name="btn_link" translatable="false">வலைஒளி</string>
+    <string name="title_share" translatable="false">நண்பர்கள் பகிர்</string>
+    <string name="set_youtube" translatable="false">youtube அமைப்பு</string>
+    <string name="set_caption" translatable="false">தலைப்பு</string>
+    <string name="set_play" translatable="false">தானாகத் தொடங்கு</string>
+    <string name="set_language" translatable="false">மொழி</string>
+    <string name="set_languagesetting" translatable="false">மொழியை அமைத்தல்</string>
+    <string name="msg_add_NoName" translatable="false">மூலப்பொருள் பெயரை உள்ளிடவும்</string>
+    <string name="msg_save_data" translatable="false">சேமிக்கப்பட்ட</string>
+    <string name="msg_move_data" translatable="false">பொருட்கள் குளிர்சாதனப் பெட்டிக்கு நடவடிக்கை வேண்டும்</string>
+    <string name="msg_exit" translatable="false">வெளியேறும் மீண்டும் மீண்டும் கிளிக் செய்க</string>
+    <string name="hint_search" translatable="false">உங்கள் தேடல் சொல்லை உள்ளிட</string>
+</resources>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">The TH\'s Kitchen</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="save" translatable="false">jimat</string>
+    <string name="canc" translatable="false">Batal</string>
+    <string name="tool" translatable="false">alat memasak</string>
+    <string name="grill" translatable="false">Grill</string>
+    <string name="micro" translatable="false">Microwave</string>
+    <string name="multi" translatable="false">periuk Multi (pot Segera)</string>
+    <string name="oven" translatable="false">Oven</string>
+    <string name="sous" translatable="false">vide sous</string>
+    <string name="steam" translatable="false">pengukus</string>
+    <string name="stove" translatable="false">Dapur / Induksi</string>
+    <string name="blender" translatable="false">Blender</string>
+    <string name="airfryer" translatable="false">fryer Air</string>
+    <string name="ctime" translatable="false">Masa memasak</string>
+    <string name="ptime" translatable="false">Masa persediaan</string>
+    <string name="min" translatable="false">minit</string>
+    <string name="hour" translatable="false">jam</string>
+    <string name="day" translatable="false">hari</string>
+    <string name="week" translatable="false">minggu</string>
+    <string name="pc" translatable="false">sekeping</string>
+    <string name="bottle" translatable="false">botol</string>
+    <string name="serve" translatable="false">hidangan</string>
+    <string name="glass" translatable="false">cawan</string>
+    <string name="option" translatable="false">(Pilihan)</string>
+    <string name="qunt" translatable="false">penggunaan</string>
+    <string name="youtubeLink" translatable="false">https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA</string>
+    <string name="menu_link" translatable="false">Youtube Link</string>
+    <string name="menu_search" translatable="false">cari</string>
+    <string name="menu_recommandList" translatable="false">mengesyorkan</string>
+    <string name="menu_refrigerator" translatable="false">Peti sejuk saya</string>
+    <string name="menu_kitchen" translatable="false">Dapur saya</string>
+    <string name="menu_cart" translatable="false">Troli membeli-belah</string>
+    <string name="menu_favorites" translatable="false">kegemaran</string>
+    <string name="menu_setting" translatable="false">tetapan</string>
+    <string name="menu_help" translatable="false">bantuan</string>
+    <string name="menu_contact" translatable="false">Hubungi</string>
+    <string name="refrigerator_add_name" translatable="false">Masukkan nama bahan</string>
+    <string name="refrigerator_add_desc" translatable="false">Memasukkan nota</string>
+    <string name="refrigerator_add_title" translatable="false">bahan tambah</string>
+    <string name="refrigerator_update_title" translatable="false">bahan-bahan</string>
+    <string name="cart_add_name" translatable="false">Masukkan nama bahan</string>
+    <string name="cart_add_desc" translatable="false">Memasukkan nota</string>
+    <string name="cart_add_title" translatable="false">bahan tambah</string>
+    <string name="cart_update_title" translatable="false">bahan-bahan</string>
+    <string name="btn_share" translatable="false">Kongsi</string>
+    <string name="btn_link" translatable="false">Youtube</string>
+    <string name="title_share" translatable="false">Share kepada rakan-rakan</string>
+    <string name="set_youtube" translatable="false">Youtube Setting</string>
+    <string name="set_caption" translatable="false">Caption</string>
+    <string name="set_play" translatable="false">Auto Start</string>
+    <string name="set_language" translatable="false">bahasa</string>
+    <string name="set_languagesetting" translatable="false">Tetapan bahasa</string>
+    <string name="msg_add_NoName" translatable="false">Masukkan nama bahan</string>
+    <string name="msg_save_data" translatable="false">tersimpan</string>
+    <string name="msg_move_data" translatable="false">Bahan-bahan yang mempunyai langkah ke dalam peti sejuk</string>
+    <string name="msg_exit" translatable="false">Klik Kembali lagi untuk keluar</string>
+    <string name="hint_search" translatable="false">Sila masukkan istilah carian anda</string>
+</resources>

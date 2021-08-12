@@ -17,7 +17,6 @@ import java.io.Serializable
 class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<RecyclerAdapter.Holder>() {
     lateinit var mContext: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        Log.d("ListAdapter","onCreateView")
         val binding = ItemRecyclerBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         mContext = parent.context
         return Holder(binding)
@@ -31,7 +30,6 @@ class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<Recy
         holder.itemView.requestLayout()
         holder.setIsRecyclable(false)
         holder.setDList(dlist)
-        Log.d("ListAdapter","onBindViewHolder")
         //아이템 클릭
         holder.itemView.setOnClickListener{
 //            --> 디테일로 이동

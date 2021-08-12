@@ -170,7 +170,7 @@ suspend  fun searchYoutube(searchString: String): ArrayList<DList> {
     if (list != null){
         dlist!!.addAll(list)
     }
-    Log.d("DList",dlist?.size.toString())
+    Log.d("DaumAPI","Web search Size : ${dlist?.size}")
     return dlist
 }
 

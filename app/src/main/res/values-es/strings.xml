@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">The TH\'s Kitchen</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="first_fragment_label" translatable="false">First Fragment</string>
+    <string name="second_fragment_label" translatable="false">Second Fragment</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="previous" translatable="false">Previous</string>
+    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
+    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="save" translatable="false">Salvar</string>
+    <string name="canc" translatable="false">Cancelar</string>
+    <string name="tool" translatable="false">utensilios de cocina</string>
+    <string name="grill" translatable="false">parrilla</string>
+    <string name="micro" translatable="false">Microondas</string>
+    <string name="multi" translatable="false">cocina Multi (pot instantánea)</string>
+    <string name="oven" translatable="false">Horno</string>
+    <string name="sous" translatable="false">sous vide</string>
+    <string name="steam" translatable="false">Buque de vapor</string>
+    <string name="stove" translatable="false">Estufa / Inducción</string>
+    <string name="blender" translatable="false">Licuadora</string>
+    <string name="airfryer" translatable="false">Freidora</string>
+    <string name="ctime" translatable="false">Hora de cocinar</string>
+    <string name="ptime" translatable="false">Tiempo de preparación</string>
+    <string name="min" translatable="false">minuto</string>
+    <string name="hour" translatable="false">hora</string>
+    <string name="day" translatable="false">día</string>
+    <string name="week" translatable="false">semana</string>
+    <string name="pc" translatable="false">trozo</string>
+    <string name="bottle" translatable="false">botella</string>
+    <string name="serve" translatable="false">porciones</string>
+    <string name="glass" translatable="false">tazas</string>
+    <string name="option" translatable="false">(Opcional)</string>
+    <string name="qunt" translatable="false">Uso</string>
+    <string name="youtubeLink" translatable="false">https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA</string>
+    <string name="menu_link" translatable="false">Youtube Enlace</string>
+    <string name="menu_search" translatable="false">Búsqueda</string>
+    <string name="menu_recommandList" translatable="false">Recomendar</string>
+    <string name="menu_refrigerator" translatable="false">mi Nevera</string>
+    <string name="menu_kitchen" translatable="false">Mi cocina</string>
+    <string name="menu_cart" translatable="false">Carro de compras</string>
+    <string name="menu_favorites" translatable="false">favoritos</string>
+    <string name="menu_setting" translatable="false">Configuración</string>
+    <string name="menu_help" translatable="false">Ayuda</string>
+    <string name="menu_contact" translatable="false">Contacto</string>
+    <string name="refrigerator_add_name" translatable="false">Introduzca el nombre del ingrediente</string>
+    <string name="refrigerator_add_desc" translatable="false">Ingrese una nota</string>
+    <string name="refrigerator_add_title" translatable="false">Agregar ingrediente</string>
+    <string name="refrigerator_update_title" translatable="false">ingredientes</string>
+    <string name="cart_add_name" translatable="false">Introduzca el nombre del ingrediente</string>
+    <string name="cart_add_desc" translatable="false">Ingrese una nota</string>
+    <string name="cart_add_title" translatable="false">Agregar ingrediente</string>
+    <string name="cart_update_title" translatable="false">ingredientes</string>
+    <string name="btn_share" translatable="false">Cuota</string>
+    <string name="btn_link" translatable="false">YouTube</string>
+    <string name="title_share" translatable="false">Compartir con amigos</string>
+    <string name="set_youtube" translatable="false">Ajuste youtube</string>
+    <string name="set_caption" translatable="false">Subtítulo</string>
+    <string name="set_play" translatable="false">Autoencendido</string>
+    <string name="set_language" translatable="false">Idioma</string>
+    <string name="set_languagesetting" translatable="false">Configuración de idioma</string>
+    <string name="msg_add_NoName" translatable="false">Introduzca el nombre del ingrediente</string>
+    <string name="msg_save_data" translatable="false">Salvado</string>
+    <string name="msg_move_data" translatable="false">Los ingredientes tienen movimiento para el refrigerador</string>
+    <string name="msg_exit" translatable="false">Haga clic en Volver de nuevo para salir</string>
+    <string name="hint_search" translatable="false">Por favor, introduzca el término de búsqueda</string>
+</resources>

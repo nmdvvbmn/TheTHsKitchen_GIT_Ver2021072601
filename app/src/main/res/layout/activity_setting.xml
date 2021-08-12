@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     tools:context=".SettingActivity">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/btnSetExit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -121,6 +121,16 @@ class MainActivity : BaseActivity() {
             "fa", "ms", "gu")   //사용 가능 언어
 
         if (langCode == "") {
+            App.prefs.setBoolena("stove",true)
+            App.prefs.setBoolena("oven",true)
+            App.prefs.setBoolena("micro",true)
+            App.prefs.setBoolena("blender",true)
+            App.prefs.setBoolena("multi",true)
+            App.prefs.setBoolena("airfryer",true)
+            App.prefs.setBoolena("steam",true)
+            App.prefs.setBoolena("sous",true)
+            App.prefs.setBoolena("grill",true)
+
             var language = Locale.getDefault().getLanguage()
             if (langCode == "ko"){  //한국
                 App.prefs.setBoolena("caption",false)   //한국인 경우 초기 자막 없음 설정

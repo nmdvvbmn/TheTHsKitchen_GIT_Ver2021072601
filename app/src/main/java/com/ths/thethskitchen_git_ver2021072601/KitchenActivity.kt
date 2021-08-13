@@ -26,15 +26,15 @@ class KitchenActivity : BaseActivity() {
 
 
         //체크버튼 세팅
-        binding.chkStove.isChecked = App.prefs.getBoolean("stove",false)
-        binding.chkOven.isChecked = App.prefs.getBoolean("oven",false)
-        binding.chkMicro.isChecked = App.prefs.getBoolean("micro",false)
-        binding.chkBlender.isChecked = App.prefs.getBoolean("blender",false)
-        binding.chkMulti.isChecked = App.prefs.getBoolean("multi",false)
-        binding.chkAirfryer.isChecked = App.prefs.getBoolean("airfryer",false)
-        binding.chkSteam.isChecked = App.prefs.getBoolean("steam",false)
-        binding.chkSous.isChecked = App.prefs.getBoolean("sous",false)
-        binding.chkGrill.isChecked = App.prefs.getBoolean("grill",false)
+        binding.chkStove.isChecked = App.prefs.getBoolean("stove",true)
+        binding.chkOven.isChecked = App.prefs.getBoolean("oven",true)
+        binding.chkMicro.isChecked = App.prefs.getBoolean("micro",true)
+        binding.chkBlender.isChecked = App.prefs.getBoolean("blender",true)
+        binding.chkMulti.isChecked = App.prefs.getBoolean("multi",true)
+        binding.chkAirfryer.isChecked = App.prefs.getBoolean("airfryer",true)
+        binding.chkSteam.isChecked = App.prefs.getBoolean("steam",true)
+        binding.chkSous.isChecked = App.prefs.getBoolean("sous",true)
+        binding.chkGrill.isChecked = App.prefs.getBoolean("grill",true)
 
         CoroutineScope(Dispatchers.IO).launch {
             val db = FirebaseFirestore.getInstance()

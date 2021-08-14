@@ -58,14 +58,16 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
         binding.txtUnit.setText(UtilFuncs().transUnit(dlist.quntunit))  //단위 언어에 맞게 세팅
 
         if (dlist.id == "") {
-            binding.txtTool.visibility = View.INVISIBLE
-            binding.editQunt.visibility = View.INVISIBLE
-            binding.txtUnit.visibility = View.INVISIBLE
-            binding.recycleIList.visibility = View.INVISIBLE
-            binding.recycleRList.visibility = View.INVISIBLE
-            binding.pbIlist.visibility = View.INVISIBLE
-            binding.pbRlist.visibility = View.INVISIBLE
+            binding.txtTool.visibility = View.GONE
+            binding.editQunt.visibility = View.GONE
+            binding.txtUnit.visibility = View.GONE
+            binding.recycleIList.visibility = View.GONE
+            binding.recycleRList.visibility = View.GONE
+            binding.pbIlist.visibility = View.GONE
+            binding.pbRlist.visibility = View.GONE
             binding.txtRDesc.text = dlist.desc
+            binding.txtItext.visibility = View.GONE
+            binding.txtRtext.visibility = View.GONE
 
         }else{
             //재료 RecyclerView

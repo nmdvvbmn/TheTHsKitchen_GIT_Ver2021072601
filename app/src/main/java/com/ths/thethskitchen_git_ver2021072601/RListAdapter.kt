@@ -33,7 +33,8 @@ class RListAdapter(private val listData: ArrayList<RList>, listener : OnRItem): 
         
         //인터페이스 전달 리스너
         holder.itemView.setOnClickListener{
-            mListener.onRItemSelected(rlist.time)
+            val list = listData[holder.layoutPosition]
+            mListener.onRItemSelected(list.time)
         }
 
     }

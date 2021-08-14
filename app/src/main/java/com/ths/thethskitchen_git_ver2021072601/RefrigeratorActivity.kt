@@ -1,7 +1,6 @@
 package com.ths.thethskitchen_git_ver2021072601
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -14,21 +13,22 @@ import java.time.LocalDateTime
 class RefrigeratorActivity : BaseActivity() {
     val binding by lazy { ActivityRefrigeratorBinding.inflate(layoutInflater) }
     var adapter = RefrigeratorAtapter()
-    var dbHelper = SQLiteDBHelper(this,"THsKitchen.db", 1)
+    private var dbHelper = SQLiteDBHelper(this,"THsKitchen.db", 1)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         adapter.helper = dbHelper
-        adapter.refrigeratorList.addAll(dbHelper.select_refrigerator())
+        adapter.refrigeratorList.addAll(dbHelper.selectRefrigerator())
         binding.viewRefrigeratorList.adapter = adapter
         binding.viewRefrigeratorList.layoutManager = LinearLayoutManager(this)
+//        binding.viewRefrigeratorList.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
 
 //          냉장고 아이템 클릭 ---> 입력화면 이동
         binding.btnAddRefrigerator.setOnClickListener {
-            var builder = AlertDialog.Builder(this)
-            var dialogAdd = DailogRefrigeratorAddBinding.inflate(layoutInflater)
+            val builder = AlertDialog.Builder(this)
+            val dialogAdd = DailogRefrigeratorAddBinding.inflate(layoutInflater)
             
             builder.setTitle(this.getString(R.string.refrigerator_add_title))
             builder.setView(dialogAdd.root)
@@ -42,12 +42,12 @@ class RefrigeratorActivity : BaseActivity() {
                         dialogAdd.txtRefrigeratorAddName.text.toString(),
                         dialogAdd.txtRefrigeratorAddDesc.text.toString(),
                         LocalDateTime.now())
-                    dbHelper.insert_refiregierator(refrigeratorList)
+                    dbHelper.insertRefiregierator(refrigeratorList)
                     Toast.makeText(this,getString(R.string.msg_save_data),
                         Toast.LENGTH_SHORT).show()
                     //리스트뷰 새로고침
                     adapter.refrigeratorList.clear()
-                    adapter.refrigeratorList.addAll(dbHelper.select_refrigerator())
+                    adapter.refrigeratorList.addAll(dbHelper.selectRefrigerator())
                     adapter.notifyDataSetChanged()
                     alertDailog.dismiss()   //입력화면 종료
                 }else{
@@ -64,7 +64,7 @@ class RefrigeratorActivity : BaseActivity() {
 //      장바구니 이동
         binding.btnToCart2.setOnClickListener {
             val intent = Intent(this,CartActivity::class.java)
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
             startActivity(intent)
         }
 //      종료

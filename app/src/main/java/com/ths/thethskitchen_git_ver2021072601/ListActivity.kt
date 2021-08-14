@@ -1,9 +1,8 @@
 package com.ths.thethskitchen_git_ver2021072601
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityListBinding
 import kotlinx.coroutines.*
@@ -19,6 +18,7 @@ class ListActivity : BaseActivity() {
         val search = intent.getStringExtra("search") as String
         binding.searchDList.adapter = adapter
         binding.searchDList.layoutManager = LinearLayoutManager(this)
+        binding.searchDList.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
         getData(search)
     }
 

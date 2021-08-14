@@ -1,16 +1,12 @@
 package com.ths.thethskitchen_git_ver2021072601
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenResumed
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.firestore.FirebaseFirestore
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityKitchenBinding
 import kotlinx.coroutines.*
-import kotlinx.coroutines.selects.select
 
 //나의 부엌 설정
 class KitchenActivity : BaseActivity() {
@@ -40,8 +36,8 @@ class KitchenActivity : BaseActivity() {
             val db = FirebaseFirestore.getInstance()
             db.collection("URList").get().addOnSuccessListener { result ->
                 for (document in result) {
-                    val URL = document["URL"] as String
-                    list.add(URL)
+                    val url = document["URL"] as String
+                    list.add(url)
                 }
 //                withContext(Dispatchers.Main){
 //                    Log.d("ListAdapter","${list.size}")
@@ -52,31 +48,31 @@ class KitchenActivity : BaseActivity() {
         }
 
         
-        binding.chkStove.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.chkStove.setOnCheckedChangeListener { _, isChecked ->
             App.prefs.setBoolena("stove",isChecked)
         }   //레인지
-        binding.chkOven.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.chkOven.setOnCheckedChangeListener { _, isChecked ->
             App.prefs.setBoolena("oven",isChecked)
         }   //오븐
-        binding.chkMicro.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.chkMicro.setOnCheckedChangeListener { _, isChecked ->
             App.prefs.setBoolena("micro",isChecked)
         }   //전자레인지
-        binding.chkBlender.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.chkBlender.setOnCheckedChangeListener { _, isChecked ->
             App.prefs.setBoolena("blender",isChecked)
         }   //블렌더
-        binding.chkAirfryer.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.chkAirfryer.setOnCheckedChangeListener { _, isChecked ->
             App.prefs.setBoolena("airfryer",isChecked)
         }   //에어프라이어
-        binding.chkMulti.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.chkMulti.setOnCheckedChangeListener { _, isChecked ->
             App.prefs.setBoolena("multi",isChecked)
         }   //인스턴트팟
-        binding.chkSteam.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.chkSteam.setOnCheckedChangeListener { _, isChecked ->
             App.prefs.setBoolena("steam",isChecked)
         }   //찜기
-        binding.chkSous.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.chkSous.setOnCheckedChangeListener { _, isChecked ->
             App.prefs.setBoolena("sous",isChecked)
         }   //수비드
-        binding.chkGrill.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.chkGrill.setOnCheckedChangeListener { _, isChecked ->
             App.prefs.setBoolena("grill",isChecked)
         }   //그릴
 
@@ -87,14 +83,14 @@ class KitchenActivity : BaseActivity() {
 
 
 //        //이미지 로딩을 위한 스레드
-        var isRunning = true
+        val isRunning = true
         lifecycleScope.launch {
             whenResumed {
                 while (isRunning) {
                     delay(3000)
                     if (list.size > 0){
-                        binding.viewReview.currentItem?.let {
-                            binding.viewReview.setCurrentItem(it.plus(1)  )
+                        binding.viewReview.currentItem.let {
+                            binding.viewReview.currentItem = it.plus(1)
                         }
                     }
                 }

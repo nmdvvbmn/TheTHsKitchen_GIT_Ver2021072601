@@ -5,18 +5,21 @@
         <item android:id="@+id/menu_search"
             android:icon="@drawable/ic_baseline_search_24"
             android:title="@string/menu_search"/>
-        <item android:id="@+id/menu_recommand"
-            android:icon="@drawable/ic_baseline_restaurant_24"
-            android:title="@string/menu_recommandList"/>
+        <item
+            android:id="@+id/menu_recommand"
+            android:icon="@drawable/ic_good_24"
+            android:title="@string/menu_recommandList" />
     </group>
     <group android:checkableBehavior="single"
         android:id="@+id/group_myKitchen">
-        <item android:id="@+id/menu_kitchen"
-            android:icon="@drawable/ic_baseline_local_dining_24"
-            android:title="@string/menu_kitchen"/>
-        <item android:id="@+id/menu_refrigerator"
+        <item
+            android:id="@+id/menu_kitchen"
+            android:icon="@drawable/ic_kitchen_icon24"
+            android:title="@string/menu_kitchen" />
+        <item
+            android:id="@+id/menu_refrigerator"
             android:icon="@drawable/ic_baseline_kitchen_24"
-            android:title="@string/menu_refrigerator"/>
+            android:title="@string/menu_refrigerator" />
         <item android:id="@+id/menu_cart"
             android:icon="@drawable/ic_baseline_shopping_cart_24"
             android:title="@string/menu_cart"/>

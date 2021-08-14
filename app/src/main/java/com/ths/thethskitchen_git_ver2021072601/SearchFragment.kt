@@ -49,7 +49,7 @@ class SearchFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         mBinding = FragmentSearchBinding.inflate(inflater,container,false)
         binding.viewSearch.adapter = adapter
         binding.viewSearch.orientation = ViewPager2.ORIENTATION_HORIZONTAL
@@ -65,10 +65,10 @@ class SearchFragment : Fragment() {
         }
         CoroutineScope(Dispatchers.IO).launch {
             val db = FirebaseFirestore.getInstance()
-            db.collection("URList").get().addOnSuccessListener { result ->
+            db.collection("MList").get().addOnSuccessListener { result ->
                 for (document in result) {
-                    val URL = document["URL"] as String
-                    list.add(URL)
+                    val url = document["URL"] as String
+                    list.add(url)
                 }
                 Log.d("ListAdapter","Coroutine")
 //                withContext(Dispatchers.Main){
@@ -79,14 +79,14 @@ class SearchFragment : Fragment() {
             }
         }
         //        //이미지 로딩을 위한 스레드
-        var isRunning = true
+//        val isRunning = true
         lifecycleScope.launch {
             whenResumed {
-                while (isRunning) {
+                while (true) {
                     delay(3000)
                     if (list.size > 0){
-                        binding.viewSearch.currentItem?.let {
-                            binding.viewSearch.setCurrentItem(it.plus(1)  )
+                        binding.viewSearch.currentItem.let {
+                            binding.viewSearch.currentItem = it.plus(1)
                         }
                     }
                 }

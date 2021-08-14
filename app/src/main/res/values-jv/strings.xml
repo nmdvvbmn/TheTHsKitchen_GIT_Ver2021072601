@@ -65,4 +65,5 @@
     <string name="msg_move_data" translatable="false">Úa duwe pamindhahan kanggo kulkas</string>
     <string name="msg_exit" translatable="false">Klik Mbalik maneh kanggo metu</string>
     <string name="hint_search" translatable="false">Mangga ketik ukoro Panjenengan</string>
+    <string name="inputdate">input Tanggal</string>
 </resources>

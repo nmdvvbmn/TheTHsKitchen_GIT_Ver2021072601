@@ -8,7 +8,7 @@ open class StringFuncs {
 
     // 추천요리 아이템 비고 텍스트
     open fun makeDesc( data: DList, context: Context ): String {
-       var output: String = ""
+        var output: String
 
         output = context.getString(R.string.ctime) + " : " + data.time.toString()
         when (data.timeunit) {
@@ -16,16 +16,19 @@ open class StringFuncs {
             "시간" -> output = output + context.getString(R.string.hour) + "\n"
             "일" -> output = output + context.getString(R.string.day) + "\n"
             "주" -> output = output + context.getString(R.string.week) + "\n"
-            else -> output = output + "\n"
+            else -> output += "\n"
         }
-        output = output + context.getString(R.string.ptime) + " : " + data.pretime.toString()
-        when (data.preunit) {
-            "분" -> output = output + context.getString(R.string.min) + "\n"
-            "시간" -> output = output + context.getString(R.string.hour) + "\n"
-            "일" -> output = output + context.getString(R.string.day) + "\n"
-            "주" -> output = output + context.getString(R.string.week) + "\n"
-            else -> output = output + "\n"
+        if (data.pretime > 0){
+            output = output + context.getString(R.string.ptime) + " : " + data.pretime.toString()
+            when (data.preunit) {
+                "분" -> output = output + context.getString(R.string.min) + "\n"
+                "시간" -> output = output + context.getString(R.string.hour) + "\n"
+                "일" -> output = output + context.getString(R.string.day) + "\n"
+                "주" -> output = output + context.getString(R.string.week) + "\n"
+                else -> output += "\n"
+            }
         }
+
 
         if (data.stove > 0 || data.oven > 0 ||  data.micro > 0 ||  data.blender > 0 ||
             data.airfryer > 0 || data.multi > 0 ||  data.steamer > 0 ||  data.sousvide > 0 ||
@@ -58,7 +61,7 @@ open class StringFuncs {
             output = output + context.getString(R.string.sous) + "  "
         }
         if(data.grill > 0) {
-            output = output + context.getString(R.string.grill)
+            output += context.getString(R.string.grill)
         }
 
        return  output
@@ -66,6 +69,6 @@ open class StringFuncs {
 
     //LocalDateTime to String
     open fun makeDateString( date: LocalDateTime ): String {
-        return date.format(DateTimeFormatter.ISO_DATE_TIME)
+        return date.format(DateTimeFormatter.ISO_LOCAL_DATE)
     }
 }

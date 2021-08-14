@@ -56,7 +56,7 @@ class SQLiteDBHelper (
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
     }
 
-    fun select_refrigerator() : MutableList<RefrigeratorList> {
+    fun selectRefrigerator() : MutableList<RefrigeratorList> {
         val refrigeratorList = mutableListOf<RefrigeratorList>()
         val select = "select * from refrigerator ORDER BY date DESC"
         val rd = readableDatabase
@@ -74,13 +74,13 @@ class SQLiteDBHelper (
         return refrigeratorList
     }
 
-    fun delete_refiregierator(refrigeratorList: RefrigeratorList) {
+    fun deleteRefiregierator(refrigeratorList: RefrigeratorList) {
         val delete = "delete from refrigerator where id = ${refrigeratorList.id}"
         val db = writableDatabase
         db.execSQL(delete)
     }
 
-    fun update_refiregierator(refrigeratorList: RefrigeratorList) {
+    fun updateRefiregierator(refrigeratorList: RefrigeratorList) {
         val values = ContentValues()
         val wd = writableDatabase
         values.put("id", refrigeratorList.id)
@@ -90,7 +90,7 @@ class SQLiteDBHelper (
         wd.update("refrigerator", values, "id = ${refrigeratorList.id}", null)
     }
 
-    fun insert_refiregierator(refrigeratorList: RefrigeratorList) {
+    fun insertRefiregierator(refrigeratorList: RefrigeratorList) {
         val values = ContentValues()
         val wd = writableDatabase
         values.put("name", refrigeratorList.name)
@@ -99,7 +99,7 @@ class SQLiteDBHelper (
         wd.insert("refrigerator",null, values)
     }
 
-    fun select_cart() : MutableList<CartList> {
+    fun selectCart() : MutableList<CartList> {
         val cartList = mutableListOf<CartList>()
         val select = "select * from cart ORDER BY date DESC"
         val rd = readableDatabase
@@ -117,13 +117,13 @@ class SQLiteDBHelper (
         return cartList
     }
 
-    fun delete_cart(cartList: CartList) {
+    fun deleteCart(cartList: CartList) {
         val delete = "delete from cart where id = ${cartList.id}"
         val db = writableDatabase
         db.execSQL(delete)
     }
 
-    fun update_cart(cartList: CartList) {
+    fun updateCart(cartList: CartList) {
         val values = ContentValues()
         val wd = writableDatabase
         values.put("id", cartList.id)
@@ -133,7 +133,7 @@ class SQLiteDBHelper (
         wd.update("cart", values, "id = ${cartList.id}", null)
     }
 
-    fun insert_cart(cartList: CartList) {
+    fun insertCart(cartList: CartList) {
         val values = ContentValues()
         val wd = writableDatabase
         values.put("name", cartList .name)
@@ -142,20 +142,18 @@ class SQLiteDBHelper (
         wd.insert("cart",null, values)
     }
 
-    fun move_cart(cartList: CartList) {
-        val values = ContentValues()
-        val wd = writableDatabase
+    fun moveCart(cartList: CartList) {
 
         cartList.desc = cartList.desc + "\n" + StringFuncs().makeDateString(cartList.date)
 
-        var refrigeratorList = RefrigeratorList( 0, cartList.name, cartList.desc , LocalDateTime.now() )
-        insert_refiregierator(refrigeratorList)
+        val refrigeratorList = RefrigeratorList( 0, cartList.name, cartList.desc , LocalDateTime.now() )
+        insertRefiregierator(refrigeratorList)
 
-        delete_cart(cartList)
+        deleteCart(cartList)
 
     }
 
-    fun select_favorites() : MutableList<DList> {
+    fun selectFavorites() : MutableList<DList> {
         val dList = mutableListOf<DList>()
         val select = "select * from favorites ORDER BY date DESC"
         val rd = readableDatabase
@@ -190,13 +188,13 @@ class SQLiteDBHelper (
         return dList
     }
 
-    fun delete_favorites(dList: DList) {
+    fun deleteFavorites(dList: DList) {
         val delete = "delete from favorites where video = '${dList.video}'"
         val db = writableDatabase
         db.execSQL(delete)
     }
 
-    fun insert_favorites(dList: DList) {
+    fun insertFavorites(dList: DList) {
         val values = ContentValues()
         val wd = writableDatabase
         values.put("id", dList .id)
@@ -224,14 +222,14 @@ class SQLiteDBHelper (
         wd.insert("favorites",null, values)
     }
 
-    fun exists_favorites(video: String) : Boolean {
+    fun existsFavorites(video: String) : Boolean {
         val select = "select exists ( " +
                 "select id from favorites where video =  '${video}' LIMIT 1)"
         val rd = readableDatabase
         val cursor = rd.rawQuery(select, null)
         cursor.moveToFirst()
         return if(cursor?.getInt(0) == 1){
-            cursor?.close()
+            cursor.close()
             true
         } else {
             cursor?.close()

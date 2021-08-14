@@ -2,7 +2,6 @@ package com.ths.thethskitchen_git_ver2021072601
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 
 // Pref
 class App: Application() {
@@ -15,10 +14,10 @@ class App: Application() {
 
         super.onCreate()
     }
-    private var currentLocaleContext: Context? = null
+//    private var currentLocaleContext: Context? = null
     override fun attachBaseContext(base: Context?) {
         prefs = THsSharedPreferences(base!!)
-        super.attachBaseContext(UtilFuncs.getLocalizedContext(base!!, UtilFuncs().getLanguage()))
+        super.attachBaseContext(UtilFuncs.getLocalizedContext(base, UtilFuncs().getLanguage()))
     }
 }
 

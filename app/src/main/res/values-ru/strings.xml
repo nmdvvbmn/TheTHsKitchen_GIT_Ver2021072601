@@ -65,4 +65,5 @@
     <string name="msg_move_data" translatable="false">Ингредиенты должны перейти на холодильник</string>
     <string name="msg_exit" translatable="false">Нажмите кнопку Назад еще раз для выхода</string>
     <string name="hint_search" translatable="false">Введите слово для поиска</string>
+    <string name="inputdate">Ввод даты</string>
 </resources>

@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
@@ -27,27 +26,26 @@ class KitchenAdapter(val list: ArrayList<String>):RecyclerView.Adapter<KitchenAd
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        var pos = 0
-        var URL = ""
-        try {
-            pos = position % list.size
+        var url = ""
+        val pos: Int = try {
+            position % list.size
         }catch (e: ArithmeticException){
-            pos = 0
+            0
         }
 
-        val layoutParams = holder.itemView.layoutParams
+        holder.itemView.layoutParams
         holder.itemView.requestLayout()
         holder.setIsRecyclable(false)
 
         if (list.size > 0){
-            URL = list.get(pos)
-            holder.setList(URL)
+            url = list[pos]
+            holder.setList(url)
         }
         //아이템 클릭
         holder.itemView.setOnClickListener{
 //            --> 디테일로 이동
             val intent = Intent( Intent.ACTION_VIEW,
-                Uri.parse("https://www.youtube.com/watch?v=" + URL))
+                Uri.parse("https://www.youtube.com/watch?v=${url}"))
             startActivity(mContext,intent,null)
         }
     }
@@ -56,13 +54,12 @@ class KitchenAdapter(val list: ArrayList<String>):RecyclerView.Adapter<KitchenAd
         return Integer.MAX_VALUE
     }
 
-    inner class Holder(binding: ItemKitchenBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class Holder(val binding: ItemKitchenBinding) : RecyclerView.ViewHolder(binding.root) {
         var mdlist: DList? = null
-        val binding = binding
         fun setList(URL: String){
             CoroutineScope(Dispatchers.Main).launch {
                 val url = "https://i.ytimg.com/vi/${URL}/0.jpg" //이미지 URL생성
-                Log.d("ListAdapter","${URL}")
+//                Log.d("ListAdapter","${URL}")
                 val bitmap = withContext(Dispatchers.IO) {
                     loadImage(url)
                 }

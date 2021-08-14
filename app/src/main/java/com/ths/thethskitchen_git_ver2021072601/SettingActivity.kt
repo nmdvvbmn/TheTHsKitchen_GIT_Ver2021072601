@@ -1,6 +1,5 @@
 package com.ths.thethskitchen_git_ver2021072601
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivitySettingBinding
 

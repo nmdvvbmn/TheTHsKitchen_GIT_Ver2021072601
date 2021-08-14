@@ -65,4 +65,5 @@
     <string name="msg_move_data" translatable="false">該成分具有移動冰箱</string>
     <string name="msg_exit" translatable="false">再次點擊返回退出</string>
     <string name="hint_search" translatable="false">請輸入您的搜索字詞</string>
+    <string name="inputdate">輸入日期</string>
 </resources>

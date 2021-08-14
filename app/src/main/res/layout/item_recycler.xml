@@ -3,12 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemList"
+    android:background="?attr/selectableItemBackground"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/imgThumb"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -54,4 +55,14 @@
         app:layout_constraintStart_toEndOf="@+id/imgThumb"
         app:layout_constraintTop_toBottomOf="@+id/txtName"
         app:layout_constraintVertical_bias="0.238" />
+
+    <ImageView
+        android:id="@+id/imgNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/imgThumb"
+        app:layout_constraintTop_toTopOf="@+id/imgThumb"
+        app:srcCompat="@drawable/ic_resource_new_48" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -65,4 +65,5 @@
     <string name="msg_move_data" translatable="false">مواد تشکیل دهنده دارند حرکت به یخچال و فریزر</string>
     <string name="msg_exit" translatable="false">کلیک کنید بازگشت دوباره به خروج</string>
     <string name="hint_search" translatable="false">لطفا عبارت جستجوی خود را وارد کنید</string>
+    <string name="inputdate">تاریخ ورودی</string>
 </resources>

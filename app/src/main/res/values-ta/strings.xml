@@ -65,4 +65,5 @@
     <string name="msg_move_data" translatable="false">பொருட்கள் குளிர்சாதனப் பெட்டிக்கு நடவடிக்கை வேண்டும்</string>
     <string name="msg_exit" translatable="false">வெளியேறும் மீண்டும் மீண்டும் கிளிக் செய்க</string>
     <string name="hint_search" translatable="false">உங்கள் தேடல் சொல்லை உள்ளிட</string>
+    <string name="inputdate">உள்ளீடு தேதி</string>
 </resources>

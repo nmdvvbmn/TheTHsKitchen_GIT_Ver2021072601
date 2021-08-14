@@ -12,9 +12,9 @@ open class BaseActivity: AppCompatActivity() { //You can use your preferred acti
      */
     private fun resetTitle() {
         try {
-            val label = packageManager.getActivityInfo(componentName, PackageManager.GET_META_DATA).labelRes;
+            val label: Int = packageManager.getActivityInfo(componentName, PackageManager.GET_META_DATA).labelRes
             if (label != 0) {
-                setTitle(label);
+                setTitle(label)
             }
         } catch (e: PackageManager.NameNotFoundException) {}
     }

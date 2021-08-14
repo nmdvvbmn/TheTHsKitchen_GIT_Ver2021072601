@@ -1,20 +1,22 @@
 package com.ths.thethskitchen_git_ver2021072601
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.ths.thethskitchen_git_ver2021072601.databinding.ItemRecyclerBinding
 import kotlinx.coroutines.*
 import java.io.Serializable
+import java.util.*
 
 
 // 추천 요리 어뎁터
-class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<RecyclerAdapter.Holder>() {
+class RecyclerAdapter(private val listData: ArrayList<DList>):RecyclerView.Adapter<RecyclerAdapter.Holder>() {
     lateinit var mContext: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemRecyclerBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -24,7 +26,7 @@ class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<Recy
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val dlist = listData.get(position)
+        val dlist = listData[position]
         val layoutParams = holder.itemView.layoutParams
         layoutParams.height = 400
         holder.itemView.requestLayout()
@@ -34,7 +36,7 @@ class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<Recy
         holder.itemView.setOnClickListener{
 //            --> 디테일로 이동
             Intent(mContext, RecommandDetail::class.java).apply {
-                putExtra("data", listData.get(position) as Serializable)
+                putExtra("data", listData[position] as Serializable)
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }.run { mContext.startActivity(this) }
         }
@@ -44,9 +46,10 @@ class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<Recy
         return listData.size
     }
 
-    inner class Holder(binding: ItemRecyclerBinding) : RecyclerView.ViewHolder(binding.root) {
-        var mdlist: DList? = null
-        val binding = binding
+    inner class Holder(val binding: ItemRecyclerBinding) : RecyclerView.ViewHolder(binding.root) {
+        private var mdlist: DList? = null
+
+        @SuppressLint("UseCompatLoadingForDrawables")
         @RequiresApi(Build.VERSION_CODES.N)
 
 //        리스트 아이템 세팅
@@ -72,11 +75,15 @@ class RecyclerAdapter(val listData: ArrayList<DList> ):RecyclerView.Adapter<Recy
             }
 
             when (dlist.flag){
-                4 -> binding.itemList.background = mContext.getDrawable(R.drawable.edge)
+                4 -> {
+                    binding.itemList.background = mContext.getDrawable(R.drawable.edge)
+                    binding.imgNew.visibility = View.VISIBLE
+                }
+
 //                3 -> binding.itemList.background = mContext.getDrawable(R.drawable.edge)
 //                2 -> binding.itemList.background = mContext.getDrawable(R.drawable.edge)
-//                1 -> binding.itemList.background = mContext.getDrawable(R.drawable.edge)
-                0 -> binding.itemList.background = null
+//                1 -> binding.itemList.background = mContext.getDrawable(R.drawable.edge_line)
+//                0 -> binding.itemList.background = mContext.getDrawable(R.drawable.edge_line)
             }
 
         }

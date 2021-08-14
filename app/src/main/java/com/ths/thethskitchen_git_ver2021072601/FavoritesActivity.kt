@@ -1,6 +1,5 @@
 package com.ths.thethskitchen_git_ver2021072601
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityFavoritesBinding
@@ -9,13 +8,13 @@ import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityFavoritesBind
 class FavoritesActivity : BaseActivity() {
     val binding by lazy { ActivityFavoritesBinding.inflate(layoutInflater) }
     var adapter = FavoritesAtapter()
-    var dbHelper = SQLiteDBHelper(this,"THsKitchen.db", 1)
+    private var dbHelper = SQLiteDBHelper(this,"THsKitchen.db", 1)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         adapter.helper = dbHelper
-        adapter.dList.addAll(dbHelper?.select_favorites())
+        adapter.dList.addAll(dbHelper.selectFavorites())
         binding.viewFavoritesList.adapter = adapter
         binding.viewFavoritesList.layoutManager = LinearLayoutManager(this)
 

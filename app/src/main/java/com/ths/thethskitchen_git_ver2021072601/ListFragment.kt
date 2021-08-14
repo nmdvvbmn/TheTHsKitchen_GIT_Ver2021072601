@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -14,7 +15,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.io.IOException
 import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -49,12 +49,13 @@ class ListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         mBinding = FragmentListBinding.inflate(inflater,container,false)
         binding.recyclerDList.adapter = adapter
         binding.recyclerDList.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerDList.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         binding.swipeLayout.setOnRefreshListener {
-            if (proc == false){
+            if (!proc){
                 selectList()
                 binding.swipeLayout.isRefreshing = false
             }else{
@@ -71,9 +72,9 @@ class ListFragment : Fragment() {
         val date = UtilFuncs().getKorDate()
         val langCode = UtilFuncs().getLanguage()
         val helper = SQLiteDBHelper(requireContext(), "THsKitchen.db", 1)
-        var refrigerator = helper.select_refrigerator()
-        var nameList: ArrayList<String> = arrayListOf()
-        var idList: ArrayList<String> = arrayListOf()
+        val refrigerator = helper.selectRefrigerator()
+        val nameList: ArrayList<String> = arrayListOf()
+        val idList: ArrayList<String> = arrayListOf()
 
         var dlistCnt = 0    //DList sync 위한 카운터
         var dnameCnt = 0    //DName Sync 위한 카운터
@@ -89,17 +90,17 @@ class ListFragment : Fragment() {
         val sous = getTooltoInt(App.prefs.getBoolean("sous", false))
         val grill = getTooltoInt(App.prefs.getBoolean("grill", false))
         
-        for (i in 0..refrigerator.size - 1) {   //냉장고 저장 리스트
+        for (i in 0 until refrigerator.size) {   //냉장고 저장 리스트
             nameList.add(refrigerator[i].name)
         }
 
-        val nameList_d = nameList.distinct()        //재료 중복 제거
+        val nameListD = nameList.distinct()        //재료 중복 제거
 
-        for (i in nameList_d.size - 1 downTo 10){
+        for (i in nameListD.size - 1 downTo 10){
             nameList.removeAt(i)
         }
 
-        if (nameList_d.size <= 0) {     // 재료 없음 검색 X
+        if (nameListD.isEmpty()) {     // 재료 없음 검색 X
             binding.pbLoading.visibility = View.INVISIBLE
         }else{ // 초기화
             dlist.clear()
@@ -139,7 +140,7 @@ class ListFragment : Fragment() {
                         4
                     )
                     CoroutineScope(Dispatchers.IO).launch {
-                        item = searchData().getYoutube(item)
+                        item = SearchData().getYoutube(item)
                         dlist.add(0,item)
 //                        for (item in dlist){
 //                            item.desc = ""
@@ -152,9 +153,9 @@ class ListFragment : Fragment() {
                 }
             }
 
-        for (i in 0..nameList_d.size - 1) { //IName에서 DList ID 검색
+        for (element in nameListD) { //IName에서 DList ID 검색
             db.collection("IName")
-                .whereEqualTo("name", nameList_d[i]).orderBy("id", Query.Direction.DESCENDING ).limit(5)
+                .whereEqualTo("name", element).orderBy("id", Query.Direction.DESCENDING ).limit(5)
                 .get().addOnSuccessListener { result ->
                     for (document in result) {
                         idList.add(document["id"] as String)    //ID list
@@ -163,13 +164,13 @@ class ListFragment : Fragment() {
                     Log.d("Refrigerator&Dname", "Fail")
                 }.addOnCompleteListener { task ->
                     dlistCnt ++
-                    if (dlistCnt  == nameList_d.size ) { //ID list 검색 완료
-                        val idList_d = idList.distinct().sortedDescending() //Id List 중복 제거 정렬
-                        if (task.isSuccessful && idList_d.size > 0) { //Id list가 있을 경우
-                            for (i in 0..idList_d.size - 1) {
-                                db.collection("DList").document(idList_d[i])
+                    if (dlistCnt  == nameListD.size ) { //ID list 검색 완료
+                        val idListD = idList.distinct().sortedDescending() //Id List 중복 제거 정렬
+                        if (task.isSuccessful && idListD.isNotEmpty()) { //Id list가 있을 경우
+                            for (i in idListD.indices) {
+                                db.collection("DList").document(idListD[i])
                                     .get().addOnSuccessListener { document ->
-                                        var item = DList(   //DList Row
+                                        val item = DList(   //DList Row
                                             document.id,
                                             "",
                                             document["date"] as Long,
@@ -208,13 +209,13 @@ class ListFragment : Fragment() {
 
                                             // 요리명
                                             db.collection("DName")
-                                                .whereEqualTo("id", idList_d[i])
+                                                .whereEqualTo("id", idListD[i])
                                                 .whereEqualTo("code", langCode)
                                                 .limit(1)
                                                 .get()
                                                 .addOnSuccessListener { result ->
                                                     for (document in result) {
-                                                        var index =
+                                                        val index =
                                                             dlist.indexOfFirst { it.id == document["id"] as String }
                                                         dlist[index].name =
                                                             document["name"] as String
@@ -224,15 +225,15 @@ class ListFragment : Fragment() {
                                                     Log.d("FireStore", "Fail")
                                                 }.addOnCompleteListener {
                                                     dnameCnt++
-                                                    if (dnameCnt == idList_d.size) {
+                                                    if (dnameCnt == idListD.size) {
                                                         //마지막 리턴 후 프로그레스 종
-                                                        var sortedList = dlist.distinctBy { it.id }
+                                                        val sortedList = dlist.distinctBy { it.id }
                                                             .sortedByDescending { it.date }
                                                             .sortedByDescending { it.id }
                                                             .sortedByDescending { it.flag }
                                                         dlist.clear()
                                                         dlist.addAll(sortedList)
-                                                        for (i in 1..dlist.size -1){
+                                                        for (i in 1 until dlist.size){
                                                             if (i < 4){
                                                                 dlist[i].flag = 2
                                                             }else{
@@ -252,15 +253,15 @@ class ListFragment : Fragment() {
                                                 }
                                             }else{
                                                 dnameCnt++
-                                                if (dnameCnt == idList_d.size) {
+                                                if (dnameCnt == idListD.size) {
                                                     //실패시 마지막 프로그레스 종료
-                                                    var sortedList = dlist.distinctBy { it.id }
+                                                    val sortedList = dlist.distinctBy { it.id }
                                                         .sortedByDescending { it.date }
                                                         .sortedByDescending { it.id }
                                                         .sortedByDescending { it.flag }
                                                     dlist.clear()
                                                     dlist.addAll(sortedList)
-                                                    for (i in 1..dlist.size -1){
+                                                    for (i in 1 until dlist.size){
                                                         if (i < 4){
                                                             dlist[i].flag = 2
                                                         }else{
@@ -279,17 +280,17 @@ class ListFragment : Fragment() {
                                                 }
                                             }
 
-                                        }.addOnFailureListener { exception ->
+                                        }.addOnFailureListener {
                                             dnameCnt++
 //                                            if (dnameCnt == idList_d.size) {
-                                            if (dlistCnt == idList_d.size) {
-                                                var sortedList = dlist.distinctBy { it.id }
+                                            if (dlistCnt == idListD.size) {
+                                                val sortedList = dlist.distinctBy { it.id }
                                                     .sortedByDescending { it.date }
                                                     .sortedByDescending { it.id }
                                                     .sortedByDescending { it.flag }
                                                 dlist.clear()
                                                 dlist.addAll(sortedList)
-                                                for (i in 1..dlist.size -1){
+                                                for (i in 1 until dlist.size){
                                                     if (i < 4){
                                                         dlist[i].flag = 2
                                                     }else{
@@ -308,13 +309,13 @@ class ListFragment : Fragment() {
                                     }
                                 }
                             } else {
-                            var sortedList = dlist.distinctBy { it.id }
+                            val sortedList = dlist.distinctBy { it.id }
                                 .sortedByDescending { it.date }
                                 .sortedByDescending { it.id }
                                 .sortedByDescending { it.flag }
                                 dlist.clear()
                                 dlist.addAll(sortedList)
-                                for (i in 1..dlist.size -1){
+                                for (i in 1 until dlist.size){
                                     if (i < 4){
                                         dlist[i].flag = 2
                                     }else{
@@ -334,10 +335,10 @@ class ListFragment : Fragment() {
     }
     // 나의 부엌 체크박스를 변환
     private fun getTooltoInt(boolean: Boolean): Int {
-        if (boolean) {
-            return 2
+        return if (boolean) {
+            2
         } else {
-            return 1
+            1
         }
     }
 
@@ -345,20 +346,6 @@ class ListFragment : Fragment() {
         mBinding = null
         super.onDestroyView()
     }
-    fun isOnline(): Boolean {
-        val runtime = Runtime.getRuntime()
-        try {
-            val ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8")
-            val exitValue = ipProcess.waitFor()
-            return exitValue == 0
-        } catch (e: IOException) {
-            e.printStackTrace()
-        } catch (e: InterruptedException) {
-            e.printStackTrace()
-        }
-        return false
-    }
-
 
     companion object {
         /**

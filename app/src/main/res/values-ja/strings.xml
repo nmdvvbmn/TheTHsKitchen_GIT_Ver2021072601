@@ -65,4 +65,5 @@
     <string name="msg_move_data" translatable="false">食材は、冷蔵庫への移行を持っています</string>
     <string name="msg_exit" translatable="false">終了するには再び[戻る]をクリックします</string>
     <string name="hint_search" translatable="false">検索語を入力してください</string>
+    <string name="inputdate">入力日付</string>
 </resources>

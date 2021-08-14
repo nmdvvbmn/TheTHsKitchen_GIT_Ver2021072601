@@ -1,14 +1,10 @@
 package com.ths.thethskitchen_git_ver2021072601
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.ContextThemeWrapper
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenResumed
@@ -20,15 +16,11 @@ import java.util.*
 
 class MainActivity : BaseActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater)}
-    var exit = false
+    private var exit = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
         setLanguge()    //최초 실행시 언어설정(한국은 자막X)
-
-        val langCode = UtilFuncs().getLanguage()
-//        UtilFuncs().setLocale(baseContext, langCode)
 
         //메인화면 뷰 페이져
         val viewPager = ViewPagerAdapter(this  )
@@ -37,7 +29,7 @@ class MainActivity : BaseActivity() {
         binding.viewPager.adapter = viewPager
         
         // 메뉴 해더 유튜브로 이동
-        var header = binding.navi.getHeaderView(0)
+        val header = binding.navi.getHeaderView(0)
         header.setOnClickListener{
             val intent = Intent(Intent.ACTION_VIEW,
                 Uri.parse("https://www.youtube.com/channel/UCM_NeHV1e_QZ5dYr-C-TJqA"))
@@ -48,11 +40,11 @@ class MainActivity : BaseActivity() {
         binding.navi.setNavigationItemSelectedListener {
             when(it.itemId){
                 binding.navi.menu.getItem(0).itemId -> {    // 검색창으로 이동
-                    binding.viewPager.setCurrentItem(0)
+                    binding.viewPager.currentItem = 0
                     binding.drawer.closeDrawers()
                 }
                 binding.navi.menu.getItem(1).itemId -> {    //추천 리스트로 이동
-                    binding.viewPager.setCurrentItem(1)
+                    binding.viewPager.currentItem = 1
                     binding.drawer.closeDrawers()
                 }
                 binding.navi.menu.getItem(2).itemId -> {//우리집 부엌
@@ -61,12 +53,12 @@ class MainActivity : BaseActivity() {
                 }
                 binding.navi.menu.getItem(3).itemId -> {    //우리집냉장고
                     val intent = Intent(this, RefrigeratorActivity::class.java)
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                    intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
                     startActivity(intent)
                 }
                 binding.navi.menu.getItem(4).itemId -> {    //장바구니
                     val intent = Intent(this,CartActivity::class.java)
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                    intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
                     startActivity(intent)
                 }
                 binding.navi.menu.getItem(5).itemId -> {    //즐겨찾기
@@ -75,11 +67,11 @@ class MainActivity : BaseActivity() {
                 }
                 binding.navi.menu.getItem(6).itemId -> {    //설정
                     val intent = Intent(this, SettingActivity::class.java)
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                    intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
                     startActivity(intent)
                 }
                 binding.navi.menu.getItem(7).itemId -> { //연락하기
-                    var email = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:thstudio6158@gmail.com"))
+                    val email = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:thstudio6158@gmail.com"))
                     startActivity(email)
                 }
 
@@ -95,18 +87,21 @@ class MainActivity : BaseActivity() {
         binding.btnMenu.setOnClickListener{
             binding.drawer.openDrawer(GravityCompat.START)
         }
+
         
         // 페이지 이동시 콜백
         binding.viewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 when(position){
                     0 -> {
-                        binding.imgRecommand.visibility = View.INVISIBLE
-                        binding.txtTitle.visibility = View.INVISIBLE
+                        binding.imgRecommand.visibility = View.GONE
+                        binding.btnLog.visibility = View.VISIBLE
+                        binding.txtTitle.text = getString(R.string.app_name)
                     }
                     1 -> {
                         binding.imgRecommand.visibility = View.VISIBLE
-                        binding.txtTitle.visibility = View.VISIBLE
+                        binding.btnLog.visibility = View.GONE
+                        binding.txtTitle.text = getString(R.string.menu_recommandList)
                     }
                 }
             }
@@ -131,31 +126,33 @@ class MainActivity : BaseActivity() {
             App.prefs.setBoolena("sous",true)
             App.prefs.setBoolena("grill",true)
 
-            var language = Locale.getDefault().getLanguage()
+            val language = Locale.getDefault().language
             if (langCode == "ko"){  //한국
                 App.prefs.setBoolena("caption",false)   //한국인 경우 초기 자막 없음 설정
             }
-            if (language != null) {    // 안드로이드 로컬 설정 있는 경우
-                if (codeList.any { it == language } ) {
+            when {
+                codeList.any { it == language } -> {
                     langCode = language //사용 가능한 언어 있으면 기본 설정
-                }else if(langCode == "jv"){ //자바어 데이터 jw로 잘못 입력
+                }
+                langCode == "jv" -> { //자바어 데이터 jw로 잘못 입력
                     langCode = "jw" //자바어
-                }else if(langCode.substring(0,1) == "zh"){ //중국어인 경우
+                }
+                langCode.substring(0,1) == "zh" -> { //중국어인 경우
                     val strLang = Locale.getDefault().toString()
-                    when (strLang.substring(3,4)) {
-                         "HK"  -> langCode = "zh-TW"    //홍콩
-                        "TW" -> langCode = "zh-TW"      //대만
-                        "MO" -> langCode = "zh-TW"      //마카오
-                        "Ha" -> langCode = "zh-TW"      //번체
-                        else ->  langCode = "zh-CN"     //기타 중국
+                    langCode = when (strLang.substring(3,4)) {
+                        "HK"  -> "zh-TW"    //홍콩
+                        "TW" -> "zh-TW"      //대만
+                        "MO" -> "zh-TW"      //마카오
+                        "Ha" -> "zh-TW"      //번체
+                        else -> "zh-CN"     //기타 중국
                     }
-                }else if(codeList.any {it == language.substring(0,1)}) {    //기타 언어 중 사용가능언어의 세부 분류
+                }
+                codeList.any {it == language.substring(0,1)} -> {    //기타 언어 중 사용가능언어의 세부 분류
                     langCode = language.substring(0,1)  // ex pt-pt -> pt
-                }else{  // 기타 언어 영어
+                }
+                else -> {  // 기타 언어 영어
                     langCode ="en"
                 }
-            }else{  // 안드로이드 로컬 세팅 없는 경우 영어
-                langCode ="en"
             }
             App.prefs.setString("code",langCode)    //preferenc 언어세팅 저장
         }

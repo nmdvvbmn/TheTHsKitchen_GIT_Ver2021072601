@@ -65,4 +65,5 @@
     <string name="msg_move_data" translatable="false">Các thành phần có động thái để tủ lạnh</string>
     <string name="msg_exit" translatable="false">Bấm Trở lại một lần nữa để thoát</string>
     <string name="hint_search" translatable="false">Vui lòng nhập từ khóa tìm kiếm của bạn</string>
+    <string name="inputdate">Ngày nhập</string>
 </resources>

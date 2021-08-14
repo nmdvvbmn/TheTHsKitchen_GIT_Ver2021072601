@@ -1,62 +1,56 @@
 package com.ths.thethskitchen_git_ver2021072601
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.View
-import android.view.ViewDebug
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
-import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityRecommandDetailBinding
 
-//var tracker = YouTubePlayerTracker()
 var mYoutubePlayer: YouTubePlayer? = null
 
+@Suppress("NAME_SHADOWING")
 class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
     val binding by lazy { ActivityRecommandDetailBinding.inflate(layoutInflater) }
     val helper =  SQLiteDBHelper(this,"THsKitchen.db", 1)   // 장바구니, 즐겨찾기 로컬 DB
-    val iList = arrayListOf<IList>()    //재료 리스트
-    var iAdapter = IListAdapter(iList)  //재료 어뎁터
-    val rList = arrayListOf<RList>()    //레시피
-    val rAdapter = RListAdapter(rList,this) //레시피 어뎁터
+    private val iList = arrayListOf<IList>()    //재료 리스트
+    private var iAdapter = IListAdapter(iList)  //재료 어뎁터
+    private val rList = arrayListOf<RList>()    //레시피
+    private val rAdapter = RListAdapter(rList,this) //레시피 어뎁터
     val db = FirebaseFirestore.getInstance()    // 요리ID로 파이어베이스에서 IList, IName, RList. RName
-    var oldQunt : Float = 0F    // 재료량 계산을 위한 이전값 저장
-    val langCode = UtilFuncs().getLanguage() // 저장된 언어
+    private var oldQunt : Float = 0F    // 재료량 계산을 위한 이전값 저장
+    private val langCode = UtilFuncs().getLanguage() // 저장된 언어
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        var dlist = intent.getSerializableExtra("data") as DList    // 이전 페이지 선택 데이터
-        val link = "https://youtu.be/${dlist.video}"    // 유튜브 URL
+        val dlist = intent.getSerializableExtra("data") as DList    // 이전 페이지 선택 데이터
+//        val link = "https://youtu.be/${dlist.video}"    // 유튜브 URL
         var caption = 1 // 캡션설정 (디폴트 자막있음)
         
         //자막 없음 설정인 경우
-        if (App.prefs.getBoolean("caption",true) == false) {
+        if (!App.prefs.getBoolean("caption",true)) {
             caption = 0
         }
 
-        var option = IFramePlayerOptions.Builder().ccLoadPolicy(caption).build()    //자막설정을 위한 옵션
-        var youtubePlayerListener = AbYoutubePlayerListener("${dlist.video}", dlist.start.toFloat())
+        val option = IFramePlayerOptions.Builder().ccLoadPolicy(caption).build()    //자막설정을 위한 옵션
+        val youtubePlayerListener = AbYoutubePlayerListener(dlist.video, dlist.start.toFloat())
         // 유튜브API 리스너
 
-        getLifecycle().addObserver(binding.youtubeView)
+        lifecycle.addObserver(binding.youtubeView)
         binding.youtubeView.enableAutomaticInitialization = false   // 옵션 선택시 자동초기화 false
         binding.youtubeView.initialize(youtubePlayerListener,true,option)   //자막을 위한 수동 초기화
 
-        var savedFavorites = helper.exists_favorites(dlist.video) //즐겨찾기 저장 유무
+        var savedFavorites = helper.existsFavorites(dlist.video) //즐겨찾기 저장 유무
         setFavoritesButton(savedFavorites)  // 즐겨찾기 버튼
 
         oldQunt = dlist.qunt.toFloat()  // 기본 양 
@@ -92,19 +86,21 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
         binding.txtRTitle.text = dlist.name //상단 요리명
         
         if (dlist.pretime <= 0){    //준비시간 없으면 비활성
-            binding.txtPtime.visibility = View.INVISIBLE
-            binding.txtPTEXT.visibility = View.INVISIBLE
+            binding.txtPtime.visibility = View.GONE
+            binding.txtPTEXT.visibility = View.GONE
+            binding.txtPunit.visibility = View.GONE
         }else{
-            binding.txtPtime.setText( dlist.pretime.toString() + " " +
-                    getString(UtilFuncs().transUnit(dlist.preunit))) //준비시간 + 단위    
+            binding.txtPtime.text = dlist.pretime.toString()
+            binding.txtPunit.text = getString(UtilFuncs().transUnit((dlist.preunit)))//준비시간 + 단위
         }
 
         if (dlist.time <= 0) {
-            binding.txtCtime.visibility = View.INVISIBLE
-            binding.txtCTEXT.visibility = View.INVISIBLE
+            binding.txtCtime.visibility = View.GONE
+            binding.txtCutin.visibility = View.GONE
+            binding.txtCTEXT.visibility = View.GONE
         }else{
-            binding.txtCtime.setText( dlist.time.toString() + " " +
-                    getString(UtilFuncs().transUnit(dlist.timeunit)))   //조리시간 + 단위
+            binding.txtCtime.text = dlist.time.toString()
+            binding.txtCutin.text = getString(UtilFuncs().transUnit((dlist.timeunit)))//준비시간 + 단위
         }
 
 
@@ -112,28 +108,26 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
 
         //즐겨찾기 버튼
         binding.btnFavorites.setOnClickListener {
-            if (savedFavorites) {   //즐겨찾기 취소
-                helper.delete_favorites(dlist)  //favoriate에서 삭제
-                binding.btnFavorites.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.ic_baseline_star_border_24,0,0,0)
-                savedFavorites = false //저장 안됨 플래그
+            savedFavorites = if (savedFavorites) {   //즐겨찾기 취소
+                helper.deleteFavorites(dlist)  //favoriate에서 삭제
+                binding.btnFavorites.setImageResource(R.drawable.ic_baseline_star_border_24)
+                false //저장 안됨 플래그
             }else{  //즐겨찾기 등록
-                helper.insert_favorites(dlist)  //favoriate insert
-                binding.btnFavorites.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.ic_baseline_star_24,0,0,0)
-                savedFavorites = true   //저장됨 플랙그
+                helper.insertFavorites(dlist)  //favoriate insert
+                binding.btnFavorites.setImageResource(R.drawable.ic_baseline_star_24)
+                true   //저장됨 플랙그
             }
         }
 
         // 공유버튼
         binding.btnShare.setOnClickListener {
             val intent = Intent(Intent.ACTION_SEND)
-            intent.setType("text/plain")
+            intent.type = "text/plain"
             val text = dlist.name + "\n" +
                     "https://www.youtube.com/watch?v=" + dlist.video //유튜브 URL만 전달(임시)
             intent.putExtra(Intent.EXTRA_TEXT,text)
             val chooser = Intent.createChooser(intent, this.getString(R.string.title_share))
-            startActivity(chooser);
+            startActivity(chooser)
         }
         
         //유튜브 채널 이동
@@ -146,7 +140,7 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
         // 장바구니로 이동
         binding.btnToCart.setOnClickListener {
             val intent = Intent(this,CartActivity::class.java)
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
             startActivity(intent)
         }
 
@@ -169,57 +163,57 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
 
     //조리도구 텍스트
     private fun setTool(dlist: DList) {
-        var toolTxt : String = ""
+        var toolTxt: String
         if (dlist.stove > 0 || dlist.oven > 0 || dlist.micro > 0 || dlist.blender > 0 ||
             dlist.airfryer > 0 || dlist.multi > 0 || dlist.steamer > 0 || dlist.sousvide > 0 ||
             dlist.grill > 0 ) {
             toolTxt = this.getString(R.string.tool) + "\n"
             if (dlist.stove > 0) {  //레인지
-                toolTxt = toolTxt + this.getString(R.string.stove)
-                if (dlist.stove < 2) toolTxt = toolTxt + this.getString(R.string.option) + "\n"
-                else toolTxt = toolTxt + "\n"
+                toolTxt += this.getString(R.string.stove)
+                toolTxt = if (dlist.stove < 2) toolTxt + this.getString(R.string.option) + "\n"
+                else toolTxt + "\n"
             }
             if (dlist.oven > 0) {   //오븐
-                toolTxt = toolTxt + this.getString(R.string.oven)
-                if (dlist.oven < 2) toolTxt = toolTxt + this.getString(R.string.option) + "\n"
-                else toolTxt = toolTxt + "\n"
+                toolTxt += this.getString(R.string.oven)
+                toolTxt = if (dlist.oven < 2) toolTxt + this.getString(R.string.option) + "\n"
+                else toolTxt + "\n"
             }
             if (dlist.micro > 0) {  //전자레인지
-                toolTxt = toolTxt + this.getString(R.string.micro)
-                if (dlist.micro < 2) toolTxt = toolTxt + this.getString(R.string.option) + "\n"
-                else toolTxt = toolTxt + "\n"
+                toolTxt += this.getString(R.string.micro)
+                toolTxt = if (dlist.micro < 2) toolTxt + this.getString(R.string.option) + "\n"
+                else toolTxt + "\n"
             }
             if (dlist.blender > 0) {    //블랜더
-                toolTxt = toolTxt + this.getString(R.string.blender)
-                if (dlist.blender < 2) toolTxt = toolTxt + this.getString(R.string.option) + "\n"
-                else toolTxt = toolTxt + "\n"
+                toolTxt += this.getString(R.string.blender)
+                toolTxt = if (dlist.blender < 2) toolTxt + this.getString(R.string.option) + "\n"
+                else toolTxt + "\n"
             }
             if (dlist.airfryer > 0) {   //에어프라이어
-                toolTxt = toolTxt + this.getString(R.string.airfryer)
-                if (dlist.airfryer < 2) toolTxt = toolTxt + this.getString(R.string.option) + "\n"
-                else toolTxt = toolTxt + "\n"
+                toolTxt += this.getString(R.string.airfryer)
+                toolTxt = if (dlist.airfryer < 2) toolTxt + this.getString(R.string.option) + "\n"
+                else toolTxt + "\n"
             }
             if (dlist.multi > 0) {  //인스턴트팟
-                toolTxt = toolTxt + this.getString(R.string.multi)
-                if (dlist.multi < 2) toolTxt = toolTxt + this.getString(R.string.option) + "\n"
-                else toolTxt = toolTxt + "\n"
+                toolTxt += this.getString(R.string.multi)
+                toolTxt = if (dlist.multi < 2) toolTxt + this.getString(R.string.option) + "\n"
+                else toolTxt + "\n"
             }
             if (dlist.steamer > 0) {    //찜기
-                toolTxt = toolTxt + this.getString(R.string.steam)
-                if (dlist.steamer < 2) toolTxt = toolTxt + this.getString(R.string.option) + "\n"
-                else toolTxt = toolTxt + "\n"
+                toolTxt += this.getString(R.string.steam)
+                toolTxt = if (dlist.steamer < 2) toolTxt + this.getString(R.string.option) + "\n"
+                else toolTxt + "\n"
             }
             if (dlist.sousvide > 0) {       //수비드
-                toolTxt = toolTxt + this.getString(R.string.sous)
-                if (dlist.sousvide < 2) toolTxt = toolTxt + this.getString(R.string.option) + "\n"
-                else toolTxt = toolTxt + "\n"
+                toolTxt += this.getString(R.string.sous)
+                toolTxt = if (dlist.sousvide < 2) toolTxt + this.getString(R.string.option) + "\n"
+                else toolTxt + "\n"
             }
             if (dlist.grill > 0) {  //그릴
-                toolTxt = toolTxt + this.getString(R.string.grill)
-                if (dlist.grill < 2) toolTxt = toolTxt + this.getString(R.string.option) + "\n"
-                else toolTxt = toolTxt + "\n"
+                toolTxt += this.getString(R.string.grill)
+                toolTxt = if (dlist.grill < 2) toolTxt + this.getString(R.string.option) + "\n"
+                else toolTxt + "\n"
             }
-            binding.txtTool.setText(toolTxt)
+            binding.txtTool.text = toolTxt
         }else{  //조리도구 없는경우
             binding.txtTool.visibility = View.INVISIBLE
         }
@@ -227,7 +221,7 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
 
     // 조리량에 따른 재료 량 변경
     private fun setItemQunt(oldQunt: Float, newQunt: Float ) : Float {
-        var qunt = 0f   //변경 비율
+        val qunt: Float   //변경 비율
         if (newQunt <= 0f)  //0 입력 방지
         {
             binding.editQunt.setText(UtilFuncs().floatFormat(oldQunt))
@@ -253,7 +247,7 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
             .whereEqualTo("id", dList.id)   // 요리명만 검색
             .get().addOnSuccessListener {  result ->
                 for (document in result) {
-                    var item = IList(
+                     val item = IList(
                         document["id"] as String,
                         document.id,
                         "",
@@ -266,7 +260,7 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
                         .whereEqualTo("code", langCode) // 설정 언어만
                         .get().addOnSuccessListener { result ->
                             for (document in result) {
-                                var index = iList.indexOfFirst{
+                                val index = iList.indexOfFirst{
                                     it.SEQ == document["SEQ"] as String }
                                 iList[index].name = document["name"] as String
                             }
@@ -293,7 +287,7 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
             .whereEqualTo("id", dList.id)       // 요리명만 검색
             .get().addOnSuccessListener {  result ->
                 for (document in result) {
-                    var item = RList(
+                    val item = RList(
                         document["id"] as String,
                         document["seq"] as String,
                         "",
@@ -304,7 +298,7 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
                         .whereEqualTo("code", langCode) //설정 언어 검색
                         .get().addOnSuccessListener { result ->
                             for (document in result) {
-                                var index = rList.indexOfFirst{
+                                val index = rList.indexOfFirst{
                                     it.SEQ == document["SEQ"] as String }
                                 rList[index].name = document["name"] as String
                             }
@@ -323,13 +317,11 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
     }
     
     //즐겨찾기 버튼 아이콘 설정
-    fun setFavoritesButton(savedFavorites: Boolean) {
+    private fun setFavoritesButton(savedFavorites: Boolean) {
         if (savedFavorites) {   //즐겨찾기 등록됨
-            binding.btnFavorites.setCompoundDrawablesWithIntrinsicBounds(
-                R.drawable.ic_baseline_star_24,0,0,0)
+            binding.btnFavorites.setImageResource(R.drawable.ic_baseline_star_24)
         } else {    //즐겨찾기 등록 안됨
-            binding.btnFavorites.setCompoundDrawablesWithIntrinsicBounds(
-                R.drawable.ic_baseline_star_border_24,0,0,0)
+            binding.btnFavorites.setImageResource(R.drawable.ic_baseline_star_border_24)
         }
     }
 
@@ -340,9 +332,7 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
 }
 
 // Youtube Listener
-class AbYoutubePlayerListener(videoId: String, second: Float): AbstractYouTubePlayerListener() {
-    val videoId = videoId   // Youtube Id
-    var second = second // 시작시간
+class AbYoutubePlayerListener(private val videoId: String, var second: Float): AbstractYouTubePlayerListener() {
     override fun onReady(youTubePlayer: YouTubePlayer){
         if (App.prefs.getBoolean("play",true)){
             youTubePlayer.loadVideo(videoId, second)    //자동 재생
@@ -354,6 +344,7 @@ class AbYoutubePlayerListener(videoId: String, second: Float): AbstractYouTubePl
 //        youTubePlayer.addListener(tracker)
         mYoutubePlayer = youTubePlayer  // 인터페이스 없이 컨트롤 위한 변수
     }
+
 //
 //    override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
 //        super.onCurrentSecond(youTubePlayer, second)

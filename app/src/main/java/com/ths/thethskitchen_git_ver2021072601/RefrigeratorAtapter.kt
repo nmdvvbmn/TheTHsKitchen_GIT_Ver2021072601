@@ -1,7 +1,6 @@
 package com.ths.thethskitchen_git_ver2021072601
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -13,7 +12,7 @@ import com.ths.thethskitchen_git_ver2021072601.databinding.ItemRefrigeratorBindi
 class RefrigeratorAtapter: RecyclerView.Adapter<RefrigeratorAtapter.Holder>() {
     var helper: SQLiteDBHelper? = null
     var refrigeratorList = mutableListOf<RefrigeratorList>()
-    lateinit var dialogAdd : DailogRefrigeratorAddBinding
+    private lateinit var dialogAdd : DailogRefrigeratorAddBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemRefrigeratorBinding.inflate(LayoutInflater.from(parent.context),
             parent,false)   //아이템 뷰바인딩
@@ -23,12 +22,15 @@ class RefrigeratorAtapter: RecyclerView.Adapter<RefrigeratorAtapter.Holder>() {
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        var setList = refrigeratorList[position]
+        val setList = refrigeratorList[position]
         holder.setRefrigeratorList(setList)
+        val layoutParam = holder.itemView.layoutParams
+        layoutParam.height = 300
+        holder.itemView.requestLayout()
         //아이템 클릭 --> 수정화면
-        holder.itemView.setOnClickListener{
-            var builder = AlertDialog.Builder(it.context)
-            builder.setTitle(it.context.getString(R.string.refrigerator_update_title))
+        holder.itemView.setOnClickListener{ it ->
+            val builder = AlertDialog.Builder(it.context)
+//            builder.setTitle(it.context.getString(R.string.refrigerator_update_title))
 
 //            오류 예방
             if (dialogAdd.root.parent != null){
@@ -39,17 +41,17 @@ class RefrigeratorAtapter: RecyclerView.Adapter<RefrigeratorAtapter.Holder>() {
             dialogAdd.txtRefrigeratorAddName.setText(setList.name)  //재료명
             dialogAdd.txtRefrigeratorAddDesc.setText(setList.desc)  //비고
 
-            var alertDailog = builder.create()
+            val alertDailog = builder.create()
 //          저장 버튼
             dialogAdd.btnRefrigeratorAdd.setOnClickListener {
                 if (dialogAdd.txtRefrigeratorAddName.text.toString() != ""  ) {
                     setList.name = dialogAdd.txtRefrigeratorAddName.text.toString() //입력된 재료명
                     setList.desc = dialogAdd.txtRefrigeratorAddDesc.text.toString() //입력된 비고
-                    helper?.update_refiregierator(setList)  //로컬 refrigerator update
+                    helper?.updateRefiregierator(setList)  //로컬 refrigerator update
                     Toast.makeText(it.context, it.context.getString(R.string.msg_save_data),
                         Toast.LENGTH_SHORT).show()
                     alertDailog.dismiss()   //다이얼로그 종료
-                    refrigeratorList.set(position,setList)  //리스트 데이터 변경
+                    refrigeratorList[position] = setList  //리스트 데이터 변경
                     notifyDataSetChanged()  //변경 적용
                 }else{  //재료 미입력
                     Toast.makeText(it.context,it.context.getString(R.string.msg_add_NoName),
@@ -68,13 +70,13 @@ class RefrigeratorAtapter: RecyclerView.Adapter<RefrigeratorAtapter.Holder>() {
         return refrigeratorList.size
     }
 
-    inner class Holder(val bindng: ItemRefrigeratorBinding): RecyclerView.ViewHolder(bindng.root) {
-        var mRefrigeratorList: RefrigeratorList? = null
+    inner class Holder(private val bindng: ItemRefrigeratorBinding): RecyclerView.ViewHolder(bindng.root) {
+        private var mRefrigeratorList: RefrigeratorList? = null
 
         init {
             // 리스트 삭제버튼
             bindng.btnRefrigeratorDel.setOnClickListener{
-                helper?.delete_refiregierator(mRefrigeratorList!!)
+                helper?.deleteRefiregierator(mRefrigeratorList!!)
                 refrigeratorList.remove(mRefrigeratorList)
                 notifyDataSetChanged()
             }
@@ -83,7 +85,6 @@ class RefrigeratorAtapter: RecyclerView.Adapter<RefrigeratorAtapter.Holder>() {
         fun setRefrigeratorList(refrigeratorList: RefrigeratorList) {
             this.mRefrigeratorList = refrigeratorList
             bindng.txtRefrigeratorName.text = refrigeratorList.name //재료명
-            bindng.txtRefrigeratorDesc.text = refrigeratorList.desc //비고
             bindng.txtRefrigeratorDate.text = StringFuncs().makeDateString(refrigeratorList.date)
             this.mRefrigeratorList = refrigeratorList
         }

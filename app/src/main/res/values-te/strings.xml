@@ -65,4 +65,5 @@
     <string name="msg_move_data" translatable="false">పదార్థాలు రిఫ్రిజిరేటర్ చర్యను కలిగి</string>
     <string name="msg_exit" translatable="false">నిష్క్రమణ మళ్ళీ వెనుకకు క్లిక్</string>
     <string name="hint_search" translatable="false">మీ శోధన పదాన్ని నమోదు చేయండి</string>
+    <string name="inputdate">ఇన్పుట్ తేదీ</string>
 </resources>

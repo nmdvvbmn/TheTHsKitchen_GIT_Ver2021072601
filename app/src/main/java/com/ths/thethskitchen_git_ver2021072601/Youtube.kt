@@ -1,9 +1,9 @@
+@file:Suppress("DEPRECATION")
+
 package com.ths.thethskitchen_git_ver2021072601
 
 import android.util.Log
 import android.view.View
-import com.google.api.client.http.HttpRequest
-import com.google.api.client.http.HttpRequestInitializer
 import com.google.api.client.http.javanet.NetHttpTransport
 import com.google.api.client.json.jackson2.JacksonFactory
 import com.google.api.services.youtube.YouTube
@@ -55,7 +55,7 @@ suspend fun searchFireStore(searchString: String, adapter: RecyclerAdapter, list
                         .orderBy("date",Query.Direction.DESCENDING).limit(1).get()
                         .addOnSuccessListener { result ->
                             for (document in result){
-                                var item = DList(document.id, "",0,0,"",0,"",0,
+                                val item = DList(document.id, "",0,0,"",0,"",0,
                                     "",0,0,0,0,0,0,0,0,
                                     0,0,document["vdeioID"] as String,"",4)
 //                                val index = listData.indexOfFirst { it.id == item.id }
@@ -73,7 +73,7 @@ suspend fun searchFireStore(searchString: String, adapter: RecyclerAdapter, list
                         }.addOnCompleteListener {
                             // Dlist에서 데이터 모두 검색
                             var cnt = 0 // 마지막 데이터 확인을 위한 카운터
-                            for (i in 0..listData.size - 1) {
+                            for (i in 0 until listData.size) {
                                 db.collection("DList").document(if (listData[i].id == ""){"0000"}else{listData[i].id})
                                     .get().addOnSuccessListener { document ->
                                         if (listData[i].id != "") {
@@ -99,7 +99,7 @@ suspend fun searchFireStore(searchString: String, adapter: RecyclerAdapter, list
                                     }.addOnFailureListener {
                                         Log.d("FireStore", "fail")
                                     }.addOnCompleteListener {
-                                        cnt = cnt + 1
+                                        cnt += 1
                                         if (cnt == listData.size) {
                                             listData.removeIf { it.video == "" }
                                             //정렬
@@ -112,11 +112,11 @@ suspend fun searchFireStore(searchString: String, adapter: RecyclerAdapter, list
                                             adapter.notifyDataSetChanged()
                                             CoroutineScope(Dispatchers.IO).launch {
                                                 var cntFlag= 0 // flag 위한 카운터
-                                                for (i in 0..listData.size - 1) {
-                                                    listData[i] = searchData().getYoutube(listData[i])// 유튜브 데이터
+                                                for (i in 0 until listData.size) {
+                                                    listData[i] = SearchData().getYoutube(listData[i])// 유튜브 데이터
                                                     if (cntFlag < 3 && listData[i].flag == 1) {
                                                         listData[i].flag = 2
-                                                        cntFlag = cntFlag + 1
+                                                        cntFlag += 1
                                                     }
                                                 }
                                                 withContext(Dispatchers.Main) {
@@ -141,10 +141,10 @@ suspend fun searchFireStore(searchString: String, adapter: RecyclerAdapter, list
                     }
             }
 }
-suspend  fun searchYoutube(searchString: String): ArrayList<DList> {
+fun searchYoutube(searchString: String): ArrayList<DList> {
     //Daum
-    var search = ""
-    var dlist: ArrayList<DList>? = arrayListOf<DList>()
+    val search: String
+    var dlist: ArrayList<DList>? = arrayListOf()
 
     try {
         search = URLEncoder.encode(searchString ,"UTF-8")
@@ -154,30 +154,31 @@ suspend  fun searchYoutube(searchString: String): ArrayList<DList> {
     val langCode = UtilFuncs().getLanguage()
     var apiURL: String
     val requestHeader = HashMap<String, String>()
-    requestHeader.put("Authorization", "KakaoAK c1cdf12b34171fae148670967c9a50e6")
+    requestHeader["Authorization"] = "KakaoAK c1cdf12b34171fae148670967c9a50e6"
 
     if  (langCode == "ko") {
-        apiURL = "https://dapi.kakao.com/v2/search/vclip?sort=accuracy&size=5&query=" + search + "+슬기로운식샤생활" + "&cp=7b479cb3&p=1"
-        dlist = searchData().get(apiURL,requestHeader, dlist!!)
-        apiURL = "https://dapi.kakao.com/v2/search/vclip?sort=accuracy&size=7&query=" + search + "&cp=7b479cb3&p=1"
-        dlist = searchData().get(apiURL,requestHeader, dlist!!)
+        apiURL =
+            "https://dapi.kakao.com/v2/search/vclip?sort=accuracy&size=5&query=$search+슬기로운식샤생활&cp=7b479cb3&p=1"
+        dlist = SearchData().get(apiURL,requestHeader, dlist!!)
+        apiURL =
+            "https://dapi.kakao.com/v2/search/vclip?sort=accuracy&size=7&query=$search&cp=7b479cb3&p=1"
+        dlist = SearchData().get(apiURL,requestHeader, dlist)
     }else{
-        apiURL = "https://dapi.kakao.com/v2/search/vclip?sort=accuracy&size=7&query=" + search + "&cp=7b479cb3&p=1"
-        dlist = searchData().get(apiURL,requestHeader, dlist!!)
+        apiURL =
+            "https://dapi.kakao.com/v2/search/vclip?sort=accuracy&size=7&query=$search&cp=7b479cb3&p=1"
+        dlist = SearchData().get(apiURL,requestHeader, dlist!!)
     }
-    val list = dlist?.distinctBy { it.video }
-    dlist?.clear()
-    if (list != null){
-        dlist!!.addAll(list)
-    }
-    Log.d("DaumAPI","Web search Size : ${dlist?.size}")
+    val list = dlist.distinctBy { it.video }
+    dlist.clear()
+    dlist.addAll(list)
+    Log.d("DaumAPI","Web search Size : ${dlist.size}")
     return dlist
 }
 
-class searchData(){
+class SearchData {
     fun get(apiURL: String, requestHeader: HashMap<String, String>, dlist: ArrayList<DList>): ArrayList<DList> {
         val con = connect(apiURL)
-        var dlist = dlist
+        val dlist = dlist
         try{
             if (con == null){
                 throw  IOException("No con")
@@ -187,12 +188,12 @@ class searchData(){
                 con.setRequestProperty(header.key,header.value)
             }
 
-            var responseCode: Int = con.responseCode
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                return readBody(con.inputStream, dlist)
+            val responseCode: Int = con.responseCode
+            return if (responseCode == HttpURLConnection.HTTP_OK) {
+                readBody(con.inputStream, dlist)
             }else{
                 Log.d("DaumAPI","Fail")
-                return readBody(con.inputStream, dlist)
+                readBody(con.inputStream, dlist)
             }
         } catch (e: IOException){
             Log.d("DaumAPI","Get_IO")
@@ -202,29 +203,27 @@ class searchData(){
         }
     }
 
-    fun readBody(body: InputStream?, dlist: ArrayList<DList>): ArrayList<DList> {
+    private fun readBody(body: InputStream?, dlist: ArrayList<DList>): ArrayList<DList> {
         try {
-            if (body != null) {
-                body.bufferedReader().use {
-                    it.lines().forEach { line ->
-                        val jsonObj = JSONObject(line)
-                        val jsonArray = jsonObj.getJSONArray("documents")
-                        for (i in 0..jsonArray.length() - 1) {
-                            val list = jsonArray.getJSONObject(i)
-                            var url = list.getString("url")
-                            url = url.substring(url.length - 11,url.length)
-                            val index = dlist?.indexOfFirst { it.video == url }
-                            if (index == null|| index < 0){
-                                var item: DList = DList("","",0,0,"",0,"",0,
-                                    "",0,0,0,0,0,0,0,0,
-                                    0,0,url,"",0)
-//                                item = getYoutube(item)
-                                item = getFireStore(item)
-//                                if (item.id != ""){
-//                                    item.flag = 1
-//                                }
-                                dlist.add(item)
-                            }
+            body?.bufferedReader()?.use { it ->
+                it.lines().forEach { line ->
+                    val jsonObj = JSONObject(line)
+                    val jsonArray = jsonObj.getJSONArray("documents")
+                    for (i in 0 until jsonArray.length()) {
+                        val list = jsonArray.getJSONObject(i)
+                        var url = list.getString("url")
+                        url = url.substring(url.length - 11,url.length)
+                        val index = dlist.indexOfFirst { it.video == url }
+                        if (index < 0){
+                            var item = DList("","",0,0,"",0,"",0,
+                                "",0,0,0,0,0,0,0,0,
+                                0,0,url,"",0)
+        //                                item = getYoutube(item)
+                            item = getFireStore(item)
+        //                                if (item.id != ""){
+        //                                    item.flag = 1
+        //                                }
+                            dlist.add(item)
                         }
                     }
                 }
@@ -237,7 +236,7 @@ class searchData(){
         }
     }
 
-    fun getFireStore(item: DList): DList {
+    private fun getFireStore(item: DList): DList {
         val db = FirebaseFirestore.getInstance()
         db.collection("DList").whereEqualTo("vdeioID", item.video).limit(1)
             .get().addOnSuccessListener { result ->
@@ -269,30 +268,27 @@ class searchData(){
     }
 
    fun getYoutube(item: DList): DList {
-        var item = item
-        val api_key = "AIzaSyA_Q3BlyHXBGxApWzSPsHKmhLN89-FO_T8"
+        val item = item
+        val apiKey = "AIzaSyA_Q3BlyHXBGxApWzSPsHKmhLN89-FO_T8"
         val langCode = UtilFuncs().getLanguage()
         val searchList = listOf("id", "snippet")
         val id = item.video
         val idList = listOf(id)
 
         try {
-            var httpTransport = NetHttpTransport()
-//        val jsonFactory = JsonFactory()
+            val httpTransport = NetHttpTransport()
             val jsonFactory = JacksonFactory()
-            var youtube = YouTube.Builder(httpTransport, jsonFactory, HttpRequestInitializer {
-                fun initialize(request: HttpRequest) {
-                }
-            }).setApplicationName("thethskitchen_git_ver2021072601").build()
+            val youtube = YouTube.Builder(httpTransport, jsonFactory) {
+            }.setApplicationName("thethskitchen_git_ver2021072601").build()
 
-            var video = youtube.videos().list(searchList)
-            video.setKey(api_key)
-            video.setHl(langCode)
-            video.setId(idList)
-            video.setFields("items(snippet/localized/title, snippet/localized/description)")
-            var videoResponse = video.execute()
-            var videoResultList = videoResponse.items
-            var resultVideoList = videoResultList.iterator()
+            val video = youtube.videos().list(searchList)
+            video.key = apiKey
+            video.hl = langCode
+            video.id = idList
+            video.fields = "items(snippet/localized/title, snippet/localized/description)"
+            val videoResponse = video.execute()
+            val videoResultList = videoResponse.items
+            val resultVideoList = videoResultList.iterator()
 
             while (resultVideoList.hasNext()) {
                 val list = resultVideoList.iterator().next()
@@ -306,15 +302,15 @@ class searchData(){
     }
 
     fun connect(apiURL: String): HttpURLConnection? {
-        try {
+        return try {
             val url = URL(apiURL)
-            return url.openConnection() as HttpURLConnection
+            url.openConnection() as HttpURLConnection
         } catch (e: MalformedURLException) {
             Log.d("DaumAPI", "Connect_malformeURL")
-            return null
+            null
         } catch (e: IOException) {
             Log.d("DaumAPI", "Connect_IO")
-            return null
+            null
         }
     }
 

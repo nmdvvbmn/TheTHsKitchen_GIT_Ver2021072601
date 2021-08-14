@@ -65,4 +65,5 @@
     <string name="msg_move_data" translatable="false">উপাদানগুলো ফ্রিজ প্রবর্তন আছে</string>
     <string name="msg_exit" translatable="false">আবার ফিরে ক্লিক করুন প্রস্থান</string>
     <string name="hint_search" translatable="false">আপনার অনুসন্ধান শব্দ লিখুন দয়া করে</string>
+    <string name="inputdate">ইনপুট তারিখ</string>
 </resources>

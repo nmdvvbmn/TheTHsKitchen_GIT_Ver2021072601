@@ -65,4 +65,5 @@
     <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="hint_search" translatable="false">Please enter your search term</string>
+    <string name="inputdate">Input Date</string>
 </resources>

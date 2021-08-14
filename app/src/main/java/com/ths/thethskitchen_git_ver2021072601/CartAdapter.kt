@@ -11,7 +11,7 @@ import com.ths.thethskitchen_git_ver2021072601.databinding.ItemCartBinding
 class CartAdapter: RecyclerView.Adapter<CartAdapter.Holder>() {
     var helper: SQLiteDBHelper? = null
     var cartList = mutableListOf<CartList>()
-    lateinit var dialogAdd : DailogCartAddBinding
+    private lateinit var dialogAdd : DailogCartAddBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemCartBinding.inflate(LayoutInflater.from(parent.context),
             parent,false)   //아이템 뷰바인딩
@@ -21,12 +21,15 @@ class CartAdapter: RecyclerView.Adapter<CartAdapter.Holder>() {
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        var setList = cartList[position]
+        val setList = cartList[position]
         holder.setCartList(setList)
+        val layoutParam = holder.itemView.layoutParams
+        layoutParam.height = 200
+        holder.itemView.requestLayout()
         //아이템 클릭 --> 수정화면
-        holder.itemView.setOnClickListener{
-            var builder = AlertDialog.Builder(it.context)
-            builder.setTitle(it.context.getString(R.string.cart_update_title))
+        holder.itemView.setOnClickListener{ it ->
+            val builder = AlertDialog.Builder(it.context)
+//            builder.setTitle(it.context.getString(R.string.cart_update_title))
 
 //            오류 예방
             if (dialogAdd.root.parent != null){
@@ -37,17 +40,17 @@ class CartAdapter: RecyclerView.Adapter<CartAdapter.Holder>() {
             dialogAdd.txtCartAddName.setText(setList.name)
             dialogAdd.txtCartAddDesc.setText(setList.desc)
 
-            var alertDailog = builder.create()
+            val alertDailog = builder.create()
 //          저장 버튼
-            dialogAdd.btnCartAdd.setOnClickListener {
+            dialogAdd.btnCartAdd.setOnClickListener { 
                 if (dialogAdd.txtCartAddName.text.toString() != ""  ) {
                     setList.name = dialogAdd.txtCartAddName.text.toString()
                     setList.desc = dialogAdd.txtCartAddDesc.text.toString()
-                    helper?.update_cart(setList)
+                    helper?.updateCart(setList)
                     Toast.makeText(it.context, it.context.getString(R.string.msg_save_data),
                         Toast.LENGTH_SHORT).show()
                     alertDailog.dismiss()
-                    cartList.set(position,setList)
+                    cartList[position] = setList
                     notifyDataSetChanged()
                 }else{
                     Toast.makeText(it.context,it.context.getString(R.string.msg_add_NoName),
@@ -66,19 +69,19 @@ class CartAdapter: RecyclerView.Adapter<CartAdapter.Holder>() {
         return cartList.size
     }
 
-    inner class Holder(val bindng: ItemCartBinding): RecyclerView.ViewHolder(bindng.root) {
+    inner class Holder(private val bindng: ItemCartBinding): RecyclerView.ViewHolder(bindng.root) {
         var mCartList: CartList? = null
 
         init {
             //리스트 재료 삭제
             bindng.btnFavoritesDel.setOnClickListener{
-                helper?.delete_cart(mCartList!!)
+                helper?.deleteCart(mCartList!!)
                 cartList.remove(mCartList)
                 notifyDataSetChanged()
             }
             //리스트 냉장고로 이동
             bindng.btnMoveRefrigerator.setOnClickListener {
-                helper?.move_cart(mCartList!!)
+                helper?.moveCart(mCartList!!)
                 cartList.remove(mCartList)
                 notifyDataSetChanged()
                 Toast.makeText(it.context, it.context.getString(R.string.msg_move_data),
@@ -89,8 +92,6 @@ class CartAdapter: RecyclerView.Adapter<CartAdapter.Holder>() {
         fun setCartList(cartList: CartList) {
             this.mCartList = cartList
             bindng.txtCartName.text = cartList.name //재료명
-            bindng.txtCartDesc.text = cartList.desc //비고
-            bindng.txtCartDate.text = StringFuncs().makeDateString(cartList.date)
             this.mCartList = cartList
         }
     }

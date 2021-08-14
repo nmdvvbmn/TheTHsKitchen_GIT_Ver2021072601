@@ -65,4 +65,5 @@
     <string name="msg_move_data" translatable="false">اجزاء فرج کے لئے اقدام ہے</string>
     <string name="msg_exit" translatable="false">دوبارہ واپس کلک کریں وہاں سے نکلنے کی</string>
     <string name="hint_search" translatable="false">آپ کی تلاش کی اصطلاح درج کریں</string>
+    <string name="inputdate">ان پٹ تاریخ</string>
 </resources>

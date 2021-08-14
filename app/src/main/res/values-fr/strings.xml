@@ -65,4 +65,5 @@
     <string name="msg_move_data" translatable="false">Les ingrédients ont déplacer au réfrigérateur</string>
     <string name="msg_exit" translatable="false">Cliquez sur Retour à nouveau pour quitter</string>
     <string name="hint_search" translatable="false">S\'il vous plaît entrer votre terme de recherche</string>
+    <string name="inputdate">date de l\'entrée</string>
 </resources>

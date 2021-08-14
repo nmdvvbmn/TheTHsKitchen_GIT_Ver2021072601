@@ -18,13 +18,12 @@ class FavoritesAtapter: RecyclerView.Adapter<FavoritesAtapter.Holder>() {
     var dList = mutableListOf<DList>()
     lateinit var mContext: Context
 
-    inner class Holder(binding: ItemFavoritesBinding): RecyclerView.ViewHolder(binding.root) {
-        var mDList: DList? = null
-        val binding = binding
+    inner class Holder(val binding: ItemFavoritesBinding): RecyclerView.ViewHolder(binding.root) {
+        private var mDList: DList? = null
 
         init {
             binding.btnFavoritesDel.setOnClickListener{
-                helper?.delete_favorites(mDList!!)
+                helper?.deleteFavorites(mDList!!)
                 dList.remove(mDList)
                 notifyDataSetChanged()
             }
@@ -40,7 +39,7 @@ class FavoritesAtapter: RecyclerView.Adapter<FavoritesAtapter.Holder>() {
                 if (bitmap != null){
                     binding.imgThumb.setImageBitmap(bitmap)
                 } else {
-                    binding.imgThumb.setImageResource(R.drawable.ic_launcher_background)    //기본 수정예졍
+                    binding.imgThumb.setImageResource(R.drawable.icon)    //기본 수정예졍
                 }
             }
             this.mDList = dList
@@ -57,13 +56,13 @@ class FavoritesAtapter: RecyclerView.Adapter<FavoritesAtapter.Holder>() {
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        var setList = dList[position]
+        val setList = dList[position]
         holder.setDList(setList)
 
         // 디테일 화면(슬기로운식샤생활)
         holder.itemView.setOnClickListener{
             Intent(mContext, RecommandDetail::class.java).apply {
-                putExtra("data", dList.get(position) as Serializable)
+                putExtra("data", dList[position] as Serializable)
                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             }.run { mContext.startActivity(this) }
         }

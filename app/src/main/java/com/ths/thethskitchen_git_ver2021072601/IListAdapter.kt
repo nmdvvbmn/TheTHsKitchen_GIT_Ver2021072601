@@ -3,7 +3,6 @@ package com.ths.thethskitchen_git_ver2021072601
 import android.content.Context
 import android.graphics.Typeface
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,7 +45,7 @@ class IListAdapter(private val listData: ArrayList<IList>): RecyclerView.Adapter
             }
 
             desc += "\n${mContext?.getString(R.string.inputdate)} : " +
-                    "${StringFuncs().makeDateString(LocalDateTime.now())}" +
+                    StringFuncs().makeDateString(LocalDateTime.now()) +
                     " (${mContext?.getString(R.string.menu_cart)})"
 
             val cartItem = CartList(0,list.name!!, desc, LocalDateTime.now() )
@@ -86,6 +85,14 @@ class IListAdapter(private val listData: ArrayList<IList>): RecyclerView.Adapter
                 txt = txt + " " + context.getString(R.string.option)
             }
             binding.chkName.text = txt
+
+            if (helper?.existsRefiregieratorItem(ilist.name.toString())==true){
+                binding.btnRAddCart.visibility = View.INVISIBLE
+            }else{
+                binding.btnRAddCart.visibility = View.VISIBLE
+            }
+
+
         }
     }
 }

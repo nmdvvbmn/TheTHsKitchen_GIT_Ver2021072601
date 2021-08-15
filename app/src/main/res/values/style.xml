@@ -1,3 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="MyPopupMenu" parent="Platform.ThemeOverlay.AppCompat">
+        <item name="android:windowBackground">@drawable/dialog_round</item>
+    </style>
 </resources>

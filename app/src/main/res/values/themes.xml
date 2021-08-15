@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+<!--        <item name="android:alertDialogTheme">@style/MyPopupMenu</item>-->
     </style>
 
     <style name="Theme.TheTHsKitchen_GIT_Ver2021072601.NoActionBar">

@@ -5,6 +5,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenResumed
 import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.firestore.FirebaseFirestore
+import com.skydoves.balloon.*
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityKitchenBinding
 import kotlinx.coroutines.*
 
@@ -96,5 +97,70 @@ class KitchenActivity : BaseActivity() {
                 }
             }
         }
+        if ( App.prefs.getBoolean("stove",true) &&
+            App.prefs.getBoolean("oven",true)&&
+            App.prefs.getBoolean("micro",true) &&
+            App.prefs.getBoolean("blender",true) &&
+            App.prefs.getBoolean("multi",true) &&
+            App.prefs.getBoolean("airfryer",true) &&
+            App.prefs.getBoolean("steam",true) &&
+            App.prefs.getBoolean("sous",true) &&
+            App.prefs.getBoolean("grill",true) &&
+            !SQLiteDBHelper(this,"THsKitchen.db",1).existsRefiregierator()){
+            createHelp()
+        }
+    }
+
+    private fun createHelp() {
+        val balloon = createBalloon(this) {
+            setArrowSize(10)
+            setWidth(BalloonSizeSpec.WRAP)
+            setHeight(BalloonSizeSpec.WRAP)
+            setArrowPosition(0.1f)
+            setCornerRadius(4f)
+            setAlpha(0.9f)
+            setPadding(10)
+            setMarginTop(15)
+            setMarginLeft(8)
+            setTextSize(14.0f)
+            setAutoDismissDuration(5000L)
+            setText(getString(R.string.h_k_empty1))
+            setTextColorResource(R.color.white)
+            setTextIsHtml(true)
+            arrowOrientation = ArrowOrientation.BOTTOM
+            setBackgroundColorResource(R.color.thscolor)
+            setBalloonAnimation(BalloonAnimation.FADE)
+            setLifecycleOwner(lifecycleOwner)
+        }
+        balloon.setOnBalloonClickListener {
+            balloon.dismiss()
+        }
+
+        val balloon2 = createBalloon(this) {
+            setArrowSize(10)
+            setWidth(BalloonSizeSpec.WRAP)
+            setHeight(BalloonSizeSpec.WRAP)
+            setArrowPosition(0.1f)
+            setCornerRadius(4f)
+            setAlpha(0.9f)
+            setPadding(10)
+            setMarginBottom(15)
+//            setMarginLeft(8)
+            setTextSize(14.0f)
+            balloonHighlightAnimationStartDelay = 2000L
+            setAutoDismissDuration(6000L)
+            setText(getString(R.string.h_k_empty2))
+            setTextColorResource(R.color.white)
+            setTextIsHtml(true)
+            arrowOrientation = ArrowOrientation.BOTTOM
+            setBackgroundColorResource(R.color.thscolor)
+            setBalloonAnimation(BalloonAnimation.FADE)
+            setLifecycleOwner(lifecycleOwner)
+        }
+        balloon2.setOnBalloonClickListener {
+            balloon2.dismiss()
+        }
+        binding.btnKExit.showAlignBottom(balloon)
+        binding.tableLayout.showAlignBottom(balloon2)
     }
 }

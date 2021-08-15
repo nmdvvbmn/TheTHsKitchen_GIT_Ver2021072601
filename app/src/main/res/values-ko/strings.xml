@@ -29,7 +29,7 @@
     <string name="menu_search" translatable="false">검색</string>
     <string name="menu_recommandList" translatable="false">추천요리</string>
     <string name="menu_refrigerator" translatable="false">우리집 냉장고</string>
-    <string name="menu_kitchen" translatable="false">우리집 부엌</string>
+    <string name="menu_kitchen" translatable="false">우리집 주방</string>
     <string name="menu_cart" translatable="false">쇼핑목록</string>
     <string name="menu_favorites" translatable="false">즐겨찾기</string>
     <string name="menu_setting" translatable="false">설정</string>

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.skydoves.balloon.*
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityCartBinding
 import com.ths.thethskitchen_git_ver2021072601.databinding.DailogCartAddBinding
 import java.time.LocalDateTime
@@ -74,5 +75,61 @@ class CartActivity : BaseActivity() {
         binding.btnCartExit.setOnClickListener {
             finish()
         }
+        //도움말
+        if (adapter.cartList.isEmpty()){
+            createHelp()
+        }
+
+    }
+    private fun createHelp() {
+        val balloon = createBalloon(this) {
+            setArrowSize(10)
+            setWidth(BalloonSizeSpec.WRAP)
+            setHeight(BalloonSizeSpec.WRAP)
+            setArrowPosition(0.1f)
+            setCornerRadius(4f)
+            setAlpha(0.9f)
+            setPadding(10)
+            setMarginTop(15)
+            setMarginLeft(8)
+            setTextSize(14.0f)
+            setAutoDismissDuration(5000L)
+            setText(getString(R.string.h_c_empty1))
+            setTextColorResource(R.color.white)
+            setTextIsHtml(true)
+            arrowOrientation = ArrowOrientation.BOTTOM
+            setBackgroundColorResource(R.color.thscolor)
+            setBalloonAnimation(BalloonAnimation.FADE)
+            setLifecycleOwner(lifecycleOwner)
+        }
+        balloon.setOnBalloonClickListener {
+            balloon.dismiss()
+        }
+
+        val balloon2 = createBalloon(this) {
+            setArrowSize(10)
+            setWidth(BalloonSizeSpec.WRAP)
+            setHeight(BalloonSizeSpec.WRAP)
+            setArrowPosition(0.5f)
+            setCornerRadius(4f)
+            setAlpha(0.9f)
+            setPadding(10)
+            setMarginBottom(15)
+            setMarginRight(8)
+            setTextSize(14.0f)
+            setAutoDismissDuration(5000L)
+            setText(getString(R.string.h_c_empty2))
+            setTextColorResource(R.color.white)
+            setTextIsHtml(true)
+            arrowOrientation = ArrowOrientation.RIGHT
+            setBackgroundColorResource(R.color.thscolor)
+            setBalloonAnimation(BalloonAnimation.FADE)
+            setLifecycleOwner(lifecycleOwner)
+        }
+        balloon2.setOnBalloonClickListener {
+            balloon2.dismiss()
+        }
+        binding.btnCartExit.showAlignBottom(balloon)
+        binding.btnAddCart.showAlignLeft(balloon2)
     }
 }

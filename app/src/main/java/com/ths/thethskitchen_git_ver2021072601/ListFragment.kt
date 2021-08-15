@@ -9,12 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import com.ths.thethskitchen_git_ver2021072601.databinding.FragmentListBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -75,9 +70,12 @@ class ListFragment : Fragment() {
         val refrigerator = helper.selectRefrigerator()
         val nameList: ArrayList<String> = arrayListOf()
         val idList: ArrayList<String> = arrayListOf()
+        val seqList: ArrayList<String> = arrayListOf()
 
         var dlistCnt = 0    //DList sync 위한 카운터
+        var seqCnt = 0
         var dnameCnt = 0    //DName Sync 위한 카운터
+        dlist.clear()
 
         //나의 부엌 Preference 
         val stove = getTooltoInt(App.prefs.getBoolean("stove", false))
@@ -96,9 +94,9 @@ class ListFragment : Fragment() {
 
         val nameListD = nameList.distinct()        //재료 중복 제거
 
-        for (i in nameListD.size - 1 downTo 10){
-            nameList.removeAt(i)
-        }
+//        for (i in nameListD.size - 1 downTo 10){
+//            nameList.removeAt(i)
+//        }
 
         if (nameListD.isEmpty()) {     // 재료 없음 검색 X
             binding.pbLoading.visibility = View.INVISIBLE
@@ -109,181 +107,227 @@ class ListFragment : Fragment() {
             dlistCnt = 0
             dnameCnt = 0
         }
-
-        db.collection("DList")
-            .whereLessThanOrEqualTo("date", date)
-            .orderBy("date", Query.Direction.DESCENDING).limit(1).get()
-            .addOnSuccessListener{ result ->
-                for (document in result){
-                    var item = DList(   //DList Row
-                        document.id,
-                        "",
-                        document["date"] as Long,
-                        document["ptime"] as Long,
-                        document["punit"] as String,
-                        document["ctime"] as Long,
-                        document["cunit"] as String,
-                        document["serv"] as Long,
-                        document["sunit"] as String,
-                        document["start"] as Long,
-                        document["stove"] as Long,
-                        document["oven"] as Long,
-                        document["micro"] as Long,
-                        document["blender"] as Long,
-                        document["air fryer"] as Long,
-                        document["multi cooker"] as Long,
-                        document["steamer"] as Long,
-                        document["sous vide"] as Long,
-                        document["grill"] as Long,
-                        document["vdeioID"] as String,
-                        "",
-                        4
-                    )
-                    CoroutineScope(Dispatchers.IO).launch {
-                        item = SearchData().getYoutube(item)
-                        dlist.add(0,item)
-//                        for (item in dlist){
-//                            item.desc = ""
-//                            Log.d("ListFragment","${item}")
+        Log.d("FireStore",nameList.size.toString())
+// new item 제거
+//        db.collection("DList")
+//            .whereLessThanOrEqualTo("date", date)
+//            .orderBy("date", Query.Direction.DESCENDING).limit(1).get()
+//            .addOnSuccessListener{ result ->
+//                for (document in result){
+//                    var item = DList(   //DList Row
+//                        document.id,
+//                        "",
+//                        document["date"] as Long,
+//                        document["ptime"] as Long,
+//                        document["punit"] as String,
+//                        document["ctime"] as Long,
+//                        document["cunit"] as String,
+//                        document["serv"] as Long,
+//                        document["sunit"] as String,
+//                        document["start"] as Long,
+//                        document["stove"] as Long,
+//                        document["oven"] as Long,
+//                        document["micro"] as Long,
+//                        document["blender"] as Long,
+//                        document["air fryer"] as Long,
+//                        document["multi cooker"] as Long,
+//                        document["steamer"] as Long,
+//                        document["sous vide"] as Long,
+//                        document["grill"] as Long,
+//                        document["vdeioID"] as String,
+//                        "",
+//                        4
+//                    )
+//                    CoroutineScope(Dispatchers.IO).launch {
+//                        item = SearchData().getYoutube(item)
+//                        dlist.add(0,item)
+////                        for (item in dlist){
+////                            item.desc = ""
+////                            Log.d("ListFragment","${item}")
+////                        }
+//                        withContext(Dispatchers.Main){
+//                            adapter.notifyDataSetChanged()
 //                        }
-                        withContext(Dispatchers.Main){
-                            adapter.notifyDataSetChanged()
-                        }
-                    }
-                }
-            }
-
+//                    }
+//                }
+//            }
         for (element in nameListD) { //IName에서 DList ID 검색
+            Log.d("FireStore","refrigerator : ${element}")
             db.collection("IName")
-                .whereEqualTo("name", element).orderBy("id", Query.Direction.DESCENDING ).limit(5)
+                .whereEqualTo("name", element)
+//                .orderBy("ID", Query.Direction.DESCENDING )
+//                .startAt(element.uppercase()).endAt(element + "\uf8ff")
+//                .limit(5)
                 .get().addOnSuccessListener { result ->
                     for (document in result) {
-                        idList.add(document["id"] as String)    //ID list
+                        seqList.add("${document["SEQ"]}")    //ID list
+//                        Log.d("FireStore","IName" + document["seq"] as String)
                     }
                 }.addOnFailureListener {
-                    Log.d("Refrigerator&Dname", "Fail")
-                }.addOnCompleteListener { task ->
+                    Log.d("FireStore", it.stackTraceToString())
+                }.addOnCompleteListener {
                     dlistCnt ++
                     if (dlistCnt  == nameListD.size ) { //ID list 검색 완료
-                        val idListD = idList.distinct().sortedDescending() //Id List 중복 제거 정렬
-                        if (task.isSuccessful && idListD.isNotEmpty()) { //Id list가 있을 경우
-                            for (i in idListD.indices) {
-                                db.collection("DList").document(idListD[i])
-                                    .get().addOnSuccessListener { document ->
-                                        val item = DList(   //DList Row
-                                            document.id,
-                                            "",
-                                            document["date"] as Long,
-                                            document["ptime"] as Long,
-                                            document["punit"] as String,
-                                            document["ctime"] as Long,
-                                            document["cunit"] as String,
-                                            document["serv"] as Long,
-                                            document["sunit"] as String,
-                                            document["start"] as Long,
-                                            document["stove"] as Long,
-                                            document["oven"] as Long,
-                                            document["micro"] as Long,
-                                            document["blender"] as Long,
-                                            document["air fryer"] as Long,
-                                            document["multi cooker"] as Long,
-                                            document["steamer"] as Long,
-                                            document["sous vide"] as Long,
-                                            document["grill"] as Long,
-                                            document["vdeioID"] as String,
-                                            "",
-                                            1
-                                        )
+                        val seqListD = seqList.distinct().sortedDescending()
+                        if (seqListD.isNotEmpty()){
+                            Log.d("FireStore", seqListD[0])
+                            Log.d("FireStore","seqList" + "${seqListD.size}")
 
-                                        if (item.date <= date   // 날짜 및 나의 부엌 조회조건
-                                            && item.stove <= stove
-                                            && item.oven <= oven
-                                            && item.micro <= micro
-                                            && item.blender <= blender
-                                            && item.multi <= multi
-                                            && item.airfryer <= airfryer
-                                            && item.steamer <= steam
-                                            && item.sousvide <= sous
-                                            && item.grill <= grill ) {
-                                            dlist.add(item)
+                            for (i in seqListD.indices){
+                                db.collection("IList").document(seqListD[i])
+                                    .get().addOnSuccessListener {  data ->
+                                        if ("${data["essential"]}".toBoolean()){
+                                            idList.add("${data["id"]}")
+                                            Log.d("FireStore","documents" + "${data["id"]}")
+                                        }else{Log.d("FireStore","document" + "${data["essential"]}")}
+                                    }.addOnCompleteListener{
+                                        seqCnt ++
+                                        if (seqCnt == seqListD.size){
+                                            val idListD = idList.distinct().sortedDescending() //Id List 중복 제거 정렬
+                                            Log.d("FireStore","IList" + "idListD : ${idListD.size}")
+                                            if (idListD.isNotEmpty()) { //Id list가 있을 경우
+                                                for (i in idListD.indices) {
+                                                    db.collection("DList").document(idListD[i])
+                                                        .get().addOnSuccessListener { document ->
+                                                            val item = DList(   //DList Row
+                                                                document.id,
+                                                                "",
+                                                                document["date"] as Long,
+                                                                document["ptime"] as Long,
+                                                                document["punit"] as String,
+                                                                document["ctime"] as Long,
+                                                                document["cunit"] as String,
+                                                                document["serv"] as Long,
+                                                                document["sunit"] as String,
+                                                                document["start"] as Long,
+                                                                document["stove"] as Long,
+                                                                document["oven"] as Long,
+                                                                document["micro"] as Long,
+                                                                document["blender"] as Long,
+                                                                document["air fryer"] as Long,
+                                                                document["multi cooker"] as Long,
+                                                                document["steamer"] as Long,
+                                                                document["sous vide"] as Long,
+                                                                document["grill"] as Long,
+                                                                document["vdeioID"] as String,
+                                                                "",
+                                                                2
+                                                            )
 
-                                            // 요리명
-                                            db.collection("DName")
-                                                .whereEqualTo("id", idListD[i])
-                                                .whereEqualTo("code", langCode)
-                                                .limit(1)
-                                                .get()
-                                                .addOnSuccessListener { result ->
-                                                    for (document in result) {
-                                                        val index =
-                                                            dlist.indexOfFirst { it.id == document["id"] as String }
-                                                        dlist[index].name =
-                                                            document["name"] as String
-                                                    }
-                                                    //Dname 실패(언어코드 확인, 데이터 없음)
-                                                }.addOnFailureListener {
-                                                    Log.d("FireStore", "Fail")
-                                                }.addOnCompleteListener {
-                                                    dnameCnt++
-                                                    if (dnameCnt == idListD.size) {
-                                                        //마지막 리턴 후 프로그레스 종
-                                                        val sortedList = dlist.distinctBy { it.id }
-                                                            .sortedByDescending { it.date }
-                                                            .sortedByDescending { it.id }
-                                                            .sortedByDescending { it.flag }
-                                                        dlist.clear()
-                                                        dlist.addAll(sortedList)
-                                                        for (i in 1 until dlist.size){
-                                                            if (i < 4){
-                                                                dlist[i].flag = 2
+                                                            if (item.date <= date   // 날짜 및 나의 부엌 조회조건
+                                                                && item.stove <= stove
+                                                                && item.oven <= oven
+                                                                && item.micro <= micro
+                                                                && item.blender <= blender
+                                                                && item.multi <= multi
+                                                                && item.airfryer <= airfryer
+                                                                && item.steamer <= steam
+                                                                && item.sousvide <= sous
+                                                                && item.grill <= grill ) {
+                                                                dlist.add(item)
+
+                                                                // 요리명
+                                                                db.collection("DName")
+                                                                    .whereEqualTo("id", idListD[i])
+                                                                    .whereEqualTo("code", langCode)
+                                                                    .limit(1)
+                                                                    .get()
+                                                                    .addOnSuccessListener { result ->
+                                                                        for (document in result) {
+                                                                            val index =
+                                                                                dlist.indexOfFirst { it.id == document["id"] as String }
+                                                                            dlist[index].name =
+                                                                                document["name"] as String
+                                                                        }
+                                                                        //Dname 실패(언어코드 확인, 데이터 없음)
+                                                                    }.addOnFailureListener {
+                                                                        Log.d("FireStore", "Fail")
+                                                                    }.addOnCompleteListener {
+                                                                        dnameCnt++
+                                                                        if (dnameCnt == idListD.size) {
+                                                                            //마지막 리턴 후 프로그레스 종
+                                                                            val sortedList = dlist.distinctBy { it.id }
+                                                                                .sortedByDescending { it.date }
+                                                                                .sortedByDescending { it.id }
+                                                                                .sortedByDescending { it.flag }
+                                                                            dlist.clear()
+                                                                            dlist.addAll(sortedList)
+                                                                            for (i in 1 until dlist.size){
+                                                                                if (i < 4){
+                                                                                    dlist[i].flag = 2
+                                                                                }else{
+                                                                                    break
+                                                                                }
+                                                                            }
+                                                                            for (item in dlist){
+                                                                                Log.d("FireStore","${item.flag} : ${item.name}")
+                                                                            }
+                                                                            binding.pbLoading.visibility =
+                                                                                View.INVISIBLE
+                                                                            //새로고침플레그 해제
+                                                                            proc = false
+                                                                        }
+                                                                        //리스트뷰 업데이트 (중간중간 데이터 띄우기 위함)
+                                                                        adapter.notifyDataSetChanged()
+                                                                    }
                                                             }else{
-                                                                break
+                                                                dnameCnt++
+                                                                if (dnameCnt == idListD.size) {
+                                                                    //실패시 마지막 프로그레스 종료
+                                                                    val sortedList = dlist.distinctBy { it.id }
+                                                                        .sortedByDescending { it.date }
+                                                                        .sortedByDescending { it.id }
+                                                                        .sortedByDescending { it.flag }
+                                                                    dlist.clear()
+                                                                    dlist.addAll(sortedList)
+                                                                    for (i in 1 until dlist.size){
+                                                                        if (i < 4){
+                                                                            dlist[i].flag = 2
+                                                                        }else{
+                                                                            break
+                                                                        }
+                                                                    }
+                                                                    for (item in dlist){
+                                                                        Log.d("FireStore","${item.flag} : ${item.name}")
+                                                                    }
+                                                                    binding.pbLoading.visibility =
+                                                                        View.INVISIBLE
+                                                                    //최종 완료 리스트 뷰 적용
+                                                                    adapter.notifyDataSetChanged()
+                                                                    // 새로고침 플레그 해제
+                                                                    proc = false
+                                                                }
                                                             }
-                                                        }
-                                                        for (item in dlist){
-                                                            Log.d("FireStore","${item.flag} : ${item.name}")
-                                                        }
-                                                        binding.pbLoading.visibility =
-                                                            View.INVISIBLE
-                                                        //새로고침플레그 해제
-                                                        proc = false
-                                                    }
-                                                    //리스트뷰 업데이트 (중간중간 데이터 띄우기 위함)
-                                                    adapter.notifyDataSetChanged()
-                                                }
-                                            }else{
-                                                dnameCnt++
-                                                if (dnameCnt == idListD.size) {
-                                                    //실패시 마지막 프로그레스 종료
-                                                    val sortedList = dlist.distinctBy { it.id }
-                                                        .sortedByDescending { it.date }
-                                                        .sortedByDescending { it.id }
-                                                        .sortedByDescending { it.flag }
-                                                    dlist.clear()
-                                                    dlist.addAll(sortedList)
-                                                    for (i in 1 until dlist.size){
-                                                        if (i < 4){
-                                                            dlist[i].flag = 2
-                                                        }else{
-                                                            break
-                                                        }
-                                                    }
-                                                    for (item in dlist){
-                                                        Log.d("FireStore","${item.flag} : ${item.name}")
-                                                    }
-                                                    binding.pbLoading.visibility =
-                                                        View.INVISIBLE
-                                                    //최종 완료 리스트 뷰 적용
-                                                    adapter.notifyDataSetChanged()
-                                                    // 새로고침 플레그 해제
-                                                    proc = false
-                                                }
-                                            }
 
-                                        }.addOnFailureListener {
-                                            dnameCnt++
+                                                        }.addOnFailureListener {
+                                                            dnameCnt++
 //                                            if (dnameCnt == idList_d.size) {
-                                            if (dlistCnt == idListD.size) {
+                                                            if (dlistCnt == idListD.size) {
+                                                                val sortedList = dlist.distinctBy { it.id }
+                                                                    .sortedByDescending { it.date }
+                                                                    .sortedByDescending { it.id }
+                                                                    .sortedByDescending { it.flag }
+                                                                dlist.clear()
+                                                                dlist.addAll(sortedList)
+                                                                for (i in 1 until dlist.size){
+                                                                    if (i < 4){
+                                                                        dlist[i].flag = 2
+                                                                    }else{
+                                                                        break
+                                                                    }
+                                                                }
+                                                                for (item in dlist){
+                                                                    Log.d("FireStore","${item.flag} : ${item.name}")
+                                                                }
+                                                                binding.pbLoading.visibility =
+                                                                    View.INVISIBLE
+                                                                proc = false
+                                                            }
+                                                        }.addOnCompleteListener {
+                                                            adapter.notifyDataSetChanged()
+                                                        }
+                                                }
+                                            } else {
                                                 val sortedList = dlist.distinctBy { it.id }
                                                     .sortedByDescending { it.date }
                                                     .sortedByDescending { it.id }
@@ -300,39 +344,20 @@ class ListFragment : Fragment() {
                                                 for (item in dlist){
                                                     Log.d("FireStore","${item.flag} : ${item.name}")
                                                 }
-                                                binding.pbLoading.visibility =
-                                                    View.INVISIBLE
+                                                binding.pbLoading.visibility = View.INVISIBLE
                                                 proc = false
                                             }
-                                        }.addOnCompleteListener {
-                                        adapter.notifyDataSetChanged()
+                                        }
                                     }
-                                }
-                            } else {
-                            val sortedList = dlist.distinctBy { it.id }
-                                .sortedByDescending { it.date }
-                                .sortedByDescending { it.id }
-                                .sortedByDescending { it.flag }
-                                dlist.clear()
-                                dlist.addAll(sortedList)
-                                for (i in 1 until dlist.size){
-                                    if (i < 4){
-                                        dlist[i].flag = 2
-                                    }else{
-                                        break
-                                    }
-                                }
-                            for (item in dlist){
-                                Log.d("FireStore","${item.flag} : ${item.name}")
                             }
-                                binding.pbLoading.visibility = View.INVISIBLE
-                                proc = false
-                            }
+
+                        }
                         }
                     }
 
             }
     }
+
     // 나의 부엌 체크박스를 변환
     private fun getTooltoInt(boolean: Boolean): Int {
         return if (boolean) {

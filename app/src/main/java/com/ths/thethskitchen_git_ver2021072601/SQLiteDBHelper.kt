@@ -99,6 +99,36 @@ class SQLiteDBHelper (
         wd.insert("refrigerator",null, values)
     }
 
+    fun existsRefiregierator() : Boolean {
+        val select = "select exists ( " +
+                "select id from refrigerator LIMIT 1)"
+        val rd = readableDatabase
+        val cursor = rd.rawQuery(select, null)
+        cursor.moveToFirst()
+        return if(cursor?.getInt(0) == 1){
+            cursor.close()
+            true
+        } else {
+            cursor?.close()
+            false
+        }
+    }
+
+    fun existsRefiregieratorItem(name: String) : Boolean {
+        val select = "select exists ( " +
+                "select name from refrigerator where name = '${name}' LIMIT 1)"
+        val rd = readableDatabase
+        val cursor = rd.rawQuery(select, null)
+        cursor.moveToFirst()
+        return if(cursor?.getInt(0) == 1){
+            cursor.close()
+            true
+        } else {
+            cursor?.close()
+            false
+        }
+    }
+
     fun selectCart() : MutableList<CartList> {
         val cartList = mutableListOf<CartList>()
         val select = "select * from cart ORDER BY date DESC"

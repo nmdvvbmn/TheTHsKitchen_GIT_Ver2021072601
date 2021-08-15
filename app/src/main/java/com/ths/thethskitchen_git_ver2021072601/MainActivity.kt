@@ -1,14 +1,17 @@
 package com.ths.thethskitchen_git_ver2021072601
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenResumed
 import androidx.viewpager2.widget.ViewPager2
+import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityHelpBinding
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityMainBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -97,6 +100,7 @@ class MainActivity : BaseActivity() {
                         binding.imgRecommand.visibility = View.GONE
                         binding.btnLog.visibility = View.VISIBLE
                         binding.txtTitle.text = getString(R.string.app_name)
+
                     }
                     1 -> {
                         binding.imgRecommand.visibility = View.VISIBLE
@@ -106,6 +110,18 @@ class MainActivity : BaseActivity() {
                 }
             }
         })
+        //도움말
+        val dialog = ActivityHelpBinding.inflate(layoutInflater)
+        val builder = AlertDialog.Builder(this)
+        builder.setView(dialog.root)
+
+        val alertDialog = builder.create()
+        dialog.btnSkip.setOnClickListener {
+            alertDialog.dismiss()
+            Log.d("HelpScreen","Skip")
+        }
+
+        alertDialog.show()
     }
 
     // 초기 언어 설정

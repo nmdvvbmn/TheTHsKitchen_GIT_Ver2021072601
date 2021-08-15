@@ -144,6 +144,7 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
             val intent = Intent(this,CartActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
             startActivity(intent)
+//            iAdapter.notifyDataSetChanged()
         }
 
         //종료

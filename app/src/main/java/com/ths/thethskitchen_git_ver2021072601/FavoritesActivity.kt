@@ -2,6 +2,7 @@ package com.ths.thethskitchen_git_ver2021072601
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.skydoves.balloon.*
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityFavoritesBinding
 
 //즐겨찾기
@@ -22,6 +23,38 @@ class FavoritesActivity : BaseActivity() {
         binding.btnFExit.setOnClickListener {
             finish()
         }
+        if (adapter.dList.isEmpty()){
+            createHelp()
+        }
+
+    }
+
+    private fun createHelp() {
+        val balloon = createBalloon(this) {
+            setArrowSize(10)
+            setWidth(BalloonSizeSpec.WRAP)
+            setHeight(BalloonSizeSpec.WRAP)
+            setArrowPosition(0.1f)
+            setCornerRadius(4f)
+            setAlpha(0.9f)
+            setPadding(10)
+            setMarginTop(15)
+            setMarginLeft(8)
+            setTextSize(14.0f)
+            setAutoDismissDuration(5000L)
+            setText(getString(R.string.h_f_empty1))
+            setTextColorResource(R.color.white)
+            setTextIsHtml(true)
+            arrowOrientation = ArrowOrientation.BOTTOM
+            setBackgroundColorResource(R.color.thscolor)
+            setBalloonAnimation(BalloonAnimation.FADE)
+            setLifecycleOwner(lifecycleOwner)
+        }
+        balloon.setOnBalloonClickListener {
+            balloon.dismiss()
+        }
+
+        binding.btnFExit.showAlignBottom(balloon)
 
     }
 }

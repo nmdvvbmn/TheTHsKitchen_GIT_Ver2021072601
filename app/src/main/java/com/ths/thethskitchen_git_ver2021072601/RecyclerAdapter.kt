@@ -73,6 +73,11 @@ class RecyclerAdapter(private val listData: ArrayList<DList>):RecyclerView.Adapt
                 binding.txtDesc.text = dlist.desc
                 binding.txtDesc.maxLines = 3
             }
+            if (dlist.id != ""){
+                binding.imgLLogo.visibility = View.VISIBLE
+            }else{
+                binding.imgLLogo.visibility = View.INVISIBLE
+            }
 
             when (dlist.flag){
                 4 -> {

@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">Klicken Sie auf Zurück zum Beenden erneut</string>
     <string name="hint_search" translatable="false">Bitte geben Sie Ihren Suchbegriff</string>
     <string name="inputdate">Datum eingeben</string>
+    <string name="h_r_empty1">Wir empfehlen, mit Lebensmitteln zu kochen, die im Kühlschrank aufbewahrt werden.</string>
+    <string name="h_r_empty2">Fügen Sie dem Kühlschrank Essen hinzu</string>
+    <string name="h_c_empty1">Sie können Lebensmittel von Ihrer Einkaufsliste zum Kühlschrank hinzufügen.</string>
+    <string name="h_c_empty2">Zutaten in Ihre Einkaufsliste hinzufügen</string>
+    <string name="h_f_empty1">Sie können Favoriten auf dem Detailbildschirm hinzufügen</string>
+    <string name="h_k_empty1">Empfehlen Sie das Kochen mit ausgewähltem Kochgeschirr</string>
+    <string name="h_k_empty2">Wählen Sie aus verfügbarem Kochgeschirr</string>
+    <string name="h_qunt_adj">Ändern Sie den gewünschten Betrag</string>
+    <string name="h_cart">Sie können es Ihrem Warenkorb hinzufügen</string>
+    <string name="h_time">Bewegen Sie das Video in das Rezept</string>
+    <string name="h_movecart">Gehen Sie zum Einkaufswagen</string>
+    <string name="h_recommand">Ich empfehle, mit Zutaten zu kochen, die in Kühlschrank und Kochwerkzeuge in der Küche eingestellt sind.</string>
+    <string name="h_click">Klicken Sie hier, um Details anzuzeigen</string>
+    <string name="h_refrigerator">Bewegen Sie die Lebensmittel in den Kühlschrank.</string>
 </resources>

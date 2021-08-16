@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">Clique em Voltar novamente para sair</string>
     <string name="hint_search" translatable="false">Digite seu termo de busca</string>
     <string name="inputdate">entrada Data</string>
+    <string name="h_r_empty1">Recomendamos cozinhar com alimentos armazenados na geladeira.</string>
+    <string name="h_r_empty2">Adicionar comida à geladeira</string>
+    <string name="h_c_empty1">Você pode adicionar alimentos da sua lista de compras para a geladeira.</string>
+    <string name="h_c_empty2">Adicionar ingredientes à sua lista de compras</string>
+    <string name="h_f_empty1">Você pode adicionar favoritos na tela de detalhes</string>
+    <string name="h_k_empty1">Recomendar cozinhar com panelas selecionadas</string>
+    <string name="h_k_empty2">Escolha a partir de utensílios disponíveis</string>
+    <string name="h_qunt_adj">Altere o valor desejado</string>
+    <string name="h_cart">Você pode adicioná-lo ao seu carrinho de compras</string>
+    <string name="h_time">Mova o vídeo para a receita</string>
+    <string name="h_movecart">Ir para Carrinho</string>
+    <string name="h_recommand">Eu recomendo cozinhar com ingredientes definidos no refrigerador e cozinhar ferramentas em cozinha.</string>
+    <string name="h_click">Clique para ver detalhes</string>
+    <string name="h_refrigerator">Mova os alimentos para a geladeira.</string>
 </resources>

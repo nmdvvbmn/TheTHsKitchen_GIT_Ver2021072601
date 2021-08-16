@@ -13,7 +13,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
+import com.skydoves.balloon.*
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityRecommandDetailBinding
+import java.lang.Exception
 
 var mYoutubePlayer: YouTubePlayer? = null
 
@@ -28,6 +30,10 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
     val db = FirebaseFirestore.getInstance()    // 요리ID로 파이어베이스에서 IList, IName, RList. RName
     private var oldQunt : Float = 0F    // 재료량 계산을 위한 이전값 저장
     private val langCode = UtilFuncs().getLanguage() // 저장된 언어
+    private lateinit var balloon1: Balloon
+    private lateinit var balloon2: Balloon
+    private lateinit var balloon3: Balloon
+    private lateinit var balloon4: Balloon
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -161,6 +167,125 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
         }
         binding.txtRDesc.movementMethod = ScrollingMovementMethod()
 
+        //도움말
+        if (dlist.id != "" && App.prefs.getBoolean("help",true)){
+            createHelp()
+        }
+    }
+
+    private fun createHelp() {
+        balloon1 = createBalloon(this) {
+            setArrowSize(10)
+            setWidth(BalloonSizeSpec.WRAP)
+            setHeight(BalloonSizeSpec.WRAP)
+            setArrowPosition(0.1f)
+            setCornerRadius(4f)
+            setAlpha(0.9f)
+            setPadding(10)
+            setMarginBottom(10)
+            setMarginLeft(150)
+            setTextSize(14.0f)
+            setAutoDismissDuration(5000L)
+            setText(getString(R.string.h_qunt_adj))
+            setTextColorResource(R.color.white)
+            setTextIsHtml(true)
+            setArrowOrientation(ArrowOrientation.BOTTOM)
+            setBackgroundColorResource(R.color.thscolor)
+            setBalloonAnimation(BalloonAnimation.FADE)
+            setLifecycleOwner(lifecycleOwner) }
+
+
+        balloon2 = createBalloon(this) {
+            setArrowSize(10)
+            setWidth(BalloonSizeSpec.WRAP)
+            setHeight(BalloonSizeSpec.WRAP)
+            setArrowPosition(0.8f)
+            setCornerRadius(4f)
+            setAlpha(0.9f)
+            setPadding(10)
+            setMarginTop(50)
+            setMarginLeft(50)
+            setTextSize(14.0f)
+//            setAutoDismissDuration(5000L)
+            setText(getString(R.string.h_cart))
+            setTextColorResource(R.color.white)
+            setTextIsHtml(true)
+            setArrowOrientation(ArrowOrientation.TOP)
+            setBackgroundColorResource(R.color.thscolor)
+            setBalloonAnimation(BalloonAnimation.FADE)
+            setLifecycleOwner(lifecycleOwner) }
+
+
+        balloon3 = createBalloon(this) {
+            setArrowSize(10)
+            setWidth(BalloonSizeSpec.WRAP)
+            setHeight(BalloonSizeSpec.WRAP)
+            setArrowPosition(0.8f)
+            setCornerRadius(4f)
+            setAlpha(0.9f)
+            setPadding(10)
+            setMarginTop(100)
+            setMarginLeft(50)
+            setTextSize(14.0f)
+//            setAutoDismissDuration(5000L)
+            setText(getString(R.string.h_time))
+            setTextColorResource(R.color.white)
+            setTextIsHtml(true)
+            setArrowOrientation(ArrowOrientation.TOP)
+            setBackgroundColorResource(R.color.thscolor)
+            setBalloonAnimation(BalloonAnimation.FADE)
+            setLifecycleOwner(lifecycleOwner) }
+
+        balloon4 = createBalloon(this) {
+            setArrowSize(10)
+            setWidth(BalloonSizeSpec.WRAP)
+            setHeight(BalloonSizeSpec.WRAP)
+            setArrowPosition(0.9f)
+            setCornerRadius(4f)
+            setAlpha(0.9f)
+            setPadding(10)
+            setMarginTop(10)
+//            setMarginLeft(50)
+            setTextSize(14.0f)
+//            setAutoDismissDuration(5000L)
+            setText(getString(R.string.h_movecart))
+            setTextColorResource(R.color.white)
+            setTextIsHtml(true)
+            setArrowOrientation(ArrowOrientation.TOP)
+            setBackgroundColorResource(R.color.thscolor)
+            setBalloonAnimation(BalloonAnimation.FADE)
+            setLifecycleOwner(lifecycleOwner) }
+        binding.txtUnit.showAlignTop(balloon1)
+        binding.txtItext.showAlignBottom(balloon2)
+        binding.txtRtext.showAlignBottom(balloon3)
+        binding.btnToCart.showAlignBottom(balloon4)
+        balloon1.setOnBalloonDismissListener {
+            balloon2.dismissWithDelay(300L)
+        }
+        balloon2.setOnBalloonDismissListener {
+            balloon3.dismissWithDelay(300L)
+        }
+        balloon3.setOnBalloonDismissListener {
+            balloon4.dismissWithDelay(300L)
+        }
+        balloon4.setOnBalloonDismissListener {
+            balloon1.dismissWithDelay(300L)
+        }
+        balloon1.setOnBalloonClickListener {
+            balloon1.dismiss()
+        }
+
+        balloon2.setOnBalloonClickListener {
+            balloon2.dismiss()
+        }
+
+        balloon3.setOnBalloonClickListener {
+            balloon3.dismiss()
+        }
+
+        balloon4.setOnBalloonClickListener {
+            balloon4.dismiss()
+        }
 
     }
 
@@ -330,8 +455,28 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
 
     // 유튜브 SeeKto
     override fun onRItemSelected(time: Float) {
+        mYoutubePlayer?.play()
         mYoutubePlayer?.seekTo(time)
     }
+
+    override fun onResume() {
+        super.onResume()
+        iAdapter.notifyDataSetChanged()
+    }
+
+    override fun onBackPressed() {
+        try{
+            balloon1.dismiss()
+            balloon2.dismiss()
+            balloon3.dismiss()
+            balloon4.dismiss()
+        }catch (e: Exception){
+
+        }finally {
+            super.onBackPressed()
+        }
+    }
+
 }
 
 // Youtube Listener
@@ -340,7 +485,9 @@ class AbYoutubePlayerListener(private val videoId: String, var second: Float): A
         if (App.prefs.getBoolean("play",true)){
             youTubePlayer.loadVideo(videoId, second)    //자동 재생
         }else{
-            youTubePlayer.cueVideo(videoId, second)     //재생 없이 대기
+            youTubePlayer.loadVideo(videoId, second)    //자동 재생
+            youTubePlayer.pause()
+//            youTubePlayer.cueVideo(videoId, second)     //재생 없이 대기
         }
 //        var customUI = YourCustomPlayerUiController(youTubePlayer,youTubePlayerView,customPlayerUi)
 

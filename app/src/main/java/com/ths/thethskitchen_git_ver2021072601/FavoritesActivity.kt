@@ -23,7 +23,7 @@ class FavoritesActivity : BaseActivity() {
         binding.btnFExit.setOnClickListener {
             finish()
         }
-        if (adapter.dList.isEmpty()){
+        if (adapter.dList.isEmpty()&& App.prefs.getBoolean("help",true)){
             createHelp()
         }
 

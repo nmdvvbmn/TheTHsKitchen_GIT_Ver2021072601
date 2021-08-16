@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">Haga clic en Volver de nuevo para salir</string>
     <string name="hint_search" translatable="false">Por favor, introduzca el término de búsqueda</string>
     <string name="inputdate">Fecha de entrada</string>
+    <string name="h_r_empty1">Recomendamos cocinar con alimentos almacenados en el refrigerador.</string>
+    <string name="h_r_empty2">Añadir comida al refrigerador</string>
+    <string name="h_c_empty1">Puede agregar alimentos desde su lista de compras al refrigerador.</string>
+    <string name="h_c_empty2">Agregue ingredientes a su lista de compras</string>
+    <string name="h_f_empty1">Puedes agregar favoritos en la pantalla de detalle.</string>
+    <string name="h_k_empty1">Recomiendo cocinar con utensilios de cocina seleccionados</string>
+    <string name="h_k_empty2">Elija entre utensilios de cocina disponibles</string>
+    <string name="h_qunt_adj">Cambia la cantidad que quieres</string>
+    <string name="h_cart">Puedes agregarlo a tu carrito de compras.</string>
+    <string name="h_time">Mueve el video a la receta.</string>
+    <string name="h_movecart">Ir a la cesta de la compra</string>
+    <string name="h_recommand">Recomiendo cocinar con ingredientes ubicados en refrigerador y herramientas de cocina ubicadas en la cocina.</string>
+    <string name="h_click">Haga clic para ver los detalles</string>
+    <string name="h_refrigerator">Mueve los alimentos al refrigerador.</string>
 </resources>

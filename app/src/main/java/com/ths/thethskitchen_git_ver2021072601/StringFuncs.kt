@@ -71,4 +71,25 @@ open class StringFuncs {
     open fun makeDateString( date: LocalDateTime ): String {
         return date.format(DateTimeFormatter.ISO_LOCAL_DATE)
     }
+
+    //문자열 자르기
+    open fun makeSearch(search: String): List<String> {
+        val searchList = arrayListOf<String>()
+        val resultList = arrayListOf<String>()
+        val splitList = search. split(" ")
+        
+        for (i in splitList.indices){
+            resultList.add(splitList[i].substring(0,1).uppercase()+splitList[i].substring(1))
+            resultList.add(splitList[i].substring(0,1).lowercase()+splitList[i].substring(1))
+        }
+
+        searchList.addAll(splitList.distinct())
+        for (i in 0 until  searchList.size){
+            resultList.add(searchList[i])
+            if (i == 9) {
+                break
+            }
+        }
+        return resultList.toList()
+    }
 }

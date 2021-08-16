@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">Cliquez sur Retour à nouveau pour quitter</string>
     <string name="hint_search" translatable="false">S\'il vous plaît entrer votre terme de recherche</string>
     <string name="inputdate">date de l\'entrée</string>
+    <string name="h_r_empty1">Nous vous recommandons de cuisiner avec des aliments stockés au réfrigérateur.</string>
+    <string name="h_r_empty2">Ajouter de la nourriture au réfrigérateur</string>
+    <string name="h_c_empty1">Vous pouvez ajouter des aliments de votre liste de courses au réfrigérateur.</string>
+    <string name="h_c_empty2">Ajouter des ingrédients à votre liste de courses</string>
+    <string name="h_f_empty1">Vous pouvez ajouter des favoris sur l\'écran de détail</string>
+    <string name="h_k_empty1">Recommander la cuisson avec une batterie de cuisine sélectionnée</string>
+    <string name="h_k_empty2">Choisissez à partir de la batterie de cuisine disponible</string>
+    <string name="h_qunt_adj">Changer le montant que vous voulez</string>
+    <string name="h_cart">Vous pouvez l\'ajouter à votre panier</string>
+    <string name="h_time">Déplacez la vidéo sur la recette</string>
+    <string name="h_movecart">Aller au panier</string>
+    <string name="h_recommand">Je recommande la cuisson avec des ingrédients dans des outils de réfrigérateur et de cuisson dans la cuisine.</string>
+    <string name="h_click">Cliquez pour voir les détails</string>
+    <string name="h_refrigerator">Déplacez les aliments au réfrigérateur.</string>
 </resources>

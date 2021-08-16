@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">Нажмите кнопку Назад еще раз для выхода</string>
     <string name="hint_search" translatable="false">Введите слово для поиска</string>
     <string name="inputdate">Ввод даты</string>
+    <string name="h_r_empty1">Мы рекомендуем готовить с продуктами, хранящимися в холодильнике.</string>
+    <string name="h_r_empty2">Добавить еду в холодильник</string>
+    <string name="h_c_empty1">Вы можете добавить продукты из своего списка покупок в холодильник.</string>
+    <string name="h_c_empty2">Добавьте ингредиенты в ваш список покупок</string>
+    <string name="h_f_empty1">Вы можете добавить избранное на экране детализации</string>
+    <string name="h_k_empty1">Рекомендовать готовить с выбранной посудой</string>
+    <string name="h_k_empty2">Выберите из доступной посуды</string>
+    <string name="h_qunt_adj">Изменить сумму, которую вы хотите</string>
+    <string name="h_cart">Вы можете добавить его в вашу корзину</string>
+    <string name="h_time">Переместить видео на рецепт</string>
+    <string name="h_movecart">Перейти к корзину</string>
+    <string name="h_recommand">Я рекомендую готовить с ингредиентами, установленными в холодильнике и инструментах приготовления на кухне.</string>
+    <string name="h_click">Нажмите, чтобы просмотреть детали</string>
+    <string name="h_refrigerator">Переместите продукты в холодильник.</string>
 </resources>

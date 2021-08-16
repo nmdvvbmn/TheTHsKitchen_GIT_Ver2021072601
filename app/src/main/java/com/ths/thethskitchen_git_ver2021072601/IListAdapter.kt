@@ -19,6 +19,7 @@ class IListAdapter(private val listData: ArrayList<IList>): RecyclerView.Adapter
     var helper: SQLiteDBHelper? = null
     var dlist: DList? = null
     var mContext: Context? = null
+    val tempList = arrayListOf<String>()
     private val context get() = mContext!!
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -52,15 +53,19 @@ class IListAdapter(private val listData: ArrayList<IList>): RecyclerView.Adapter
             helper?.insertCart(cartItem)
             Toast.makeText(context,context.getString(R.string.msg_save_data),
                 Toast.LENGTH_SHORT).show()
+            tempList.add(list.name!!)
             //프로그레스바
             holder.binding.btnRAddCart.visibility = View.INVISIBLE
         }
 
     }
 
+
     override fun getItemCount(): Int {
         return listData.size
     }
+
+
     inner class Holder(val binding: ItemIlistBinding, val context: Context) : RecyclerView.ViewHolder(binding.root) {
         private lateinit var mIList: IList
 
@@ -86,13 +91,13 @@ class IListAdapter(private val listData: ArrayList<IList>): RecyclerView.Adapter
             }
             binding.chkName.text = txt
 
-            if (helper?.existsRefiregieratorItem(ilist.name.toString())==true){
+            if (helper?.existsRefiregieratorItem(ilist.name.toString())==true) {
+                binding.btnRAddCart.visibility = View.INVISIBLE
+            }else if (tempList.indexOf(ilist.name) >= 0){
                 binding.btnRAddCart.visibility = View.INVISIBLE
             }else{
                 binding.btnRAddCart.visibility = View.VISIBLE
             }
-
-
         }
     }
 }

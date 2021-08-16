@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">আবার ফিরে ক্লিক করুন প্রস্থান</string>
     <string name="hint_search" translatable="false">আপনার অনুসন্ধান শব্দ লিখুন দয়া করে</string>
     <string name="inputdate">ইনপুট তারিখ</string>
+    <string name="h_r_empty1">আমরা ফ্রিজে সংরক্ষিত খাবার দিয়ে রান্না করার সুপারিশ করি।</string>
+    <string name="h_r_empty2">ফ্রিজে খাদ্য যোগ করুন</string>
+    <string name="h_c_empty1">আপনি আপনার শপিং লিস্ট থেকে ফ্রিজে খাবার যুক্ত করতে পারেন।</string>
+    <string name="h_c_empty2">আপনার শপিং তালিকা উপাদান যোগ করুন</string>
+    <string name="h_f_empty1">আপনি বিস্তারিত পর্দায় ফেভারিটে যোগ করতে পারেন</string>
+    <string name="h_k_empty1">নির্বাচিত cookware সঙ্গে রান্না করার সুপারিশ</string>
+    <string name="h_k_empty2">উপলব্ধ cookware থেকে চয়ন করুন</string>
+    <string name="h_qunt_adj">আপনি চান পরিমাণ পরিবর্তন করুন</string>
+    <string name="h_cart">আপনি আপনার শপিং কার্ট এটি যোগ করতে পারেন</string>
+    <string name="h_time">রেসিপি ভিডিওটি সরান</string>
+    <string name="h_movecart">শপিং কার্ট যান</string>
+    <string name="h_recommand">আমি রেফ্রিজারেটর এবং রান্নাঘরে সেট রন্ধন সরঞ্জাম সেট উপাদান সঙ্গে রান্না করার সুপারিশ।</string>
+    <string name="h_click">বিস্তারিত দেখতে ক্লিক করুন</string>
+    <string name="h_refrigerator">ফ্রিজে খাবার সরান।</string>
 </resources>

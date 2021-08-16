@@ -66,4 +66,18 @@
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="hint_search" translatable="false">검색어를 입력하세요</string>
     <string name="inputdate">입력 날짜</string>
+    <string name="h_r_empty1">냉장고에 입력된 식재료로 요리를 추천합니다</string>
+    <string name="h_r_empty2">냉장고에 식재료를 추가하세요</string>
+    <string name="h_c_empty1">쇼핑목록의 식재료를 냉장고에 추가 할 수 있어요</string>
+    <string name="h_c_empty2">쇼핑목록에 식재료를 추가하세요</string>
+    <string name="h_f_empty1">상세화면에서 즐겨찾기를 추가 할 수 있어요</string>
+    <string name="h_k_empty1">선택된 조리도구로 요리를 추천합니다</string>
+    <string name="h_k_empty2">사용 가능한 조리도구를 선택하세요</string>
+    <string name="h_qunt_adj">원하는 양으로 변경하세요</string>
+    <string name="h_cart">쇼핑목록에 담을 수 있어요</string>
+    <string name="h_time">동영상을 해당 조리법으로 이동시켜요</string>
+    <string name="h_movecart">쇼핑목록으로 이동해요</string>
+    <string name="h_recommand">나의 냉장고에 설정된 재료와 나의 주방에 설정된 조리도구로 요리를 추천 해요.</string>
+    <string name="h_click">클릭하면 상세내역을 볼 수 있어요</string>
+    <string name="h_refrigerator">재료를 냉장고로 이동해요</string>
 </resources>

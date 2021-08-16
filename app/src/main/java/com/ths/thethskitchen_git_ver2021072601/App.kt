@@ -7,6 +7,7 @@ import android.content.Context
 class App: Application() {
     companion object {
         lateinit var prefs: THsSharedPreferences
+        var changed = false
     }
 
     override fun onCreate() {

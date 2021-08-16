@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">دوبارہ واپس کلک کریں وہاں سے نکلنے کی</string>
     <string name="hint_search" translatable="false">آپ کی تلاش کی اصطلاح درج کریں</string>
     <string name="inputdate">ان پٹ تاریخ</string>
+    <string name="h_r_empty1">ہم ریفریجریٹر میں ذخیرہ کردہ کھانے کی اشیاء کے ساتھ کھانا پکانے کی سفارش کرتے ہیں.</string>
+    <string name="h_r_empty2">ریفریجریٹر کو کھانا شامل کریں</string>
+    <string name="h_c_empty1">آپ اپنی خریداری کی فہرست سے ریفریجریٹر میں کھانے کی اشیاء شامل کرسکتے ہیں.</string>
+    <string name="h_c_empty2">اپنی خریداری کی فہرست میں اجزاء شامل کریں</string>
+    <string name="h_f_empty1">آپ تفصیل کی سکرین پر پسندیدہ شامل کرسکتے ہیں</string>
+    <string name="h_k_empty1">منتخب کردہ Cookware کے ساتھ کھانا پکانے کی سفارش کریں</string>
+    <string name="h_k_empty2">دستیاب cookware سے منتخب کریں</string>
+    <string name="h_qunt_adj">آپ چاہتے ہیں رقم کو تبدیل کریں</string>
+    <string name="h_cart">آپ اپنی خریداری کی ٹوکری میں شامل کر سکتے ہیں</string>
+    <string name="h_time">ویڈیو کو ہدایت پر منتقل کریں</string>
+    <string name="h_movecart">خریداری کی ٹوکری میں جاؤ</string>
+    <string name="h_recommand">میں باورچی خانے میں مقرر کردہ اجزاء اور باورچی خانے سے متعلق آلات میں سیٹ اجزاء کے ساتھ کھانا پکانا چاہتا ہوں.</string>
+    <string name="h_click">تفصیلات دیکھنے کے لئے کلک کریں</string>
+    <string name="h_refrigerator">کھانے کی اشیاء کو ریفریجریٹر منتقل کریں.</string>
 </resources>

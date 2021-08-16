@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">வெளியேறும் மீண்டும் மீண்டும் கிளிக் செய்க</string>
     <string name="hint_search" translatable="false">உங்கள் தேடல் சொல்லை உள்ளிட</string>
     <string name="inputdate">உள்ளீடு தேதி</string>
+    <string name="h_r_empty1">குளிர்சாதன பெட்டியில் சேமிக்கப்பட்ட உணவுகளுடன் சமையல் பரிந்துரைக்கிறோம்.</string>
+    <string name="h_r_empty2">குளிர்சாதனப்பெட்டிக்கு உணவு சேர்க்கவும்</string>
+    <string name="h_c_empty1">நீங்கள் குளிர்சாதன பெட்டியில் உங்கள் ஷாப்பிங் பட்டியலில் இருந்து உணவுகளை சேர்க்கலாம்.</string>
+    <string name="h_c_empty2">உங்கள் ஷாப்பிங் பட்டியலில் தேவையான பொருட்கள் சேர்க்கவும்</string>
+    <string name="h_f_empty1">நீங்கள் விவரம் திரையில் விருப்பங்களை சேர்க்க முடியும்</string>
+    <string name="h_k_empty1">தேர்ந்தெடுத்த குக்க்வேர் உடன் சமையல் பரிந்துரை</string>
+    <string name="h_k_empty2">கிடைக்கும் குக்க்வேர் தேர்வு</string>
+    <string name="h_qunt_adj">நீங்கள் விரும்பும் தொகையை மாற்றவும்</string>
+    <string name="h_cart">உங்கள் வண்டியில் அதை சேர்க்கலாம்</string>
+    <string name="h_time">செய்முறையை வீடியோவை நகர்த்தவும்</string>
+    <string name="h_movecart">வண்டியில் செல்லுங்கள்</string>
+    <string name="h_recommand">நான் சமையலறையில் அமைக்கப்பட்ட குளிர்சாதன பெட்டி மற்றும் சமையல் கருவிகள் அமைக்க பொருட்கள் சமையல் பரிந்துரைக்கிறோம்.</string>
+    <string name="h_click">விவரங்களைக் காண கிளிக் செய்க</string>
+    <string name="h_refrigerator">குளிர்சாதன பெட்டிக்கு உணவுகளை நகர்த்தவும்.</string>
 </resources>

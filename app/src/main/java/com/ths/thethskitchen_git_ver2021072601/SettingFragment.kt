@@ -14,6 +14,7 @@ class SettingFragment: PreferenceFragmentCompat() {
         App.prefs.getString("code","en") // 언어설정
         App.prefs.getBoolean("caption", true) //자막 설정
         App.prefs.getBoolean("play", true)   //자동재생 설정
+        App.prefs.getBoolean("help",true)   //도움말
 
         val list: ListPreference? = findPreference("code")
         list?.summary = list?.entry

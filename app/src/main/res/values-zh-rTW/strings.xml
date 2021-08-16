@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">再次點擊返回退出</string>
     <string name="hint_search" translatable="false">請輸入您的搜索字詞</string>
     <string name="inputdate">輸入日期</string>
+    <string name="h_r_empty1">我們建議烹飪儲存在冰箱中的食物。</string>
+    <string name="h_r_empty2">將食物添加到冰箱上</string>
+    <string name="h_c_empty1">您可以將購物清單中的食物添加到冰箱中。</string>
+    <string name="h_c_empty2">為購物清單添加成分</string>
+    <string name="h_f_empty1">您可以在詳細信息屏幕上添加收藏夾</string>
+    <string name="h_k_empty1">建議使用所選的炊具烹飪</string>
+    <string name="h_k_empty2">選擇可用的炊具</string>
+    <string name="h_qunt_adj">更改您想要的金額</string>
+    <string name="h_cart">您可以將其添加到您的購物車中</string>
+    <string name="h_time">將視頻移動到食譜</string>
+    <string name="h_movecart">去購物車</string>
+    <string name="h_recommand">我建議在廚房裡坐落在冰箱和烹飪工具中烹飪。</string>
+    <string name="h_click">點擊查看詳細信息</string>
+    <string name="h_refrigerator">將食物移動到冰箱上。</string>
 </resources>

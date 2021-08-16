@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">Klik Kembali lagi untuk keluar</string>
     <string name="hint_search" translatable="false">Sila masukkan istilah carian anda</string>
     <string name="inputdate">Tarikh Input</string>
+    <string name="h_r_empty1">Kami mengesyorkan memasak dengan makanan yang disimpan di dalam peti sejuk.</string>
+    <string name="h_r_empty2">Tambah makanan ke peti sejuk</string>
+    <string name="h_c_empty1">Anda boleh menambah makanan dari senarai membeli-belah anda ke peti sejuk.</string>
+    <string name="h_c_empty2">Tambah bahan ke senarai membeli-belah anda</string>
+    <string name="h_f_empty1">Anda boleh menambah kegemaran pada skrin terperinci</string>
+    <string name="h_k_empty1">Mengesyorkan memasak dengan alat memasak yang dipilih</string>
+    <string name="h_k_empty2">Pilih dari alat memasak yang ada</string>
+    <string name="h_qunt_adj">Ubah jumlah yang anda mahukan</string>
+    <string name="h_cart">Anda boleh menambahnya ke keranjang belanja anda</string>
+    <string name="h_time">Pindahkan video ke resipi</string>
+    <string name="h_movecart">Pergi ke keranjang belanja</string>
+    <string name="h_recommand">Saya cadangkan memasak dengan ramuan yang ditetapkan dalam peti sejuk dan alat memasak yang ditetapkan di dapur.</string>
+    <string name="h_click">Klik untuk melihat butiran</string>
+    <string name="h_refrigerator">Pindahkan makanan ke peti sejuk.</string>
 </resources>

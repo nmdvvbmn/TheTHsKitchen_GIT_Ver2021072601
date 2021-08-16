@@ -22,10 +22,9 @@ suspend fun searchFireStore(searchString: String, adapter: RecyclerAdapter, list
     val db = FirebaseFirestore.getInstance()
     val date = UtilFuncs().getKorDate()
     // 재료에서 검색
-//    db.collection("IName").whereGreaterThanOrEqualTo("name", searchString)
-//        .whereLessThanOrEqualTo("name",searchString ).limit(7).get() //+ "\uf8ff"
-        db.collection("IName").orderBy("name")//.orderBy("id",Query.Direction.DESCENDING)
-        .startAt(searchString.uppercase()).endAt(searchString + "\uf8ff").limit(5).get()
+        val searchList = StringFuncs().makeSearch(searchString)
+        db.collection("IName")//.orderBy("name")//.orderBy("id",Query.Direction.DESCENDING)
+            .whereIn("name", searchList).get()
         .addOnSuccessListener { result ->
             for (document in result) {
                 val item = DList(document["id"] as String,"",0,0,"",0,"",0,
@@ -37,10 +36,9 @@ suspend fun searchFireStore(searchString: String, adapter: RecyclerAdapter, list
             Log.d("FireStore", "Fail")
         }.addOnCompleteListener {
             // 요리명에서 검색
-//            db.collection("DName").whereGreaterThanOrEqualTo("name", searchString)
-//                .whereLessThanOrEqualTo("name",searchString ).limit(7).get() //+ "\uf8ff"
-                db.collection("DName").orderBy("name")//.orderBy("id",Query.Direction.DESCENDING)
-                .startAt(searchString.uppercase()).endAt(searchString + "\uf8ff").limit(5).get()
+                val searchList = StringFuncs().makeSearch(searchString)
+                db.collection("DName")//.orderBy("name")//.orderBy("id",Query.Direction.DESCENDING)
+                    .whereIn("name", searchList).get()
                 .addOnSuccessListener { result ->
                     for (document in result){
                         val item = DList(document["id"] as String,"",0,0,"",0,"",0,
@@ -58,15 +56,10 @@ suspend fun searchFireStore(searchString: String, adapter: RecyclerAdapter, list
                                 val item = DList(document.id, "",0,0,"",0,"",0,
                                     "",0,0,0,0,0,0,0,0,
                                     0,0,document["vdeioID"] as String,"",4)
-//                                val index = listData.indexOfFirst { it.id == item.id }
-//                                if (index >= 0) {
-//                                    listData[index].flag = 4
-//                                }else{
                                     listData.removeIf { it.id == item.id }
                                     listData.removeIf { it.video == item.video }
                                     listData.add(0,item)
                                     Log.d("FireStore","요리명 검색 ${item.id}")
-//                                    }
                                 }
                         }.addOnFailureListener {
                             Log.d("FireStore","New Fail")
@@ -158,14 +151,14 @@ fun searchYoutube(searchString: String): ArrayList<DList> {
 
     if  (langCode == "ko") {
         apiURL =
-            "https://dapi.kakao.com/v2/search/vclip?sort=accuracy&size=5&query=$search+슬기로운식샤생활&cp=7b479cb3&p=1"
+            "https://dapi.kakao.com/v2/search/vclip?sort=accuracy&size=10&query=$search+슬기로운식샤생활&cp=7b479cb3&p=1"
         dlist = SearchData().get(apiURL,requestHeader, dlist!!)
         apiURL =
-            "https://dapi.kakao.com/v2/search/vclip?sort=accuracy&size=7&query=$search&cp=7b479cb3&p=1"
+            "https://dapi.kakao.com/v2/search/vclip?sort=accuracy&size=10&query=$search&cp=7b479cb3&p=1"
         dlist = SearchData().get(apiURL,requestHeader, dlist)
     }else{
         apiURL =
-            "https://dapi.kakao.com/v2/search/vclip?sort=accuracy&size=7&query=$search&cp=7b479cb3&p=1"
+            "https://dapi.kakao.com/v2/search/vclip?sort=accuracy&size=20&query=$search&cp=7b479cb3&p=1"
         dlist = SearchData().get(apiURL,requestHeader, dlist!!)
     }
     val list = dlist.distinctBy { it.video }
@@ -218,11 +211,7 @@ class SearchData {
                             var item = DList("","",0,0,"",0,"",0,
                                 "",0,0,0,0,0,0,0,0,
                                 0,0,url,"",0)
-        //                                item = getYoutube(item)
                             item = getFireStore(item)
-        //                                if (item.id != ""){
-        //                                    item.flag = 1
-        //                                }
                             dlist.add(item)
                         }
                     }

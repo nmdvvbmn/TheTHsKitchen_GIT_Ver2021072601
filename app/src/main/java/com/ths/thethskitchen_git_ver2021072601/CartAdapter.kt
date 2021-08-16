@@ -1,22 +1,26 @@
 package com.ths.thethskitchen_git_ver2021072601
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
+import com.skydoves.balloon.*
 import com.ths.thethskitchen_git_ver2021072601.databinding.DailogCartAddBinding
 import com.ths.thethskitchen_git_ver2021072601.databinding.ItemCartBinding
 
 class CartAdapter: RecyclerView.Adapter<CartAdapter.Holder>() {
     var helper: SQLiteDBHelper? = null
     var cartList = mutableListOf<CartList>()
+    lateinit var mContext: Context
     private lateinit var dialogAdd : DailogCartAddBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemCartBinding.inflate(LayoutInflater.from(parent.context),
             parent,false)   //아이템 뷰바인딩
         dialogAdd = DailogCartAddBinding.inflate(LayoutInflater.from(parent.context),
             parent,false)   //다이얼로그 뷰바인딩
+        mContext = parent.context
         return Holder(binding)
     }
 
@@ -86,6 +90,7 @@ class CartAdapter: RecyclerView.Adapter<CartAdapter.Holder>() {
                 notifyDataSetChanged()
                 Toast.makeText(it.context, it.context.getString(R.string.msg_move_data),
                 Toast.LENGTH_SHORT).show()
+                App.changed = true
             }
         }
         //아이템 세팅
@@ -93,6 +98,81 @@ class CartAdapter: RecyclerView.Adapter<CartAdapter.Holder>() {
             this.mCartList = cartList
             bindng.txtCartName.text = cartList.name //재료명
             this.mCartList = cartList
+            if (layoutPosition == 0 && App.prefs.getBoolean("help",true)) {
+                val balloon1 = createBalloon(mContext) {
+                    setArrowSize(10)
+                    setWidth(BalloonSizeSpec.WRAP)
+                    setHeight(BalloonSizeSpec.WRAP)
+                    setArrowPosition(0.1f)
+                    setCornerRadius(4f)
+                    setAlpha(0.9f)
+                    setPadding(10)
+                    setMarginTop(8)
+                    setMarginRight(30)
+                    setTextSize(10.0f)
+                    setAutoDismissDuration(5000L)
+                    setText(mContext.getString(R.string.h_click))
+                    setTextColorResource(R.color.white)
+                    setTextIsHtml(true)
+                    arrowOrientation = ArrowOrientation.TOP
+                    setBackgroundColorResource(R.color.thscolor)
+                    setBalloonAnimation(BalloonAnimation.FADE)
+                    setLifecycleOwner(lifecycleOwner)
+                }
+                val balloon2 = createBalloon(mContext) {
+                    setArrowSize(10)
+                    setWidth(BalloonSizeSpec.WRAP)
+                    setHeight(BalloonSizeSpec.WRAP)
+                    setArrowPosition(0.5f)
+                    setCornerRadius(4f)
+                    setAlpha(0.9f)
+                    setPadding(10)
+                    setMarginTop(8)
+                    setMarginRight(0)
+                    setTextSize(10.0f)
+                    setAutoDismissDuration(5000L)
+                    setText(mContext.getString(R.string.h_refrigerator))
+                    setTextColorResource(R.color.white)
+                    setTextIsHtml(true)
+                    arrowOrientation = ArrowOrientation.RIGHT
+                    setBackgroundColorResource(R.color.thscolor)
+                    setBalloonAnimation(BalloonAnimation.FADE)
+                    setLifecycleOwner(lifecycleOwner)
+                }
+                bindng.txtCartName.showAlignBottom(balloon1)
+                bindng.btnMoveRefrigerator.showAlignLeft(balloon2)
+                balloon1.setOnBalloonClickListener {
+                    try{
+                        balloon1.dismiss()
+                        balloon2.dismiss()
+                    }catch (e: Exception){
+
+                    }
+
+                }
+                balloon2.setOnBalloonClickListener {
+                    try{
+                        balloon1.dismiss()
+                        balloon2.dismiss()
+                    }catch (e: Exception){
+
+                    }
+                }
+                balloon1.setOnBalloonDismissListener {
+                    try{
+                        balloon2.dismissWithDelay(200L)
+                    }catch (e: java.lang.Exception){
+
+                    }
+                }
+                balloon2.setOnBalloonDismissListener {
+                    try{
+                        balloon1.dismissWithDelay(200L)
+                    }catch (e: java.lang.Exception){
+
+                    }
+                }
+            }
         }
     }
 }

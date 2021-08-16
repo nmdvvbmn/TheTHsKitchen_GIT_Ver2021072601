@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">फिर से वापस बाहर निकलने के लिए क्लिक करें</string>
     <string name="hint_search" translatable="false">अपने खोज शब्द दर्ज करें</string>
     <string name="inputdate">इनपुट की तारीख</string>
+    <string name="h_r_empty1">हम रेफ्रिजरेटर में संग्रहीत खाद्य पदार्थों के साथ खाना पकाने की सलाह देते हैं।</string>
+    <string name="h_r_empty2">रेफ्रिजरेटर में भोजन जोड़ें</string>
+    <string name="h_c_empty1">आप अपनी खरीदारी सूची से रेफ्रिजरेटर में खाद्य पदार्थ जोड़ सकते हैं।</string>
+    <string name="h_c_empty2">अपनी खरीदारी सूची में सामग्री जोड़ें</string>
+    <string name="h_f_empty1">आप विस्तार स्क्रीन पर पसंदीदा जोड़ सकते हैं</string>
+    <string name="h_k_empty1">चयनित कुकवेयर के साथ खाना पकाने की सिफारिश करें</string>
+    <string name="h_k_empty2">उपलब्ध कुकवेयर से चुनें</string>
+    <string name="h_qunt_adj">अपनी इच्छित राशि बदलें</string>
+    <string name="h_cart">आप इसे अपने शॉपिंग कार्ट में जोड़ सकते हैं</string>
+    <string name="h_time">वीडियो को नुस्खा में ले जाएं</string>
+    <string name="h_movecart">शॉपिंग कार्ट पर जाएं</string>
+    <string name="h_recommand">मैं रसोईघर में सेट रेफ्रिजरेटर और खाना पकाने के उपकरण में सेट सामग्री के साथ खाना पकाने की सलाह देता हूं।</string>
+    <string name="h_click">विवरण देखने के लिए क्लिक करें</string>
+    <string name="h_refrigerator">खाद्य पदार्थों को रेफ्रिजरेटर में ले जाएं।</string>
 </resources>

@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">کلیک کنید بازگشت دوباره به خروج</string>
     <string name="hint_search" translatable="false">لطفا عبارت جستجوی خود را وارد کنید</string>
     <string name="inputdate">تاریخ ورودی</string>
+    <string name="h_r_empty1">ما توصیه می کنیم آشپزی با غذاهای ذخیره شده در یخچال و فریزر.</string>
+    <string name="h_r_empty2">غذا را به یخچال اضافه کنید</string>
+    <string name="h_c_empty1">شما می توانید مواد غذایی را از لیست خرید خود به یخچال اضافه کنید.</string>
+    <string name="h_c_empty2">اضافه کردن مواد تشکیل دهنده به لیست خرید خود را</string>
+    <string name="h_f_empty1">شما می توانید موارد دلخواه را در صفحه جزئیات اضافه کنید</string>
+    <string name="h_k_empty1">توصیه پخت و پز با آشپزی انتخاب شده</string>
+    <string name="h_k_empty2">از وسایل آشپزی موجود انتخاب کنید</string>
+    <string name="h_qunt_adj">مبلغی را که می خواهید تغییر دهید</string>
+    <string name="h_cart">شما می توانید آن را به سبد خرید خود اضافه کنید</string>
+    <string name="h_time">ویدئو را به دستور غذا منتقل کنید</string>
+    <string name="h_movecart">برو به سبد خرید</string>
+    <string name="h_recommand">توصیه می کنم پخت و پز با مواد تشکیل دهنده در یخچال و فریزر مجموعه ای که در آشپزخانه تنظیم شده است.</string>
+    <string name="h_click">برای مشاهده جزئیات کلیک کنید</string>
+    <string name="h_refrigerator">غذاها را به یخچال انتقال دهید.</string>
 </resources>

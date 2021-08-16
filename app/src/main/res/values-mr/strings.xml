@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">बाहेर पडा पुन्हा मागे क्लिक करा</string>
     <string name="hint_search" translatable="false">आपल्या शोध संज्ञा प्रविष्ट करा</string>
     <string name="inputdate">इनपुट तारीख</string>
+    <string name="h_r_empty1">आम्ही रेफ्रिजरेटरमध्ये संग्रहित केलेल्या पदार्थांसह स्वयंपाक करण्याची शिफारस करतो.</string>
+    <string name="h_r_empty2">रेफ्रिजरेटरमध्ये अन्न जोडा</string>
+    <string name="h_c_empty1">आपण आपल्या खरेदी सूचीमधून रेफ्रिजरेटरमध्ये अन्न जोडू शकता.</string>
+    <string name="h_c_empty2">आपल्या खरेदी सूचीमध्ये घटक जोडा</string>
+    <string name="h_f_empty1">आपण तपशीलवार स्क्रीनवर आवडी जोडू शकता</string>
+    <string name="h_k_empty1">निवडलेल्या कूकवेअरसह स्वयंपाक करण्याची शिफारस करा</string>
+    <string name="h_k_empty2">उपलब्ध कूकवेअर निवडा</string>
+    <string name="h_qunt_adj">आपल्याला पाहिजे असलेली रक्कम बदला</string>
+    <string name="h_cart">आपण ते आपल्या खरेदी कार्टमध्ये जोडू शकता</string>
+    <string name="h_time">व्हिडिओ रेसिपीवर हलवा</string>
+    <string name="h_movecart">शॉपिंग कार्ट वर जा</string>
+    <string name="h_recommand">मी स्वयंपाकघरमध्ये सेट रेफ्रिजरेटर आणि स्वयंपाकिंग साधनांमध्ये सेट केलेल्या घटकांसह स्वयंपाक करण्याची शिफारस करतो.</string>
+    <string name="h_click">तपशील पाहण्यासाठी क्लिक करा</string>
+    <string name="h_refrigerator">अन्न रेफ्रिजरेटरकडे हलवा.</string>
 </resources>

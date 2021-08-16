@@ -66,4 +66,18 @@
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="hint_search" translatable="false">Please enter your search term</string>
     <string name="inputdate">Input Date</string>
+    <string name="h_r_empty1">We recommend cooking with foods stored in the refrigerator.</string>
+    <string name="h_r_empty2">Add food to the refrigerator</string>
+    <string name="h_c_empty1">You can add foods from your shopping list to the refrigerator.</string>
+    <string name="h_c_empty2">Add ingredients to your shopping list</string>
+    <string name="h_f_empty1">You can add favorites on the detail screen</string>
+    <string name="h_k_empty1">Recommend cooking with selected cookware</string>
+    <string name="h_k_empty2">Choose from available cookware</string>
+    <string name="h_qunt_adj">Change the amount you want</string>
+    <string name="h_cart">You can add it to your shopping cart</string>
+    <string name="h_time">Move the video to the recipe</string>
+    <string name="h_movecart">Go to shopping cart</string>
+    <string name="h_recommand">I recommend cooking with ingredients set in refrigerator and cooking tools set in kitchen.</string>
+    <string name="h_click">Click to view details</string>
+    <string name="h_refrigerator">Move the foods to the refrigerator.</string>
 </resources>

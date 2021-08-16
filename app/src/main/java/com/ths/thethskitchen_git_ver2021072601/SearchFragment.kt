@@ -57,31 +57,6 @@ class SearchFragment : Fragment() {
                 Toast.makeText(context,"검색어를 입력하세요", Toast.LENGTH_SHORT).show()
             }
         }
-        // 자체 광고
-//        CoroutineScope(Dispatchers.IO).launch {
-//            val db = FirebaseFirestore.getInstance()
-//            db.collection("MList").get().addOnSuccessListener { result ->
-//                for (document in result) {
-//                    val url = document["URL"] as String
-//                    list.add(url)
-//                }
-//                Log.d("ListAdapter","Coroutine")
-//                adapter.notifyDataSetChanged()
-//            }
-//        }
-        //        //이미지 로딩을 위한 스레드
-//        lifecycleScope.launch {
-//            whenResumed {
-//                while (true) {
-//                    delay(3000)
-//                    if (list.size > 0){
-//                        binding.viewSearch.currentItem.let {
-//                            binding.viewSearch.currentItem = it.plus(1)
-//                        }
-//                    }
-//                }
-//            }
-//        }
 
         return binding.root
     }

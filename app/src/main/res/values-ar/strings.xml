@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">انقر فوق السابق مرة أخرى للخروج</string>
     <string name="hint_search" translatable="false">الرجاء إدخال مصطلح البحث</string>
     <string name="inputdate">تاريخ الإدخال</string>
+    <string name="h_r_empty1">نوصي بالطبخ مع الأطعمة المخزنة في الثلاجة.</string>
+    <string name="h_r_empty2">أضف الطعام إلى الثلاجة</string>
+    <string name="h_c_empty1">يمكنك إضافة الأطعمة من قائمة التسوق الخاصة بك إلى الثلاجة.</string>
+    <string name="h_c_empty2">إضافة مكونات إلى قائمة التسوق الخاصة بك</string>
+    <string name="h_f_empty1">يمكنك إضافة المفضلة على شاشة التفاصيل</string>
+    <string name="h_k_empty1">يوصي الطبخ مع تجهيزات المطابخ المحددة</string>
+    <string name="h_k_empty2">اختر من بين أجهزة المطابخ المتوفرة</string>
+    <string name="h_qunt_adj">تغيير المبلغ الذي تريده</string>
+    <string name="h_cart">يمكنك إضافته إلى سلة التسوق الخاصة بك</string>
+    <string name="h_time">حرك الفيديو إلى الوصفة</string>
+    <string name="h_movecart">انتقل إلى عربة التسوق</string>
+    <string name="h_recommand">أوصي بالطبخ مع المكونات المحددة في أدوات ثلاجة وأدوات الطهي في المطبخ.</string>
+    <string name="h_click">انقر لعرض التفاصيل</string>
+    <string name="h_refrigerator">حرك الأطعمة إلى الثلاجة.</string>
 </resources>

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.skydoves.balloon.*
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityRefrigeratorBinding
 import com.ths.thethskitchen_git_ver2021072601.databinding.DailogRefrigeratorAddBinding
+import java.lang.Exception
 import java.time.LocalDateTime
 
 //냉장고 리스트
@@ -50,6 +51,7 @@ class RefrigeratorActivity : BaseActivity() {
                     adapter.refrigeratorList.clear()
                     adapter.refrigeratorList.addAll(dbHelper.selectRefrigerator())
                     adapter.notifyDataSetChanged()
+                    App.changed = true
                     alertDailog.dismiss()   //입력화면 종료
                 }else{
                     Toast.makeText(this,this.getString(R.string.msg_add_NoName),
@@ -73,7 +75,7 @@ class RefrigeratorActivity : BaseActivity() {
             finish()
         }
 
-        if (adapter.refrigeratorList.isEmpty()) {
+        if (adapter.refrigeratorList.isEmpty() && App.prefs.getBoolean("help",true)) {
             createHelp()
         }
     }
@@ -99,9 +101,6 @@ class RefrigeratorActivity : BaseActivity() {
             setBalloonAnimation(BalloonAnimation.FADE)
             setLifecycleOwner(lifecycleOwner)
         }
-        balloon.setOnBalloonClickListener {
-            balloon.dismiss()
-        }
 
         val balloon2 = createBalloon(this) {
             setArrowSize(10)
@@ -123,10 +122,42 @@ class RefrigeratorActivity : BaseActivity() {
             setBalloonAnimation(BalloonAnimation.FADE)
             setLifecycleOwner(lifecycleOwner)
         }
-        balloon2.setOnBalloonClickListener {
-            balloon2.dismiss()
-        }
+
         binding.btnRExit.showAlignBottom(balloon)
         binding.btnAddRefrigerator.showAlignLeft(balloon2)
+
+        balloon.setOnBalloonClickListener {
+            try{
+                balloon.dismiss()
+                balloon2.dismiss()
+            }catch (e: Exception){
+
+            }
+
+        }
+        balloon2.setOnBalloonClickListener {
+            try{
+                balloon.dismiss()
+                balloon2.dismiss()
+            }catch (e: Exception){
+
+            }
+        }
+
+        balloon.setOnBalloonDismissListener {
+            try {
+                balloon2.dismissWithDelay(200L)
+            }catch (e: Exception){
+
+            }
+        }
+        balloon2.setOnBalloonDismissListener {
+            try {
+                balloon.dismissWithDelay(200L)
+            }catch (e: Exception){
+
+            }
+        }
+
     }
 }

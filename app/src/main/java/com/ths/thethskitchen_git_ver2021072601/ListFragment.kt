@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.google.firebase.firestore.FirebaseFirestore
 import com.ths.thethskitchen_git_ver2021072601.databinding.FragmentListBinding
 import java.util.*
@@ -49,9 +50,15 @@ class ListFragment : Fragment() {
         binding.recyclerDList.adapter = adapter
         binding.recyclerDList.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerDList.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+        val animator = binding.recyclerDList.itemAnimator
+        if (animator is SimpleItemAnimator) {
+            animator.supportsChangeAnimations = false
+        }
+
         binding.swipeLayout.setOnRefreshListener {
             if (!proc){
                 selectList()
+                App.changed = false
                 binding.swipeLayout.isRefreshing = false
             }else{
                 binding.swipeLayout.isRefreshing = false
@@ -59,9 +66,18 @@ class ListFragment : Fragment() {
         }
         //데이터 조회
         selectList()
+
         return binding.root
     }
 
+
+
+    override fun onResume() {
+        super.onResume()
+        if (App.changed){
+            selectList()
+        }
+    }
     private fun selectList() {
         //         firestore 요리 리스트 Query
         val date = UtilFuncs().getKorDate()
@@ -75,9 +91,11 @@ class ListFragment : Fragment() {
         var dlistCnt = 0    //DList sync 위한 카운터
         var seqCnt = 0
         var dnameCnt = 0    //DName Sync 위한 카운터
+        App.changed = false
         dlist.clear()
+        binding.pbLoading.visibility = View.VISIBLE
 
-        //나의 부엌 Preference 
+        //나의 부엌 Preference
         val stove = getTooltoInt(App.prefs.getBoolean("stove", false))
         val oven = getTooltoInt(App.prefs.getBoolean("oven", false))
         val micro = getTooltoInt(App.prefs.getBoolean("micro", false))
@@ -87,81 +105,39 @@ class ListFragment : Fragment() {
         val steam = getTooltoInt(App.prefs.getBoolean("steam", false))
         val sous = getTooltoInt(App.prefs.getBoolean("sous", false))
         val grill = getTooltoInt(App.prefs.getBoolean("grill", false))
-        
+
         for (i in 0 until refrigerator.size) {   //냉장고 저장 리스트
             nameList.add(refrigerator[i].name)
         }
 
         val nameListD = nameList.distinct()        //재료 중복 제거
 
-//        for (i in nameListD.size - 1 downTo 10){
-//            nameList.removeAt(i)
-//        }
+        for (i in nameListD.size - 1 downTo 30){
+            nameList.removeAt(i)
+        }
 
         if (nameListD.isEmpty()) {     // 재료 없음 검색 X
             binding.pbLoading.visibility = View.INVISIBLE
+            adapter.notifyDataSetChanged()
         }else{ // 초기화
             dlist.clear()
             proc = true
-            binding.pbLoading.visibility = View.VISIBLE
             dlistCnt = 0
             dnameCnt = 0
         }
-        Log.d("FireStore",nameList.size.toString())
-// new item 제거
-//        db.collection("DList")
-//            .whereLessThanOrEqualTo("date", date)
-//            .orderBy("date", Query.Direction.DESCENDING).limit(1).get()
-//            .addOnSuccessListener{ result ->
-//                for (document in result){
-//                    var item = DList(   //DList Row
-//                        document.id,
-//                        "",
-//                        document["date"] as Long,
-//                        document["ptime"] as Long,
-//                        document["punit"] as String,
-//                        document["ctime"] as Long,
-//                        document["cunit"] as String,
-//                        document["serv"] as Long,
-//                        document["sunit"] as String,
-//                        document["start"] as Long,
-//                        document["stove"] as Long,
-//                        document["oven"] as Long,
-//                        document["micro"] as Long,
-//                        document["blender"] as Long,
-//                        document["air fryer"] as Long,
-//                        document["multi cooker"] as Long,
-//                        document["steamer"] as Long,
-//                        document["sous vide"] as Long,
-//                        document["grill"] as Long,
-//                        document["vdeioID"] as String,
-//                        "",
-//                        4
-//                    )
-//                    CoroutineScope(Dispatchers.IO).launch {
-//                        item = SearchData().getYoutube(item)
-//                        dlist.add(0,item)
-////                        for (item in dlist){
-////                            item.desc = ""
-////                            Log.d("ListFragment","${item}")
-////                        }
-//                        withContext(Dispatchers.Main){
-//                            adapter.notifyDataSetChanged()
-//                        }
-//                    }
-//                }
-//            }
+
         for (element in nameListD) { //IName에서 DList ID 검색
             Log.d("FireStore","refrigerator : ${element}")
+            val searchList = StringFuncs().makeSearch(element)
+            for (i in 0 until  searchList.size){
+                Log.d("FireStore", "searchList : ${searchList[i]}")
+            }
             db.collection("IName")
-                .whereEqualTo("name", element)
-//                .orderBy("ID", Query.Direction.DESCENDING )
-//                .startAt(element.uppercase()).endAt(element + "\uf8ff")
-//                .limit(5)
+                .whereIn("name", searchList)
                 .get().addOnSuccessListener { result ->
                     for (document in result) {
                         seqList.add("${document["SEQ"]}")    //ID list
-//                        Log.d("FireStore","IName" + document["seq"] as String)
+                        Log.d("FireStore","IName ${document["SEQ"]}")
                     }
                 }.addOnFailureListener {
                     Log.d("FireStore", it.stackTraceToString())
@@ -170,16 +146,12 @@ class ListFragment : Fragment() {
                     if (dlistCnt  == nameListD.size ) { //ID list 검색 완료
                         val seqListD = seqList.distinct().sortedDescending()
                         if (seqListD.isNotEmpty()){
-                            Log.d("FireStore", seqListD[0])
-                            Log.d("FireStore","seqList" + "${seqListD.size}")
-
                             for (i in seqListD.indices){
                                 db.collection("IList").document(seqListD[i])
                                     .get().addOnSuccessListener {  data ->
                                         if ("${data["essential"]}".toBoolean()){
                                             idList.add("${data["id"]}")
-                                            Log.d("FireStore","documents" + "${data["id"]}")
-                                        }else{Log.d("FireStore","document" + "${data["essential"]}")}
+                                        }
                                     }.addOnCompleteListener{
                                         seqCnt ++
                                         if (seqCnt == seqListD.size){
@@ -267,7 +239,7 @@ class ListFragment : Fragment() {
                                                                             //새로고침플레그 해제
                                                                             proc = false
                                                                         }
-                                                                        //리스트뷰 업데이트 (중간중간 데이터 띄우기 위함)
+//                                                                        리스트뷰 업데이트 (중간중간 데이터 띄우기 위함)
                                                                         adapter.notifyDataSetChanged()
                                                                     }
                                                             }else{
@@ -301,7 +273,6 @@ class ListFragment : Fragment() {
 
                                                         }.addOnFailureListener {
                                                             dnameCnt++
-//                                            if (dnameCnt == idList_d.size) {
                                                             if (dlistCnt == idListD.size) {
                                                                 val sortedList = dlist.distinctBy { it.id }
                                                                     .sortedByDescending { it.date }
@@ -348,7 +319,7 @@ class ListFragment : Fragment() {
                                                 proc = false
                                             }
                                         }
-                                    }
+                                        }
                             }
 
                         }

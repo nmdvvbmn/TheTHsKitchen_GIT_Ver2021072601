@@ -18,6 +18,10 @@
             android:defaultValue="false"
             android:key="play"
             android:title="@string/set_play" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="help"
+            android:title="@string/menu_help" />
     </PreferenceCategory>
     <PreferenceCategory
         android:layout_width="wrap_content"

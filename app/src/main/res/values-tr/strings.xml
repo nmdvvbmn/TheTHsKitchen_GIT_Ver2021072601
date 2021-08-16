@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">çıkmak için tekrar geri tıklayın</string>
     <string name="hint_search" translatable="false">Arama terimi girin</string>
     <string name="inputdate">Girdi tarihi</string>
+    <string name="h_r_empty1">Buzdolabında depolanan yiyeceklerle pişirmenizi öneririz.</string>
+    <string name="h_r_empty2">Buzdolabına yiyecek ekleyin</string>
+    <string name="h_c_empty1">Alışveriş listenizden buzdolabınıza yiyecek ekleyebilirsiniz.</string>
+    <string name="h_c_empty2">Alışveriş listenize malzemeler ekleyin</string>
+    <string name="h_f_empty1">Detay ekranına favoriler ekleyebilirsiniz.</string>
+    <string name="h_k_empty1">Seçilen tencere ile pişirme önerilir</string>
+    <string name="h_k_empty2">Mevcut tencere arasından seçim yapın</string>
+    <string name="h_qunt_adj">İstediğiniz miktarı değiştirin</string>
+    <string name="h_cart">Alışveriş sepetinize ekleyebilirsiniz</string>
+    <string name="h_time">Videoyu tarife taşıyın</string>
+    <string name="h_movecart">Alışveriş sepetine git</string>
+    <string name="h_recommand">Mutfakta buzdolabı ve pişirme araçlarında bulunan malzemelerle pişirmeyi öneririm.</string>
+    <string name="h_click">Ayrıntıları görüntülemek için tıklayın</string>
+    <string name="h_refrigerator">Yiyecekleri buzdolabına getirin.</string>
 </resources>

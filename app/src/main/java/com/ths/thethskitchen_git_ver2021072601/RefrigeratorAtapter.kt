@@ -1,10 +1,12 @@
 package com.ths.thethskitchen_git_ver2021072601
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
+import com.skydoves.balloon.*
 import com.ths.thethskitchen_git_ver2021072601.databinding.DailogRefrigeratorAddBinding
 import com.ths.thethskitchen_git_ver2021072601.databinding.ItemRefrigeratorBinding
 
@@ -13,11 +15,13 @@ class RefrigeratorAtapter: RecyclerView.Adapter<RefrigeratorAtapter.Holder>() {
     var helper: SQLiteDBHelper? = null
     var refrigeratorList = mutableListOf<RefrigeratorList>()
     private lateinit var dialogAdd : DailogRefrigeratorAddBinding
+    lateinit var mContext: Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemRefrigeratorBinding.inflate(LayoutInflater.from(parent.context),
             parent,false)   //아이템 뷰바인딩
         dialogAdd = DailogRefrigeratorAddBinding.inflate(LayoutInflater.from(parent.context),
             parent,false)   //다이얼로그 뷰바인딩
+        mContext = parent.context
         return Holder(binding)
     }
 
@@ -25,7 +29,7 @@ class RefrigeratorAtapter: RecyclerView.Adapter<RefrigeratorAtapter.Holder>() {
         val setList = refrigeratorList[position]
         holder.setRefrigeratorList(setList)
         val layoutParam = holder.itemView.layoutParams
-        layoutParam.height = 300
+        layoutParam.height = 200
         holder.itemView.requestLayout()
         //아이템 클릭 --> 수정화면
         holder.itemView.setOnClickListener{ it ->
@@ -53,6 +57,7 @@ class RefrigeratorAtapter: RecyclerView.Adapter<RefrigeratorAtapter.Holder>() {
                     alertDailog.dismiss()   //다이얼로그 종료
                     refrigeratorList[position] = setList  //리스트 데이터 변경
                     notifyDataSetChanged()  //변경 적용
+                    App.changed = true
                 }else{  //재료 미입력
                     Toast.makeText(it.context,it.context.getString(R.string.msg_add_NoName),
                         Toast.LENGTH_SHORT).show()
@@ -79,6 +84,7 @@ class RefrigeratorAtapter: RecyclerView.Adapter<RefrigeratorAtapter.Holder>() {
                 helper?.deleteRefiregierator(mRefrigeratorList!!)
                 refrigeratorList.remove(mRefrigeratorList)
                 notifyDataSetChanged()
+                App.changed = true
             }
         }
         //아이템 세팅
@@ -87,6 +93,34 @@ class RefrigeratorAtapter: RecyclerView.Adapter<RefrigeratorAtapter.Holder>() {
             bindng.txtRefrigeratorName.text = refrigeratorList.name //재료명
             bindng.txtRefrigeratorDate.text = StringFuncs().makeDateString(refrigeratorList.date)
             this.mRefrigeratorList = refrigeratorList
+
+            if (layoutPosition == 0 && App.prefs.getBoolean("help",true)) {
+                val balloon1 = createBalloon(mContext) {
+                    setArrowSize(10)
+                    setWidth(BalloonSizeSpec.WRAP)
+                    setHeight(BalloonSizeSpec.WRAP)
+                    setArrowPosition(0.1f)
+                    setCornerRadius(4f)
+                    setAlpha(0.9f)
+                    setPadding(10)
+                    setMarginTop(8)
+                    setMarginRight(30)
+                    setTextSize(10.0f)
+                    setAutoDismissDuration(5000L)
+                    setText(mContext.getString(R.string.h_click))
+                    setTextColorResource(R.color.white)
+                    setTextIsHtml(true)
+                    arrowOrientation = ArrowOrientation.TOP
+                    setBackgroundColorResource(R.color.thscolor)
+                    setBalloonAnimation(BalloonAnimation.FADE)
+                    setLifecycleOwner(lifecycleOwner)
+                }
+
+                balloon1.setOnBalloonClickListener {
+                    balloon1.dismiss()
+                }
+                bindng.txtRefrigeratorName.showAlignBottom(balloon1)
+            }
         }
     }
 }

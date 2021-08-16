@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">Klik Mbalik maneh kanggo metu</string>
     <string name="hint_search" translatable="false">Mangga ketik ukoro Panjenengan</string>
     <string name="inputdate">input Tanggal</string>
+    <string name="h_r_empty1">Disaranake masak panganan sing disimpen ing kulkas.</string>
+    <string name="h_r_empty2">Nambah panganan menyang kulkas</string>
+    <string name="h_c_empty1">Sampeyan bisa nambah panganan saka dhaptar blanja menyang kulkas.</string>
+    <string name="h_c_empty2">Tambah Bahan-bahan ing Dhaptar Blanja</string>
+    <string name="h_f_empty1">Sampeyan bisa nambah favorit ing layar kanthi rinci</string>
+    <string name="h_k_empty1">Rekomendasi masak karo masak sing dipilih</string>
+    <string name="h_k_empty2">Pilih saka cookware sing kasedhiya</string>
+    <string name="h_qunt_adj">Ngganti jumlah sing sampeyan pengin</string>
+    <string name="h_cart">Sampeyan bisa nambah ing Kréta Blanja</string>
+    <string name="h_time">Pindhah video menyang resep</string>
+    <string name="h_movecart">Menyang Kréta Blanja</string>
+    <string name="h_recommand">Aku nyaranake masak karo bahan sing disetel ing kulkas lan alat masak sing disetel ing pawon.</string>
+    <string name="h_click">Klik kanggo ndeleng rincian</string>
+    <string name="h_refrigerator">Mindhah panganan menyang kulkas.</string>
 </resources>

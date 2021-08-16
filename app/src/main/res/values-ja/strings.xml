@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">終了するには再び[戻る]をクリックします</string>
     <string name="hint_search" translatable="false">検索語を入力してください</string>
     <string name="inputdate">入力日付</string>
+    <string name="h_r_empty1">冷蔵庫に貯蔵されている食品で調理することをお勧めします。</string>
+    <string name="h_r_empty2">冷蔵庫に食べ物を加える</string>
+    <string name="h_c_empty1">あなたはあなたの買い物リストから冷蔵庫に食べ物を追加することができます。</string>
+    <string name="h_c_empty2">あなたの買い物リストに成分を追加してください</string>
+    <string name="h_f_empty1">詳細画面にお気に入りを追加できます</string>
+    <string name="h_k_empty1">選択した調理器具で調理することをお勧めします</string>
+    <string name="h_k_empty2">利用可能な調理器具から選択してください</string>
+    <string name="h_qunt_adj">あなたが望む金額を変更してください</string>
+    <string name="h_cart">あなたはあなたのショッピングカートにそれを追加することができます</string>
+    <string name="h_time">ビデオをレシピに移動します</string>
+    <string name="h_movecart">ショッピングカートに行きます</string>
+    <string name="h_recommand">冷蔵庫にセットされた食材と台所にセットされた調理器具で調理することをお勧めします。</string>
+    <string name="h_click">詳細を表示するにはクリックしてください</string>
+    <string name="h_refrigerator">食べ物を冷蔵庫に動かします。</string>
 </resources>

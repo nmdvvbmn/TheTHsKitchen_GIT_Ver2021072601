@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityListBinding
 import kotlinx.coroutines.*
 
@@ -19,7 +20,14 @@ class ListActivity : BaseActivity() {
         binding.searchDList.adapter = adapter
         binding.searchDList.layoutManager = LinearLayoutManager(this)
         binding.searchDList.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+        val animator = binding.searchDList.itemAnimator
+        if (animator is SimpleItemAnimator) {
+            animator.supportsChangeAnimations = false
+        }
         getData(search)
+        binding.btmLexit.setOnClickListener{
+            finish()
+        }
     }
 
     private fun getData(search: String) {

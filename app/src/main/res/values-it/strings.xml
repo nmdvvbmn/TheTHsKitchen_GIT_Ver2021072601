@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">Fare clic su Indietro per uscire di nuovo</string>
     <string name="hint_search" translatable="false">Si prega di inserire il termine di ricerca</string>
     <string name="inputdate">Input Data</string>
+    <string name="h_r_empty1">Ti consigliamo di cucinare con cibi immagazzinati in frigorifero.</string>
+    <string name="h_r_empty2">Aggiungi cibo al frigorifero</string>
+    <string name="h_c_empty1">Puoi aggiungere cibi dalla tua lista della spesa al frigorifero.</string>
+    <string name="h_c_empty2">Aggiungi ingredienti alla tua lista della spesa</string>
+    <string name="h_f_empty1">Puoi aggiungere preferiti nello schermo dei dettagli</string>
+    <string name="h_k_empty1">Consiglia di cucinare con pentole selezionate</string>
+    <string name="h_k_empty2">Scegli tra le pentole disponibili</string>
+    <string name="h_qunt_adj">Cambia la quantità desiderata</string>
+    <string name="h_cart">Puoi aggiungerlo al tuo carrello</string>
+    <string name="h_time">Sposta il video alla ricetta</string>
+    <string name="h_movecart">Vai al carrello</string>
+    <string name="h_recommand">Consiglio di cucinare con ingredienti impostati in frigorifero e strumenti di cucina immessi in cucina.</string>
+    <string name="h_click">Clicca per visualizzare i dettagli</string>
+    <string name="h_refrigerator">Spostare gli alimenti in frigorifero.</string>
 </resources>

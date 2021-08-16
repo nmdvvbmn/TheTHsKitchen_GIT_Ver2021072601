@@ -8,6 +8,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.skydoves.balloon.*
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityKitchenBinding
 import kotlinx.coroutines.*
+import java.lang.Exception
 
 //나의 부엌 설정
 class KitchenActivity : BaseActivity() {
@@ -51,30 +52,39 @@ class KitchenActivity : BaseActivity() {
         
         binding.chkStove.setOnCheckedChangeListener { _, isChecked ->
             App.prefs.setBoolena("stove",isChecked)
+            App.changed = true
         }   //레인지
         binding.chkOven.setOnCheckedChangeListener { _, isChecked ->
             App.prefs.setBoolena("oven",isChecked)
+            App.changed = true
         }   //오븐
         binding.chkMicro.setOnCheckedChangeListener { _, isChecked ->
             App.prefs.setBoolena("micro",isChecked)
+            App.changed = true
         }   //전자레인지
         binding.chkBlender.setOnCheckedChangeListener { _, isChecked ->
             App.prefs.setBoolena("blender",isChecked)
+            App.changed = true
         }   //블렌더
         binding.chkAirfryer.setOnCheckedChangeListener { _, isChecked ->
             App.prefs.setBoolena("airfryer",isChecked)
+            App.changed = true
         }   //에어프라이어
         binding.chkMulti.setOnCheckedChangeListener { _, isChecked ->
             App.prefs.setBoolena("multi",isChecked)
+            App.changed = true
         }   //인스턴트팟
         binding.chkSteam.setOnCheckedChangeListener { _, isChecked ->
             App.prefs.setBoolena("steam",isChecked)
+            App.changed = true
         }   //찜기
         binding.chkSous.setOnCheckedChangeListener { _, isChecked ->
             App.prefs.setBoolena("sous",isChecked)
+            App.changed = true
         }   //수비드
         binding.chkGrill.setOnCheckedChangeListener { _, isChecked ->
             App.prefs.setBoolena("grill",isChecked)
+            App.changed = true
         }   //그릴
 
         //종료
@@ -97,16 +107,7 @@ class KitchenActivity : BaseActivity() {
                 }
             }
         }
-        if ( App.prefs.getBoolean("stove",true) &&
-            App.prefs.getBoolean("oven",true)&&
-            App.prefs.getBoolean("micro",true) &&
-            App.prefs.getBoolean("blender",true) &&
-            App.prefs.getBoolean("multi",true) &&
-            App.prefs.getBoolean("airfryer",true) &&
-            App.prefs.getBoolean("steam",true) &&
-            App.prefs.getBoolean("sous",true) &&
-            App.prefs.getBoolean("grill",true) &&
-            !SQLiteDBHelper(this,"THsKitchen.db",1).existsRefiregierator()){
+        if ( App.prefs.getBoolean("help",true)){
             createHelp()
         }
     }
@@ -132,9 +133,6 @@ class KitchenActivity : BaseActivity() {
             setBalloonAnimation(BalloonAnimation.FADE)
             setLifecycleOwner(lifecycleOwner)
         }
-        balloon.setOnBalloonClickListener {
-            balloon.dismiss()
-        }
 
         val balloon2 = createBalloon(this) {
             setArrowSize(10)
@@ -157,10 +155,36 @@ class KitchenActivity : BaseActivity() {
             setBalloonAnimation(BalloonAnimation.FADE)
             setLifecycleOwner(lifecycleOwner)
         }
-        balloon2.setOnBalloonClickListener {
-            balloon2.dismiss()
-        }
         binding.btnKExit.showAlignBottom(balloon)
         binding.tableLayout.showAlignBottom(balloon2)
+
+        balloon.setOnBalloonClickListener {
+            try {
+                balloon.dismiss()
+                balloon2.dismiss()
+            }catch (e: Exception){}
+
+        }
+        balloon2.setOnBalloonClickListener {
+            try {
+                balloon.dismiss()
+                balloon2.dismiss()
+            }catch (e: Exception){}
+        }
+        balloon.setOnBalloonDismissListener {
+            try {
+                balloon2.dismissWithDelay(200L)
+            }catch (e: Exception){
+
+            }
+        }
+        balloon2.setOnBalloonDismissListener {
+            try {
+                balloon.dismissWithDelay(200L)
+            }catch (e: Exception){
+
+            }
+        }
+
     }
 }

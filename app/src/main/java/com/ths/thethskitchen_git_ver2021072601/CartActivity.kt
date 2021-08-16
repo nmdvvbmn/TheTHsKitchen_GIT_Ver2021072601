@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.skydoves.balloon.*
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityCartBinding
 import com.ths.thethskitchen_git_ver2021072601.databinding.DailogCartAddBinding
+import java.lang.Exception
 import java.time.LocalDateTime
 
 //장바구니
@@ -76,11 +77,12 @@ class CartActivity : BaseActivity() {
             finish()
         }
         //도움말
-        if (adapter.cartList.isEmpty()){
+        if (adapter.cartList.isEmpty() && App.prefs.getBoolean("help",true)){
             createHelp()
         }
 
     }
+
     private fun createHelp() {
         val balloon = createBalloon(this) {
             setArrowSize(10)
@@ -102,9 +104,7 @@ class CartActivity : BaseActivity() {
             setBalloonAnimation(BalloonAnimation.FADE)
             setLifecycleOwner(lifecycleOwner)
         }
-        balloon.setOnBalloonClickListener {
-            balloon.dismiss()
-        }
+
 
         val balloon2 = createBalloon(this) {
             setArrowSize(10)
@@ -117,7 +117,7 @@ class CartActivity : BaseActivity() {
             setMarginBottom(15)
             setMarginRight(8)
             setTextSize(14.0f)
-            setAutoDismissDuration(5000L)
+//            setAutoDismissDuration(5000L)
             setText(getString(R.string.h_c_empty2))
             setTextColorResource(R.color.white)
             setTextIsHtml(true)
@@ -126,10 +126,29 @@ class CartActivity : BaseActivity() {
             setBalloonAnimation(BalloonAnimation.FADE)
             setLifecycleOwner(lifecycleOwner)
         }
-        balloon2.setOnBalloonClickListener {
-            balloon2.dismiss()
-        }
         binding.btnCartExit.showAlignBottom(balloon)
         binding.btnAddCart.showAlignLeft(balloon2)
+        balloon.setOnBalloonClickListener {
+            balloon.dismiss()
+            balloon2.dismiss()
+        }
+        balloon2.setOnBalloonClickListener {
+            balloon.dismiss()
+            balloon2.dismiss()
+        }
+        balloon.setOnBalloonDismissListener {
+            try {
+                balloon2.dismissWithDelay(200L)
+            }catch (e: Exception){
+
+            }
+        }
+        balloon2.setOnBalloonDismissListener {
+            try {
+                balloon.dismissWithDelay(200L)
+            }catch (e: Exception){
+
+            }
+        }
     }
 }

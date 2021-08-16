@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">నిష్క్రమణ మళ్ళీ వెనుకకు క్లిక్</string>
     <string name="hint_search" translatable="false">మీ శోధన పదాన్ని నమోదు చేయండి</string>
     <string name="inputdate">ఇన్పుట్ తేదీ</string>
+    <string name="h_r_empty1">రిఫ్రిజిరేటర్లో నిల్వ చేసిన ఆహారాలతో వంటని మేము సిఫార్సు చేస్తున్నాము.</string>
+    <string name="h_r_empty2">రిఫ్రిజిరేటర్కు ఆహారాన్ని జోడించండి</string>
+    <string name="h_c_empty1">మీ షాపింగ్ జాబితా నుండి రిఫ్రిజిరేటర్కు మీరు ఆహారాలను జోడించవచ్చు.</string>
+    <string name="h_c_empty2">మీ షాపింగ్ జాబితాకు పదార్థాలను జోడించండి</string>
+    <string name="h_f_empty1">మీరు వివరాలు స్క్రీన్పై ఇష్టాంశాలను జోడించవచ్చు</string>
+    <string name="h_k_empty1">ఎంచుకున్న వంటకాలతో వంటని సిఫార్సు చేయండి</string>
+    <string name="h_k_empty2">లభ్యత నుండి ఎంచుకోండి</string>
+    <string name="h_qunt_adj">మీకు కావలసిన మొత్తాన్ని మార్చండి</string>
+    <string name="h_cart">మీరు మీ షాపింగ్ కార్ట్కు జోడించవచ్చు</string>
+    <string name="h_time">వీడియోను రెసిపీకి తరలించండి</string>
+    <string name="h_movecart">షాపింగ్ కార్ట్కు వెళ్లండి</string>
+    <string name="h_recommand">నేను వంటగది లో సెట్ రిఫ్రిజిరేటర్ మరియు వంట టూల్స్ సెట్ పదార్థాలు తో వంట సిఫార్సు.</string>
+    <string name="h_click">వివరాలను వీక్షించడానికి క్లిక్ చేయండి</string>
+    <string name="h_refrigerator">రిఫ్రిజిరేటర్కు ఆహారాలను తరలించండి.</string>
 </resources>

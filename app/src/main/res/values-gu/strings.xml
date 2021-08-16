@@ -66,4 +66,18 @@
     <string name="msg_exit" translatable="false">ફરી પાછા પર ક્લિક કરો બહાર નીકળવા માટે</string>
     <string name="hint_search" translatable="false">તમારા શોધ શબ્દ દાખલ કરો</string>
     <string name="inputdate">ઇનપુટ તારીખ</string>
+    <string name="h_r_empty1">અમે રેફ્રિજરેટરમાં સંગ્રહિત ખોરાક સાથે રસોઈ ભલામણ કરીએ છીએ.</string>
+    <string name="h_r_empty2">રેફ્રિજરેટરમાં ખોરાક ઉમેરો</string>
+    <string name="h_c_empty1">તમે તમારી શોપિંગ સૂચિમાંથી રેફ્રિજરેટરમાં ખોરાક ઉમેરી શકો છો.</string>
+    <string name="h_c_empty2">તમારી શોપિંગ સૂચિમાં ઘટકો ઉમેરો</string>
+    <string name="h_f_empty1">તમે વિગતવાર સ્ક્રીન પર મનપસંદ ઉમેરી શકો છો</string>
+    <string name="h_k_empty1">પસંદ કરેલા કૂકવેર સાથે રસોઈ ભલામણ કરીએ છીએ</string>
+    <string name="h_k_empty2">ઉપલબ્ધ કૂકવેરમાંથી પસંદ કરો</string>
+    <string name="h_qunt_adj">તમે ઇચ્છો તે રકમ બદલો</string>
+    <string name="h_cart">તમે તેને તમારા શોપિંગ કાર્ટમાં ઉમેરી શકો છો</string>
+    <string name="h_time">વિડિઓને રેસીપીમાં ખસેડો</string>
+    <string name="h_movecart">શોપિંગ કાર્ટ પર જાઓ</string>
+    <string name="h_recommand">હું રેફ્રિજરેટરમાં સેટ ઘટકો સાથે રસોઈ ભલામણ કરું છું અને રસોડામાં રસોઈ સાધનો સેટ કરું છું.</string>
+    <string name="h_click">વિગતો જોવા માટે ક્લિક કરો</string>
+    <string name="h_refrigerator">ખોરાકને રેફ્રિજરેટરમાં ખસેડો.</string>
 </resources>

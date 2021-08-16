@@ -26,8 +26,8 @@ fun loadImage(imageUrl: String): Bitmap? {
 
 open class UtilFuncs {
     //언어 가져오기
-    open fun getLanguage(): String{
-        return  App.prefs.getString("code","en")
+    open fun getLanguage(): String {
+        return App.prefs.getString("code", "en")
     }
 
     // 한국시간 (기준시간)
@@ -56,7 +56,7 @@ open class UtilFuncs {
     }
 
     // Float -> Int(String)
-    open fun floatFormat( value: Float): String {
+    open fun floatFormat(value: Float): String {
         val df = DecimalFormat("#.##")
         return df.format(value)
     }
@@ -69,8 +69,8 @@ open class UtilFuncs {
          * when preference value = "sys_def" returns the locale of current system
          * else it returns the locale code e.g. "en", "bn" etc.
          */
-        private fun getLocaleFromPrefCode(prefCode: String): Locale{
-            val localeCode = if(prefCode != OPTION_PHONE_LANGUAGE) {
+        private fun getLocaleFromPrefCode(prefCode: String): Locale {
+            val localeCode = if (prefCode != OPTION_PHONE_LANGUAGE) {
                 prefCode
             } else {
                 ConfigurationCompat.getLocales(Resources.getSystem().configuration).get(0).language
@@ -92,12 +92,12 @@ open class UtilFuncs {
         }
 
         fun getLocalizedContext(baseContext: Context, prefLocaleCode: String): Context {
-            val code: String = if (prefLocaleCode == "jw"){
+            val code: String = if (prefLocaleCode == "jw") {
                 "jv"
-            }else{
+            } else {
                 prefLocaleCode
             }
-            Log.d("Language",code)
+            Log.d("Language", code)
             val currentLocale = getLocaleFromPrefCode(code)
             val baseLocale = getLocaleFromConfiguration(baseContext.resources.configuration)
             Locale.setDefault(currentLocale)
@@ -110,31 +110,11 @@ open class UtilFuncs {
             }
         }
 
-//        fun applyLocalizedContext(baseContext: Context, prefLocaleCode: String) {
-//            val currentLocale = getLocaleFromPrefCode(prefLocaleCode)
-//            val baseLocale = getLocaleFromConfiguration(baseContext.resources.configuration)
-//            Locale.setDefault(currentLocale)
-//            if (!baseLocale.toString().equals(currentLocale.toString(), ignoreCase = true)) {
-//                val config = getLocalizedConfiguration(currentLocale)
-//                baseContext.resources.updateConfiguration(config, baseContext.resources.displayMetrics)
-//            }
-//        }
 
         @Suppress("DEPRECATION")
         private fun getLocaleFromConfiguration(configuration: Configuration): Locale {
             return configuration.locales.get(0)
         }
-
-//        fun getLocalizedResources(resources: Resources, prefLocaleCode: String): Resources {
-//            val locale = getLocaleFromPrefCode(prefLocaleCode)
-//            val config = resources.configuration
-//            @Suppress("DEPRECATION")
-//            config.locale = locale
-//            config.setLayoutDirection(locale)
-//
-//            @Suppress("DEPRECATION")
-//            resources.updateConfiguration(config, resources.displayMetrics)
-//            return resources
-//        }
     }
 }
+

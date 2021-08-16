@@ -1,17 +1,15 @@
 package com.ths.thethskitchen_git_ver2021072601
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenResumed
 import androidx.viewpager2.widget.ViewPager2
-import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityHelpBinding
+import com.skydoves.balloon.*
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityMainBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -20,17 +18,16 @@ import java.util.*
 class MainActivity : BaseActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater)}
     private var exit = false
+    private lateinit var balloon1: Balloon
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setLanguge()    //최초 실행시 언어설정(한국은 자막X)
-
         //메인화면 뷰 페이져
         val viewPager = ViewPagerAdapter(this  )
         viewPager.addFragment(SearchFragment()) // 검색
         viewPager.addFragment(ListFragment())   // 추천 리스트
         binding.viewPager.adapter = viewPager
-        
         // 메뉴 해더 유튜브로 이동
         val header = binding.navi.getHeaderView(0)
         header.setOnClickListener{
@@ -90,6 +87,12 @@ class MainActivity : BaseActivity() {
         binding.btnMenu.setOnClickListener{
             binding.drawer.openDrawer(GravityCompat.START)
         }
+        binding.btnMove.setOnClickListener {
+            when (binding.viewPager.currentItem){
+                0 -> binding.viewPager.currentItem = 1
+                1 -> binding.viewPager.currentItem = 0
+            }
+        }
 
         
         // 페이지 이동시 콜백
@@ -100,28 +103,56 @@ class MainActivity : BaseActivity() {
                         binding.imgRecommand.visibility = View.GONE
                         binding.btnLog.visibility = View.VISIBLE
                         binding.txtTitle.text = getString(R.string.app_name)
-
+                        binding.btnMove.setImageResource(R.drawable.ic_baseline_arrow_forward_ios_36)
+//                        balloon1.dismiss()
                     }
                     1 -> {
                         binding.imgRecommand.visibility = View.VISIBLE
                         binding.btnLog.visibility = View.GONE
                         binding.txtTitle.text = getString(R.string.menu_recommandList)
+                        binding.btnMove.setImageResource(R.drawable.ic_baseline_arrow_back_ios_36)
+                        if (App.prefs.getBoolean("help",true)){
+                            balloon1 = createBalloon(applicationContext) {
+                                setArrowSize(10)
+                                setWidth(BalloonSizeSpec.WRAP)
+                                setHeight(BalloonSizeSpec.WRAP)
+                                setArrowPosition(0.1f)
+                                setCornerRadius(4f)
+                                setAlpha(0.9f)
+                                setPadding(10)
+                                setMarginTop(10)
+//                                setMarginLeft(150)
+                                setTextSize(14.0f)
+                                 setAutoDismissDuration(5000L)
+                                setText(getString(R.string.h_recommand))
+                                setTextColorResource(R.color.white)
+                                setTextIsHtml(true)
+                                setArrowOrientation(ArrowOrientation.BOTTOM)
+                                setBackgroundColorResource(R.color.thscolor)
+                                setBalloonAnimation(BalloonAnimation.FADE)
+                                setLifecycleOwner(lifecycleOwner) }
+                            balloon1.setOnBalloonClickListener {
+                                balloon1.dismiss()
+                            }
+                            binding.btnMenu.showAlignBottom(balloon1)
+                        }
+
                     }
                 }
             }
         })
         //도움말
-        val dialog = ActivityHelpBinding.inflate(layoutInflater)
-        val builder = AlertDialog.Builder(this)
-        builder.setView(dialog.root)
+//        val dialog = ActivityHelpBinding.inflate(layoutInflater)
+//        val builder = AlertDialog.Builder(this)
+//        builder.setView(dialog.root)
 
-        val alertDialog = builder.create()
-        dialog.btnSkip.setOnClickListener {
-            alertDialog.dismiss()
-            Log.d("HelpScreen","Skip")
-        }
-
-        alertDialog.show()
+//        val alertDialog = builder.create()
+//        dialog.btnSkip.setOnClickListener {
+//            alertDialog.dismiss()
+//            Log.d("HelpScreen","Skip")
+//        }
+//
+//        alertDialog.show()
     }
 
     // 초기 언어 설정

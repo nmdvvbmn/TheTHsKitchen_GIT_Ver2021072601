@@ -7,7 +7,6 @@ import android.view.View
 import com.google.api.client.http.javanet.NetHttpTransport
 import com.google.api.client.json.jackson2.JacksonFactory
 import com.google.api.services.youtube.YouTube
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityListBinding
 import kotlinx.coroutines.*
@@ -19,12 +18,11 @@ import java.net.URL
 import java.net.URLEncoder
 
 suspend fun searchFireStore(searchString: String, adapter: RecyclerAdapter, listData: ArrayList<DList>, binding: ActivityListBinding) {
-    val db = FirebaseFirestore.getInstance()
     val date = UtilFuncs().getKorDate()
     // 재료에서 검색
         val searchList = StringFuncs().makeSearch(searchString)
-        db.collection("IName")//.orderBy("name")//.orderBy("id",Query.Direction.DESCENDING)
-            .whereIn("name", searchList).get()
+    App.db.collection("IName")//.orderBy("name")//.orderBy("id",Query.Direction.DESCENDING)
+            .whereIn("name", searchList).limit(20).get()
         .addOnSuccessListener { result ->
             for (document in result) {
                 val item = DList(document["id"] as String,"",0,0,"",0,"",0,
@@ -37,8 +35,8 @@ suspend fun searchFireStore(searchString: String, adapter: RecyclerAdapter, list
         }.addOnCompleteListener {
             // 요리명에서 검색
                 val searchList = StringFuncs().makeSearch(searchString)
-                db.collection("DName")//.orderBy("name")//.orderBy("id",Query.Direction.DESCENDING)
-                    .whereIn("name", searchList).get()
+            App.db.collection("DName")//.orderBy("name")//.orderBy("id",Query.Direction.DESCENDING)
+                    .whereIn("name", searchList).limit(20).get()
                 .addOnSuccessListener { result ->
                     for (document in result){
                         val item = DList(document["id"] as String,"",0,0,"",0,"",0,
@@ -48,7 +46,7 @@ suspend fun searchFireStore(searchString: String, adapter: RecyclerAdapter, list
                         Log.d("FireStore","재료명 검색 ${item.id}")
                     }
                     // New 아이템
-                    db.collection("DList")
+                    App.db.collection("DList")
                         .whereLessThanOrEqualTo("date", date)
                         .orderBy("date",Query.Direction.DESCENDING).limit(1).get()
                         .addOnSuccessListener { result ->
@@ -67,7 +65,7 @@ suspend fun searchFireStore(searchString: String, adapter: RecyclerAdapter, list
                             // Dlist에서 데이터 모두 검색
                             var cnt = 0 // 마지막 데이터 확인을 위한 카운터
                             for (i in 0 until listData.size) {
-                                db.collection("DList").document(if (listData[i].id == ""){"0000"}else{listData[i].id})
+                                App.db.collection("DList").document(if (listData[i].id == ""){"0000"}else{listData[i].id})
                                     .get().addOnSuccessListener { document ->
                                         if (listData[i].id != "") {
                                             listData[i].date = document["date"] as Long
@@ -226,8 +224,7 @@ class SearchData {
     }
 
     private fun getFireStore(item: DList): DList {
-        val db = FirebaseFirestore.getInstance()
-        db.collection("DList").whereEqualTo("vdeioID", item.video).limit(1)
+App.db.collection("DList").whereEqualTo("vdeioID", item.video).limit(1)
             .get().addOnSuccessListener { result ->
                 for (document in result ) {
                     item.id = document.id

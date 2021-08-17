@@ -76,19 +76,17 @@ open class StringFuncs {
     open fun makeSearch(search: String): List<String> {
         val searchList = arrayListOf<String>()
         val resultList = arrayListOf<String>()
-        val splitList = search. split(" ")
+        val splitList = search.split(" ")
         
         for (i in splitList.indices){
-            resultList.add(splitList[i].substring(0,1).uppercase()+splitList[i].substring(1))
-            resultList.add(splitList[i].substring(0,1).lowercase()+splitList[i].substring(1))
+            searchList.add(splitList[i].substring(0,1).uppercase()+splitList[i].substring(1))
+            searchList.add(splitList[i].substring(0,1).lowercase()+splitList[i].substring(1))
         }
 
         searchList.addAll(splitList.distinct())
         for (i in 0 until  searchList.size){
             resultList.add(searchList[i])
-            if (i == 9) {
-                break
-            }
+            if (i == 9) break
         }
         return resultList.toList()
     }

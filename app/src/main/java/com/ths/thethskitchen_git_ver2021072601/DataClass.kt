@@ -60,3 +60,10 @@ data class CartList(
     var desc: String,   //설명
     var date: LocalDateTime //입력일시
 )
+
+//SearchList
+data class SearchList(
+    var id: Long,     //자동번호
+    var tag: String,   //검색어
+    var flag: Long,   //History : 0 / auto : 1
+)

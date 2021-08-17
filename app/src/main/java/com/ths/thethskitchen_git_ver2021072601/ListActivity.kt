@@ -11,7 +11,7 @@ import kotlinx.coroutines.*
 class ListActivity : BaseActivity() {
     val binding by lazy { ActivityListBinding.inflate(layoutInflater)}
     var dlist = arrayListOf<DList>()
-    var adapter = RecyclerAdapter(dlist)
+    var adapter = RecyclerAdapter(dlist,1)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

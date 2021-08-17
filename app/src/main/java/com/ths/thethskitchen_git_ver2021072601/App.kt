@@ -1,18 +1,31 @@
 package com.ths.thethskitchen_git_ver2021072601
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreSettings
+import com.google.firebase.firestore.ktx.firestoreSettings
 
 // Pref
 class App: Application() {
     companion object {
         lateinit var prefs: THsSharedPreferences
         var changed = false
+        const val dbVer = 1
+        const val dbName = "THsKitchen.db"
+        @SuppressLint("StaticFieldLeak")
+        lateinit var db: FirebaseFirestore
+        val settings = firestoreSettings {
+            isPersistenceEnabled = true
+            cacheSizeBytes = FirebaseFirestoreSettings.CACHE_SIZE_UNLIMITED
+        }
     }
 
     override fun onCreate() {
         prefs = THsSharedPreferences(applicationContext)
-
+        db = FirebaseFirestore.getInstance()
+        db.firestoreSettings = settings
         super.onCreate()
     }
 //    private var currentLocaleContext: Context? = null

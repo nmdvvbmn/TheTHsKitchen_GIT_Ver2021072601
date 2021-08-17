@@ -12,15 +12,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ths.thethskitchen_git_ver2021072601.databinding.ItemRecyclerBinding
 import kotlinx.coroutines.*
 import java.io.Serializable
+import java.lang.Exception
 import java.util.*
 
 
 // 추천 요리 어뎁터
-class RecyclerAdapter(private val listData: ArrayList<DList>):RecyclerView.Adapter<RecyclerAdapter.Holder>() {
+class RecyclerAdapter(private val listData: ArrayList<DList>,val type: Int):RecyclerView.Adapter<RecyclerAdapter.Holder>() {
     lateinit var mContext: Context
+    private lateinit var db: SQLiteDBHelper
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val binding = ItemRecyclerBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         mContext = parent.context
+        db = SQLiteDBHelper(mContext,App.dbName,App.dbVer)
         return Holder(binding)
     }
 
@@ -35,10 +38,16 @@ class RecyclerAdapter(private val listData: ArrayList<DList>):RecyclerView.Adapt
         //아이템 클릭
         holder.itemView.setOnClickListener{
 //            --> 디테일로 이동
-            Intent(mContext, RecommandDetail::class.java).apply {
-                putExtra("data", listData[position] as Serializable)
-                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            }.run { mContext.startActivity(this) }
+            try {
+                if (listData[holder.layoutPosition].id != "" && type == 0)
+                db.insertSearch(listData[holder.layoutPosition].name.toString(),1)
+                Intent(mContext, RecommandDetail::class.java).apply {
+                    putExtra("data", listData[holder.layoutPosition] as Serializable)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }.run { mContext.startActivity(this) }
+            }catch (e: Exception){
+
+            }
         }
     }
 
@@ -57,12 +66,13 @@ class RecyclerAdapter(private val listData: ArrayList<DList>):RecyclerView.Adapt
             this.mdlist = dlist
             binding.txtName.text = "${dlist.name}"
             CoroutineScope(Dispatchers.Main).launch {
-                val url = "https://i.ytimg.com/vi/${dlist.video}/0.jpg" //이미지 URL생성
+                val url = "https://i.ytimg.com/vi/${dlist.video}/mqdefault.jpg" //이미지 URL생성
                 val bitmap = withContext(Dispatchers.IO) {
                     loadImage(url)
                 }
                 if (bitmap != null){
                     binding.imgThumb.setImageBitmap(bitmap)
+                    binding.imgThumb.adjustViewBounds = true
                 } else {
                     binding.imgThumb.setImageResource(R.drawable.ic_launcher_background)    //기본 수정예졍
                 }
@@ -81,7 +91,7 @@ class RecyclerAdapter(private val listData: ArrayList<DList>):RecyclerView.Adapt
 
             when (dlist.flag){
                 4 -> {
-                    binding.itemList.background = mContext.getDrawable(R.drawable.edge)
+                    binding.itemList.background = mContext.getDrawable(R.drawable.edget)
                     binding.imgNew.visibility = View.VISIBLE
                 }
 

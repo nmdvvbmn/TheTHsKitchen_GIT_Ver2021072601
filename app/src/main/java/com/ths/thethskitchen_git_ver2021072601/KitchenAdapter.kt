@@ -58,13 +58,14 @@ class KitchenAdapter(val list: ArrayList<String>):RecyclerView.Adapter<KitchenAd
         var mdlist: DList? = null
         fun setList(URL: String){
             CoroutineScope(Dispatchers.Main).launch {
-                val url = "https://i.ytimg.com/vi/${URL}/0.jpg" //이미지 URL생성
+                val url = "https://i.ytimg.com/vi/${URL}/mqdefault.jpg" //이미지 URL생성
 //                Log.d("ListAdapter","${URL}")
                 val bitmap = withContext(Dispatchers.IO) {
                     loadImage(url)
                 }
                 if (bitmap != null){
                     binding.imgReview.setImageBitmap(bitmap)
+                    binding.imgReview.adjustViewBounds = true
                 }else{
                     binding.imgReview.setImageResource(R.drawable.ic_launcher_background)
                 }

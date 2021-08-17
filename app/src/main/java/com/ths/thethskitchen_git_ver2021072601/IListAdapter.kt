@@ -25,7 +25,7 @@ class IListAdapter(private val listData: ArrayList<IList>): RecyclerView.Adapter
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         mBinding = ItemIlistBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         mContext = parent.context
-        helper = SQLiteDBHelper(context,"THsKitchen.db",1)
+        helper = SQLiteDBHelper(context,App.dbName,App.dbVer)
         return Holder(binding, parent.context)
     }
 
@@ -51,6 +51,7 @@ class IListAdapter(private val listData: ArrayList<IList>): RecyclerView.Adapter
 
             val cartItem = CartList(0,list.name!!, desc, LocalDateTime.now() )
             helper?.insertCart(cartItem)
+            helper?.insertSearch(cartItem.name,1)
             Toast.makeText(context,context.getString(R.string.msg_save_data),
                 Toast.LENGTH_SHORT).show()
             tempList.add(list.name!!)
@@ -91,12 +92,16 @@ class IListAdapter(private val listData: ArrayList<IList>): RecyclerView.Adapter
             }
             binding.chkName.text = txt
 
-            if (helper?.existsRefiregieratorItem(ilist.name.toString())==true) {
-                binding.btnRAddCart.visibility = View.INVISIBLE
-            }else if (tempList.indexOf(ilist.name) >= 0){
-                binding.btnRAddCart.visibility = View.INVISIBLE
-            }else{
-                binding.btnRAddCart.visibility = View.VISIBLE
+            when {
+                helper?.existsRefiregieratorItem(ilist.name.toString())==true -> {
+                    binding.btnRAddCart.visibility = View.INVISIBLE
+                }
+                tempList.indexOf(ilist.name) >= 0 -> {
+                    binding.btnRAddCart.visibility = View.INVISIBLE
+                }
+                else -> {
+                    binding.btnRAddCart.visibility = View.VISIBLE
+                }
             }
         }
     }

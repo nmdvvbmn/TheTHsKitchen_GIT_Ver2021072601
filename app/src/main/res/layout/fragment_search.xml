@@ -6,17 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".SearchFragment">
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/editSearch"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="16dp"
+        android:completionThreshold="2"
         android:ellipsize="end"
         android:ems="10"
         android:hint="@string/hint_search"
-        android:inputType="textPersonName"
+        android:lines="1"
+        android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnSearch"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.311" />
@@ -25,6 +30,7 @@
         android:id="@+id/btnSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
         android:text="@string/menu_search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

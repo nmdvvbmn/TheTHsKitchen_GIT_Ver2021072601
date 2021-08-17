@@ -15,7 +15,7 @@ import java.time.LocalDateTime
 class RefrigeratorActivity : BaseActivity() {
     val binding by lazy { ActivityRefrigeratorBinding.inflate(layoutInflater) }
     var adapter = RefrigeratorAtapter()
-    private var dbHelper = SQLiteDBHelper(this,"THsKitchen.db", 1)
+    private var dbHelper = SQLiteDBHelper(this,App.dbName, App.dbVer)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +45,7 @@ class RefrigeratorActivity : BaseActivity() {
                         dialogAdd.txtRefrigeratorAddDesc.text.toString(),
                         LocalDateTime.now())
                     dbHelper.insertRefiregierator(refrigeratorList)
+                    dbHelper.insertSearch(refrigeratorList.name,1)
                     Toast.makeText(this,getString(R.string.msg_save_data),
                         Toast.LENGTH_SHORT).show()
                     //리스트뷰 새로고침

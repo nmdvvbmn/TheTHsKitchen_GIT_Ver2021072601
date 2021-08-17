@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenResumed
 import androidx.viewpager2.widget.ViewPager2
-import com.google.firebase.firestore.FirebaseFirestore
 import com.skydoves.balloon.*
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityKitchenBinding
 import kotlinx.coroutines.*
@@ -35,8 +34,7 @@ class KitchenActivity : BaseActivity() {
         binding.chkGrill.isChecked = App.prefs.getBoolean("grill",true)
 
         CoroutineScope(Dispatchers.IO).launch {
-            val db = FirebaseFirestore.getInstance()
-            db.collection("URList").get().addOnSuccessListener { result ->
+            App.db.collection("URList").get().addOnSuccessListener { result ->
                 for (document in result) {
                     val url = document["URL"] as String
                     list.add(url)

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.ths.thethskitchen_git_ver2021072601.databinding.FragmentHelp1Binding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,7 +35,13 @@ class Help1_Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_help1_, container, false)
+        val binding = FragmentHelp1Binding.inflate(inflater,container,false)
+        when (UtilFuncs().getLanguage()){
+            "ko" -> binding.imgHelp1.setImageResource(R.drawable.help1)
+            else -> binding.imgHelp1.setImageResource(R.drawable.help1en)
+        }
+
+        return binding.root
     }
 
     companion object {

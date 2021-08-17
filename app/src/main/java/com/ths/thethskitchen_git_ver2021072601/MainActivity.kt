@@ -1,8 +1,14 @@
 package com.ths.thethskitchen_git_ver2021072601
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.ColorMatrix
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.GravityCompat
@@ -10,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenResumed
 import androidx.viewpager2.widget.ViewPager2
 import com.skydoves.balloon.*
+import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityHelpBinding
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityMainBinding
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -76,6 +83,27 @@ class MainActivity : BaseActivity() {
                 }
 
                 binding.navi.menu.getItem(8).itemId -> { //도움말
+                    val dialog = ActivityHelpBinding.inflate(layoutInflater)
+                    val builder = AlertDialog.Builder(this,R.drawable.edge)
+                    builder.setView(dialog.root)
+
+                    var alertDialog = builder.create()
+                    alertDialog.window?.setGravity(Gravity.CENTER)
+                    dialog.btnSkip.setOnClickListener {
+                        alertDialog.dismiss()
+                    }
+                    dialog.btnClose.setOnClickListener {
+                        App.prefs.setBoolena("init",false)
+                        alertDialog.dismiss()
+                    }
+                    alertDialog.setOnDismissListener {
+                        dialog.fragmentContainerView.removeAllViews()
+                    }
+                    alertDialog.show()
+
+                    alertDialog.window!!.setGravity(Gravity.CENTER_VERTICAL)
+
+
 
                 }
                 else -> Toast.makeText(this,"text",Toast.LENGTH_LONG).show()
@@ -104,55 +132,35 @@ class MainActivity : BaseActivity() {
                         binding.btnLog.visibility = View.VISIBLE
                         binding.txtTitle.text = getString(R.string.app_name)
                         binding.btnMove.setImageResource(R.drawable.ic_baseline_arrow_forward_ios_36)
-//                        balloon1.dismiss()
                     }
                     1 -> {
                         binding.imgRecommand.visibility = View.VISIBLE
                         binding.btnLog.visibility = View.GONE
                         binding.txtTitle.text = getString(R.string.menu_recommandList)
                         binding.btnMove.setImageResource(R.drawable.ic_baseline_arrow_back_ios_36)
-                        if (App.prefs.getBoolean("help",true)){
-                            balloon1 = createBalloon(applicationContext) {
-                                setArrowSize(10)
-                                setWidth(BalloonSizeSpec.WRAP)
-                                setHeight(BalloonSizeSpec.WRAP)
-                                setArrowPosition(0.1f)
-                                setCornerRadius(4f)
-                                setAlpha(0.9f)
-                                setPadding(10)
-                                setMarginTop(10)
-//                                setMarginLeft(150)
-                                setTextSize(14.0f)
-                                 setAutoDismissDuration(5000L)
-                                setText(getString(R.string.h_recommand))
-                                setTextColorResource(R.color.white)
-                                setTextIsHtml(true)
-                                setArrowOrientation(ArrowOrientation.BOTTOM)
-                                setBackgroundColorResource(R.color.thscolor)
-                                setBalloonAnimation(BalloonAnimation.FADE)
-                                setLifecycleOwner(lifecycleOwner) }
-                            balloon1.setOnBalloonClickListener {
-                                balloon1.dismiss()
-                            }
-                            binding.btnMenu.showAlignBottom(balloon1)
-                        }
-
                     }
                 }
             }
         })
         //도움말
-//        val dialog = ActivityHelpBinding.inflate(layoutInflater)
-//        val builder = AlertDialog.Builder(this)
-//        builder.setView(dialog.root)
+        if  (App.prefs.getBoolean("init",true)){
+            val dialog = ActivityHelpBinding.inflate(layoutInflater)
+            val builder = AlertDialog.Builder(this)
+            builder.setView(dialog.root)
 
-//        val alertDialog = builder.create()
-//        dialog.btnSkip.setOnClickListener {
-//            alertDialog.dismiss()
-//            Log.d("HelpScreen","Skip")
-//        }
-//
-//        alertDialog.show()
+            val alertDialog = builder.create()
+            dialog.btnSkip.setOnClickListener {
+                alertDialog.dismiss()
+            }
+            dialog.btnClose.setOnClickListener {
+                App.prefs.setBoolena("init",false)
+                alertDialog.dismiss()
+            }
+            alertDialog.setOnDismissListener {
+                dialog.fragmentContainerView.removeAllViews()
+            }
+            alertDialog.show()
+        }
     }
 
     // 초기 언어 설정

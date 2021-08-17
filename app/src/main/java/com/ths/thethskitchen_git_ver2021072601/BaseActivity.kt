@@ -3,6 +3,7 @@ package com.ths.thethskitchen_git_ver2021072601
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 
 open class BaseActivity: AppCompatActivity() { //You can use your preferred activity instead of AppCompatActivity
@@ -21,8 +22,17 @@ open class BaseActivity: AppCompatActivity() { //You can use your preferred acti
 
     override fun attachBaseContext(newBase: Context) {
         oldPrefLocaleCode = UtilFuncs().getLanguage()
-        if(oldPrefLocaleCode == "jw"){
-            oldPrefLocaleCode = "jv"
+        Log.d("Language",oldPrefLocaleCode)
+        when (oldPrefLocaleCode) {
+            "jw" -> {
+                oldPrefLocaleCode = "jv"
+            }
+            "zh-CN" -> {
+                oldPrefLocaleCode = "zh-rCN"
+            }
+            "zh-TW" -> {
+                oldPrefLocaleCode = "zh-rTW"
+            }
         }
         applyOverrideConfiguration(UtilFuncs.getLocalizedConfiguration(oldPrefLocaleCode))
         super.attachBaseContext(newBase)
@@ -35,8 +45,17 @@ open class BaseActivity: AppCompatActivity() { //You can use your preferred acti
 
     override fun onResume() {
         var currentLocaleCode = UtilFuncs().getLanguage()
-        if (currentLocaleCode == "jw"){
-            currentLocaleCode = "jv"
+        Log.d("Language",currentLocaleCode)
+        when (currentLocaleCode) {
+            "jw" -> {
+                currentLocaleCode = "jv"
+            }
+            "zh-CN" -> {
+                currentLocaleCode = "zh-rCN"
+            }
+            "zh-TW" -> {
+                currentLocaleCode = "zh-rTW"
+            }
         }
         if(oldPrefLocaleCode != currentLocaleCode){
             recreate() //locale is changed, restart the activty to update

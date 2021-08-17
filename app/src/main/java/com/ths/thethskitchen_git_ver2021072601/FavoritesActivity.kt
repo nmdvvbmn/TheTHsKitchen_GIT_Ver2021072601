@@ -9,7 +9,7 @@ import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityFavoritesBind
 class FavoritesActivity : BaseActivity() {
     val binding by lazy { ActivityFavoritesBinding.inflate(layoutInflater) }
     var adapter = FavoritesAtapter()
-    private var dbHelper = SQLiteDBHelper(this,"THsKitchen.db", 1)
+    private var dbHelper = SQLiteDBHelper(this,App.dbName, App.dbVer)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)

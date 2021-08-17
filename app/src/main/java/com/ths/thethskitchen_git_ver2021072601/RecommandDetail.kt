@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.View
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.firestore.FirebaseFirestore
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
@@ -22,12 +21,11 @@ var mYoutubePlayer: YouTubePlayer? = null
 @Suppress("NAME_SHADOWING")
 class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
     val binding by lazy { ActivityRecommandDetailBinding.inflate(layoutInflater) }
-    val helper =  SQLiteDBHelper(this,"THsKitchen.db", 1)   // 장바구니, 즐겨찾기 로컬 DB
+    val helper =  SQLiteDBHelper(this,App.dbName, App.dbVer)   // 장바구니, 즐겨찾기 로컬 DB
     private val iList = arrayListOf<IList>()    //재료 리스트
     private var iAdapter = IListAdapter(iList)  //재료 어뎁터
     private val rList = arrayListOf<RList>()    //레시피
     private val rAdapter = RListAdapter(rList,this) //레시피 어뎁터
-    val db = FirebaseFirestore.getInstance()    // 요리ID로 파이어베이스에서 IList, IName, RList. RName
     private var oldQunt : Float = 0F    // 재료량 계산을 위한 이전값 저장
     private val langCode = UtilFuncs().getLanguage() // 저장된 언어
     private lateinit var balloon1: Balloon
@@ -40,9 +38,7 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val dlist = intent.getSerializableExtra("data") as DList    // 이전 페이지 선택 데이터
-//        val link = "https://youtu.be/${dlist.video}"    // 유튜브 URL
         var caption = 1 // 캡션설정 (디폴트 자막있음)
-        
         //자막 없음 설정인 경우
         if (!App.prefs.getBoolean("caption",true)) {
             caption = 0
@@ -371,7 +367,7 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
         //         firestore 요리 리스트 Query
         iList.clear()
         binding.pbIlist.visibility = View.VISIBLE   //프로그레스바 활성
-        db.collection("IList")  //파이어스토어 IList
+        App.db.collection("IList")  //파이어스토어 IList
             .whereEqualTo("id", dList.id)   // 요리명만 검색
             .get().addOnSuccessListener {  result ->
                 for (document in result) {
@@ -383,7 +379,7 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
                         document["unit"] as String,
                         document["essential"] as Boolean )
 
-                    db.collection("IName")  //IName 재료명 검색
+                    App.db.collection("IName")  //IName 재료명 검색
                         .whereEqualTo("SEQ", document.id)   //재료 ID dlfcl
                         .whereEqualTo("code", langCode) // 설정 언어만
                         .get().addOnSuccessListener { result ->
@@ -411,7 +407,7 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
         //         firestore 요리 리스트 Query
         rList.clear()
         binding.pbRlist.visibility = View.VISIBLE   //프로그레스 활성화
-        db.collection("RList")//.orderBy("seq") //Rlist 레시피 검색
+        App.db.collection("RList")//.orderBy("seq") //Rlist 레시피 검색
             .whereEqualTo("id", dList.id)       // 요리명만 검색
             .get().addOnSuccessListener {  result ->
                 for (document in result) {
@@ -421,7 +417,7 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
                         "",
                         "${document["time"]}".toFloat()  )
 
-                    db.collection("RName")  // RName 레시피 검색
+                    App.db.collection("RName")  // RName 레시피 검색
                         .whereEqualTo("SEQ", document["seq"] as String) //레시피 ID
                         .whereEqualTo("code", langCode) //설정 언어 검색
                         .get().addOnSuccessListener { result ->

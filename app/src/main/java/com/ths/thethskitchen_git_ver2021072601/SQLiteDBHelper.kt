@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import java.lang.Exception
 import java.time.LocalDateTime
 
 class SQLiteDBHelper (
@@ -51,6 +52,12 @@ class SQLiteDBHelper (
                 "grill integer, " +
                 "video text, " +
                 "desc text )"
+        db?.execSQL(create)
+
+        create = "CREATE TABLE IF NOT EXISTS search (" +
+                "id integer primary key autoincrement, " +
+                "tag text," +
+                "flag integer )"
         db?.execSQL(create)
     }
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -265,5 +272,47 @@ class SQLiteDBHelper (
             cursor?.close()
             false
         }
+    }
+
+    fun insertSearch(text: String, flag: Int) {
+        val delete: String = if (flag == 0){
+            "delete from search where tag = '${text}'"
+        }else{
+            "delete from search where tag = '${text}' and flag = ${flag}"
+        }
+//        val delete = "delete from search where tag = '${text}' and flag = ${flag}"
+        val db = writableDatabase
+        try {
+            db.execSQL(delete)
+        }catch (e: Exception){
+
+        }finally {
+            val values = ContentValues()
+            val wd = writableDatabase
+            values.put("tag", text)
+            values.put("flag", flag)
+            wd.insert("search",null, values)
+        }
+    }
+
+    fun selectSearch(): List<SearchList> {
+        val searchList: ArrayList<SearchList> = arrayListOf()
+        val select = "select * from search ORDER BY id LIMIT 1000"
+        val rd = readableDatabase
+        val cursor = rd.rawQuery(select,null)
+        while (cursor.moveToNext()){
+            val id = cursor.getLong(cursor.getColumnIndex("id"))
+            val tag = cursor.getString(cursor.getColumnIndex("tag"))
+            val flag = cursor.getLong(cursor.getColumnIndex("flag"))
+            searchList.add(SearchList(id,tag,flag))
+        }
+        cursor.close()
+        return   searchList.distinctBy { it.tag }.sortedByDescending { it.id }.sortedBy { it.flag }
+    }
+
+    fun deleteSearch(searchList: SearchList) {
+        val delete = "delete from search where id = ${searchList.id}"
+        val db = writableDatabase
+        db.execSQL(delete)
     }
 }

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.tabs.TabLayoutMediator
 import com.ths.thethskitchen_git_ver2021072601.databinding.FragmentHelpBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -46,11 +47,11 @@ class HelpFragment : Fragment() {
         adapter.addFragment(Help3_Fragment())
         adapter.addFragment(Help4_Fragment())
         binding.viewHelp.adapter = adapter
-
+        TabLayoutMediator(binding.tabLayout, binding.viewHelp) { tab, position ->
+            //Some implementation
+        }.attach()
         return binding.root
     }
-
-
 
     companion object {
         /**

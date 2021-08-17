@@ -15,7 +15,7 @@ import java.time.LocalDateTime
 class CartActivity : BaseActivity() {
     val binding by lazy { ActivityCartBinding.inflate(layoutInflater) }
     var adapter = CartAdapter()
-    private var dbHelper = SQLiteDBHelper(this,"THsKitchen.db",1)
+    private var dbHelper = SQLiteDBHelper(this,App.dbName,App.dbVer)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +46,7 @@ class CartActivity : BaseActivity() {
                         dialogAdd.txtCartAddDesc.text.toString(),
                         LocalDateTime.now())
                     dbHelper.insertCart(cartList)
+                    dbHelper.insertSearch(cartList.name,1)
                     Toast.makeText(this,getString(R.string.msg_save_data),
                         Toast.LENGTH_SHORT).show()
                     //리스트뷰 새로고침

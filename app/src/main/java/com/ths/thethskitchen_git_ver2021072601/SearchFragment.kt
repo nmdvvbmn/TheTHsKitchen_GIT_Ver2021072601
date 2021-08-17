@@ -26,9 +26,10 @@ class SearchFragment : Fragment() {
     private var param2: String? = null
     private var mBinding: FragmentSearchBinding? =  null
     private val binding get() = mBinding!!
-//    var list = arrayListOf<String>()
-//    var adapter = KitchenAdapter(list)
+    private val searchList: ArrayList<SearchList> = arrayListOf()
     lateinit var mContext: Context
+    private lateinit var adapter : HistoryAdapter
+    private lateinit var db: SQLiteDBHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,10 +46,16 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         mBinding = FragmentSearchBinding.inflate(inflater,container,false)
-//        binding.viewSearch.adapter = adapter
-//        binding.viewSearch.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        adapter = HistoryAdapter(requireContext(),R.layout.item_history, searchList)
+        db = SQLiteDBHelper(requireContext(),App.dbName,App.dbVer)
+
+        db.selectSearch().let { searchList.addAll(it) }
+
+        binding.editSearch.setAdapter(adapter)
+        adapter.notifyDataSetChanged()
         binding.btnSearch.setOnClickListener{
             if (binding.editSearch.text.toString() != ""){
+                db.insertSearch(binding.editSearch.text.toString(),0)
                 Intent(context, ListActivity::class.java).apply {
                     putExtra("search", binding.editSearch.text.toString())
                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -58,7 +65,19 @@ class SearchFragment : Fragment() {
             }
         }
 
+        binding.editSearch.setOnItemClickListener { _, _, position, _ ->
+            val selectedItem = binding.editSearch.adapter.getItem(position) as SearchList
+            binding.editSearch.setText(selectedItem.tag)
+        }
+
         return binding.root
+    }
+
+    override fun onResume() {
+        searchList.clear()
+        db.selectSearch().let { searchList.addAll(it) }
+        adapter.notifyDataSetChanged()
+        super.onResume()
     }
 
 

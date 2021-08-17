@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
-import com.google.firebase.firestore.FirebaseFirestore
+import com.skydoves.balloon.*
 import com.ths.thethskitchen_git_ver2021072601.databinding.FragmentListBinding
 import java.util.*
 
@@ -29,9 +29,8 @@ class ListFragment : Fragment() {
     private var param2: String? = null
     private var mBinding : FragmentListBinding? = null
     private val binding get() = mBinding!!
-    private val db = FirebaseFirestore.getInstance()
     var dlist = arrayListOf<DList>()
-    var adapter = RecyclerAdapter(dlist)
+    var adapter = RecyclerAdapter(dlist,0)
     private var proc = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,11 +81,12 @@ class ListFragment : Fragment() {
         //         firestore 요리 리스트 Query
         val date = UtilFuncs().getKorDate()
         val langCode = UtilFuncs().getLanguage()
-        val helper = SQLiteDBHelper(requireContext(), "THsKitchen.db", 1)
+        val helper = SQLiteDBHelper(requireContext(), App.dbName, App.dbVer)
         val refrigerator = helper.selectRefrigerator()
         val nameList: ArrayList<String> = arrayListOf()
         val idList: ArrayList<String> = arrayListOf()
         val seqList: ArrayList<String> = arrayListOf()
+        val countList: ArrayList<String> = arrayListOf()
 
         var dlistCnt = 0    //DList sync 위한 카운터
         var seqCnt = 0
@@ -119,6 +119,31 @@ class ListFragment : Fragment() {
         if (nameListD.isEmpty()) {     // 재료 없음 검색 X
             binding.pbLoading.visibility = View.INVISIBLE
             adapter.notifyDataSetChanged()
+            if(dlist.size == 0){
+                val balloon1 = createBalloon(requireContext()) {
+                    setArrowSize(0)
+                    setWidth(BalloonSizeSpec.WRAP)
+                    setHeight(BalloonSizeSpec.WRAP)
+                    setArrowPosition(0.5f)
+                    setCornerRadius(4f)
+                    setAlpha(0.9f)
+                    setPadding(10)
+                    setMarginTop(70)
+//                                setMarginLeft(150)
+                    setTextSize(14.0f)
+                    setAutoDismissDuration(5000L)
+                    setText(getString(R.string.h_recommand))
+                    setTextColorResource(R.color.white)
+                    setTextIsHtml(true)
+                    setArrowOrientation(ArrowOrientation.TOP)
+                    setBackgroundColorResource(R.color.thscolor)
+                    setBalloonAnimation(BalloonAnimation.FADE)
+                    setLifecycleOwner(lifecycleOwner) }
+                balloon1.setOnBalloonClickListener {
+                    balloon1.dismiss()
+                }
+                binding.root.showAlignTop(balloon1)
+            }
         }else{ // 초기화
             dlist.clear()
             proc = true
@@ -129,10 +154,7 @@ class ListFragment : Fragment() {
         for (element in nameListD) { //IName에서 DList ID 검색
             Log.d("FireStore","refrigerator : ${element}")
             val searchList = StringFuncs().makeSearch(element)
-            for (i in 0 until  searchList.size){
-                Log.d("FireStore", "searchList : ${searchList[i]}")
-            }
-            db.collection("IName")
+            App.db.collection("IName")
                 .whereIn("name", searchList)
                 .get().addOnSuccessListener { result ->
                     for (document in result) {
@@ -147,10 +169,11 @@ class ListFragment : Fragment() {
                         val seqListD = seqList.distinct().sortedDescending()
                         if (seqListD.isNotEmpty()){
                             for (i in seqListD.indices){
-                                db.collection("IList").document(seqListD[i])
+                                App.db.collection("IList").document(seqListD[i])
                                     .get().addOnSuccessListener {  data ->
                                         if ("${data["essential"]}".toBoolean()){
                                             idList.add("${data["id"]}")
+                                            countList.add("${data["id"]}")
                                         }
                                     }.addOnCompleteListener{
                                         seqCnt ++
@@ -159,7 +182,7 @@ class ListFragment : Fragment() {
                                             Log.d("FireStore","IList" + "idListD : ${idListD.size}")
                                             if (idListD.isNotEmpty()) { //Id list가 있을 경우
                                                 for (i in idListD.indices) {
-                                                    db.collection("DList").document(idListD[i])
+                                                    App.db.collection("DList").document(idListD[i])
                                                         .get().addOnSuccessListener { document ->
                                                             val item = DList(   //DList Row
                                                                 document.id,
@@ -199,7 +222,7 @@ class ListFragment : Fragment() {
                                                                 dlist.add(item)
 
                                                                 // 요리명
-                                                                db.collection("DName")
+                                                                App.db.collection("DName")
                                                                     .whereEqualTo("id", idListD[i])
                                                                     .whereEqualTo("code", langCode)
                                                                     .limit(1)
@@ -217,6 +240,9 @@ class ListFragment : Fragment() {
                                                                     }.addOnCompleteListener {
                                                                         dnameCnt++
                                                                         if (dnameCnt == idListD.size) {
+                                                                            for (item in dlist){
+                                                                                item.flag = Collections.frequency(countList, item.id)
+                                                                            }
                                                                             //마지막 리턴 후 프로그레스 종
                                                                             val sortedList = dlist.distinctBy { it.id }
                                                                                 .sortedByDescending { it.date }
@@ -231,11 +257,9 @@ class ListFragment : Fragment() {
                                                                                     break
                                                                                 }
                                                                             }
-                                                                            for (item in dlist){
-                                                                                Log.d("FireStore","${item.flag} : ${item.name}")
-                                                                            }
                                                                             binding.pbLoading.visibility =
                                                                                 View.INVISIBLE
+                                                                            adapter.notifyDataSetChanged()
                                                                             //새로고침플레그 해제
                                                                             proc = false
                                                                         }
@@ -246,6 +270,9 @@ class ListFragment : Fragment() {
                                                                 dnameCnt++
                                                                 if (dnameCnt == idListD.size) {
                                                                     //실패시 마지막 프로그레스 종료
+                                                                    for (item in dlist){
+                                                                        item.flag = Collections.frequency(countList, item.id)
+                                                                    }
                                                                     val sortedList = dlist.distinctBy { it.id }
                                                                         .sortedByDescending { it.date }
                                                                         .sortedByDescending { it.id }
@@ -259,9 +286,6 @@ class ListFragment : Fragment() {
                                                                             break
                                                                         }
                                                                     }
-                                                                    for (item in dlist){
-                                                                        Log.d("FireStore","${item.flag} : ${item.name}")
-                                                                    }
                                                                     binding.pbLoading.visibility =
                                                                         View.INVISIBLE
                                                                     //최종 완료 리스트 뷰 적용
@@ -274,6 +298,9 @@ class ListFragment : Fragment() {
                                                         }.addOnFailureListener {
                                                             dnameCnt++
                                                             if (dlistCnt == idListD.size) {
+                                                                for (item in dlist){
+                                                                    item.flag = Collections.frequency(countList, item.id)
+                                                                }
                                                                 val sortedList = dlist.distinctBy { it.id }
                                                                     .sortedByDescending { it.date }
                                                                     .sortedByDescending { it.id }
@@ -287,11 +314,10 @@ class ListFragment : Fragment() {
                                                                         break
                                                                     }
                                                                 }
-                                                                for (item in dlist){
-                                                                    Log.d("FireStore","${item.flag} : ${item.name}")
-                                                                }
+
                                                                 binding.pbLoading.visibility =
                                                                     View.INVISIBLE
+                                                                adapter.notifyDataSetChanged()
                                                                 proc = false
                                                             }
                                                         }.addOnCompleteListener {
@@ -299,6 +325,10 @@ class ListFragment : Fragment() {
                                                         }
                                                 }
                                             } else {
+                                                for (item in dlist) {
+                                                    item.flag =
+                                                        Collections.frequency(countList, item.id)
+                                                }
                                                 val sortedList = dlist.distinctBy { it.id }
                                                     .sortedByDescending { it.date }
                                                     .sortedByDescending { it.id }
@@ -312,9 +342,7 @@ class ListFragment : Fragment() {
                                                         break
                                                     }
                                                 }
-                                                for (item in dlist){
-                                                    Log.d("FireStore","${item.flag} : ${item.name}")
-                                                }
+                                                adapter.notifyDataSetChanged()
                                                 binding.pbLoading.visibility = View.INVISIBLE
                                                 proc = false
                                             }

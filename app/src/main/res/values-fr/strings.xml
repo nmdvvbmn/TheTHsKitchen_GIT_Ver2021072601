@@ -80,4 +80,16 @@
     <string name="h_recommand">Je recommande la cuisson avec des ingrédients dans des outils de réfrigérateur et de cuisson dans la cuisine.</string>
     <string name="h_click">Cliquez pour voir les détails</string>
     <string name="h_refrigerator">Déplacez les aliments au réfrigérateur.</string>
+    <string name="btn_skip">Sauter</string>
+    <string name="btn_close">Ne pas montrer de nouveau</string>
+    <string name="help_1_1">Cliquez sur la recette. \n la vidéo se déplace à la section</string>
+    <string name="help_1_2">Vous pouvez modifier beaucoup les ingrédients que vous le souhaitez.</string>
+    <string name="help_1_3">Mettre les ingrédients sur votre panier \n afin que vous puissiez prendre des notes facilement</string>
+    <string name="help_2_1">Recherchez les plats et les ingrédients que vous souhaitez. \n Vous pouvez trouver diverses recettes. \n La vitesse de recherche devient plus rapide.</string>
+    <string name="help_2_2">Nous recommandons des plats comprenant des outils de cuisson sélectionnés et des ingrédients. \n Vous pouvez rechercher rapidement en entrant uniquement les principaux ingrédients.</string>
+    <string name="help_3_1">Choisissez à partir de la batterie de cuisine disponible</string>
+    <string name="help_3_2">Entrez les ingrédients dans le réfrigérateur. \n Vous pouvez rechercher rapidement en entrant uniquement les principaux ingrédients.</string>
+    <string name="help_4_1">Entrez votre liste de courses\nVous pouvez également entrer facilement sur la page de détail de la recette.\nVous pouvez déplacer des ingrédients de la liste de magasinage au réfrigérateur</string>
+    <string name="help_4_2">Vous pouvez vous inscrire des vidéos fréquemment visionnées sur la page de détail de la recette.</string>
+
 </resources>

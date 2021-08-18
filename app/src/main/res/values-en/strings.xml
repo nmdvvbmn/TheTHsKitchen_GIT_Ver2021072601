@@ -80,4 +80,16 @@
     <string name="h_recommand">I recommend cooking with ingredients set in refrigerator and cooking tools set in kitchen.</string>
     <string name="h_click">Click to view details</string>
     <string name="h_refrigerator">Move the foods to the refrigerator.</string>
+    <string name="btn_skip">Skip</string>
+    <string name="btn_close">Do not show again</string>
+    <string name="help_1_1">Click on the recipe. \n The video moves to the section</string>
+    <string name="help_1_2">You can modify the ingredients much as you want.</string>
+    <string name="help_1_3">Put the ingredients on your shopping cart \n so you can take notes easily</string>
+    <string name="help_2_1">Search for the dishes and ingredients you want. \n You can find various recipes. \n The search speed is getting faster.</string>
+    <string name="help_2_2">We recommend dishes that include selected cooking tools and ingredients. \n You can quickly search by entering only the main ingredients.</string>
+    <string name="help_3_1">Choose from available cookware</string>
+    <string name="help_3_2">Enter the ingredients in the refrigerator. \n You can quickly search by entering only the main ingredients.</string>
+    <string name="help_4_1">Enter your shopping list\nYou can also easily enter it on the recipe detail page \nYou can move shopping list ingredients to the refrigerator</string>
+    <string name="help_4_2">You can register frequently viewed videos on the recipe detail page.</string>
+
 </resources>

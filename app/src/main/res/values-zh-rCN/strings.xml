@@ -80,4 +80,16 @@
     <string name="h_recommand">我建议在厨房里坐落在冰箱和烹饪工具中烹饪。</string>
     <string name="h_click">点击查看详细信息</string>
     <string name="h_refrigerator">将食物移动到冰箱上。</string>
+    <string name="btn_skip">跳过</string>
+    <string name="btn_close">不再显示</string>
+    <string name="help_1_1">单击配方。\n视频移动到该部分</string>
+    <string name="help_1_2">您可以根据需要修改成分。</string>
+    <string name="help_1_3">将食材放在购物车上“n”，以便轻松地记录</string>
+    <string name="help_2_1">搜索您想要的菜肴和成分。\n你可以找到各种食谱。\n搜索速度越来越快。</string>
+    <string name="help_2_2">我们建议使用选定烹饪工具和成分的菜肴。\n您只需输入主要成分即可快速搜索。</string>
+    <string name="help_3_1">选择可用的炊具</string>
+    <string name="help_3_2">进入冰箱中的成分。\n您只需输入主要成分即可快速搜索。</string>
+    <string name="help_4_1">输入您的购物清单\n您也可以在Recipe详细信息页面上轻松输入它\n您可以将购物列表成分移动到冰箱</string>
+    <string name="help_4_2">您可以在配方详细信息页面上注册经常查看的视频。</string>
+
 </resources>

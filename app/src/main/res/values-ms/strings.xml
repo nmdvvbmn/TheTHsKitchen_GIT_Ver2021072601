@@ -80,4 +80,16 @@
     <string name="h_recommand">Saya cadangkan memasak dengan ramuan yang ditetapkan dalam peti sejuk dan alat memasak yang ditetapkan di dapur.</string>
     <string name="h_click">Klik untuk melihat butiran</string>
     <string name="h_refrigerator">Pindahkan makanan ke peti sejuk.</string>
+    <string name="btn_skip">Melangkaui</string>
+    <string name="btn_close">Jangan tunjukkan lagi</string>
+    <string name="help_1_1">Klik pada resipi. \n video bergerak ke bahagian</string>
+    <string name="help_1_2">Anda boleh mengubah suai bahan yang anda mahukan.</string>
+    <string name="help_1_3">Letakkan ramuan di keranjang belanja anda \n supaya anda boleh mengambil nota dengan mudah</string>
+    <string name="help_2_1">Cari hidangan dan ramuan yang anda mahu. \n Anda boleh mencari pelbagai resipi. \n Kelajuan carian semakin cepat.</string>
+    <string name="help_2_2">Kami mengesyorkan hidangan yang termasuk alat memasak yang dipilih dan ramuan. \n Anda boleh dengan cepat mencari dengan memasukkan hanya ramuan utama.</string>
+    <string name="help_3_1">Pilih dari alat memasak yang ada</string>
+    <string name="help_3_2">Masukkan bahan-bahan di dalam peti sejuk. \n Anda boleh dengan cepat mencari dengan memasukkan hanya ramuan utama.</string>
+    <string name="help_4_1">Masukkan senarai membeli-belah anda\nAnda juga boleh dengan mudah memasukkannya pada halaman terperinci resipi\nAnda boleh memindahkan rakan-rakan senarai membeli-belah ke peti sejuk</string>
+    <string name="help_4_2">Anda boleh mendaftar video yang sering dilihat pada halaman terperinci resipi.</string>
+
 </resources>

@@ -24,7 +24,6 @@ class SettingFragment: PreferenceFragmentCompat() {
             val entryValue = context?.resources?.getStringArray(R.array.array_language)
             val value = entryValue?.get(index!!)
             list.summary = value.toString()
-//            UtilFuncs().setLocale(requireContext(),UtilFuncs().getLanguage())
             val intent = Intent(context, SettingActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
             startActivity(intent)

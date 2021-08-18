@@ -80,4 +80,16 @@
     <string name="h_recommand">冷蔵庫にセットされた食材と台所にセットされた調理器具で調理することをお勧めします。</string>
     <string name="h_click">詳細を表示するにはクリックしてください</string>
     <string name="h_refrigerator">食べ物を冷蔵庫に動かします。</string>
+    <string name="btn_skip">スキップ</string>
+    <string name="btn_close">再び表示しない</string>
+    <string name="help_1_1">レシピをクリックしてください。ビデオはセクションに移動します</string>
+    <string name="help_1_2">あなたが望むように食材を変えることができます。</string>
+    <string name="help_1_3">あなたが簡単にメモを取ることができるようにあなたの買い物カクトに成分を入れる \n</string>
+    <string name="help_2_1">あなたが望む料理や食材を検索してください。 \nあなたはさまざまなレシピを見つけることができます。 \n検索速度が速くなっています。</string>
+    <string name="help_2_2">選択した調理器具や食材を含む料理をお勧めします。 \n主成分のみを入力してすばやく検索できます。</string>
+    <string name="help_3_1">利用可能な調理器具から選択してください</string>
+    <string name="help_3_2">冷蔵庫の成分を入力してください。 \n主成分のみを入力してすばやく検索できます。</string>
+    <string name="help_4_1">あなたの買い物リストを入力してください\nレシピ詳細ページに簡単に入力することもできます。\nあなたは買い物リストの材料を冷蔵庫に移動することができます</string>
+    <string name="help_4_2">レシピ詳細ページに頻繁に表示されているビデオを登録できます。</string>
+
 </resources>

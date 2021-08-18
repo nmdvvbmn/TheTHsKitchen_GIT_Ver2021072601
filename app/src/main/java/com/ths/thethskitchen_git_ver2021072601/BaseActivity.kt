@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import java.util.*
 
 open class BaseActivity: AppCompatActivity() { //You can use your preferred activity instead of AppCompatActivity
     private lateinit var oldPrefLocaleCode : String

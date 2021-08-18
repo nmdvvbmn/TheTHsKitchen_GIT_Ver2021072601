@@ -80,4 +80,16 @@
     <string name="h_recommand">Tôi khuyên bạn nên nấu ăn với các thành phần đặt trong tủ lạnh và dụng cụ nấu ăn trong bếp.</string>
     <string name="h_click">Nhấn vào đây để xem chi tiết</string>
     <string name="h_refrigerator">Di chuyển các loại thực phẩm đến tủ lạnh.</string>
+    <string name="btn_skip">Nhảy</string>
+    <string name="btn_close">Không hiển thị trở lại</string>
+    <string name="help_1_1">Nhấp vào công thức. \n Video di chuyển đến phần</string>
+    <string name="help_1_2">Bạn có thể sửa đổi các thành phần nhiều như bạn muốn.</string>
+    <string name="help_1_3">Đặt các thành phần trên giỏ hàng của bạn, để bạn có thể ghi chú dễ dàng</string>
+    <string name="help_2_1">Tìm kiếm các món ăn và các thành phần bạn muốn. Bạn có thể tìm thấy nhiều công thức nấu ăn khác nhau. \n Tốc độ tìm kiếm đang ngày càng nhanh hơn.</string>
+    <string name="help_2_2">Chúng tôi khuyên các món ăn bao gồm các công cụ nấu ăn và thành phần được lựa chọn. \n Bạn có thể nhanh chóng tìm kiếm bằng cách chỉ nhập các thành phần chính.</string>
+    <string name="help_3_1">Chọn từ dụng cụ nấu ăn có sẵn</string>
+    <string name="help_3_2">Nhập các thành phần trong tủ lạnh. \n Bạn có thể nhanh chóng tìm kiếm bằng cách chỉ nhập các thành phần chính.</string>
+    <string name="help_4_1">Nhập danh sách mua sắm của bạn\nBạn cũng có thể dễ dàng nhập nó vào trang chi tiết công thức\nBạn có thể di chuyển các thành phần danh sách mua sắm vào tủ lạnh</string>
+    <string name="help_4_2">Bạn có thể đăng ký các video được xem thường xuyên trên trang chi tiết công thức.</string>
+
 </resources>

@@ -1,11 +1,7 @@
 package com.ths.thethskitchen_git_ver2021072601
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.ColorMatrix
-import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
@@ -87,7 +83,7 @@ class MainActivity : BaseActivity() {
                     val builder = AlertDialog.Builder(this,R.drawable.edge)
                     builder.setView(dialog.root)
 
-                    var alertDialog = builder.create()
+                    val alertDialog = builder.create()
                     alertDialog.window?.setGravity(Gravity.CENTER)
                     dialog.btnSkip.setOnClickListener {
                         alertDialog.dismiss()

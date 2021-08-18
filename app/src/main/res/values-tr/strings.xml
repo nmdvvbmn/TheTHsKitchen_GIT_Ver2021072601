@@ -80,4 +80,16 @@
     <string name="h_recommand">Mutfakta buzdolabı ve pişirme araçlarında bulunan malzemelerle pişirmeyi öneririm.</string>
     <string name="h_click">Ayrıntıları görüntülemek için tıklayın</string>
     <string name="h_refrigerator">Yiyecekleri buzdolabına getirin.</string>
+    <string name="btn_skip">Atlamak</string>
+    <string name="btn_close">Tekrar gösterme</string>
+    <string name="help_1_1">Tarifi tıklayın. \n, video bölüme geçer</string>
+    <string name="help_1_2">Malzemeleri istediğiniz kadar değiştirebilirsiniz.</string>
+    <string name="help_1_3">Malzemeleri alışveriş sepetinize \n koyun, böylece kolayca not alabilirsiniz.</string>
+    <string name="help_2_1">İstediğiniz yemekleri ve malzemeleri arayın. \n Çeşitli tarifler bulabilirsiniz. \n Arama hızı daha hızlı hale geliyor.</string>
+    <string name="help_2_2">Seçilen pişirme araçları ve malzemeleri içeren yemekler öneririz. \n Yalnızca ana malzemeleri girerek hızlıca arayabilirsiniz.</string>
+    <string name="help_3_1">Mevcut tencere arasından seçim yapın</string>
+    <string name="help_3_2">Buzdolabındaki malzemeleri girin. \n Yalnızca ana malzemeleri girerek hızlıca arayabilirsiniz.</string>
+    <string name="help_4_1">Alışveriş listenizi girin\nAyrıca reçete detay sayfasına kolayca girebilirsiniz.\nAlışveriş listesi malzemelerini buzdolabına taşıyabilirsiniz.</string>
+    <string name="help_4_2">Tarif detay sayfasında sıkça görüntülenen videoları kaydedebilirsiniz.</string>
+
 </resources>

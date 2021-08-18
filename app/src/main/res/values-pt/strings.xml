@@ -80,4 +80,16 @@
     <string name="h_recommand">Eu recomendo cozinhar com ingredientes definidos no refrigerador e cozinhar ferramentas em cozinha.</string>
     <string name="h_click">Clique para ver detalhes</string>
     <string name="h_refrigerator">Mova os alimentos para a geladeira.</string>
+    <string name="btn_skip">Pular</string>
+    <string name="btn_close">Não mostre novamente</string>
+    <string name="help_1_1">Clique na receita. \n o vídeo se move para a seção</string>
+    <string name="help_1_2">Você pode modificar os ingredientes muito como quiser.</string>
+    <string name="help_1_3">Coloque os ingredientes no seu carrinho de compras \n para que você possa tomar notas facilmente</string>
+    <string name="help_2_1">Procure os pratos e ingredientes que você deseja. \n Você pode encontrar várias receitas. \n A velocidade de pesquisa está ficando mais rápida.</string>
+    <string name="help_2_2">Recomendamos pratos que incluem ferramentas e ingredientes selecionados. \n Você pode pesquisar rapidamente, entrando apenas nos principais ingredientes.</string>
+    <string name="help_3_1">Escolha a partir de utensílios disponíveis</string>
+    <string name="help_3_2">Digite os ingredientes na geladeira. \n Você pode pesquisar rapidamente, entrando apenas nos principais ingredientes.</string>
+    <string name="help_4_1">Digite sua lista de compras\nVocê também pode inseri-lo facilmente na página de detalhes da receita\nVocê pode mover ingredientes da lista de compras para a geladeira</string>
+    <string name="help_4_2">Você pode registrar vídeos visualizados com frequência na página de detalhes da receita.</string>
+
 </resources>

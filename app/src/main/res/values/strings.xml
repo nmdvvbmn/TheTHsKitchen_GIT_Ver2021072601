@@ -82,7 +82,7 @@
 
     <!--    Message-->
     <string name="msg_add_NoName"> 재료명을 입력하세요</string>
-    <string name="msg_save_data">저장하였습니다</string>
+    <string name="msg_save_data" translatable="false">저장하였습니다</string>
     <string name="msg_move_data">재료가 냉장고로 이동했어요</string>
     <string name="msg_exit">뒤로가기를 한 번 더 누르면 종료됩니다</string>
     <string name="app_name">슬기로운 식샤생활</string>

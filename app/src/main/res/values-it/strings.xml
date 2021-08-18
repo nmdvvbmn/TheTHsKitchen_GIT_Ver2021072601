@@ -80,4 +80,16 @@
     <string name="h_recommand">Consiglio di cucinare con ingredienti impostati in frigorifero e strumenti di cucina immessi in cucina.</string>
     <string name="h_click">Clicca per visualizzare i dettagli</string>
     <string name="h_refrigerator">Spostare gli alimenti in frigorifero.</string>
+    <string name="btn_skip">Saltare</string>
+    <string name="btn_close">Non mostrare più</string>
+    <string name="help_1_1">Clicca sulla ricetta. \n Il video si sposta alla sezione</string>
+    <string name="help_1_2">Puoi modificare gli ingredienti molto come vuoi.</string>
+    <string name="help_1_3">Metti gli ingredienti sul tuo carrello della spesa \n in modo da poter prendere appunti facilmente</string>
+    <string name="help_2_1">Cerca i piatti e gli ingredienti che desideri. \n Puoi trovare varie ricette. \n La velocità di ricerca si sta diventando più veloce.</string>
+    <string name="help_2_2">Si consiglia piatti che includono strumenti e ingredienti di cottura selezionati. \n Puoi cercare rapidamente inserendo solo gli ingredienti principali.</string>
+    <string name="help_3_1">Scegli tra le pentole disponibili</string>
+    <string name="help_3_2">Inserisci gli ingredienti nel frigorifero. \n Puoi cercare rapidamente inserendo solo gli ingredienti principali.</string>
+    <string name="help_4_1">Inserisci la tua lista della spesa\nPuoi anche entrare facilmente nella pagina dei dettagli della ricetta\nPuoi spostare gli ingredienti della lista della spesa per il frigorifero</string>
+    <string name="help_4_2">È possibile registrare video visualizzati frequentemente sulla pagina dei dettagli della ricetta.</string>
+
 </resources>

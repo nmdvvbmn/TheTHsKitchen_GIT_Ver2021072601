@@ -80,4 +80,16 @@
     <string name="h_recommand">Aku nyaranake masak karo bahan sing disetel ing kulkas lan alat masak sing disetel ing pawon.</string>
     <string name="h_click">Klik kanggo ndeleng rincian</string>
     <string name="h_refrigerator">Mindhah panganan menyang kulkas.</string>
+    <string name="btn_skip">Skip</string>
+    <string name="btn_close">Aja nuduhake maneh</string>
+    <string name="help_1_1">Klik ing resep. \n video pindhah menyang bagean</string>
+    <string name="help_1_2">Sampeyan bisa ngowahi bahan sing paling dikarepake.</string>
+    <string name="help_1_3">Sijine bahan ing Kréta Blanja \n supaya sampeyan bisa njupuk cathetan kanthi gampang</string>
+    <string name="help_2_1">Goleki sajian lan bahan sing pengin. \n sampeyan bisa nemokake macem-macem resep. \n Kecepatan telusuran saya cepet.</string>
+    <string name="help_2_2">Disaranake sajian sing kalebu alat lan bahan masak sing dipilih. \n sampeyan bisa cepet digoleki kanthi ngetik bahan utama.</string>
+    <string name="help_3_1">Pilih saka cookware sing kasedhiya</string>
+    <string name="help_3_2">Ketik bahan ing kulkas. \n sampeyan bisa cepet digoleki kanthi ngetik bahan utama.</string>
+    <string name="help_4_1">Ketik dhaptar blanja\nSampeyan uga bisa ngetik ing kaca rinci resep resep\nSampeyan bisa mindhah bahan dhaptar blanja menyang kulkas</string>
+    <string name="help_4_2">Sampeyan bisa ndhaptar video sing kerep ndeleng video ing kaca detail resep.</string>
+
 </resources>

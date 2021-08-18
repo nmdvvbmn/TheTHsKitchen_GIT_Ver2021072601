@@ -75,7 +75,13 @@ open class UtilFuncs {
             } else {
                 ConfigurationCompat.getLocales(Resources.getSystem().configuration).get(0).language
             }
-            return Locale(localeCode)
+            return if (localeCode == "zh-rCN") {
+                Locale.CHINA
+            } else if (localeCode == "zh-rTW"){
+                Locale.TAIWAN
+            } else {
+                Locale(localeCode)
+            }
         }
 
         fun getLocalizedConfiguration(prefLocaleCode: String): Configuration {
@@ -94,6 +100,10 @@ open class UtilFuncs {
         fun getLocalizedContext(baseContext: Context, prefLocaleCode: String): Context {
             val code: String = if (prefLocaleCode == "jw") {
                 "jv"
+            } else if(prefLocaleCode == "zh-CN") {
+                "zh-rCN"
+            } else if(prefLocaleCode == "zh-TW") {
+                "zh-rTW"
             } else {
                 prefLocaleCode
             }

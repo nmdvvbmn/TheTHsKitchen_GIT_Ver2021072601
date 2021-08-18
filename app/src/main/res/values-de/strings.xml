@@ -80,4 +80,16 @@
     <string name="h_recommand">Ich empfehle, mit Zutaten zu kochen, die in Kühlschrank und Kochwerkzeuge in der Küche eingestellt sind.</string>
     <string name="h_click">Klicken Sie hier, um Details anzuzeigen</string>
     <string name="h_refrigerator">Bewegen Sie die Lebensmittel in den Kühlschrank.</string>
+    <string name="btn_skip">Überspringen</string>
+    <string name="btn_close">Nicht mehr anzeigen</string>
+    <string name="help_1_1">Klicken Sie auf das Rezept.\nDas Video bewegt sich in den Abschnitt</string>
+    <string name="help_1_2">Sie können die Zutaten viel ändern, wie Sie möchten.</string>
+    <string name="help_1_3">Setzen Sie die Zutaten in Ihren Warenkorb \n, damit Sie sich leicht Notizen machen können</string>
+    <string name="help_2_1">Suchen Sie nach den Gerichten und Zutaten, die Sie möchten.\nSie können verschiedene Rezepte finden.\nDie Suchgeschwindigkeit wird schneller.</string>
+    <string name="help_2_2">Wir empfehlen Gerichte, die ausgewählte Kochwerkzeuge und Zutaten enthalten.\nSie können schnell suchen, indem Sie nur die Hauptbestandteile eingeben.</string>
+    <string name="help_3_1">Wählen Sie aus verfügbarem Kochgeschirr</string>
+    <string name="help_3_2">Geben Sie die Zutaten in den Kühlschrank ein.\nSie können schnell suchen, indem Sie nur die Hauptbestandteile eingeben.</string>
+    <string name="help_4_1">Geben Sie Ihre Einkaufsliste ein\nSie können es auch einfach auf der Rezeptdetailseite eingeben\nSie können Einkaufslistenzutaten in den Kühlschrank verschieben</string>
+    <string name="help_4_2">Sie können häufig angesehene Videos auf der Seite Rezeptdetails registrieren.</string>
+
 </resources>

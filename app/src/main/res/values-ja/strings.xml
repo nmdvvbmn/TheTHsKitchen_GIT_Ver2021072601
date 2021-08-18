@@ -91,5 +91,7 @@
     <string name="help_3_2">冷蔵庫の成分を入力してください。 \n主成分のみを入力してすばやく検索できます。</string>
     <string name="help_4_1">あなたの買い物リストを入力してください\nレシピ詳細ページに簡単に入力することもできます。\nあなたは買い物リストの材料を冷蔵庫に移動することができます</string>
     <string name="help_4_2">レシピ詳細ページに頻繁に表示されているビデオを登録できます。</string>
+    <string name="ingredients">材料</string>
+    <string name="recipes">レシピ</string>
 
 </resources>

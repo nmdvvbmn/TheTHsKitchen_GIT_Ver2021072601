@@ -91,5 +91,7 @@
     <string name="help_3_2">Geben Sie die Zutaten in den Kühlschrank ein.\nSie können schnell suchen, indem Sie nur die Hauptbestandteile eingeben.</string>
     <string name="help_4_1">Geben Sie Ihre Einkaufsliste ein\nSie können es auch einfach auf der Rezeptdetailseite eingeben\nSie können Einkaufslistenzutaten in den Kühlschrank verschieben</string>
     <string name="help_4_2">Sie können häufig angesehene Videos auf der Seite Rezeptdetails registrieren.</string>
+    <string name="ingredients">Zutaten</string>
+    <string name="recipes">Rezepte</string>
 
 </resources>

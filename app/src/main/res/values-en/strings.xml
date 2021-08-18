@@ -91,5 +91,7 @@
     <string name="help_3_2">Enter the ingredients in the refrigerator. \n You can quickly search by entering only the main ingredients.</string>
     <string name="help_4_1">Enter your shopping list\nYou can also easily enter it on the recipe detail page \nYou can move shopping list ingredients to the refrigerator</string>
     <string name="help_4_2">You can register frequently viewed videos on the recipe detail page.</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="recipes">Recipes</string>
 
 </resources>

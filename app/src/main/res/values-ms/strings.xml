@@ -91,5 +91,7 @@
     <string name="help_3_2">Masukkan bahan-bahan di dalam peti sejuk. \n Anda boleh dengan cepat mencari dengan memasukkan hanya ramuan utama.</string>
     <string name="help_4_1">Masukkan senarai membeli-belah anda\nAnda juga boleh dengan mudah memasukkannya pada halaman terperinci resipi\nAnda boleh memindahkan rakan-rakan senarai membeli-belah ke peti sejuk</string>
     <string name="help_4_2">Anda boleh mendaftar video yang sering dilihat pada halaman terperinci resipi.</string>
+    <string name="ingredients">Bahan-bahan</string>
+    <string name="recipes">Resipi</string>
 
 </resources>

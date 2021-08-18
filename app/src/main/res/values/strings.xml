@@ -37,6 +37,9 @@
     <string name="glass">잔</string>
     <string name="inputdate">입력일</string>
     <string name="space" translatable="false"></string>
+    
+    <string name="ingredients">재료</string>
+    <string name="recipes">조리법</string>
 
     <string name="option">(선택)</string>
 

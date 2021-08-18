@@ -91,5 +91,7 @@
     <string name="help_3_2">进入冰箱中的成分。\n您只需输入主要成分即可快速搜索。</string>
     <string name="help_4_1">输入您的购物清单\n您也可以在Recipe详细信息页面上轻松输入它\n您可以将购物列表成分移动到冰箱</string>
     <string name="help_4_2">您可以在配方详细信息页面上注册经常查看的视频。</string>
+    <string name="ingredients">原料</string>
+    <string name="recipes">食谱</string>
 
 </resources>

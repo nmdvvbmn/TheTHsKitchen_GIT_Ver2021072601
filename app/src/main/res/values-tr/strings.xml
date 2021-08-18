@@ -91,5 +91,7 @@
     <string name="help_3_2">Buzdolabındaki malzemeleri girin. \n Yalnızca ana malzemeleri girerek hızlıca arayabilirsiniz.</string>
     <string name="help_4_1">Alışveriş listenizi girin\nAyrıca reçete detay sayfasına kolayca girebilirsiniz.\nAlışveriş listesi malzemelerini buzdolabına taşıyabilirsiniz.</string>
     <string name="help_4_2">Tarif detay sayfasında sıkça görüntülenen videoları kaydedebilirsiniz.</string>
+    <string name="ingredients">İçindekiler</string>
+    <string name="recipes">Tarifler</string>
 
 </resources>

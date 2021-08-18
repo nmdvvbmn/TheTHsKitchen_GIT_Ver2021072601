@@ -91,5 +91,7 @@
     <string name="help_3_2">Ingrese los ingredientes en el refrigerador. \n Puede buscar rápidamente ingresando solo los ingredientes principales.</string>
     <string name="help_4_1">Ingrese su lista de compras\nTambién puede ingresarlo fácilmente en la página de detalles de la receta\nPuede mover los ingredientes de la lista de compras al refrigerador</string>
     <string name="help_4_2">Puede registrar videos con frecuencia vistos en la página de detalle de la receta.</string>
+    <string name="ingredients">Ingredientes</string>
+    <string name="recipes">Recetas</string>
 
 </resources>

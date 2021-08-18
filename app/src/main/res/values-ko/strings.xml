@@ -95,4 +95,6 @@
 
     <string name="help_4_1">쇼핑목록을 입력해요\n조리법 상세페이지에서도 쉽게 입력 할 수 있어요\n쇼핑목록 재료들을 냉장고로 이동 할 수 있어요</string>
     <string name="help_4_2">자주보는 영상을 조리법 상세페이지에서 등록 할 수 있어요</string>
+    <string name="ingredients">재료</string>
+    <string name="recipes">요리법</string>
 </resources>

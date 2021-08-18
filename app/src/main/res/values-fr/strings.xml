@@ -91,5 +91,7 @@
     <string name="help_3_2">Entrez les ingrédients dans le réfrigérateur. \n Vous pouvez rechercher rapidement en entrant uniquement les principaux ingrédients.</string>
     <string name="help_4_1">Entrez votre liste de courses\nVous pouvez également entrer facilement sur la page de détail de la recette.\nVous pouvez déplacer des ingrédients de la liste de magasinage au réfrigérateur</string>
     <string name="help_4_2">Vous pouvez vous inscrire des vidéos fréquemment visionnées sur la page de détail de la recette.</string>
+    <string name="ingredients">Ingrédients</string>
+    <string name="recipes">Recettes</string>
 
 </resources>

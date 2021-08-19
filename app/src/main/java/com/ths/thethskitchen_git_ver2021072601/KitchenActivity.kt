@@ -4,6 +4,9 @@ import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenResumed
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.skydoves.balloon.*
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityKitchenBinding
 import kotlinx.coroutines.*
@@ -17,6 +20,17 @@ class KitchenActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        //광고
+        MobileAds.initialize(this)
+        val adRequest = AdRequest.Builder().build()
+        binding.adViewK.loadAd(adRequest)
+        binding.adViewK.adListener = object: AdListener() {
+            override fun onAdClicked() {
+                App.ad = false
+                super.onAdClicked()
+            }
+        }
 
         binding.viewReview.adapter = adapter
         binding.viewReview.orientation = ViewPager2.ORIENTATION_HORIZONTAL

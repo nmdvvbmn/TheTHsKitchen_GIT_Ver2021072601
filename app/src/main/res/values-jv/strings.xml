@@ -91,7 +91,7 @@
     <string name="help_3_2">Ketik bahan ing kulkas. \n sampeyan bisa cepet digoleki kanthi ngetik bahan utama.</string>
     <string name="help_4_1">Ketik dhaptar blanja\nSampeyan uga bisa ngetik ing kaca rinci resep resep\nSampeyan bisa mindhah bahan dhaptar blanja menyang kulkas</string>
     <string name="help_4_2">Sampeyan bisa ndhaptar video sing kerep ndeleng video ing kaca detail resep.</string>
-    <string name="ingredients">Bahan-bahan</string>
+    <string name="ingredients">ingred.</string>
     <string name="recipes">Resep</string>
 
 </resources>

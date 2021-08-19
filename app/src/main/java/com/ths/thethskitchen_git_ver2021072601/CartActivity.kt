@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.skydoves.balloon.*
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityCartBinding
 import com.ths.thethskitchen_git_ver2021072601.databinding.DailogCartAddBinding
@@ -25,6 +28,17 @@ class CartActivity : BaseActivity() {
         adapter.cartList.addAll(dbHelper.selectCart())
         binding.viewCartList.adapter = adapter
         binding.viewCartList.layoutManager = LinearLayoutManager(this)
+
+        //광고
+        MobileAds.initialize(this)
+        val adRequest = AdRequest.Builder().build()
+        binding.adViewC.loadAd(adRequest)
+        binding.adViewC.adListener = object: AdListener() {
+            override fun onAdClicked() {
+                App.ad = false
+                super.onAdClicked()
+            }
+        }
 //        binding.viewCartList.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
 
 

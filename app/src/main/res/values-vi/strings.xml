@@ -91,7 +91,7 @@
     <string name="help_3_2">Nhập các thành phần trong tủ lạnh. \n Bạn có thể nhanh chóng tìm kiếm bằng cách chỉ nhập các thành phần chính.</string>
     <string name="help_4_1">Nhập danh sách mua sắm của bạn\nBạn cũng có thể dễ dàng nhập nó vào trang chi tiết công thức\nBạn có thể di chuyển các thành phần danh sách mua sắm vào tủ lạnh</string>
     <string name="help_4_2">Bạn có thể đăng ký các video được xem thường xuyên trên trang chi tiết công thức.</string>
-    <string name="ingredients">Thành phần</string>
+    <string name="ingredients">ingred.</string>
     <string name="recipes">Công thức nấu ăn</string>
 
 </resources>

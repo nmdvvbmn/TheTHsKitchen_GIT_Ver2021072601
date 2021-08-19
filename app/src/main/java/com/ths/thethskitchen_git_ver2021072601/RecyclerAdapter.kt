@@ -24,6 +24,7 @@ class RecyclerAdapter(private val listData: ArrayList<DList>,val type: Int):Recy
         val binding = ItemRecyclerBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         mContext = parent.context
         db = SQLiteDBHelper(mContext,App.dbName,App.dbVer)
+
         return Holder(binding)
     }
 

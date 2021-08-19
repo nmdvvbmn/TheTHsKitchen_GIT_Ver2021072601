@@ -91,7 +91,7 @@
     <string name="help_3_2">Digite os ingredientes na geladeira. \n Você pode pesquisar rapidamente, entrando apenas nos principais ingredientes.</string>
     <string name="help_4_1">Digite sua lista de compras\nVocê também pode inseri-lo facilmente na página de detalhes da receita\nVocê pode mover ingredientes da lista de compras para a geladeira</string>
     <string name="help_4_2">Você pode registrar vídeos visualizados com frequência na página de detalhes da receita.</string>
-    <string name="ingredients">Ingredientes</string>
+    <string name="ingredients">ingred.</string>
     <string name="recipes">Receitas</string>
 
 </resources>

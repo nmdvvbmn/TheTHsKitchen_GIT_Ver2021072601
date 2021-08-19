@@ -47,7 +47,7 @@ class HelpFragment : Fragment() {
         adapter.addFragment(Help3_Fragment())
         adapter.addFragment(Help4_Fragment())
         binding.viewHelp.adapter = adapter
-        TabLayoutMediator(binding.tabLayout, binding.viewHelp) { tab, position ->
+        TabLayoutMediator(binding.tabLayout, binding.viewHelp) { _, _ ->
             //Some implementation
         }.attach()
         return binding.root

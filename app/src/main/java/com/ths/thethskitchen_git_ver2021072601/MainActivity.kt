@@ -39,7 +39,7 @@ class MainActivity : BaseActivity() {
             startActivity(intent)
         }
 
-        // 메뉴 아이템 
+        // 메뉴 아이템
         binding.navi.setNavigationItemSelectedListener {
             when(it.itemId){
                 binding.navi.menu.getItem(0).itemId -> {    // 검색창으로 이동
@@ -141,7 +141,7 @@ class MainActivity : BaseActivity() {
         //도움말
         if  (App.prefs.getBoolean("init",true)){
             val dialog = ActivityHelpBinding.inflate(layoutInflater)
-            val builder = AlertDialog.Builder(this)
+            val builder = AlertDialog.Builder(this,R.drawable.edge)
             builder.setView(dialog.root)
 
             val alertDialog = builder.create()
@@ -156,6 +156,7 @@ class MainActivity : BaseActivity() {
                 dialog.fragmentContainerView.removeAllViews()
             }
             alertDialog.show()
+            alertDialog.window!!.setGravity(Gravity.CENTER_VERTICAL)
         }
     }
 

@@ -9,6 +9,9 @@ import android.util.Log
 import android.view.View
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
@@ -33,12 +36,33 @@ class RecommandDetail : BaseActivity(), RListAdapter.OnRItem {
     private lateinit var balloon3: Balloon
     private lateinit var balloon4: Balloon
 
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         val dlist = intent.getSerializableExtra("data") as DList    // 이전 페이지 선택 데이터
         var caption = 1 // 캡션설정 (디폴트 자막있음)
+
+
+        if (App.ad && !App.prefs.getBoolean("help",true)){
+            if (App.mInterstitialAd != null) {
+                App.mInterstitialAd?.show(this)
+                App.ad = false
+            }
+        }
+
+        //광고
+        MobileAds.initialize(this)
+        val adRequest = AdRequest.Builder().build()
+        binding.adViewD.loadAd(adRequest)
+        binding.adViewD.adListener = object: AdListener() {
+            override fun onAdClicked() {
+                App.ad = false
+                super.onAdClicked()
+            }
+        }
+
         //자막 없음 설정인 경우
         if (!App.prefs.getBoolean("caption",true)) {
             caption = 0

@@ -44,6 +44,10 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".RecommandDetail"
             android:screenOrientation="portrait"/>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3974703588591994~8027723437"/>
     </application>
 
 </manifest>

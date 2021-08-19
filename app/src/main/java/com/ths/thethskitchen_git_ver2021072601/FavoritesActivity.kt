@@ -2,6 +2,9 @@ package com.ths.thethskitchen_git_ver2021072601
 
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.skydoves.balloon.*
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityFavoritesBinding
 
@@ -18,6 +21,18 @@ class FavoritesActivity : BaseActivity() {
         adapter.dList.addAll(dbHelper.selectFavorites())
         binding.viewFavoritesList.adapter = adapter
         binding.viewFavoritesList.layoutManager = LinearLayoutManager(this)
+
+
+        //광고
+        MobileAds.initialize(this)
+        val adRequest = AdRequest.Builder().build()
+        binding.adViewF.loadAd(adRequest)
+        binding.adViewF.adListener = object: AdListener() {
+            override fun onAdClicked() {
+                App.ad = false
+                super.onAdClicked()
+            }
+        }
 
         //종료
         binding.btnFExit.setOnClickListener {

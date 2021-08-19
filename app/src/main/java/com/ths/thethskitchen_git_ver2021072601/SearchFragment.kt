@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.google.android.gms.ads.*
 import com.ths.thethskitchen_git_ver2021072601.databinding.FragmentSearchBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -30,6 +31,7 @@ class SearchFragment : Fragment() {
     lateinit var mContext: Context
     private lateinit var adapter : HistoryAdapter
     private lateinit var db: SQLiteDBHelper
+    lateinit var mAdView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +52,17 @@ class SearchFragment : Fragment() {
         db = SQLiteDBHelper(requireContext(),App.dbName,App.dbVer)
 
         db.selectSearch().let { searchList.addAll(it) }
+
+        //광고
+        MobileAds.initialize(mContext)
+        val adRequest = AdRequest.Builder().build()
+        binding.adViewS.loadAd(adRequest)
+        binding.adViewS.adListener = object: AdListener() {
+            override fun onAdClicked() {
+                App.ad = false
+                super.onAdClicked()
+            }
+        }
 
         binding.editSearch.setAdapter(adapter)
         adapter.notifyDataSetChanged()

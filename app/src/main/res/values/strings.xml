@@ -121,4 +121,14 @@
 
     <string name="help_4_1">쇼핑목록을 입력해요\n조리법 상세페이지에서도 쉽게 입력 할 수 있어요\n쇼핑목록 재료들을 냉장고로 이동 할 수 있어요</string>
     <string name="help_4_2">자주보는 영상을 조리법 상세페이지에서 등록 할 수 있어요</string>
+
+<!--    AD-->
+    <string name="ad_id_search" translatable="false">ca-app-pub-3974703588591994/1278961182</string>
+    <string name="ad_id_kitchen" translatable="false">ca-app-pub-3974703588591994/7227978781</string>
+    <string name="ad_id_refrigerator" translatable="false">ca-app-pub-3974703588591994/1148574024</string>
+    <string name="ad_id_cart" translatable="false">ca-app-pub-3974703588591994/3586394475</string>
+    <string name="ad_id_favorites" translatable="false">ca-app-pub-3974703588591994/4896247340</string>
+    <string name="ad_id_detail" translatable="false">ca-app-pub-3974703588591994/3583165673</string>
+
+    <string name="ad_id_detailf" translatable="false">ca-app-pub-3974703588591994/3980667216</string>
 </resources>

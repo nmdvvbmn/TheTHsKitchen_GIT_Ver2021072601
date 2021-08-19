@@ -3,6 +3,10 @@ package com.ths.thethskitchen_git_ver2021072601
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.ktx.firestoreSettings
@@ -11,7 +15,9 @@ import com.google.firebase.firestore.ktx.firestoreSettings
 class App: Application() {
     companion object {
         lateinit var prefs: THsSharedPreferences
+        var mInterstitialAd: InterstitialAd? = null
         var changed = false
+        var ad = true
         const val dbVer = 1
         const val dbName = "THsKitchen.db"
         @SuppressLint("StaticFieldLeak")
@@ -26,6 +32,18 @@ class App: Application() {
         prefs = THsSharedPreferences(applicationContext)
         db = FirebaseFirestore.getInstance()
         db.firestoreSettings = settings
+
+
+        val adRequestF = AdRequest.Builder().build()
+        InterstitialAd.load(this,this.getString(R.string.ad_id_detailf), adRequestF, object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                mInterstitialAd = null
+            }
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                mInterstitialAd = interstitialAd
+            }
+        })
+
         super.onCreate()
     }
 //    private var currentLocaleContext: Context? = null

@@ -91,7 +91,7 @@
     <string name="help_3_2">Inserisci gli ingredienti nel frigorifero. \n Puoi cercare rapidamente inserendo solo gli ingredienti principali.</string>
     <string name="help_4_1">Inserisci la tua lista della spesa\nPuoi anche entrare facilmente nella pagina dei dettagli della ricetta\nPuoi spostare gli ingredienti della lista della spesa per il frigorifero</string>
     <string name="help_4_2">È possibile registrare video visualizzati frequentemente sulla pagina dei dettagli della ricetta.</string>
-    <string name="ingredients">ingredienti</string>
+    <string name="ingredients">ingred.</string>
     <string name="recipes">Ricette</string>
 
 </resources>

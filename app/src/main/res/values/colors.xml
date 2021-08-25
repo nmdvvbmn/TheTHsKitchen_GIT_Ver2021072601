@@ -10,4 +10,5 @@
     <color name="thscolor">#048709</color>
     <color name="transparent">#00ff0000</color>
     <color name="help_gray">#FF515151</color>
+    <color name="title_color">#B2FFFFFF</color>
 </resources>

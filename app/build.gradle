@@ -13,8 +13,8 @@ android {
         applicationId "com.ths.thethskitchen_git_ver2021072601"
         minSdkVersion 27
         targetSdkVersion 30
-        versionCode 6
-        versionName "1.0014"
+        versionCode 7
+        versionName "1.0015"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         packagingOptions {

@@ -44,7 +44,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/txtTitle"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_thskitchenlogo" />
+                app:srcCompat="@drawable/ic_thskitchenlogow" />
 
             <ImageView
                 android:id="@+id/btn_menu"
@@ -56,7 +56,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_menu_36" />
+                app:srcCompat="@drawable/ic_baseline_menu_36w" />
 
             <TextView
                 android:id="@+id/txtTitle"
@@ -64,6 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:text="@string/app_name"
+                android:textColor="@color/title_color"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -79,7 +80,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/txtTitle"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_good_24" />
+                app:srcCompat="@drawable/ic_good_24w" />
 
             <ImageView
                 android:id="@+id/btnMove"

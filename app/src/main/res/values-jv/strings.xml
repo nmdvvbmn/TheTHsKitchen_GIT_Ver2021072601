@@ -93,5 +93,14 @@
     <string name="help_4_2">Sampeyan bisa ndhaptar video sing kerep ndeleng video ing kaca detail resep.</string>
     <string name="ingredients">ingred.</string>
     <string name="recipes">Resep</string>
+    <string name="recommend_nodata">"Ora ana resep sing disaranake.\nTambah Bahan-bahan ing Kulkas "</string>
+    <string name="menu_version">Versi</string>
+    <string name="ad_id_search" translatable="false">ca-app-pub-3974703588591994/1278961193</string>
+    <string name="ad_id_kitchen" translatable="false">ca-app-pub-3974703588591994/7227978792</string>
+    <string name="ad_id_refrigerator" translatable="false">ca-app-pub-3974703588591994/1148574035</string>
+    <string name="ad_id_cart" translatable="false">ca-app-pub-3974703588591994/3586394486</string>
+    <string name="ad_id_favorites" translatable="false">ca-app-pub-3974703588591994/4896247351</string>
+    <string name="ad_id_detail" translatable="false">ca-app-pub-3974703588591994/3583165684</string>
+    <string name="ad_id_detailf" translatable="false">ca-app-pub-3974703588591994/3980667227</string>
 
 </resources>

@@ -93,5 +93,14 @@
     <string name="help_4_2">レシピ詳細ページに頻繁に表示されているビデオを登録できます。</string>
     <string name="ingredients">材料</string>
     <string name="recipes">レシピ</string>
+    <string name="recommend_nodata">お勧めのレシピはまだありません。\n冷蔵庫に成分を追加する</string>
+    <string name="menu_version">バージョン</string>
+    <string name="ad_id_search" translatable="false">ca-app-pub-3974703588591994/1278961192</string>
+    <string name="ad_id_kitchen" translatable="false">ca-app-pub-3974703588591994/7227978791</string>
+    <string name="ad_id_refrigerator" translatable="false">ca-app-pub-3974703588591994/1148574034</string>
+    <string name="ad_id_cart" translatable="false">ca-app-pub-3974703588591994/3586394485</string>
+    <string name="ad_id_favorites" translatable="false">ca-app-pub-3974703588591994/4896247350</string>
+    <string name="ad_id_detail" translatable="false">ca-app-pub-3974703588591994/3583165683</string>
+    <string name="ad_id_detailf" translatable="false">ca-app-pub-3974703588591994/3980667226</string>
 
 </resources>

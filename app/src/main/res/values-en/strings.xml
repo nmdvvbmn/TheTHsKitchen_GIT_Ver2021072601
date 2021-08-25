@@ -93,5 +93,14 @@
     <string name="help_4_2">You can register frequently viewed videos on the recipe detail page.</string>
     <string name="ingredients">ingred.</string>
     <string name="recipes">Recipes</string>
+    <string name="recommend_nodata">There are no recommended recipes yet.\nAdd ingredients to the refrigerator\\</string>
+    <string name="menu_version">Version</string>
+    <string name="ad_id_search" translatable="false">ca-app-pub-3974703588591994/1278961186</string>
+    <string name="ad_id_kitchen" translatable="false">ca-app-pub-3974703588591994/7227978785</string>
+    <string name="ad_id_refrigerator" translatable="false">ca-app-pub-3974703588591994/1148574028</string>
+    <string name="ad_id_cart" translatable="false">ca-app-pub-3974703588591994/3586394479</string>
+    <string name="ad_id_favorites" translatable="false">ca-app-pub-3974703588591994/4896247344</string>
+    <string name="ad_id_detail" translatable="false">ca-app-pub-3974703588591994/3583165677</string>
+    <string name="ad_id_detailf" translatable="false">ca-app-pub-3974703588591994/3980667220</string>
 
 </resources>

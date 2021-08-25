@@ -32,7 +32,7 @@ class FavoritesAtapter: RecyclerView.Adapter<FavoritesAtapter.Holder>() {
         fun setDList(dList: DList) {
             binding.txtName.text = dList.name
             CoroutineScope(Dispatchers.Main).launch {
-                val url = "https://i.ytimg.com/vi/${dList.video}/0.jpg" //이미지 URL생성
+                val url = "https://i.ytimg.com/vi/${dList.video}/mqdefault.jpg" //이미지 URL생성
                 val bitmap = withContext(Dispatchers.IO) {
                     loadImage(url)
                 }

@@ -1,6 +1,7 @@
 package com.ths.thethskitchen_git_ver2021072601
 
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
@@ -40,6 +41,9 @@ class FavoritesActivity : BaseActivity() {
         }
         if (adapter.dList.isEmpty()&& App.prefs.getBoolean("help",true)){
             createHelp()
+        }
+        if (adapter.dList.isEmpty()) {
+            binding.txtFNoData.visibility = View.VISIBLE
         }
 
     }

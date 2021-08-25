@@ -93,5 +93,14 @@
     <string name="help_4_2">आप नुस्खा विवरण पृष्ठ पर अक्सर देखे गए वीडियो पंजीकृत कर सकते हैं।</string>
     <string name="ingredients">अवयव</string>
     <string name="recipes">व्यंजनों</string>
+    <string name="recommend_nodata">अभी तक कोई अनुशंसित व्यंजन नहीं हैं।\nरेफ्रिजरेटर में सामग्री जोड़ें \\</string>
+    <string name="menu_version">संस्करण</string>
+    <string name="ad_id_search" translatable="false">ca-app-pub-3974703588591994/1278961190</string>
+    <string name="ad_id_kitchen" translatable="false">ca-app-pub-3974703588591994/7227978789</string>
+    <string name="ad_id_refrigerator" translatable="false">ca-app-pub-3974703588591994/1148574032</string>
+    <string name="ad_id_cart" translatable="false">ca-app-pub-3974703588591994/3586394483</string>
+    <string name="ad_id_favorites" translatable="false">ca-app-pub-3974703588591994/4896247348</string>
+    <string name="ad_id_detail" translatable="false">ca-app-pub-3974703588591994/3583165681</string>
+    <string name="ad_id_detailf" translatable="false">ca-app-pub-3974703588591994/3980667224</string>
 
 </resources>

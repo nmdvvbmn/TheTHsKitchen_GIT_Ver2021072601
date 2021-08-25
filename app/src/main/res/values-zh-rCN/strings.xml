@@ -93,5 +93,14 @@
     <string name="help_4_2">您可以在配方详细信息页面上注册经常查看的视频。</string>
     <string name="ingredients">原料</string>
     <string name="recipes">食谱</string>
+    <string name="recommend_nodata">还没有建议的食谱。\n为冰箱添加成分</string>
+    <string name="menu_version">版本</string>
+    <string name="ad_id_search" translatable="false">ca-app-pub-3974703588591994/1278961184</string>
+    <string name="ad_id_kitchen" translatable="false">ca-app-pub-3974703588591994/7227978783</string>
+    <string name="ad_id_refrigerator" translatable="false">ca-app-pub-3974703588591994/1148574026</string>
+    <string name="ad_id_cart" translatable="false">ca-app-pub-3974703588591994/3586394477</string>
+    <string name="ad_id_favorites" translatable="false">ca-app-pub-3974703588591994/4896247342</string>
+    <string name="ad_id_detail" translatable="false">ca-app-pub-3974703588591994/3583165675</string>
+    <string name="ad_id_detailf" translatable="false">ca-app-pub-3974703588591994/3980667218</string>
 
 </resources>

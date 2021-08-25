@@ -102,6 +102,9 @@ class MainActivity : BaseActivity() {
 
 
                 }
+                binding.navi.menu.getItem(9).itemId -> { //벅전
+                    Toast.makeText(this,"Ver." + BuildConfig.VERSION_NAME,Toast.LENGTH_SHORT).show()
+                }
                 else -> Toast.makeText(this,"text",Toast.LENGTH_LONG).show()
             }
             return@setNavigationItemSelectedListener true
@@ -138,26 +141,7 @@ class MainActivity : BaseActivity() {
                 }
             }
         })
-        //도움말
-        if  (App.prefs.getBoolean("init",true)){
-            val dialog = ActivityHelpBinding.inflate(layoutInflater)
-            val builder = AlertDialog.Builder(this,R.drawable.edge)
-            builder.setView(dialog.root)
 
-            val alertDialog = builder.create()
-            dialog.btnSkip.setOnClickListener {
-                alertDialog.dismiss()
-            }
-            dialog.btnClose.setOnClickListener {
-                App.prefs.setBoolena("init",false)
-                alertDialog.dismiss()
-            }
-            alertDialog.setOnDismissListener {
-                dialog.fragmentContainerView.removeAllViews()
-            }
-            alertDialog.show()
-            alertDialog.window!!.setGravity(Gravity.CENTER_VERTICAL)
-        }
     }
 
     // 초기 언어 설정
@@ -178,9 +162,14 @@ class MainActivity : BaseActivity() {
             App.prefs.setBoolena("sous",true)
             App.prefs.setBoolena("grill",true)
 
+            App.prefs.setBoolena("play", true)   //자동재생 설정
+            App.prefs.setBoolena("help",true)   //도움말
+
             val language = Locale.getDefault().language
-            if (langCode == "ko"){  //한국
+            if (language == "ko"){  //한국
                 App.prefs.setBoolena("caption",false)   //한국인 경우 초기 자막 없음 설정
+            }else{
+                App.prefs.setBoolena("caption",true)   //한국인 경우 초기 자막 없음 설정
             }
             when {
                 codeList.any { it == language } -> {
@@ -235,6 +224,31 @@ class MainActivity : BaseActivity() {
             }
         }else{  //드로워 아닌경우
             super.onBackPressed()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        //도움말
+        if  (App.prefs.getBoolean("init",true) && App.init){
+            val dialog = ActivityHelpBinding.inflate(layoutInflater)
+            val builder = AlertDialog.Builder(this,R.drawable.edge)
+            builder.setView(dialog.root)
+
+            val alertDialog = builder.create()
+            dialog.btnSkip.setOnClickListener {
+                alertDialog.dismiss()
+            }
+            dialog.btnClose.setOnClickListener {
+                App.prefs.setBoolena("init",false)
+                alertDialog.dismiss()
+            }
+            alertDialog.setOnDismissListener {
+                dialog.fragmentContainerView.removeAllViews()
+                App.init = false
+            }
+            alertDialog.show()
+            alertDialog.window!!.setGravity(Gravity.CENTER_VERTICAL)
         }
     }
 }

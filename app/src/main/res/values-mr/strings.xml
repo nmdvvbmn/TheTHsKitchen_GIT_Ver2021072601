@@ -93,5 +93,14 @@
     <string name="help_4_2">आपण रेसिपी तपशील पृष्ठावर वारंवार पाहिलेले व्हिडिओ नोंदणी करू शकता.</string>
     <string name="ingredients">साहित्य</string>
     <string name="recipes">पाककृती</string>
+    <string name="recommend_nodata">अद्याप शिफारस केलेले पाककृती नाहीत.\nरेफ्रिजरेटरमध्ये घटक जोडा \\</string>
+    <string name="menu_version">आवृत्ती</string>
+    <string name="ad_id_search" translatable="false">ca-app-pub-3974703588591994/1278961196</string>
+    <string name="ad_id_kitchen" translatable="false">ca-app-pub-3974703588591994/7227978795</string>
+    <string name="ad_id_refrigerator" translatable="false">ca-app-pub-3974703588591994/1148574038</string>
+    <string name="ad_id_cart" translatable="false">ca-app-pub-3974703588591994/3586394489</string>
+    <string name="ad_id_favorites" translatable="false">ca-app-pub-3974703588591994/4896247354</string>
+    <string name="ad_id_detail" translatable="false">ca-app-pub-3974703588591994/3583165687</string>
+    <string name="ad_id_detailf" translatable="false">ca-app-pub-3974703588591994/3980667230</string>
 
 </resources>

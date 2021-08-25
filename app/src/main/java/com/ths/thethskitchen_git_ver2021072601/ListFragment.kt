@@ -118,6 +118,7 @@ class ListFragment : Fragment() {
 
         if (nameListD.isEmpty()) {     // 재료 없음 검색 X
             binding.pbLoading.visibility = View.INVISIBLE
+            binding.txtNoData.visibility = View.VISIBLE
             adapter.notifyDataSetChanged()
             if(dlist.size == 0){
                 val balloon1 = createBalloon(requireContext()) {
@@ -146,6 +147,7 @@ class ListFragment : Fragment() {
             }
         }else{ // 초기화
             dlist.clear()
+            binding.txtNoData.visibility = View.INVISIBLE
             proc = true
             dlistCnt = 0
             dnameCnt = 0
@@ -262,6 +264,11 @@ class ListFragment : Fragment() {
                                                                             adapter.notifyDataSetChanged()
                                                                             //새로고침플레그 해제
                                                                             proc = false
+                                                                            if (dlist.isEmpty()){
+                                                                                binding.txtNoData.visibility = View.VISIBLE
+                                                                            }else{
+                                                                                binding.txtNoData.visibility = View.INVISIBLE
+                                                                            }
                                                                         }
 //                                                                        리스트뷰 업데이트 (중간중간 데이터 띄우기 위함)
                                                                         adapter.notifyDataSetChanged()
@@ -292,6 +299,11 @@ class ListFragment : Fragment() {
                                                                     adapter.notifyDataSetChanged()
                                                                     // 새로고침 플레그 해제
                                                                     proc = false
+                                                                    if (dlist.isEmpty()){
+                                                                        binding.txtNoData.visibility = View.VISIBLE
+                                                                    }else{
+                                                                        binding.txtNoData.visibility = View.INVISIBLE
+                                                                    }
                                                                 }
                                                             }
 
@@ -319,6 +331,11 @@ class ListFragment : Fragment() {
                                                                     View.INVISIBLE
                                                                 adapter.notifyDataSetChanged()
                                                                 proc = false
+                                                                if (dlist.isEmpty()){
+                                                                    binding.txtNoData.visibility = View.VISIBLE
+                                                                }else{
+                                                                    binding.txtNoData.visibility = View.INVISIBLE
+                                                                }
                                                             }
                                                         }.addOnCompleteListener {
                                                             adapter.notifyDataSetChanged()
@@ -345,6 +362,11 @@ class ListFragment : Fragment() {
                                                 adapter.notifyDataSetChanged()
                                                 binding.pbLoading.visibility = View.INVISIBLE
                                                 proc = false
+                                                if (dlist.isEmpty()){
+                                                    binding.txtNoData.visibility = View.VISIBLE
+                                                }else{
+                                                    binding.txtNoData.visibility = View.INVISIBLE
+                                                }
                                             }
                                         }
                                         }

@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/iconv4_round"
         android:supportsRtl="true"
         android:screenOrientation="portrait"
+        android:hardwareAccelerated="true"
         android:theme="@style/Theme.TheTHsKitchen_GIT_Ver2021072601">
         <activity android:name=".HelpActivity"
             android:screenOrientation="portrait"></activity>

@@ -93,5 +93,14 @@
     <string name="help_4_2">તમે વારંવાર જોવાયેલી વિડિઓઝને રેસીપી વિગતવાર પૃષ્ઠ પર નોંધણી કરાવી શકો છો.</string>
     <string name="ingredients">ઘટકો</string>
     <string name="recipes">રેસિપીઝ</string>
+    <string name="recommend_nodata">હજી સુધી કોઈ આગ્રહણીય વાનગીઓ નથી.\nરેફ્રિજરેટરમાં ઘટકો ઉમેરો \\</string>
+    <string name="menu_version">આવૃત્તિ</string>
+    <string name="ad_id_search" translatable="false">ca-app-pub-3974703588591994/1278961189</string>
+    <string name="ad_id_kitchen" translatable="false">ca-app-pub-3974703588591994/7227978788</string>
+    <string name="ad_id_refrigerator" translatable="false">ca-app-pub-3974703588591994/1148574031</string>
+    <string name="ad_id_cart" translatable="false">ca-app-pub-3974703588591994/3586394482</string>
+    <string name="ad_id_favorites" translatable="false">ca-app-pub-3974703588591994/4896247347</string>
+    <string name="ad_id_detail" translatable="false">ca-app-pub-3974703588591994/3583165680</string>
+    <string name="ad_id_detailf" translatable="false">ca-app-pub-3974703588591994/3980667223</string>
 
 </resources>

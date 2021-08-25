@@ -3,13 +3,16 @@ package com.ths.thethskitchen_git_ver2021072601
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 import com.google.firebase.firestore.ktx.firestoreSettings
+import java.util.*
 
 // Pref
 class App: Application() {
@@ -18,6 +21,7 @@ class App: Application() {
         var mInterstitialAd: InterstitialAd? = null
         var changed = false
         var ad = true
+        var init = true
         const val dbVer = 1
         const val dbName = "THsKitchen.db"
         @SuppressLint("StaticFieldLeak")
@@ -32,15 +36,17 @@ class App: Application() {
         prefs = THsSharedPreferences(applicationContext)
         db = FirebaseFirestore.getInstance()
         db.firestoreSettings = settings
-
-
+        
         val adRequestF = AdRequest.Builder().build()
-        InterstitialAd.load(this,this.getString(R.string.ad_id_detailf), adRequestF, object : InterstitialAdLoadCallback() {
+        InterstitialAd.load(this,"ca-app-pub-3974703588591994/3980667216", adRequestF, object : InterstitialAdLoadCallback() {
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 mInterstitialAd = null
+                Log.d("ADMOB","Fullscreen Load Fail")
+                Log.d("ADMOB","${adError}")
             }
             override fun onAdLoaded(interstitialAd: InterstitialAd) {
                 mInterstitialAd = interstitialAd
+                Log.d("ADMOB","Fullscreen onLoad ")
             }
         })
 

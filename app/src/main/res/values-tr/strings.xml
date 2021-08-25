@@ -93,5 +93,14 @@
     <string name="help_4_2">Tarif detay sayfasında sıkça görüntülenen videoları kaydedebilirsiniz.</string>
     <string name="ingredients">ingred.</string>
     <string name="recipes">Tarifler</string>
+    <string name="recommend_nodata">Henüz tavsiye edilen tarifler yoktur.\nBuzdolabına malzemeler ekleyin \\</string>
+    <string name="menu_version">Sürüm</string>
+    <string name="ad_id_search" translatable="false">ca-app-pub-3974703588591994/1278961203</string>
+    <string name="ad_id_kitchen" translatable="false">ca-app-pub-3974703588591994/7227978802</string>
+    <string name="ad_id_refrigerator" translatable="false">ca-app-pub-3974703588591994/1148574045</string>
+    <string name="ad_id_cart" translatable="false">ca-app-pub-3974703588591994/3586394496</string>
+    <string name="ad_id_favorites" translatable="false">ca-app-pub-3974703588591994/4896247361</string>
+    <string name="ad_id_detail" translatable="false">ca-app-pub-3974703588591994/3583165694</string>
+    <string name="ad_id_detailf" translatable="false">ca-app-pub-3974703588591994/3980667237</string>
 
 </resources>

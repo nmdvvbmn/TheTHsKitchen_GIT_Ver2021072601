@@ -93,5 +93,14 @@
     <string name="help_4_2">Bạn có thể đăng ký các video được xem thường xuyên trên trang chi tiết công thức.</string>
     <string name="ingredients">ingred.</string>
     <string name="recipes">Công thức nấu ăn</string>
+    <string name="recommend_nodata">Không có công thức nấu ăn được khuyến nghị nào.\nThêm thành phần vào tủ lạnh \\</string>
+    <string name="menu_version">Phiên bản</string>
+    <string name="ad_id_search" translatable="false">ca-app-pub-3974703588591994/1278961205</string>
+    <string name="ad_id_kitchen" translatable="false">ca-app-pub-3974703588591994/7227978804</string>
+    <string name="ad_id_refrigerator" translatable="false">ca-app-pub-3974703588591994/1148574047</string>
+    <string name="ad_id_cart" translatable="false">ca-app-pub-3974703588591994/3586394498</string>
+    <string name="ad_id_favorites" translatable="false">ca-app-pub-3974703588591994/4896247363</string>
+    <string name="ad_id_detail" translatable="false">ca-app-pub-3974703588591994/3583165696</string>
+    <string name="ad_id_detailf" translatable="false">ca-app-pub-3974703588591994/3980667239</string>
 
 </resources>

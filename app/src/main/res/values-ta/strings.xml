@@ -93,5 +93,14 @@
     <string name="help_4_2">செய்முறை விவரம் பக்கத்தில் அடிக்கடி பார்வையிடலாம்.</string>
     <string name="ingredients">ingred.</string>
     <string name="recipes">சமையல்</string>
+    <string name="recommend_nodata">இதுவரை பரிந்துரைக்கப்பட்ட சமையல் இல்லை.\nகுளிர்சாதன பெட்டிக்கு தேவையான பொருட்கள் சேர்க்கவும் \\</string>
+    <string name="menu_version">பதிப்பு</string>
+    <string name="ad_id_search" translatable="false">ca-app-pub-3974703588591994/1278961201</string>
+    <string name="ad_id_kitchen" translatable="false">ca-app-pub-3974703588591994/7227978800</string>
+    <string name="ad_id_refrigerator" translatable="false">ca-app-pub-3974703588591994/1148574043</string>
+    <string name="ad_id_cart" translatable="false">ca-app-pub-3974703588591994/3586394494</string>
+    <string name="ad_id_favorites" translatable="false">ca-app-pub-3974703588591994/4896247359</string>
+    <string name="ad_id_detail" translatable="false">ca-app-pub-3974703588591994/3583165692</string>
+    <string name="ad_id_detailf" translatable="false">ca-app-pub-3974703588591994/3980667235</string>
 
 </resources>

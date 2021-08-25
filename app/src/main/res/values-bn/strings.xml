@@ -93,5 +93,14 @@
     <string name="help_4_2">আপনি রেসিপি বিস্তারিত পৃষ্ঠায় প্রায়শই দেখা ভিডিওগুলি নিবন্ধন করতে পারেন।</string>
     <string name="ingredients">উপকরণ</string>
     <string name="recipes">রেসিপি</string>
+    <string name="recommend_nodata">এখনো কোন সুপারিশ রেসিপি আছে।\nরেফ্রিজারেটর উপাদান যোগ করুন \\</string>
+    <string name="menu_version">সংস্করণ</string>
+    <string name="ad_id_search" translatable="false">ca-app-pub-3974703588591994/1278961183</string>
+    <string name="ad_id_kitchen" translatable="false">ca-app-pub-3974703588591994/7227978782</string>
+    <string name="ad_id_refrigerator" translatable="false">ca-app-pub-3974703588591994/1148574025</string>
+    <string name="ad_id_cart" translatable="false">ca-app-pub-3974703588591994/3586394476</string>
+    <string name="ad_id_favorites" translatable="false">ca-app-pub-3974703588591994/4896247341</string>
+    <string name="ad_id_detail" translatable="false">ca-app-pub-3974703588591994/3583165674</string>
+    <string name="ad_id_detailf" translatable="false">ca-app-pub-3974703588591994/3980667217</string>
 
 </resources>

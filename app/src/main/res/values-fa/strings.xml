@@ -93,5 +93,14 @@
     <string name="help_4_2">شما می توانید فیلم های اغلب مشاهده شده را در صفحه جزئیات دستور العمل ثبت کنید.</string>
     <string name="ingredients">عناصر</string>
     <string name="recipes">دستور پخت</string>
+    <string name="recommend_nodata">هنوز دستور العمل های توصیه شده وجود ندارد.\nاضافه کردن مواد تشکیل دهنده به یخچال \\</string>
+    <string name="menu_version">نسخه</string>
+    <string name="ad_id_search" translatable="false">ca-app-pub-3974703588591994/1278961197</string>
+    <string name="ad_id_kitchen" translatable="false">ca-app-pub-3974703588591994/7227978796</string>
+    <string name="ad_id_refrigerator" translatable="false">ca-app-pub-3974703588591994/1148574039</string>
+    <string name="ad_id_cart" translatable="false">ca-app-pub-3974703588591994/3586394490</string>
+    <string name="ad_id_favorites" translatable="false">ca-app-pub-3974703588591994/4896247355</string>
+    <string name="ad_id_detail" translatable="false">ca-app-pub-3974703588591994/3583165688</string>
+    <string name="ad_id_detailf" translatable="false">ca-app-pub-3974703588591994/3980667231</string>
 
 </resources>

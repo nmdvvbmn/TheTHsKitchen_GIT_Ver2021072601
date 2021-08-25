@@ -93,5 +93,14 @@
     <string name="help_4_2">మీరు రెసిపీ వివరాలు పేజీలో తరచుగా వీక్షించిన వీడియోలను నమోదు చేసుకోవచ్చు.</string>
     <string name="ingredients">ingred.</string>
     <string name="recipes">వంటకాలు</string>
+    <string name="recommend_nodata">ఇంకా సిఫార్సు చేయబడిన వంటకాలు లేవు.\nరిఫ్రిజిరేటర్ కు పదార్థాలను జోడించండి \\</string>
+    <string name="menu_version">సంస్కరణ: Telugu</string>
+    <string name="ad_id_search" translatable="false">ca-app-pub-3974703588591994/1278961202</string>
+    <string name="ad_id_kitchen" translatable="false">ca-app-pub-3974703588591994/7227978801</string>
+    <string name="ad_id_refrigerator" translatable="false">ca-app-pub-3974703588591994/1148574044</string>
+    <string name="ad_id_cart" translatable="false">ca-app-pub-3974703588591994/3586394495</string>
+    <string name="ad_id_favorites" translatable="false">ca-app-pub-3974703588591994/4896247360</string>
+    <string name="ad_id_detail" translatable="false">ca-app-pub-3974703588591994/3583165693</string>
+    <string name="ad_id_detailf" translatable="false">ca-app-pub-3974703588591994/3980667236</string>
 
 </resources>

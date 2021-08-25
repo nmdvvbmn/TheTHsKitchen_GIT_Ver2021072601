@@ -2,6 +2,7 @@ package com.ths.thethskitchen_git_ver2021072601
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +24,10 @@ class RefrigeratorActivity : BaseActivity() {
 
         adapter.helper = dbHelper
         adapter.refrigeratorList.addAll(dbHelper.selectRefrigerator())
+        if (adapter.refrigeratorList.isEmpty()){
+            binding.txtRNoData1.visibility = View.VISIBLE
+            binding.txtRNoData2.visibility = View.VISIBLE
+        }
         binding.viewRefrigeratorList.adapter = adapter
         binding.viewRefrigeratorList.layoutManager = LinearLayoutManager(this)
 //        binding.viewRefrigeratorList.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
@@ -52,6 +57,10 @@ class RefrigeratorActivity : BaseActivity() {
                     adapter.refrigeratorList.clear()
                     adapter.refrigeratorList.addAll(dbHelper.selectRefrigerator())
                     adapter.notifyDataSetChanged()
+                    if (adapter.refrigeratorList.size > 0){
+                        binding.txtRNoData1.visibility = View.INVISIBLE
+                        binding.txtRNoData2.visibility = View.INVISIBLE
+                    }
                     App.changed = true
                     alertDailog.dismiss()   //입력화면 종료
                 }else{

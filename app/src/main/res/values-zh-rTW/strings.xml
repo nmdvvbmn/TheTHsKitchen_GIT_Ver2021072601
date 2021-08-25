@@ -93,5 +93,14 @@
     <string name="help_4_2">您可以在配方詳細信息頁面上註冊經常查看的視頻。</string>
     <string name="ingredients">原料</string>
     <string name="recipes">食譜</string>
+    <string name="recommend_nodata">還沒有建議的食譜。\n為冰箱添加成分</string>
+    <string name="menu_version">版本</string>
+    <string name="ad_id_search" translatable="false">ca-app-pub-3974703588591994/1278961185</string>
+    <string name="ad_id_kitchen" translatable="false">ca-app-pub-3974703588591994/7227978784</string>
+    <string name="ad_id_refrigerator" translatable="false">ca-app-pub-3974703588591994/1148574027</string>
+    <string name="ad_id_cart" translatable="false">ca-app-pub-3974703588591994/3586394478</string>
+    <string name="ad_id_favorites" translatable="false">ca-app-pub-3974703588591994/4896247343</string>
+    <string name="ad_id_detail" translatable="false">ca-app-pub-3974703588591994/3583165676</string>
+    <string name="ad_id_detailf" translatable="false">ca-app-pub-3974703588591994/3980667219</string>
 
 </resources>

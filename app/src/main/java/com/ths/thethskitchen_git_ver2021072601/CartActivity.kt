@@ -2,17 +2,18 @@ package com.ths.thethskitchen_git_ver2021072601
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.*
 import com.skydoves.balloon.*
 import com.ths.thethskitchen_git_ver2021072601.databinding.ActivityCartBinding
 import com.ths.thethskitchen_git_ver2021072601.databinding.DailogCartAddBinding
 import java.lang.Exception
 import java.time.LocalDateTime
+import java.util.*
 
 //장바구니
 class CartActivity : BaseActivity() {
@@ -26,6 +27,9 @@ class CartActivity : BaseActivity() {
 
         adapter.helper = dbHelper
         adapter.cartList.addAll(dbHelper.selectCart())
+        if (adapter.cartList.isEmpty()) {
+            binding.txtCNoData.visibility = View.VISIBLE
+        }
         binding.viewCartList.adapter = adapter
         binding.viewCartList.layoutManager = LinearLayoutManager(this)
 
@@ -37,6 +41,17 @@ class CartActivity : BaseActivity() {
             override fun onAdClicked() {
                 App.ad = false
                 super.onAdClicked()
+            }
+
+            override fun onAdFailedToLoad(p0: LoadAdError) {
+                super.onAdFailedToLoad(p0)
+                Log.d("ADMOB","${p0}")
+                Log.d("ADMOB","Cart Fail")
+            }
+
+            override fun onAdLoaded() {
+                super.onAdLoaded()
+                Log.d("ADMOB","Fullscreen Loaded")
             }
         }
 //        binding.viewCartList.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
@@ -67,6 +82,9 @@ class CartActivity : BaseActivity() {
                     adapter.cartList.clear()
                     adapter.cartList.addAll(dbHelper.selectCart())
                     adapter.notifyDataSetChanged()
+                    if (adapter.cartList.size > 0) {
+                        binding.txtCNoData.visibility = View.INVISIBLE
+                    }
                     alertDailog.dismiss()   //입력화면 종료
                 }else{
                     Toast.makeText(this,this.getString(R.string.msg_add_NoName),

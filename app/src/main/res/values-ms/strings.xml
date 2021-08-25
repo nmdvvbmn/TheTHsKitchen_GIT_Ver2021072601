@@ -93,5 +93,14 @@
     <string name="help_4_2">Anda boleh mendaftar video yang sering dilihat pada halaman terperinci resipi.</string>
     <string name="ingredients">ingred.</string>
     <string name="recipes">Resipi</string>
+    <string name="recommend_nodata">Tiada resipi yang disyorkan lagi.\nMasukkan bahan-bahan ke peti sejuk \\</string>
+    <string name="menu_version">Versi</string>
+    <string name="ad_id_search" translatable="false">ca-app-pub-3974703588591994/1278961195</string>
+    <string name="ad_id_kitchen" translatable="false">ca-app-pub-3974703588591994/7227978794</string>
+    <string name="ad_id_refrigerator" translatable="false">ca-app-pub-3974703588591994/1148574037</string>
+    <string name="ad_id_cart" translatable="false">ca-app-pub-3974703588591994/3586394488</string>
+    <string name="ad_id_favorites" translatable="false">ca-app-pub-3974703588591994/4896247353</string>
+    <string name="ad_id_detail" translatable="false">ca-app-pub-3974703588591994/3583165686</string>
+    <string name="ad_id_detailf" translatable="false">ca-app-pub-3974703588591994/3980667229</string>
 
 </resources>

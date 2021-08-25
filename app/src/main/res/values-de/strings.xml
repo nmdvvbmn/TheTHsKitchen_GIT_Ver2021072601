@@ -93,5 +93,14 @@
     <string name="help_4_2">Sie können häufig angesehene Videos auf der Seite Rezeptdetails registrieren.</string>
     <string name="ingredients">Zutaten</string>
     <string name="recipes">Rezepte</string>
+    <string name="recommend_nodata">Es gibt noch keine empfohlenen Rezepte.\nZutaten in den Kühlschrank hinzufügen \\</string>
+    <string name="menu_version">Ausführung</string>
+    <string name="ad_id_search" translatable="false">ca-app-pub-3974703588591994/1278961188</string>
+    <string name="ad_id_kitchen" translatable="false">ca-app-pub-3974703588591994/7227978787</string>
+    <string name="ad_id_refrigerator" translatable="false">ca-app-pub-3974703588591994/1148574030</string>
+    <string name="ad_id_cart" translatable="false">ca-app-pub-3974703588591994/3586394481</string>
+    <string name="ad_id_favorites" translatable="false">ca-app-pub-3974703588591994/4896247346</string>
+    <string name="ad_id_detail" translatable="false">ca-app-pub-3974703588591994/3583165679</string>
+    <string name="ad_id_detailf" translatable="false">ca-app-pub-3974703588591994/3980667222</string>
 
 </resources>

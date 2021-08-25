@@ -93,5 +93,14 @@
     <string name="help_4_2">Vous pouvez vous inscrire des vidéos fréquemment visionnées sur la page de détail de la recette.</string>
     <string name="ingredients">ingred.</string>
     <string name="recipes">Recettes</string>
+    <string name="recommend_nodata">Il n\'y a pas encore de recettes recommandées.\nAjouter des ingrédients au réfrigérateur \\</string>
+    <string name="menu_version">Version</string>
+    <string name="ad_id_search" translatable="false">ca-app-pub-3974703588591994/1278961187</string>
+    <string name="ad_id_kitchen" translatable="false">ca-app-pub-3974703588591994/7227978786</string>
+    <string name="ad_id_refrigerator" translatable="false">ca-app-pub-3974703588591994/1148574029</string>
+    <string name="ad_id_cart" translatable="false">ca-app-pub-3974703588591994/3586394480</string>
+    <string name="ad_id_favorites" translatable="false">ca-app-pub-3974703588591994/4896247345</string>
+    <string name="ad_id_detail" translatable="false">ca-app-pub-3974703588591994/3583165678</string>
+    <string name="ad_id_detailf" translatable="false">ca-app-pub-3974703588591994/3980667221</string>
 
 </resources>
